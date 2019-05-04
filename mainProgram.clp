@@ -227,7 +227,6 @@
 ;;;----------  					TEMPLATES					 		---------- 								TEMPLATES
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 
-;CAL TENIR AQUEST TEMPLATE DE USUARI O ES POT SIMPLEMENT ANAR GUARDANT FACTS
 ;;; deftemplat para almacenar la informacion que se infiere del expediente
 
 
@@ -238,23 +237,31 @@
 
 (deftemplate solucionOrdenadaPrimers "solucion final primeros platos"
 	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-classes Plat))
+	(slot recomendacion (type INSTANCE) (allowed-values Plat))
 )
+
 
 (deftemplate solucionOrdenadaSegons "solucion final segundos platos"
 	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-classes Plat))
+	(slot recomendacion (type INSTANCE) (allowed-values Plat))
 )
 
 (deftemplate solucionOrdenadaPostres "solucion final postres"
 	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-classes Plat))
+	(slot recomendacion (type INSTANCE) (allowed-values Plat))
 )
 
 (deftemplate solucionOrdenadaBegudes "solucion final bebida"
 	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-classes Plat))
+	(slot recomendacion (type INSTANCE) (allowed-values Plat))
 )
+
+
+(deftemplate solucionOrdenadaBegudes "solucion final bebida"
+	(slot posicion (type INTEGER))
+	(slot recomendacion (type INSTANCE) (allowed-values Plat))
+)
+
 
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -295,11 +302,11 @@
 ;;; Aqui aun podem completar mas para que imprima mas información. Dependerá de como se muestre por pantalla
 
 
-(defmessage-handler Plat imprime primary ()
+(defmessage-handler Plat imprimeixNom primary ()
 	(printout t " Plat:  " ?self:Nom crlf)
 )
 
-(defmessage-handler Ingredient imprime primary()
+(defmessage-handler Ingredient imprimeixNom primary()
 	(printout t ?self:Nom_ingredient crlf)
 )
 
@@ -475,6 +482,7 @@
 		)
 	)
   (assert(MalaltiesAfegides))
+  (focus(inferir_datos))
 )
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -490,6 +498,12 @@
 )
 
 
+(defrule doesntDoAnything "Here we would add the different rules"
+  =>
+  (focus(filtrat))
+)
+
+
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					MODULO DE FILTRADO				---------- 				MODULO DE FILTRADO
@@ -497,14 +511,14 @@
 
 ;; En este modulo se hace la abstraccion de los datos obtenidos del modulo de pregunatas
 
-(defmodule filtrado
+(defmodule filtrat
 	(import MAIN ?ALL)
 	(import inferir_datos ?ALL)
 	(export ?ALL)
 )
 
 ;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
-(defrule descarAmbCarn "regla para descartar los platos que contengan carne"
+(defrule descartarAmbCarn "regla para descartar los platos que contengan carne"
   (Carn)
   (RestriccionsAfegides)
 	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
@@ -518,7 +532,7 @@
 	(send ?plat delete)
 )
 
-(defrule descarAmbPeix "regla para descartar los platos que contengan pescado"
+(defrule descartarAmbPeix "regla para descartar los platos que contengan pescado"
   (Peix)
   (RestriccionsAfegides)
 	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
@@ -532,7 +546,7 @@
 	(send ?plat delete)
 )
 
-(defrule descarAmbFruita "regla para descartar los platos que contengan fruta"
+(defrule descartarAmbFruita "regla para descartar los platos que contengan fruta"
   (Fruita)
   (RestriccionsAfegides)
 	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
@@ -551,8 +565,33 @@
 
 
 
+
+
+
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  				MODULO DE MENÚS		---------- 				MODULO DE MENÚS
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ;; Aqui montamos nustro menu final
+
+(defmodule menus
+	(import MAIN ?ALL)
+	(import inferir_datos ?ALL)
+	(import filtrat ?ALL)
+	(export ?ALL)
+)
+
+
+(defrule obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
+	(nou_usuari)
+	=>
+	(bind ?pos 1)
+	(bind $?plats (find-all-instances ((?inst Plat)) TRUE))
+	(printout t crlf)
+	(printout t "Tots els possibles plats: " crlf)
+	(printout t "----------------------------------- " crlf)
+
+	(progn$ (?i ?plats)
+    (send ?i imprimeixNom)
+	)
+)
