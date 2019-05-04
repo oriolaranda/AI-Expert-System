@@ -1,52 +1,16 @@
-; Wed May 01 12:28:48 CEST 2019
+; Sat May 04 18:58:24 CEST 2019
 ;
 ;+ (version "3.3.1")
 ;+ (build "Build 430")
-
-;;;------------------------------------------------------------------------------------------------------------------------------------------------------
-;;;----------  					ONTOLOGIA					 		---------- 								ONTOLOGIA
-;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot Nom
-;+		(comment "Nom del plat")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot Ingredients
-;+		(comment "Ingredients principals del plat")
-		(type INSTANCE)
-;+		(allowed-classes Ingredient+concret)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot Cocci%C3%B3
-;+		(comment "Manera com cuinem el ingredient")
-		(type SYMBOL)
-		(allowed-values Planxa Al_forn Fregit Fresc Saltejat Bullit)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot Hidrats+de+carboni
-;+		(comment "Nombre d'hidrats de carboni")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Ingredient_general
-;+		(comment "Ingredient general al que fa referència aquest ingredient concret.")
-		(type INSTANCE)
-;+		(allowed-classes Ingredient+general)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot Grasas
 ;+		(comment "Nombre de grasas")
 		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Quantitat
-;+		(comment "Quantitat que porta d'un ingredient general")
-		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot Familia
@@ -60,16 +24,23 @@
 		(allowed-values Hivern Primavera Estiu Tardor)
 		(cardinality 1 4)
 		(create-accessor read-write))
-	(single-slot Sopar
-;+		(comment "Indica si és un plat per a un sopar")
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
+	(multislot Nutrients
+;+		(comment "Aqui contenim les instàncies dels diferents nutrients que conté")
+		(type INSTANCE)
+;+		(allowed-classes Nutrient)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
-	(single-slot Proteines
-;+		(comment "Nombre de proteines")
+	(single-slot Hidrats+de+carboni
+;+		(comment "Nombre d'hidrats de carboni")
 		(type INTEGER)
-;+		(cardinality 0 1)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Apat
+;+		(comment "Indica si pot ser un plat per esmorzar, dinar o sopar (o diversos)")
+		(type SYMBOL)
+		(allowed-values Esmorzar Dinar Sopar)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot Dinar
 ;+		(comment "Indica si és un plat per a un dinar")
@@ -77,105 +48,141 @@
 		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot Kcal
-;+		(comment "Nombre de kilocaloríes")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Nom_ingredient
-;+		(comment "Nom del ingredient")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot Esmorzar
 ;+		(comment "Indica si és un plat per a un esmorzar")
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Quantitat
+;+		(comment "Quantitat que porta d'un ingredient general")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot Tipus_nutrient
+;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
+		(type SYMBOL)
+		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos_mono_o_poliinsat Greixos_trans)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Sopar
+;+		(comment "Indica si és un plat per a un sopar")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Nom_ingredient
+;+		(comment "Nom del ingredient")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Valor_energetic%28kcal%29
+;+		(comment "Nombre de kilocaloríes")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Quantitat_nutrient
+;+		(comment "Valor en grams de nutrient")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Ingredients
+;+		(comment "Ingredients principals del plat")
+		(type INSTANCE)
+;+		(allowed-classes IngredientConcret)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Nom
+;+		(comment "Nom del plat")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Proteines
+;+		(comment "Nombre de proteines")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Cocci%C3%B3
+;+		(comment "Manera com cuinem el ingredient")
+		(type SYMBOL)
+		(allowed-values Planxa Al_forn Fregit Fresc Saltejat Bullit)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Ingredient_general
+;+		(comment "Ingredient general al que fa referència aquest ingredient concret.")
+		(type INSTANCE)
+;+		(allowed-classes InfoIngredient)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Tipus_plat
+;+		(comment "Indica si el plat és un 1r, 2n, postres o beguda (pot ser varios)")
+		(type SYMBOL)
+		(allowed-values 1r 2n Postres Beguda)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
 (defclass Plat
 	(is-a USER)
 	(role concrete)
-	(single-slot Dinar
-;+		(comment "Indica si és un plat per a un dinar")
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot Ingredients
-;+		(comment "Ingredients principals del plat")
-		(type INSTANCE)
-;+		(allowed-classes Ingredient+concret)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
 	(single-slot Nom
 ;+		(comment "Nom del plat")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot Sopar
-;+		(comment "Indica si és un plat per a un sopar")
+	(multislot Tipus_plat
+;+		(comment "Indica si el plat és un 1r, 2n, postres o beguda (pot ser varios)")
 		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
+		(allowed-values 1r 2n Postres Beguda)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
-	(single-slot Esmorzar
-;+		(comment "Indica si és un plat per a un esmorzar")
+	(multislot Apat
+;+		(comment "Indica si pot ser un plat per esmorzar, dinar o sopar (o diversos)")
 		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
+		(allowed-values Esmorzar Dinar Sopar)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Ingredients
+;+		(comment "Ingredients principals del plat")
+		(type INSTANCE)
+;+		(allowed-classes IngredientConcret)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Ingredient+general
+(defclass InfoIngredient
 	(is-a USER)
 	(role concrete)
-	(single-slot Hidrats+de+carboni
-;+		(comment "Nombre d'hidrats de carboni")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Grasas
-;+		(comment "Nombre de grasas")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot Familia
 ;+		(comment "Indica a la familia general d'aliments a la que pertany.")
 		(type SYMBOL)
 		(allowed-values Carn Peix Verdura Llegum L%C3%A0ctic Fruita Fruits_secs Ous Cereals)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot Kcal
+	(single-slot Nom_ingredient
+;+		(comment "Nom del ingredient")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Valor_energetic%28kcal%29
 ;+		(comment "Nombre de kilocaloríes")
 		(type INTEGER)
-;+		(cardinality 0 1)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot Temporada
 		(type SYMBOL)
 		(allowed-values Hivern Primavera Estiu Tardor)
 		(cardinality 1 4)
 		(create-accessor read-write))
-	(single-slot Proteines
-;+		(comment "Nombre de proteines")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Nom_ingredient
-;+		(comment "Nom del ingredient")
-		(type STRING)
-;+		(cardinality 0 1)
+	(multislot Nutrients
+;+		(comment "Aqui contenim les instàncies dels diferents nutrients que conté")
+		(type INSTANCE)
+;+		(allowed-classes Nutrient)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Ingredient+concret
-	(is-a Ingredient+general)
+(defclass IngredientConcret
+	(is-a USER)
 	(role concrete)
-	(single-slot Ingredient_general
-;+		(comment "Ingredient general al que fa referència aquest ingredient concret.")
-		(type INSTANCE)
-;+		(allowed-classes Ingredient+general)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot Quantitat
 ;+		(comment "Quantitat que porta d'un ingredient general")
 		(type INTEGER)
@@ -186,8 +193,28 @@
 		(type SYMBOL)
 		(allowed-values Planxa Al_forn Fregit Fresc Saltejat Bullit)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Ingredient_general
+;+		(comment "Ingredient general al que fa referència aquest ingredient concret.")
+		(type INSTANCE)
+;+		(allowed-classes InfoIngredient)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass Nutrient
+	(is-a USER)
+	(role concrete)
+	(single-slot Quantitat_nutrient
+;+		(comment "Valor en grams de nutrient")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Tipus_nutrient
+;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
+		(type SYMBOL)
+		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos_mono_o_poliinsat Greixos_trans)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
 
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -228,13 +255,6 @@
 	(slot posicion (type INTEGER))
 	(slot recomendacion (type INSTANCE) (allowed-classes Plat))
 )
-
-;DONDE GUARDAMOS NUESTRAS RESTRICCIONES
-
-
-
-
-;DONDE GUARDAMOS NUESTRAS PREFERENCIAS
 
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -394,6 +414,7 @@
 			(case 4 then   (assert(Gluten)))
 		)
 	)
+  (assert(RestriccionsAfegides))
 )
 
 ;DEFINIM LES PREFERÈNCIES
@@ -429,6 +450,7 @@
 			(case 4 then   (assert(Làctics)))
 		)
 	)
+  (assert(PreferenciesAfegides))
 )
 
 
@@ -452,7 +474,79 @@
 			(case 4 then   (assert(Hipertensió)))
 		)
 	)
+  (assert(MalaltiesAfegides))
 )
+
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+;;;----------  					MODULO DE INFERENCIAS DE DATOS				---------- 				MODULO DE INFERENCIAS DE DATOS
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+
+;; En este modulo se hace la abstraccion de los datos obtenidos del modulo de pregunatas
+
+(defmodule inferir_datos
+    (import MAIN ?ALL)
+    (import hacer_preguntas ?ALL)
+    (export ?ALL)
+)
+
+
+
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+;;;----------  					MODULO DE FILTRADO				---------- 				MODULO DE FILTRADO
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+
+;; En este modulo se hace la abstraccion de los datos obtenidos del modulo de pregunatas
+
+(defmodule filtrado
+	(import MAIN ?ALL)
+	(import inferir_datos ?ALL)
+	(export ?ALL)
+)
+
+;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
+(defrule descarAmbCarn "regla para descartar los platos que contengan carne"
+  (Carn)
+  (RestriccionsAfegides)
+	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
+  ?ingredientGeneral <- (object (is-a InfoIngredient) (Familia Carn))  ;seleccionem els ingredients que son carn
+  ?ingredient <- (object (is-a IngredientConcret) (Ingredient_general ?i))  ;seleccionem el ingredient general d'aquest ingredient concret
+  (test (and (eq ?ingredientGeneral ?i)) member(?ingredient ?ing))  ;comprovem que el plat contingui aquell ingredient
+  ; hem seleccionat les plats que contenen algun ingredient amb carn
+	=>
+	(assert (Eliminem plat ?plat))
+	(printout t " Plat eliminat per contenir carn " (instance-name ?plat) crlf)
+	(send ?plat delete)
+)
+
+(defrule descarAmbPeix "regla para descartar los platos que contengan pescado"
+  (Peix)
+  (RestriccionsAfegides)
+	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
+  ?ingredientGeneral <- (object (is-a InfoIngredient) (Familia Peix))  ;seleccionem els ingredients que son carn
+  ?ingredient <- (object (is-a IngredientConcret) (Ingredient_general ?i))  ;seleccionem el ingredient general d'aquest ingredient concret
+  (test (and (eq ?ingredientGeneral ?i)) member(?ingredient ?ing))  ;comprovem que el plat contingui aquell ingredient
+  ; hem seleccionat les plats que contenen algun ingredient amb carn
+	=>
+	(assert (Eliminem plat ?plat))
+	(printout t " Plat eliminat per contenir peix " (instance-name ?plat) crlf)
+	(send ?plat delete)
+)
+
+(defrule descarAmbFruita "regla para descartar los platos que contengan fruta"
+  (Fruita)
+  (RestriccionsAfegides)
+	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
+  ?ingredientGeneral <- (object (is-a InfoIngredient) (Familia Fruita))  ;seleccionem els ingredients que son carn
+  ?ingredient <- (object (is-a IngredientConcret) (Ingredient_general ?i))  ;seleccionem el ingredient general d'aquest ingredient concret
+  (test (and (eq ?ingredientGeneral ?i)) member(?ingredient ?ing))  ;comprovem que el plat contingui aquell ingredient
+  ; hem seleccionat les plats que contenen algun ingredient amb carn
+	=>
+	(assert (Eliminem plat ?plat))
+	(printout t " Plat eliminat per contenir carn " (instance-name ?plat) crlf)
+	(send ?plat delete)
+)
+
+
 
 
 
@@ -460,3 +554,5 @@
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  				MODULO DE MENÚS		---------- 				MODULO DE MENÚS
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+
+;; Aqui montamos nustro menu final
