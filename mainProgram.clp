@@ -220,6 +220,7 @@
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					INSTANCIAS					 		---------- 								INSTANCIAS
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+
 (definstances instances
 
 ([IA_Instance_1] of  Plat
@@ -326,11 +327,11 @@
 ;;; Aqui aun podem completar mas para que imprima mas información. Dependerá de como se muestre por pantalla
 
 
-(defmessage-handler MAIN::Plat imprimeixNom ()
+(defmessage-handler MAIN::Plat imprimeixNom primary()
 	(printout t " Plat:  " ?self:Nom crlf)
 )
 
-(defmessage-handler MAIN::InfoIngredient imprimeixNom()
+(defmessage-handler MAIN::InfoIngredient imprimeixNom primary()
 	(printout t ?self:Nom_ingredient crlf)
 )
 
@@ -347,7 +348,6 @@
 (defrule MAIN::primeraRegla "regla inicial"
 	(initial-fact)
 	=>
-	(instances)
 	(printout t crlf)
 	(printout t "--------------------------------------------------------------" crlf)
 	(printout t "------ Sistema de Recomendacion de un Menú semanal -----" crlf)
@@ -497,6 +497,7 @@
 	(printout t "2. Problemes articulars " crlf)
 	(printout t "3. Diabetis" crlf)
 	(printout t "4. Hipertensio" crlf)
+	(printout t "5. Cap de les anteriors" crlf)
 	(bind ?malalties (pregunta-lista "Escriu l'identificador de les malalties que tens. Usa un espai entre cadascún: "))
 
 	(progn$ (?it ?malalties)	;Per a cadascun dels elements seleccionats
@@ -552,32 +553,35 @@
 )
 
 ;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
-;(defrule FILTRAT::descartarAmbCarn "regla para descartar los platos que contengan carne"
-;  (CarnR)
-;  (RestriccionsAfegides)
+(defrule FILTRAT::descartarAmbCarn "regla para descartar los platos que contengan carne"
 
-;  ?plat  <- (object (is-a Plat)
-	;iterem sobre tots les ingredients del plat
-;	(bind ?i 1)
-;	(bind ?FI FALSE)
+  (CarnR)
+  (RestriccionsAfegides)
 
-;	 (while (and (<= ?i (length$ (send ?plat get-Ingredients))) not(?FI))
-;    do
-;	    (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el iessim
+  ?plat  <- (object (is-a Plat))
+
+    ;iterem sobre tots les ingredients del plat
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+  ;  (while (and (<= ?i (length$ (send ?plat get-Ingredients))) (not(?FI))) do
+    (while not(?FI) do
+	  ;  (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el iessim
 
 			;ara comprovo si conté carn
-;			(bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-;			(if (str-compare (send ?ingredientGeneral get-Familia) [Carn]) then
-;				(bind ?FI TRUE))
+		;	(bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+		;	(if (str-compare (send ?ingredientGeneral get-Familia) [Carn]) then
+		;		(bind ?FI TRUE))
 
-;   (bind ?i (+ ?i 1)))
+   (bind ?i (+ ?i 1)))
 
-;	 (test (eq ?FI TRUE))
-;	=>
-;	(assert (Eliminem plat ?plat))
-;	(printout t " Plat eliminat per contenir carn " (instance-name ?plat) crlf)
-;	(send ?plat delete)
-;)
+  ; (test (eq ?FI TRUE))
+	=>
+	(assert (Eliminem plat ?plat))
+	(printout t " Plat eliminat per contenir carn " (instance-name ?plat) crlf)
+	(send ?plat delete)
+	(printout t "Hi")
+)
 
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
@@ -608,6 +612,10 @@
 (defrule MENUS::obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
 	(nou_usuari)
 	=>
+	;revisar perque calen aquestes dos linies perque es mostri
+	(watch instances)
+	(reset)
+
 	(bind ?pos 1)
 	(bind $?plats (find-all-instances ((?inst Plat)) TRUE))
 	(printout t crlf)
@@ -617,6 +625,5 @@
 	(progn$ (?i ?plats)
     (bind ?r (send ?i imprimeixNom))
 	(printout t ?r)
-	(printout t ?i)
 	)
 )
