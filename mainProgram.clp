@@ -694,9 +694,8 @@
 	(export ?ALL)
 )
 
-(defrule MENUS::MenuResultant "regla per obtenir el menu final"
+(defrule MENUS::MenuResultantEsmorzars "regla per obtenir el menu final"
 	(nou_usuari)
-
 	=>
 	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
 	(printout t crlf)
@@ -704,11 +703,68 @@
 	(printout t "----------------------------------- " crlf)
 
 	(progn$ (?i ?esmorzars)
-	(printout t (send ?i get-Apat) crlf)
     (bind ?r (send ?i imprimeixNom))
 	(printout t ?r crlf)
 	)
 )
+
+(defrule MENUS::MenuResultantDinars "regla per obtenir el menu final"
+	(nou_usuari)
+
+	=>
+	(bind ?dinars (find-all-instances ((?inst Plat)) (member$ Dinar ?inst:Apat)))
+	(printout t crlf)
+	(printout t "Tots els possibles dinars: " crlf)
+	(printout t "----------------------------------- " crlf)
+
+	(progn$ (?i ?dinars)
+    (bind ?r (send ?i imprimeixNom))
+	(printout t ?r crlf)
+	)
+)
+
+(defrule MENUS::MenuResultantSopars "regla per obtenir el menu final"
+	(nou_usuari)
+
+	=>
+	(bind ?sopars (find-all-instances ((?inst Plat)) (member$ Sopar ?inst:Apat)))
+	(printout t crlf)
+	(printout t "Tots els possibles sopars: " crlf)
+	(printout t "----------------------------------- " crlf)
+
+	(progn$ (?i ?sopars)
+    (bind ?r (send ?i imprimeixNom))
+	(printout t ?r crlf)
+	)
+)
+
+
+(defrule MENUS::FormarMenu "regla per obtenir el menu final"
+	(nou_usuari)
+	=>
+	(printout t crlf)
+	(printout t "AQUEST ÉS EL TEU MENÚ SETMANAL: " crlf)
+	(printout t "----------------------------------- " crlf)
+
+	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
+
+	(bind ?i 1)
+	(while (<= ?i 7)
+      do
+        (printout t crlf)
+        (printout t "DIA" crlf)
+        (printout t "----------------------------------- " crlf)
+
+        (bind ?j (mod ?i (length$ ?esmorzars) ))
+        (bind ?esmorzar (nth$ ?j ?esmorzars)) ;agafem el n-èssim ingredient
+        (printout t ?esmorzar crlf)
+        ;(bind ?e (send ?esmorzar get-Nom))
+
+        ;(printout t "ESMORZAR :" ?e crlf)
+        (bind ?i (+ ?i 1)) )
+)
+
+
 
 (defrule MENUS::obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
 	(nou_usuari)
