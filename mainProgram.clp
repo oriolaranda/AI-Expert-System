@@ -696,13 +696,15 @@
 
 (defrule MENUS::MenuResultant "regla per obtenir el menu final"
 	(nou_usuari)
+
 	=>
-	(bind ?esmorzars (find-all-instances ((?inst Plat)) (eq ?inst:Apat Esmorzar)))
+	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
 	(printout t crlf)
 	(printout t "Tots els possibles esmorzars: " crlf)
 	(printout t "----------------------------------- " crlf)
 
 	(progn$ (?i ?esmorzars)
+	(printout t (send ?i get-Apat) crlf)
     (bind ?r (send ?i imprimeixNom))
 	(printout t ?r crlf)
 	)
@@ -719,6 +721,6 @@
 
 	(progn$ (?i ?plats)
     (bind ?r (send ?i imprimeixNom))
-	(printout t ?r)
+	(printout t ?r crlf)
 	)
 )
