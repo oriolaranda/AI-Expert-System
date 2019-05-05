@@ -278,6 +278,346 @@
 	(Tipus_nutrient Hidrats_de_carboni))
 
 )
+
+;;; Paella
+
+([P0] of  Plat
+
+    (Apat Dinar Sopar)
+    (Ingredients  [IP0_0] [IP0_1] [IP0_2] [IP0_3] [IP0_4] [IP0_5] [IP0_6])
+    (Nom "Paella valenciana")
+    (Tipus_plat 1r 2n))
+
+;;400 arros
+([IP0_0] of  IngredientConcret
+
+    (Cocci%C3%B3 Bullit)
+    (Ingredient_general [I0])
+    (Quantitat 400))
+
+([I0] of  InfoIngredient
+    (Familia Cereals)
+    (Nom_ingredient "Arros")
+    (Nutrients [I0_N0])   
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 130))
+
+([I0_N0] of  Nutrient
+
+    (Quantitat_nutrient 0.3)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+
+;;500 pollastre
+([IP0_1] of  IngredientConcret
+
+    (Cocci%C3%B3 Al_forn)
+    (Ingredient_general [I1])
+    (Quantitat 500))
+
+([I1] of  InfoIngredient
+    (Familia Carn)
+    (Nom_ingredient "Pollastre sencer")
+    (Nutrients [I1_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 239))
+
+([I1_N0] of  Nutrient
+
+    (Quantitat_nutrient 0.3)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+	
+;;225 llagostins
+([IP0_2] of  IngredientConcret
+
+    (Cocci%C3%B3 Bullit)
+    (Ingredient_general [IA_Instance_32])
+    (Quantitat 225))
+
+([I2] of  InfoIngredient
+    (Familia Marisc)
+    (Nom_ingredient "Llagostins")
+    (Nutrients [I2_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 88))
+
+([I2_N0] of  Nutrient
+
+    (Quantitat_nutrient 1.8)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+	
+;;250 molusc
+([IP0_3] of  IngredientConcret
+
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I3])
+    (Quantitat 250))
+
+([I3] of  InfoIngredient
+    (Familia Cereals)
+    (Nom_ingredient "Molusc")
+    (Nutrients [I3_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 72))
+
+([I3_N0] of  Nutrient
+
+    (Quantitat_nutrient 1.96)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+	
+;;150 tomate
+([IP0_4] of  IngredientConcret
+
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I4])
+    (Quantitat 150))
+
+([I4] of  InfoIngredient
+    (Familia Vegetals)
+    (Nom_ingredient "Tomaquet fresc")
+    (Nutrients [I4_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 22.17))
+	
+([I4_N0] of  Nutrient
+
+    (Quantitat_nutrient 0.21)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+
+;;0.7 safrà
+([IP0_5] of  IngredientConcret
+
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I5])
+    (Quantitat 0.7))
+
+([I5] of  InfoIngredient
+    (Familia Cereals)
+    (Nom_ingredient "Safrà")
+    (Nutrients [I5_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 352))
+
+([I5_N0] of  Nutrient
+
+    (Quantitat_nutrient 5.85)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+;;200 calamar
+([IP0_6] of  IngredientConcret
+
+    (Cocci%C3%B3 Bullit)
+    (Ingredient_general [I6])
+    (Quantitat 200))
+
+([I6] of  InfoIngredient
+    (Familia Marisc)
+    (Nom_ingredient "Calamar")
+    (Nutrients [I6_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 80.40))
+
+([I6_N0] of  Nutrient
+
+    (Quantitat_nutrient 1.4)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+
+;;; Macarrons tomàquet
+
+([IP1] of  Plat
+
+    (Apat Dinar Sopar)
+    (Ingredients [IP1_0] [IP1_1] [IP1_2] [IP1_3] [IP1_4] [IP1_5])
+    (Nom "Macarrons amb tomaquet")
+    (Tipus_plat 1r 2n))
+
+;;600 pasta
+([IP1_0] of  IngredientConcret
+
+    (Cocci%C3%B3 Bullit)
+    (Ingredient_general [I7])
+    (Quantitat 600))
+
+([I7] of  InfoIngredient
+    (Familia Cereals)
+    (Nom_ingredient "Pasta")
+    (Nutrients [I7_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 359))
+
+([I7_N0] of  Nutrient
+
+    (Quantitat_nutrient 1.58)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+;;50 mantega
+([IP1_1] of  IngredientConcret
+
+    (Cocci%C3%B3 Bullit)
+    (Ingredient_general [I8])
+    (Quantitat 50))
+
+([I8] of  InfoIngredient
+    (Familia Làctic)
+    (Nom_ingredient "Mantega")
+    (Nutrients [I8_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 897))
+
+([I8_N0] of  Nutrient
+
+    (Quantitat_nutrient 99.5)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+	
+;;50 mozzarella
+([IP1_2] of  IngredientConcret
+
+    (Cocci%C3%B3 Bullit)
+    (Ingredient_general [I9])
+    (Quantitat 50))
+
+([I9] of  InfoIngredient
+    (Familia Làctic)
+    (Nom_ingredient "Mozzarella")
+    (Nutrients [I9_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 233))
+
+([I9_N0] of  Nutrient
+
+    (Quantitat_nutrient 16.1)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))	
+	
+;;250 tomaquet fregit
+([IP1_3] of  IngredientConcret
+
+    (Cocci%C3%B3 Fregit)
+    (Ingredient_general [I10])
+    (Quantitat 250))
+
+([I10] of  InfoIngredient
+    (Familia Làctic)
+    (Nom_ingredient "Tomaquet fregit")
+    (Nutrients [I10_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 87.6))
+
+([I10_N0] of  Nutrient
+
+    (Quantitat_nutrient 6.4)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+;;50 oli oliva
+([IP1_4] of  IngredientConcret
+
+    (Cocci%C3%B3 Fregit)
+    (Ingredient_general [I11])
+    (Quantitat 20))
+
+([I11] of  InfoIngredient
+    (Familia Làctic)
+    (Nom_ingredient "Oli oliva")
+    (Nutrients [I11_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 899))
+
+([I11_N0] of  Nutrient
+
+    (Quantitat_nutrient 99.9)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+;;30 ceba
+([IP1_5] of  IngredientConcret
+
+    (Cocci%C3%B3 Fregit)
+    (Ingredient_general [I10])
+    (Quantitat 250))
+
+([I12] of  InfoIngredient
+    (Familia Làctic)
+    (Nom_ingredient "Ceba")
+    (Nutrients [I12_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 31.85))
+
+([I12_N0] of  Nutrient
+
+    (Quantitat_nutrient 0.25)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+	
+	
+;;; Flam
+
+([IP2] of  Plat
+
+    (Apat Esmorzar Dinar Sopar)
+    (Ingredients [IP2_0] [IP2_1] [IP2_2])
+    (Nom "Flam")
+    (Tipus_plat Postres ))
+
+;;500 llet vaca
+([IP2_0] of  IngredientConcret
+
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I13])
+    (Quantitat 500))
+
+([I13] of  InfoIngredient
+    (Familia Lactic)
+    (Nom_ingredient "Llet de vaca sencera")
+    (Nutrients [I13_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 65.4))
+
+([I13_N0] of  Nutrient
+
+    (Quantitat_nutrient 3.8)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+;;240 ou gallina
+([IP2_1] of  IngredientConcret
+
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I14])
+    (Quantitat 240))
+
+([I14] of  InfoIngredient
+    (Familia Ous)
+    (Nom_ingredient "Ou gallina")
+    (Nutrients [I8_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 162))
+
+([I14_N0] of  Nutrient
+
+    (Quantitat_nutrient 12.1)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+	
+;;200 sucre blanc
+([IP1_2] of  IngredientConcret
+
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I15])
+    (Quantitat 200))
+
+([I15] of  InfoIngredient
+    (Familia Làctic)
+    (Nom_ingredient "Sucre blanc")
+    (Nutrients [I15_N0])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 399))
+
+([I15_N0] of  Nutrient
+
+    (Quantitat_nutrient 0.0)
+    (Tipus_nutrient Greixos_mono_o_poliinsat))	
+
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					TEMPLATES					 		---------- 								TEMPLATES
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
