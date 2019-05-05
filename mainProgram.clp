@@ -237,18 +237,40 @@
 	(Nom "Arros a la cubana2")
 	(Tipus_plat 1r 2n))
 
+([IA_Instance_7] of  Plat
+
+	(Apat Dinar)
+	(Ingredients [IA_Instance_8])
+	(Nom "Pastanaga")
+	(Tipus_plat 1r 2n))
+
+
 ([IA_Instance_2] of  IngredientConcret
 
 	(Cocci%C3%B3 Bullit)
 	(Ingredient_general [IA_Instance_3])
 	(Quantitat 100))
 
+([IA_Instance_8] of  IngredientConcret
+
+	(Cocci%C3%B3 Bullit)
+	(Ingredient_general [IA_Instance_6])
+	(Quantitat 100))
+
 ([IA_Instance_3] of  InfoIngredient
-	(Familia Cereals)
+	(Familia Carn)
 	(Nom_ingredient "Arros")
 	(Nutrients [IA_Instance_4])
 	(Temporada Hivern Primavera Estiu Tardor)
 	(Valor_energetic%28kcal%29 100))
+
+([IA_Instance_6] of  InfoIngredient
+    (Familia Verdura)
+    (Nom_ingredient "Pastanaga")
+    (Nutrients [IA_Instance_4])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 100))
+
 
 ([IA_Instance_4] of  Nutrient
 
@@ -347,6 +369,7 @@
 (defrule MAIN::primeraRegla "regla inicial"
 	(initial-fact)
 	=>
+	(reset)
 	(printout t crlf)
 	(printout t "--------------------------------------------------------------" crlf)
 	(printout t "------ Sistema de Recomendacion de un Menú semanal -----" crlf)
@@ -435,7 +458,8 @@
 	(printout t "1. Carn " crlf)
 	(printout t "2. Peix " crlf)
 	(printout t "3. Fruita" crlf)
-	(printout t "4. Gluten" crlf)
+	(printout t "4. Làctic" crlf)
+	(printout t "5. Gluten" crlf)
 	(bind ?rest (pregunta-lista "Escriu l'identificador dels aliments als què ets alèrgic o no pots consumir. Usa un espai entre cadascún: "))
 
 	(progn$ (?it ?rest)	;Per a cadascun dels elements seleccionats
@@ -443,7 +467,8 @@
 			(case 1 then   (assert(CarnR)))
 			(case 2 then   (assert(PeixR)))
 			(case 3 then   (assert(FruitaR)))
-			(case 4 then   (assert(GlutenR)))
+			(case 4 then   (assert(LacticR)))
+			(case 5 then   (assert(GlutenR)))
 		)
 	)
   (assert(RestriccionsAfegides))
@@ -552,6 +577,102 @@
 )
 
 
+;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
+(defrule FILTRAT::descartarAmbCarn "regla para descartar los platos que contengan carne"
+  (CarnR)
+  (RestriccionsAfegides)
+  ?plat <- (object (is-a Plat))
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+        (printout t "Mirem un ingredient" crlf)
+        (if (eq (send ?ingredientGeneral get-Familia) Carn) then
+            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
+            (send ?plat delete)
+            (bind ?FI TRUE)
+        )
+
+        (bind ?i (+ ?i 1))
+
+     )
+)
+
+(defrule FILTRAT::descartarAmbPeix "regla para descartar los platos que contengan carne"
+  (PeixR)
+  (RestriccionsAfegides)
+  ?plat <- (object (is-a Plat))
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+        (printout t "Mirem un ingredient" crlf)
+        (if (eq (send ?ingredientGeneral get-Familia) Peix) then
+            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
+            (send ?plat delete)
+            (bind ?FI TRUE)
+        )
+
+        (bind ?i (+ ?i 1))
+
+     )
+)
+
+(defrule FILTRAT::descartarAmbFruita "regla para descartar los platos que contengan carne"
+  (FruitaR)
+  (RestriccionsAfegides)
+  ?plat <- (object (is-a Plat))
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+        (printout t "Mirem un ingredient" crlf)
+        (if (eq (send ?ingredientGeneral get-Familia) Fruita) then
+            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
+            (send ?plat delete)
+            (bind ?FI TRUE)
+        )
+
+        (bind ?i (+ ?i 1))
+     )
+)
+
+(defrule FILTRAT::descartarLactic "regla para descartar los platos que contengan carne"
+  (LacticR)
+  (RestriccionsAfegides)
+  ?plat <- (object (is-a Plat))
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+        (printout t "Mirem un ingredient" crlf)
+        (if (eq (send ?ingredientGeneral get-Familia) Làctic) then
+            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
+            (send ?plat delete)
+            (bind ?FI TRUE)
+        )
+
+        (bind ?i (+ ?i 1))
+     )
+)
+
+
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
       =>
@@ -581,10 +702,6 @@
 (defrule MENUS::obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
 	(nou_usuari)
 	=>
-	;revisar perque calen aquestes dos linies perque es mostri
-	(watch instances)
-	(reset)
-
 	(bind ?pos 1)
 	(bind $?plats (find-all-instances ((?inst Plat)) TRUE))
 	(printout t crlf)
