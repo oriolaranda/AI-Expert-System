@@ -232,7 +232,7 @@
 
 ([IA_Instance_5] of  Plat
 
-	(Apat Dinar)
+	(Apat Sopar)
 	(Ingredients [IA_Instance_2])
 	(Nom "Arros a la cubana2")
 	(Tipus_plat 1r 2n))
@@ -747,6 +747,8 @@
 	(printout t "----------------------------------- " crlf)
 
 	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
+	(bind ?dinars (find-all-instances ((?inst Plat)) (member$ Dinar ?inst:Apat)))
+	(bind ?sopars (find-all-instances ((?inst Plat)) (member$ Sopar ?inst:Apat)))
 
 	(bind ?i 1)
 	(while (<= ?i 7)
@@ -755,12 +757,27 @@
         (printout t "DIA" crlf)
         (printout t "----------------------------------- " crlf)
 
-        (bind ?j (mod ?i (length$ ?esmorzars) ))
-        (bind ?esmorzar (nth$ ?j ?esmorzars)) ;agafem el n-èssim ingredient
-        (printout t ?esmorzar crlf)
-        ;(bind ?e (send ?esmorzar get-Nom))
+        (if (> (length$ ?esmorzars) 0) then
+            (bind ?j (+ (mod ?i (length$ ?esmorzars) ) 1 ))
+            (bind ?esmorzar (nth$ ?j ?esmorzars)) ;agafem el n-èssim ingredient
+            (bind ?e (send ?esmorzar get-Nom))
+            (printout t "ESMORZAR : " ?e crlf)
+        )
 
-        ;(printout t "ESMORZAR :" ?e crlf)
+        (if (> (length$ ?dinars) 0) then
+            (bind ?j (+ (mod ?i (length$ ?dinars) ) 1 ))
+            (bind ?dinar (nth$ ?j ?dinars)) ;agafem el n-èssim ingredient
+            (bind ?d (send ?dinar get-Nom))
+            (printout t "DINAR : " ?d crlf)
+        )
+
+        (if (> (length$ ?sopars) 0) then
+            (bind ?j (+ (mod ?i (length$ ?sopars) ) 1 ))
+            (bind ?sopar (nth$ ?j ?sopars)) ;agafem el n-èssim ingredient
+            (bind ?s (send ?sopar get-Nom))
+            (printout t "SOPAR : " ?s crlf)
+        )
+
         (bind ?i (+ ?i 1)) )
 )
 
