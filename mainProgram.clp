@@ -709,7 +709,15 @@
 	(while (<= ?i 7)
       do
         (printout t crlf)
-        (printout t "DIA" crlf)
+        (switch ?i
+		(case 1 then (printout t "DILLUNS" crlf))
+		(case 2 then (printout t "DIMARTS" crlf))
+		(case 3 then (printout t "DIMECRES" crlf))
+		(case 4 then (printout t "DIJOUS" crlf))
+		(case 5 then (printout t "DIVENDRES" crlf))
+		(case 6 then (printout t "DISSABTE" crlf))
+		(case 7 then (printout t "DIUMENGE" crlf)))
+
         (printout t "----------------------------------- " crlf)
 
         (if (> (length$ ?esmorzars) 0) then
