@@ -579,6 +579,25 @@
 )
 
 
+(defrule MENUS::MenuResultant "regla per obtenir el menu final"
+
+	(nou_usuari)
+	=>
+	(watch instances)
+	(reset)
+
+	(bind ?esmorzars (find-all-instances ((?inst Plat)) (>?inst:Apat esmorzar)))
+	(printout t crlf)
+	(printout t "Tots els possibles esmorzars: " crlf)
+	(printout t "----------------------------------- " crlf)
+	(progn$ (?i ?esmorzars)
+    (bind ?r (send ?i imprimeixNom))
+	(printout t ?r)
+	)
+
+)
+
+
 (defrule MENUS::obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
 	(nou_usuari)
 	=>
