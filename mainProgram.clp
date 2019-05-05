@@ -694,51 +694,6 @@
 	(export ?ALL)
 )
 
-(defrule MENUS::MenuResultantEsmorzars "regla per obtenir el menu final"
-	(nou_usuari)
-	=>
-	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
-	(printout t crlf)
-	(printout t "Tots els possibles esmorzars: " crlf)
-	(printout t "----------------------------------- " crlf)
-
-	(progn$ (?i ?esmorzars)
-    (bind ?r (send ?i imprimeixNom))
-	(printout t ?r crlf)
-	)
-)
-
-(defrule MENUS::MenuResultantDinars "regla per obtenir el menu final"
-	(nou_usuari)
-
-	=>
-	(bind ?dinars (find-all-instances ((?inst Plat)) (member$ Dinar ?inst:Apat)))
-	(printout t crlf)
-	(printout t "Tots els possibles dinars: " crlf)
-	(printout t "----------------------------------- " crlf)
-
-	(progn$ (?i ?dinars)
-    (bind ?r (send ?i imprimeixNom))
-	(printout t ?r crlf)
-	)
-)
-
-(defrule MENUS::MenuResultantSopars "regla per obtenir el menu final"
-	(nou_usuari)
-
-	=>
-	(bind ?sopars (find-all-instances ((?inst Plat)) (member$ Sopar ?inst:Apat)))
-	(printout t crlf)
-	(printout t "Tots els possibles sopars: " crlf)
-	(printout t "----------------------------------- " crlf)
-
-	(progn$ (?i ?sopars)
-    (bind ?r (send ?i imprimeixNom))
-	(printout t ?r crlf)
-	)
-)
-
-
 (defrule MENUS::FormarMenu "regla per obtenir el menu final"
 	(nou_usuari)
 	=>
@@ -779,12 +734,61 @@
         )
 
         (bind ?i (+ ?i 1)) )
+
+        (assert (FI))
+)
+
+
+(defrule MENUS::MenuResultantEsmorzars "regla per obtenir el menu final"
+	(nou_usuari)
+	(not (FI))
+	=>
+	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
+	(printout t crlf)
+	(printout t "Tots els possibles esmorzars: " crlf)
+	(printout t "----------------------------------- " crlf)
+
+	(progn$ (?i ?esmorzars)
+    (bind ?r (send ?i imprimeixNom))
+	(printout t ?r crlf)
+	)
+)
+
+(defrule MENUS::MenuResultantDinars "regla per obtenir el menu final"
+	(nou_usuari)
+	(not (FI))
+	=>
+	(bind ?dinars (find-all-instances ((?inst Plat)) (member$ Dinar ?inst:Apat)))
+	(printout t crlf)
+	(printout t "Tots els possibles dinars: " crlf)
+	(printout t "----------------------------------- " crlf)
+
+	(progn$ (?i ?dinars)
+    (bind ?r (send ?i imprimeixNom))
+	(printout t ?r crlf)
+	)
+)
+
+(defrule MENUS::MenuResultantSopars "regla per obtenir el menu final"
+	(nou_usuari)
+	(not (FI))
+	=>
+	(bind ?sopars (find-all-instances ((?inst Plat)) (member$ Sopar ?inst:Apat)))
+	(printout t crlf)
+	(printout t "Tots els possibles sopars: " crlf)
+	(printout t "----------------------------------- " crlf)
+
+	(progn$ (?i ?sopars)
+    (bind ?r (send ?i imprimeixNom))
+	(printout t ?r crlf)
+	)
 )
 
 
 
 (defrule MENUS::obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
 	(nou_usuari)
+	(not (FI))
 	=>
 	(bind ?pos 1)
 	(bind $?plats (find-all-instances ((?inst Plat)) TRUE))
