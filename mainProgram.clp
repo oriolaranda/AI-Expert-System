@@ -244,7 +244,6 @@
 	(Quantitat 100))
 
 ([IA_Instance_3] of  InfoIngredient
-
 	(Familia Cereals)
 	(Nom_ingredient "Arros")
 	(Nutrients [IA_Instance_4])
@@ -552,36 +551,6 @@
 	(export ?ALL)
 )
 
-;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
-(defrule FILTRAT::descartarAmbCarn "regla para descartar los platos que contengan carne"
-
-  (CarnR)
-  (RestriccionsAfegides)
-
-  ?plat  <- (object (is-a Plat))
-
-    ;iterem sobre tots les ingredients del plat
-	(bind ?i 1)
-	(bind ?FI FALSE)
-
-  ;  (while (and (<= ?i (length$ (send ?plat get-Ingredients))) (not(?FI))) do
-    (while not(?FI) do
-	  ;  (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el iessim
-
-			;ara comprovo si conté carn
-		;	(bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-		;	(if (str-compare (send ?ingredientGeneral get-Familia) [Carn]) then
-		;		(bind ?FI TRUE))
-
-   (bind ?i (+ ?i 1)))
-
-  ; (test (eq ?FI TRUE))
-	=>
-	(assert (Eliminem plat ?plat))
-	(printout t " Plat eliminat per contenir carn " (instance-name ?plat) crlf)
-	(send ?plat delete)
-	(printout t "Hi")
-)
 
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
