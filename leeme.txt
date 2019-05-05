@@ -1,0 +1,13 @@
+Esta práctica la hemos realizador Oriol Aranda, David Pujol y Pol Garcia.
+
+Esta es la primera versión de nuestro generador de menús semanales. Para esta primera entrega,
+hemos conseguido que el programa realice la mayoría de preguntas que consideramos pertinentes
+para obtener toda la información que creemos necesaria para tener información sobre el usuario.
+
+Además de obtener el conocimiento del usuario, ya realizamos la poda (excluimos) todos los platos
+que contienen ingredientes de una familia de productos que el usuario considera inaceptables
+(como sería el caso de un vegetariano que bajo ninguna circunstancia va a comer carne o pescado.)
+
+Luego hemos formado un menú muy rudimentario en el que simplemente para cada día de la semana se
+escoge un plato para el desayuno, comida y cena al azar (de los que son posibles después de filtrar).
+No hemos tenido tiempo de buscar un primero, segundo, postre y bebida aún que esta todo implementado para permitirlo.
