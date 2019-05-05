@@ -224,24 +224,16 @@
 (definstances instances
 
 ([IA_Instance_1] of  Plat
-
-	(Apat Dinar)
+	(Apat Dinar Sopar)
 	(Ingredients [IA_Instance_2])
 	(Nom "Arros a la cubana")
-	(Tipus_plat 1r 2n))
-
-([IA_Instance_5] of  Plat
-
-	(Apat Sopar)
-	(Ingredients [IA_Instance_2])
-	(Nom "Arros a la cubana2")
 	(Tipus_plat 1r 2n))
 
 ([IA_Instance_7] of  Plat
 
 	(Apat Esmorzar)
 	(Ingredients [IA_Instance_8])
-	(Nom "Pastanaga")
+	(Nom "Maduixes")
 	(Tipus_plat 1r 2n))
 
 
@@ -265,8 +257,8 @@
 	(Valor_energetic%28kcal%29 100))
 
 ([IA_Instance_6] of  InfoIngredient
-    (Familia Verdura)
-    (Nom_ingredient "Pastanaga")
+    (Familia Fruita)
+    (Nom_ingredient "Maduixa")
     (Nutrients [IA_Instance_4])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic%28kcal%29 100))
@@ -277,7 +269,6 @@
 	(Quantitat_nutrient 10)
 	(Tipus_nutrient Hidrats_de_carboni))
 
-)
 
 ;;; Paella
 
@@ -298,7 +289,7 @@
 ([I0] of  InfoIngredient
     (Familia Cereals)
     (Nom_ingredient "Arros")
-    (Nutrients [I0_N0])   
+    (Nutrients [I0_N0])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic%28kcal%29 130))
 
@@ -327,7 +318,7 @@
     (Quantitat_nutrient 0.3)
     (Tipus_nutrient Greixos_mono_o_poliinsat))
 
-	
+
 ;;225 llagostins
 ([IP0_2] of  IngredientConcret
 
@@ -347,7 +338,7 @@
     (Quantitat_nutrient 1.8)
     (Tipus_nutrient Greixos_mono_o_poliinsat))
 
-	
+
 ;;250 molusc
 ([IP0_3] of  IngredientConcret
 
@@ -367,7 +358,7 @@
     (Quantitat_nutrient 1.96)
     (Tipus_nutrient Greixos_mono_o_poliinsat))
 
-	
+
 ;;150 tomate
 ([IP0_4] of  IngredientConcret
 
@@ -381,7 +372,7 @@
     (Nutrients [I4_N0])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic%28kcal%29 22.17))
-	
+
 ([I4_N0] of  Nutrient
 
     (Quantitat_nutrient 0.21)
@@ -473,7 +464,7 @@
 
     (Quantitat_nutrient 99.5)
     (Tipus_nutrient Greixos_mono_o_poliinsat))
-	
+
 ;;50 mozzarella
 ([IP1_2] of  IngredientConcret
 
@@ -491,8 +482,8 @@
 ([I9_N0] of  Nutrient
 
     (Quantitat_nutrient 16.1)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))	
-	
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
 ;;250 tomaquet fregit
 ([IP1_3] of  IngredientConcret
 
@@ -550,8 +541,8 @@
     (Quantitat_nutrient 0.25)
     (Tipus_nutrient Greixos_mono_o_poliinsat))
 
-	
-	
+
+
 ;;; Flam
 
 ([IP2] of  Plat
@@ -598,7 +589,7 @@
 
     (Quantitat_nutrient 12.1)
     (Tipus_nutrient Greixos_mono_o_poliinsat))
-	
+
 ;;200 sucre blanc
 ([IP1_2] of  IngredientConcret
 
@@ -616,7 +607,11 @@
 ([I15_N0] of  Nutrient
 
     (Quantitat_nutrient 0.0)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))	
+    (Tipus_nutrient Greixos_mono_o_poliinsat))
+
+
+
+)   ; cal aquest parentesis per acabar totes les instancies
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					TEMPLATES					 		---------- 								TEMPLATES
