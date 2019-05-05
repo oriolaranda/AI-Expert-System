@@ -1,4 +1,4 @@
-; Sat May 04 18:58:24 CEST 2019
+; Sun May 05 12:50:41 CEST 2019
 ;
 ;+ (version "3.3.1")
 ;+ (build "Build 430")
@@ -220,48 +220,72 @@
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					INSTANCIAS					 		---------- 								INSTANCIAS
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+(definstances instances
 
+([IA_Instance_1] of  Plat
 
+	(Apat Dinar)
+	(Ingredients [IA_Instance_2])
+	(Nom "Arros a la cubana")
+	(Tipus_plat 1r 2n))
 
+([IA_Instance_5] of  Plat
+
+	(Apat Dinar)
+	(Ingredients [IA_Instance_2])
+	(Nom "Arros a la cubana2")
+	(Tipus_plat 1r 2n))
+
+([IA_Instance_2] of  IngredientConcret
+
+	(Cocci%C3%B3 Bullit)
+	(Ingredient_general [IA_Instance_3])
+	(Quantitat 100))
+
+([IA_Instance_3] of  InfoIngredient
+
+	(Familia Cereals)
+	(Nom_ingredient "Arros")
+	(Nutrients [IA_Instance_4])
+	(Temporada Hivern Primavera Estiu Tardor)
+	(Valor_energetic%28kcal%29 100))
+
+([IA_Instance_4] of  Nutrient
+
+	(Quantitat_nutrient 10)
+	(Tipus_nutrient Hidrats_de_carboni))
+
+)
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					TEMPLATES					 		---------- 								TEMPLATES
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ;;; deftemplat para almacenar la informacion que se infiere del expediente
 
-
-
 ;INFORMACION PARA LA SOLUCION FINAL
 ;;; deftemplat para almacenar la informacion de la solucion final ordenada
 ;;; distinguimos entre tipos de platos. Los ordenamos y luego los iremos mezclando en orden
 
-(deftemplate solucionOrdenadaPrimers "solucion final primeros platos"
-	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-values Plat))
+(deftemplate MAIN::solucionOrdenadaPrimers "solucion final primeros platos"
+	(slot posicioPrimers (type INTEGER))
+	(slot primer (type INSTANCE) (allowed-classes Plat))
 )
 
 
-(deftemplate solucionOrdenadaSegons "solucion final segundos platos"
-	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-values Plat))
+(deftemplate MAIN::solucionOrdenadaSegons "solucion final segundos platos"
+	(slot posicioSegons (type INTEGER))
+	(slot segon (type INSTANCE) (allowed-classes Plat))
 )
 
-(deftemplate solucionOrdenadaPostres "solucion final postres"
-	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-values Plat))
+(deftemplate MAIN::solucionOrdenadaPostres "solucion final postres"
+	(slot posicioPostres (type INTEGER))
+	(slot postres (type INSTANCE) (allowed-classes Plat))
 )
 
-(deftemplate solucionOrdenadaBegudes "solucion final bebida"
-	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-values Plat))
+(deftemplate MAIN::solucionOrdenadaBegudes "solucion final bebida"
+	(slot posicioBegudes (type INTEGER))
+	(slot beguda (type INSTANCE) (allowed-classes Plat))
 )
-
-
-(deftemplate solucionOrdenadaBegudes "solucion final bebida"
-	(slot posicion (type INTEGER))
-	(slot recomendacion (type INSTANCE) (allowed-values Plat))
-)
-
 
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -269,25 +293,25 @@
 ;;;-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ;;; Funcion para hacer una pregunta general
-(deffunction pregunta-general (?pregunta)
+(deffunction MAIN::pregunta-general (?pregunta)
 	(format t "%s" ?pregunta)
 	(bind ?respuesta (read))
 	?respuesta
 )
 
 ;;; Funcion para hacer una pregunta con respuesta en un rango dado
-(deffunction pregunta-numerica (?pregunta ?rangini ?rangfi)
+(deffunction MAIN::pregunta-numerica (?pregunta ?rangini ?rangfi)
 	(format t "%s [%d, %d] " ?pregunta ?rangini ?rangfi)
 	(bind ?respuesta (read))
 	(while (not(and(>= ?respuesta ?rangini)(<= ?respuesta ?rangfi))) do
-		(format t "�%s? [%d, %d] " ?pregunta ?rangini ?rangfi)
+		(format t "%s? [%d, %d] " ?pregunta ?rangini ?rangfi)
 		(bind ?respuesta (read))
 	)
 	?respuesta
 )
 
 ;;; Funcion para hacer una pregunta con un conjunto definido de valores de repuesta
-(deffunction pregunta-lista (?pregunta $?valores_posibles)
+(deffunction MAIN::pregunta-lista (?pregunta)
 	(format t "%s" ?pregunta)
 	(bind ?resposta (readline))
 	(bind ?res (str-explode ?resposta))
@@ -302,11 +326,11 @@
 ;;; Aqui aun podem completar mas para que imprima mas información. Dependerá de como se muestre por pantalla
 
 
-(defmessage-handler Plat imprimeixNom primary ()
+(defmessage-handler MAIN::Plat imprimeixNom ()
 	(printout t " Plat:  " ?self:Nom crlf)
 )
 
-(defmessage-handler Ingredient imprimeixNom primary()
+(defmessage-handler MAIN::InfoIngredient imprimeixNom()
 	(printout t ?self:Nom_ingredient crlf)
 )
 
@@ -317,18 +341,20 @@
 ;; Este es el modulo principal, en este se comprobara l existencia del estudiante
 ;; en el conjunto de instancias del sistema
 
-(defmodule MAIN (export ?ALL))
+(defmodule MAIN
+	(export ?ALL))
 
-(defrule comienzo "regla inicial"
+(defrule MAIN::primeraRegla "regla inicial"
 	(initial-fact)
 	=>
+	(instances)
 	(printout t crlf)
 	(printout t "--------------------------------------------------------------" crlf)
 	(printout t "------ Sistema de Recomendacion de un Menú semanal -----" crlf)
 	(printout t "--------------------------------------------------------------" crlf)
 	(printout t crlf)
 	(assert (nou_usuari))	;;aixo ens permet crear un fact
-	(focus (hacer_preguntas))
+	(focus PREGUNTES)
 )
 
 
@@ -339,12 +365,12 @@
 ;; En este se le haran las preguntas al estudiantes
 ;; para obtener la informacion de sus restricciones y/o preferencias
 
-(defmodule hacer_preguntas
-    (import MAIN ?ALL)
-    (export ?ALL)
+(defmodule PREGUNTES
+		(import MAIN ?ALL)
+		(export ?ALL)
 )
 
-(defrule preguntar_sexe "regla para saber el sexo del usuario"
+(defrule PREGUNTES::preguntar_sexe "regla para saber el sexo del usuario"
 	(nou_usuari)
 	=>
 	(bind ?q (pregunta-general "Indica tu genero [M F Indef]:  "))
@@ -355,7 +381,7 @@
 	)
 )
 
-(defrule preguntar_edat "regla para saber la franja de edad en que se encuantra"
+(defrule PREGUNTES::preguntar_edat "regla para saber la franja de edad en que se encuantra"
 	(nou_usuari)
 	=>
 	(bind ?q (pregunta-general "Indica la franja d'edat a la que es troba  [65-75(1) 75-90(2) >90(3)]:  "))
@@ -366,7 +392,7 @@
 	)
 )
 
-(defrule preguntar_activitat_fisica "regla para saber la cantidad de actividad física que realiza el usuario"
+(defrule PREGUNTES::preguntar_activitat_fisica "regla para saber la cantidad de actividad física que realiza el usuario"
 	(nou_usuari)
 	=>
 	(bind ?q (pregunta-general "Indica la cantidad de ejercicio que realiza [poco(P) regularmente(R) mucho(M)]:  "))
@@ -377,7 +403,7 @@
 	)
 )
 
-(defrule preguntar_temporada "regla para saber la temporada del año en que nos encontramos"
+(defrule PREGUNTES::preguntar_temporada "regla para saber la temporada del año en que nos encontramos"
 	(nou_usuari)
 	=>
 	(bind ?q (pregunta-general "Indica la estació actual de l'any [Hivern(1) Primavera(2) Estiu(3) Tardor(4)]:  "))
@@ -391,7 +417,7 @@
 
 
 ;DEFINIM LES RESTRICCIONS
-(defrule preguntar_alergies_restriccions "regla para saber si tiene algun tipo de alergia o restricción"
+(defrule PREGUNTES::preguntar_alergies_restriccions "regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
 	=>
 		(bind ?q (pregunta-general "Tens alguna restricció o alèrgia alimentària [Si(S) No(N)]:  "))
@@ -401,7 +427,7 @@
 		)
 )
 
-(defrule definir_alergies_restriccions"regla para saber si tiene algun tipo de alergia o restricción"
+(defrule PREGUNTES::definir_alergies_restriccions"regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
 	(Restriccio S)
 	=>
@@ -415,17 +441,17 @@
 
 	(progn$ (?it ?rest)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(Carn)))
-			(case 2 then   (assert(Peix)))
-			(case 3 then   (assert(Fruita)))
-			(case 4 then   (assert(Gluten)))
+			(case 1 then   (assert(CarnR)))
+			(case 2 then   (assert(PeixR)))
+			(case 3 then   (assert(FruitaR)))
+			(case 4 then   (assert(GlutenR)))
 		)
 	)
   (assert(RestriccionsAfegides))
 )
 
 ;DEFINIM LES PREFERÈNCIES
-(defrule preguntar_preferencies"regla para saber si tiene algun tipo de alergia o restricción"
+(defrule PREGUNTES::preguntar_preferencies"regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
 	=>
 		(bind ?q (pregunta-general "Tens alguna preferència alimentària [Si(S) No(N)]:  "))
@@ -435,12 +461,12 @@
 		)
 )
 
-(defrule definir_preferencies "regla para saber si tiene algun tipo de alergia o restricción"
+(defrule PREGUNTES::definir_preferencies "regla para saber si tiene algun tipo de preferencia de alimentos a no consumir"
 	(nou_usuari)
 	(Preferencies S)
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
-	(printout t "Preferències alimentàries (aliments a preferiblement no consumir): " crlf)
+	(printout t "Preferències alimentàries d'aliments a preferiblement no consumir: " crlf)
 	(printout t "1. Carn " crlf)
 	(printout t "2. Peix " crlf)
 	(printout t "3. Fruita" crlf)
@@ -450,11 +476,11 @@
 
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(Carn)))
-			(case 2 then   (assert(Peix)))
-			(case 3 then   (assert(Fruita)))
-			(case 4 then   (assert(Fruits secs)))
-			(case 4 then   (assert(Làctics)))
+			(case 1 then   (assert(CarnP)))
+			(case 2 then   (assert(PeixP)))
+			(case 3 then   (assert(FruitaP)))
+			(case 4 then   (assert(Fruits secsP)))
+			(case 5 then   (assert(LacticsP)))
 		)
 	)
   (assert(PreferenciesAfegides))
@@ -462,7 +488,7 @@
 
 
 ;PREGUNTEM SI TÉ ALGUNA DE LES SEGUENTS MALALTIES
-(defrule definir_malalties "regla para saber si tiene alguna de las siguientes enfermedades"
+(defrule PREGUNTES::definir_malalties "regla para saber si tiene alguna de las siguientes enfermedades"
 	(nou_usuari)
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
@@ -470,7 +496,7 @@
 	(printout t "1. Osteoporosis " crlf)
 	(printout t "2. Problemes articulars " crlf)
 	(printout t "3. Diabetis" crlf)
-	(printout t "4. Hipertensió" crlf)
+	(printout t "4. Hipertensio" crlf)
 	(bind ?malalties (pregunta-lista "Escriu l'identificador de les malalties que tens. Usa un espai entre cadascún: "))
 
 	(progn$ (?it ?malalties)	;Per a cadascun dels elements seleccionats
@@ -478,11 +504,18 @@
 			(case 1 then   (assert(Osteoporosis)))
 			(case 2 then   (assert(Problemes articulars)))
 			(case 3 then   (assert(Diabetis)))
-			(case 4 then   (assert(Hipertensió)))
+			(case 4 then   (assert(Hipertensio)))
 		)
 	)
   (assert(MalaltiesAfegides))
-  (focus(inferir_datos))
+)
+
+(defrule finalPreguntes "regla para pasar al modulo siguiente"
+      (nou_usuari)
+      =>
+	  (printout t crlf)
+	  (printout t "Passem al modul de inferir dades: "crlf)
+      (focus INFERIR_DADES)
 )
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -490,17 +523,18 @@
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ;; En este modulo se hace la abstraccion de los datos obtenidos del modulo de pregunatas
-
-(defmodule inferir_datos
-    (import MAIN ?ALL)
-    (import hacer_preguntas ?ALL)
-    (export ?ALL)
+(defmodule INFERIR_DADES
+		(import MAIN ?ALL)
+		(import PREGUNTES ?ALL)
+		(export ?ALL)
 )
 
-
-(defrule doesntDoAnything "Here we would add the different rules"
+(defrule INFERIR_DADES::doesntDoAnything "Here we would add the different rules"
+  (nou_usuari)
   =>
-  (focus(filtrat))
+	(printout t crlf)
+	(printout t "Passem al modul de filtrar plats no possibles: "crlf)
+  (focus FILTRAT)
 )
 
 
@@ -510,60 +544,48 @@
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ;; En este modulo se hace la abstraccion de los datos obtenidos del modulo de pregunatas
-
-(defmodule filtrat
+(defmodule FILTRAT
 	(import MAIN ?ALL)
-	(import inferir_datos ?ALL)
+	(import PREGUNTES ?ALL)
+	(import INFERIR_DADES ?ALL)
 	(export ?ALL)
 )
 
 ;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
-(defrule descartarAmbCarn "regla para descartar los platos que contengan carne"
-  (Carn)
-  (RestriccionsAfegides)
-	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
-  ?ingredientGeneral <- (object (is-a InfoIngredient) (Familia Carn))  ;seleccionem els ingredients que son carn
-  ?ingredient <- (object (is-a IngredientConcret) (Ingredient_general ?i))  ;seleccionem el ingredient general d'aquest ingredient concret
-  (test (and (eq ?ingredientGeneral ?i)) member(?ingredient ?ing))  ;comprovem que el plat contingui aquell ingredient
-  ; hem seleccionat les plats que contenen algun ingredient amb carn
-	=>
-	(assert (Eliminem plat ?plat))
-	(printout t " Plat eliminat per contenir carn " (instance-name ?plat) crlf)
-	(send ?plat delete)
+;(defrule FILTRAT::descartarAmbCarn "regla para descartar los platos que contengan carne"
+;  (CarnR)
+;  (RestriccionsAfegides)
+
+;  ?plat  <- (object (is-a Plat)
+	;iterem sobre tots les ingredients del plat
+;	(bind ?i 1)
+;	(bind ?FI FALSE)
+
+;	 (while (and (<= ?i (length$ (send ?plat get-Ingredients))) not(?FI))
+;    do
+;	    (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el iessim
+
+			;ara comprovo si conté carn
+;			(bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+;			(if (str-compare (send ?ingredientGeneral get-Familia) [Carn]) then
+;				(bind ?FI TRUE))
+
+;   (bind ?i (+ ?i 1)))
+
+;	 (test (eq ?FI TRUE))
+;	=>
+;	(assert (Eliminem plat ?plat))
+;	(printout t " Plat eliminat per contenir carn " (instance-name ?plat) crlf)
+;	(send ?plat delete)
+;)
+
+(defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
+      (nou_usuari)
+      =>
+			(printout t crlf)
+			(printout t "Passem al modul de formar menus: "crlf)
+      (focus MENUS)
 )
-
-(defrule descartarAmbPeix "regla para descartar los platos que contengan pescado"
-  (Peix)
-  (RestriccionsAfegides)
-	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
-  ?ingredientGeneral <- (object (is-a InfoIngredient) (Familia Peix))  ;seleccionem els ingredients que son carn
-  ?ingredient <- (object (is-a IngredientConcret) (Ingredient_general ?i))  ;seleccionem el ingredient general d'aquest ingredient concret
-  (test (and (eq ?ingredientGeneral ?i)) member(?ingredient ?ing))  ;comprovem que el plat contingui aquell ingredient
-  ; hem seleccionat les plats que contenen algun ingredient amb carn
-	=>
-	(assert (Eliminem plat ?plat))
-	(printout t " Plat eliminat per contenir peix " (instance-name ?plat) crlf)
-	(send ?plat delete)
-)
-
-(defrule descartarAmbFruita "regla para descartar los platos que contengan fruta"
-  (Fruita)
-  (RestriccionsAfegides)
-	?plat  <- (object (is-a Plat) (Ingredients $?ing))  ;seleccionem els diferents ingredients del plat
-  ?ingredientGeneral <- (object (is-a InfoIngredient) (Familia Fruita))  ;seleccionem els ingredients que son carn
-  ?ingredient <- (object (is-a IngredientConcret) (Ingredient_general ?i))  ;seleccionem el ingredient general d'aquest ingredient concret
-  (test (and (eq ?ingredientGeneral ?i)) member(?ingredient ?ing))  ;comprovem que el plat contingui aquell ingredient
-  ; hem seleccionat les plats que contenen algun ingredient amb carn
-	=>
-	(assert (Eliminem plat ?plat))
-	(printout t " Plat eliminat per contenir carn " (instance-name ?plat) crlf)
-	(send ?plat delete)
-)
-
-
-
-
-
 
 
 
@@ -574,15 +596,16 @@
 
 ;; Aqui montamos nustro menu final
 
-(defmodule menus
+(defmodule MENUS
 	(import MAIN ?ALL)
-	(import inferir_datos ?ALL)
-	(import filtrat ?ALL)
+	(import PREGUNTES ?ALL)
+	(import INFERIR_DADES ?ALL)
+	(import FILTRAT ?ALL)
 	(export ?ALL)
 )
 
 
-(defrule obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
+(defrule MENUS::obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
 	(nou_usuari)
 	=>
 	(bind ?pos 1)
@@ -592,6 +615,8 @@
 	(printout t "----------------------------------- " crlf)
 
 	(progn$ (?i ?plats)
-    (send ?i imprimeixNom)
+    (bind ?r (send ?i imprimeixNom))
+	(printout t ?r)
+	(printout t ?i)
 	)
 )
