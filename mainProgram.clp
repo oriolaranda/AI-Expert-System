@@ -239,7 +239,7 @@
 
 ([IA_Instance_7] of  Plat
 
-	(Apat Dinar)
+	(Apat Esmorzar)
 	(Ingredients [IA_Instance_8])
 	(Nom "Pastanaga")
 	(Tipus_plat 1r 2n))
@@ -576,7 +576,6 @@
 	(export ?ALL)
 )
 
-;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
 
 ;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
 (defrule FILTRAT::descartarAmbCarn "regla para descartar los platos que contengan carne"
@@ -591,7 +590,6 @@
       do
         (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-        (printout t "Mirem un ingredient" crlf)
         (if (eq (send ?ingredientGeneral get-Familia) Carn) then
             (printout t " Eliminem el plat " (instance-name ?plat) crlf)
             (send ?plat delete)
@@ -615,7 +613,6 @@
       do
         (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-        (printout t "Mirem un ingredient" crlf)
         (if (eq (send ?ingredientGeneral get-Familia) Peix) then
             (printout t " Eliminem el plat " (instance-name ?plat) crlf)
             (send ?plat delete)
@@ -639,7 +636,6 @@
       do
         (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-        (printout t "Mirem un ingredient" crlf)
         (if (eq (send ?ingredientGeneral get-Familia) Fruita) then
             (printout t " Eliminem el plat " (instance-name ?plat) crlf)
             (send ?plat delete)
@@ -662,7 +658,6 @@
       do
         (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-        (printout t "Mirem un ingredient" crlf)
         (if (eq (send ?ingredientGeneral get-Familia) Làctic) then
             (printout t " Eliminem el plat " (instance-name ?plat) crlf)
             (send ?plat delete)
@@ -699,25 +694,19 @@
 	(export ?ALL)
 )
 
-
 (defrule MENUS::MenuResultant "regla per obtenir el menu final"
-
 	(nou_usuari)
 	=>
-	(watch instances)
-	(reset)
-
-	(bind ?esmorzars (find-all-instances ((?inst Plat)) (>?inst:Apat esmorzar)))
+	(bind ?esmorzars (find-all-instances ((?inst Plat)) (eq ?inst:Apat Esmorzar)))
 	(printout t crlf)
 	(printout t "Tots els possibles esmorzars: " crlf)
 	(printout t "----------------------------------- " crlf)
+
 	(progn$ (?i ?esmorzars)
     (bind ?r (send ?i imprimeixNom))
-	(printout t ?r)
+	(printout t ?r crlf)
 	)
-
 )
-
 
 (defrule MENUS::obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
 	(nou_usuari)
