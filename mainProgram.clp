@@ -244,7 +244,6 @@
 	(Quantitat 100))
 
 ([IA_Instance_3] of  InfoIngredient
-
 	(Familia Cereals)
 	(Nom_ingredient "Arros")
 	(Nutrients [IA_Instance_4])
