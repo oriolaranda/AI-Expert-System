@@ -13,21 +13,51 @@
 		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot Proteines
+;+		(comment "Nombre de proteines")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Valor_energetic%28kcal%29
+;+		(comment "Nombre de kilocaloríes")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Ingredient_general
+;+		(comment "Ingredient general al que fa referència aquest ingredient concret.")
+		(type INSTANCE)
+;+		(allowed-classes InfoIngredient)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Apat
+;+		(comment "Indica si pot ser un plat per esmorzar, dinar o sopar (o diversos)")
+		(type SYMBOL)
+		(allowed-values Esmorzar Dinar Sopar)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot GrauRecomanacio
+;+		(comment "Ens indica com de recomanable es que una persona en mengui")
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot Familia
 ;+		(comment "Indica a la familia general d'aliments a la que pertany.")
 		(type SYMBOL)
 		(allowed-values Carn Peix Verdura Llegum L%C3%A0ctic Fruita Fruits_secs Ous Cereals)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot Temporada
+	(single-slot Sopar
+;+		(comment "Indica si és un plat per a un sopar")
 		(type SYMBOL)
-		(allowed-values Hivern Primavera Estiu Tardor)
-		(cardinality 1 4)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot Nutrients
-;+		(comment "Aqui contenim les instàncies dels diferents nutrients que conté")
-		(type INSTANCE)
-;+		(allowed-classes Nutrient)
+	(multislot Tipus_nutrient
+;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
+		(type SYMBOL)
+		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos_mono_o_poliinsat Greixos_trans)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot Hidrats+de+carboni
@@ -36,10 +66,16 @@
 		(default 0)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot Apat
-;+		(comment "Indica si pot ser un plat per esmorzar, dinar o sopar (o diversos)")
-		(type SYMBOL)
-		(allowed-values Esmorzar Dinar Sopar)
+	(multislot Nutrients
+;+		(comment "Aqui contenim les instàncies dels diferents nutrients que conté")
+		(type INSTANCE)
+;+		(allowed-classes Nutrient)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot Ingredients
+;+		(comment "Ingredients principals del plat")
+		(type INSTANCE)
+;+		(allowed-classes IngredientConcret)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot Dinar
@@ -54,31 +90,20 @@
 		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot Quantitat
-;+		(comment "Quantitat que porta d'un ingredient general")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot Tipus_nutrient
-;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
+	(single-slot Cocci%C3%B3
+;+		(comment "Manera com cuinem el ingredient")
 		(type SYMBOL)
-		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos_mono_o_poliinsat Greixos_trans)
-		(cardinality 1 ?VARIABLE)
+		(allowed-values Planxa Al_forn Fregit Fresc Saltejat Bullit)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot Sopar
-;+		(comment "Indica si és un plat per a un sopar")
+	(multislot Temporada
 		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
+		(allowed-values Hivern Primavera Estiu Tardor)
+		(cardinality 1 4)
 		(create-accessor read-write))
 	(single-slot Nom_ingredient
 ;+		(comment "Nom del ingredient")
 		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot Valor_energetic%28kcal%29
-;+		(comment "Nombre de kilocaloríes")
-		(type INTEGER)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot Quantitat_nutrient
@@ -86,34 +111,15 @@
 		(type INTEGER)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot Ingredients
-;+		(comment "Ingredients principals del plat")
-		(type INSTANCE)
-;+		(allowed-classes IngredientConcret)
-		(cardinality 1 ?VARIABLE)
+	(single-slot Quantitat
+;+		(comment "Quantitat que porta d'un ingredient general")
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot Nom
 ;+		(comment "Nom del plat")
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Proteines
-;+		(comment "Nombre de proteines")
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot Cocci%C3%B3
-;+		(comment "Manera com cuinem el ingredient")
-		(type SYMBOL)
-		(allowed-values Planxa Al_forn Fregit Fresc Saltejat Bullit)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot Ingredient_general
-;+		(comment "Ingredient general al que fa referència aquest ingredient concret.")
-		(type INSTANCE)
-;+		(allowed-classes InfoIngredient)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot Tipus_plat
 ;+		(comment "Indica si el plat és un 1r, 2n, postres o beguda (pot ser varios)")
@@ -122,32 +128,38 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Plat
-	(is-a USER)
-	(role concrete)
-	(single-slot Nom
-;+		(comment "Nom del plat")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot Tipus_plat
-;+		(comment "Indica si el plat és un 1r, 2n, postres o beguda (pot ser varios)")
-		(type SYMBOL)
-		(allowed-values 1r 2n Postres Beguda)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(multislot Apat
-;+		(comment "Indica si pot ser un plat per esmorzar, dinar o sopar (o diversos)")
-		(type SYMBOL)
-		(allowed-values Esmorzar Dinar Sopar)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(multislot Ingredients
-;+		(comment "Ingredients principals del plat")
-		(type INSTANCE)
-;+		(allowed-classes IngredientConcret)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
+		(defclass Plat
+			(is-a USER)
+			(role concrete)
+			(multislot Apat
+		;+		(comment "Indica si pot ser un plat per esmorzar, dinar o sopar (o diversos)")
+				(type SYMBOL)
+				(allowed-values Esmorzar Dinar Sopar)
+				(cardinality 1 ?VARIABLE)
+				(create-accessor read-write))
+			(single-slot GrauRecomanacio
+		;+		(comment "Ens indica com de recomanable es que una persona en mengui")
+				(type INTEGER)
+				(default 0)
+		;+		(cardinality 1 1)
+				(create-accessor read-write))
+			(single-slot Nom
+		;+		(comment "Nom del plat")
+				(type STRING)
+		;+		(cardinality 0 1)
+				(create-accessor read-write))
+			(multislot Tipus_plat
+		;+		(comment "Indica si el plat és un 1r, 2n, postres o beguda (pot ser varios)")
+				(type SYMBOL)
+				(allowed-values 1r 2n Postres Beguda)
+				(cardinality 1 ?VARIABLE)
+				(create-accessor read-write))
+			(multislot Ingredients
+		;+		(comment "Ingredients principals del plat")
+				(type INSTANCE)
+		;+		(allowed-classes IngredientConcret)
+				(cardinality 1 ?VARIABLE)
+				(create-accessor read-write)))
 
 (defclass InfoIngredient
 	(is-a USER)
@@ -623,25 +635,34 @@
 ;;; deftemplat para almacenar la informacion de la solucion final ordenada
 ;;; distinguimos entre tipos de platos. Los ordenamos y luego los iremos mezclando en orden
 
-(deftemplate MAIN::solucionOrdenadaPrimers "solucion final primeros platos"
-	(slot posicioPrimers (type INTEGER))
-	(slot primer (type INSTANCE) (allowed-classes Plat))
+(deftemplate MAIN::solucionOrdenadaE "solucio final on ordenem tots els plats"
+	(slot posicio (type INTEGER))
+	(slot plat (type INSTANCE) (allowed-classes Plat))
 )
 
-
-(deftemplate MAIN::solucionOrdenadaSegons "solucion final segundos platos"
-	(slot posicioSegons (type INTEGER))
-	(slot segon (type INSTANCE) (allowed-classes Plat))
+(deftemplate MAIN::solucionOrdenadaDP "solucio final on ordenem tots els plats"
+	(slot posicio (type INTEGER))
+	(slot plat (type INSTANCE) (allowed-classes Plat))
 )
 
-(deftemplate MAIN::solucionOrdenadaPostres "solucion final postres"
-	(slot posicioPostres (type INTEGER))
-	(slot postres (type INSTANCE) (allowed-classes Plat))
+(deftemplate MAIN::solucionOrdenadaDS "solucio final on ordenem tots els plats"
+	(slot posicio (type INTEGER))
+	(slot plat (type INSTANCE) (allowed-classes Plat))
 )
 
-(deftemplate MAIN::solucionOrdenadaBegudes "solucion final bebida"
-	(slot posicioBegudes (type INTEGER))
-	(slot beguda (type INSTANCE) (allowed-classes Plat))
+(deftemplate MAIN::solucionOrdenadaSP "solucio final on ordenem tots els plats"
+	(slot posicio (type INTEGER))
+	(slot plat (type INSTANCE) (allowed-classes Plat))
+)
+
+(deftemplate MAIN::solucionOrdenadaSS "solucio final on ordenem tots els plats"
+	(slot posicio (type INTEGER))
+	(slot plat (type INSTANCE) (allowed-classes Plat))
+)
+
+(deftemplate MAIN::solucionOrdenadaP "solucio final on ordenem tots els plats"
+	(slot posicio (type INTEGER))
+	(slot plat (type INSTANCE) (allowed-classes Plat))
 )
 
 
@@ -1029,16 +1050,142 @@
 	(export ?ALL)
 )
 
+(defrule dividirEnTipusPlats "Ara dividim tots els plats que han quedat en esmorzar, dinar primer i segon plat, sopar primer i segon plat i postres"
+	(nou_usuari)
+	(not (FI))
+	=>
+	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
+	(bind ?dinarsPrimers (find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat) (member$ 1r ?inst:Tipus_plat)) ))
+	(bind ?dinarsSegons(find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat)(member$ 2n ?inst:Tipus_plat)) ))
+	(bind ?soparsPrimers (find-all-instances ((?inst Plat)) (and (member$ Sopar ?inst:Apat)(member$ 1r ?inst:Tipus_plat)) ))
+	(bind ?soparsSegons(find-all-instances ((?inst Plat)) (and (member$ Sopar ?inst:Apat)(member$ 2n ?inst:Tipus_plat)) ))
+	(bind ?postres(find-all-instances ((?inst Plat)) (member$ Postres ?inst:Tipus_plat)))
+
+	(bind ?pos 1)
+	(progn$ (?i ?esmorzars)
+		(assert (solucionOrdenadaE (posicio ?pos) (plat ?i)))
+		(bind ?pos (+ ?pos 1))
+	)
+
+	(bind ?pos 1)
+	(progn$ (?i ?dinarsPrimers)
+		(assert (solucionOrdenadaDP (posicio ?pos) (plat ?i)))
+		(bind ?pos (+ ?pos 1))
+	)
+	(bind ?pos 1)
+	(progn$ (?i ?dinarsSegons)
+		(assert (solucionOrdenadaDS (posicio ?pos) (plat ?i)))
+		(bind ?pos (+ ?pos 1))
+	)
+	(bind ?pos 1)
+	(progn$ (?i ?soparsPrimers)
+		(assert (solucionOrdenadaSP (posicio ?pos) (plat ?i)))
+		(bind ?pos (+ ?pos 1))
+	)
+
+	(bind ?pos 1)
+	(progn$ (?i ?soparsSegons)
+		(assert (solucionOrdenadaSS (posicio ?pos) (plat ?i)))
+		(bind ?pos (+ ?pos 1))
+	)
+
+	(bind ?pos 1)
+	(progn$ (?i ?postres)
+		(assert (solucionOrdenadaP (posicio ?pos) (plat ?i)))
+		(bind ?pos (+ ?pos 1))
+	)
+)
+
+
+;ANEM A ORDENAR ELS RESULTATS
+(defrule ordenarEsmorzars "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(not (FI))
+	(nou_usuari)
+	?p1 <- (solucionOrdenadaE (posicio ?pos1) (plat ?plat1))
+	?p2 <- (solucionOrdenadaE (posicio ?pos2) (plat ?plat2))
+	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
+	=>
+	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
+	(modify ?p1 (posicio ?pos2))
+	(modify ?p2 (posicio ?pos1))
+)
+
+(defrule ordenarDinarPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(not (FI))
+	(nou_usuari)
+	?p1 <- (solucionOrdenadaDP (posicio ?pos1) (plat ?plat1))
+	?p2 <- (solucionOrdenadaDP (posicio ?pos2) (plat ?plat2))
+	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
+	=>
+	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
+	(modify ?p1 (posicio ?pos2))
+	(modify ?p2 (posicio ?pos1))
+)
+
+(defrule ordenarDinarSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(not (FI))
+	(nou_usuari)
+	?p1 <- (solucionOrdenadaDS (posicio ?pos1) (plat ?plat1))
+	?p2 <- (solucionOrdenadaDS (posicio ?pos2) (plat ?plat2))
+	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
+	=>
+	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
+	(modify ?p1 (posicio ?pos2))
+	(modify ?p2 (posicio ?pos1))
+)
+
+(defrule ordenarSoparPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(not (FI))
+	(nou_usuari)
+	?p1 <- (solucionOrdenadaSP (posicio ?pos1) (plat ?plat1))
+	?p2 <- (solucionOrdenadaSP (posicio ?pos2) (plat ?plat2))
+	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
+	=>
+	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
+	(modify ?p1 (posicio ?pos2))
+	(modify ?p2 (posicio ?pos1))
+)
+
+(defrule ordenarSoparSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(not (FI))
+	(nou_usuari)
+	?p1 <- (solucionOrdenadaSS (posicio ?pos1) (plat ?plat1))
+	?p2 <- (solucionOrdenadaSS (posicio ?pos2) (plat ?plat2))
+	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
+	=>
+	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
+	(modify ?p1 (posicio ?pos2))
+	(modify ?p2 (posicio ?pos1))
+)
+
+(defrule ordenarPostres "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(not (FI))
+	(nou_usuari)
+	?p1 <- (solucionOrdenadaP (posicio ?pos1) (plat ?plat1))
+	?p2 <- (solucionOrdenadaP (posicio ?pos2) (plat ?plat2))
+	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
+	=>
+	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
+	(modify ?p1 (posicio ?pos2))
+	(modify ?p2 (posicio ?pos1))
+)
+
+
+;ANEM A MOSTRAR ELS RESULTATS
 (defrule MENUS::FormarMenu "regla per obtenir el menu final"
 	(nou_usuari)
 	=>
+	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
+	(bind ?dinarsPrimers (find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat) (member$ 1r ?inst:Tipus_plat)) ))
+	(bind ?dinarsSegons(find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat)(member$ 2n ?inst:Tipus_plat)) ))
+	(bind ?soparsPrimers (find-all-instances ((?inst Plat)) (and (member$ Sopar ?inst:Apat)(member$ 1r ?inst:Tipus_plat)) ))
+	(bind ?soparsSegons(find-all-instances ((?inst Plat)) (and (member$ Sopar ?inst:Apat)(member$ 2n ?inst:Tipus_plat)) ))
+	(bind ?postres(find-all-instances ((?inst Plat)) (member$ Postres ?inst:Tipus_plat)))
+
+
 	(printout t crlf)
 	(printout t "AQUEST ÉS EL TEU MENÚ SETMANAL: " crlf)
 	(printout t "----------------------------------- " crlf)
-
-	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
-	(bind ?dinars (find-all-instances ((?inst Plat)) (member$ Dinar ?inst:Apat)))
-	(bind ?sopars (find-all-instances ((?inst Plat)) (member$ Sopar ?inst:Apat)))
 
 	(bind ?i 1)
 	(while (<= ?i 7)
@@ -1062,85 +1209,51 @@
             (printout t "ESMORZAR : " ?e crlf)
         )
 
-        (if (> (length$ ?dinars) 0) then
-            (bind ?j (+ (mod ?i (length$ ?dinars) ) 1 ))
-            (bind ?dinar (nth$ ?j ?dinars)) ;agafem el n-èssim ingredient
+
+        (printout t "DINAR :" crlf)
+        (if (> (length$ ?dinarsPrimers) 0) then
+            (bind ?j (+ (mod ?i (length$ ?dinarsPrimers) ) 1 ))
+            (bind ?dinar (nth$ ?j ?dinarsPrimers)) ;agafem el n-èssim ingredient
             (bind ?d (send ?dinar get-Nom))
-            (printout t "DINAR : " ?d crlf)
+            (printout t "Primer: " ?d crlf)
+        )
+        (if (> (length$ ?dinarsSegons) 0) then
+            (bind ?j (+ (mod ?i (length$ ?dinarsSegons) ) 1 ))
+            (bind ?dinar (nth$ ?j ?dinarsSegons)) ;agafem el n-èssim ingredient
+            (bind ?d (send ?dinar get-Nom))
+            (printout t "Segon : " ?d crlf)
+        )
+        (if (> (length$ ?postres) 0) then
+            (bind ?j (+ (mod ?i (length$ ?postres) ) 1 ))
+            (bind ?postra (nth$ ?j ?postres)) ;agafem el n-èssim ingredient
+            (bind ?d (send ?postra get-Nom))
+            (printout t "Postres : " ?d crlf)
         )
 
-        (if (> (length$ ?sopars) 0) then
-            (bind ?j (+ (mod ?i (length$ ?sopars) ) 1 ))
-            (bind ?sopar (nth$ ?j ?sopars)) ;agafem el n-èssim ingredient
+
+        (printout t "SOPAR :" crlf)
+        (if (> (length$ ?soparsPrimers) 0) then
+            (bind ?j (+ (mod ?i (length$ ?soparsPrimers) ) 1 ))
+            (bind ?sopar (nth$ ?j ?soparsPrimers)) ;agafem el n-èssim ingredient
             (bind ?s (send ?sopar get-Nom))
-            (printout t "SOPAR : " ?s crlf)
+            (printout t "Primer : " ?s crlf)
         )
+
+        (if (> (length$ ?soparsSegons) 0) then
+            (bind ?j (+ (mod ?i (length$ ?soparsSegons) ) 1 ))
+            (bind ?sopar (nth$ ?j ?soparsSegons)) ;agafem el n-èssim ingredient
+            (bind ?s (send ?sopar get-Nom))
+            (printout t "Segon : " ?s crlf)
+        )
+        (if (> (length$ ?postres) 0) then
+            (bind ?j (+ (mod ?i (length$ ?postres) ) 1 ))
+            (bind ?postra (nth$ ?j ?postres)) ;agafem el n-èssim ingredient
+            (bind ?d (send ?postra get-Nom))
+            (printout t "Postres : " ?d crlf)
+        )
+
 
         (bind ?i (+ ?i 1)) )
 
         (assert (FI))
-)
-
-
-(defrule MENUS::MenuResultantEsmorzars "regla per obtenir el menu final"
-	(nou_usuari)
-	(not (FI))
-	=>
-	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
-	(printout t crlf)
-	(printout t "Tots els possibles esmorzars: " crlf)
-	(printout t "----------------------------------- " crlf)
-
-	(progn$ (?i ?esmorzars)
-    (bind ?r (send ?i imprimeixNom))
-	(printout t ?r crlf)
-	)
-)
-
-(defrule MENUS::MenuResultantDinars "regla per obtenir el menu final"
-	(nou_usuari)
-	(not (FI))
-	=>
-	(bind ?dinars (find-all-instances ((?inst Plat)) (member$ Dinar ?inst:Apat)))
-	(printout t crlf)
-	(printout t "Tots els possibles dinars: " crlf)
-	(printout t "----------------------------------- " crlf)
-
-	(progn$ (?i ?dinars)
-    (bind ?r (send ?i imprimeixNom))
-	(printout t ?r crlf)
-	)
-)
-
-(defrule MENUS::MenuResultantSopars "regla per obtenir el menu final"
-	(nou_usuari)
-	(not (FI))
-	=>
-	(bind ?sopars (find-all-instances ((?inst Plat)) (member$ Sopar ?inst:Apat)))
-	(printout t crlf)
-	(printout t "Tots els possibles sopars: " crlf)
-	(printout t "----------------------------------- " crlf)
-
-	(progn$ (?i ?sopars)
-    (bind ?r (send ?i imprimeixNom))
-	(printout t ?r crlf)
-	)
-)
-
-
-
-(defrule MENUS::obtenirPlats "regla per a obtenir els diferents plats que encara són possibles"
-	(nou_usuari)
-	(not (FI))
-	=>
-	(bind ?pos 1)
-	(bind $?plats (find-all-instances ((?inst Plat)) TRUE))
-	(printout t crlf)
-	(printout t "Tots els possibles plats: " crlf)
-	(printout t "----------------------------------- " crlf)
-
-	(progn$ (?i ?plats)
-    (bind ?r (send ?i imprimeixNom))
-	(printout t ?r crlf)
-	)
 )
