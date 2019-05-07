@@ -762,7 +762,7 @@
 (defrule PREGUNTES::preguntar_edat "regla para saber la franja de edad en que se encuantra"
 	(nou_usuari)
 	=>
-		(bind ?q (pregunta-numerica "Quants anys tens?" 0 120))
+		(bind ?q (pregunta-numerica "Quants anys tens?" 65 120))
 	(if (and (> ?q 65) (< ?q 75)) then
         (assert(Edat 1)))
 
@@ -776,7 +776,7 @@
 (defrule PREGUNTES::preguntar_activitat_fisica "regla para saber la cantidad de actividad física que realiza el usuario"
 	(nou_usuari)
 	=>
-	(bind ?q (pregunta-general "Indica la cantidad de ejercicio que realiza [poco(P) regularmente(R) mucho(M)]:  "))
+	(bind ?q (pregunta-numerica "Indica la cantidad de ejercicio que realiza [poco(1) regularmente(2) mucho(3)]:  " 1 3))
 	(switch ?q
 		(case P then (assert(Actividad P)))
 		(case R then (assert(Actividad R)))
@@ -787,7 +787,7 @@
 (defrule PREGUNTES::preguntar_temporada "regla para saber la temporada del año en que nos encontramos"
 	(nou_usuari)
 	=>
-	(bind ?q (pregunta-general "Indica la estació actual de l'any [Hivern(1) Primavera(2) Estiu(3) Tardor(4)]:  "))
+	(bind ?q (pregunta-numerica "Indica la estació actual de l'any [Hivern(1) Primavera(2) Estiu(3) Tardor(4)]:  " 1 4))
 	(switch ?q
 		(case 1 then (assert(Temporada Hivern)))
 		(case 2 then (assert(Temporada Primavera)))
@@ -834,19 +834,19 @@
 )
 
 ;DEFINIM LES PREFERÈNCIES
-(defrule PREGUNTES::preguntar_preferencies"regla para saber si tiene algun tipo de alergia o restricción"
+(defrule PREGUNTES::preguntar_preferencies_negatives"regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
 	=>
 		(bind ?q (pregunta-general "Tens alguna preferència alimentària [Si(S) No(N)]:  "))
 		(switch ?q
-			(case S then (assert(Preferencies S)))
-			(case N then (assert(Preferencies N)))
+			(case S then (assert(PreferenciesN S)))
+			(case N then (assert(PreferenciesN N)))
 		)
 )
 
-(defrule PREGUNTES::definir_preferencies "regla para saber si tiene algun tipo de preferencia de alimentos a no consumir"
+(defrule PREGUNTES::definir_preferencies_negatives "regla para saber si tiene algun tipo de preferencia de alimentos a no consumir"
 	(nou_usuari)
-	(Preferencies S)
+	(PreferenciesN S)
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
 	(printout t "Preferències alimentàries d'aliments a preferiblement no consumir: " crlf)
@@ -860,18 +860,62 @@
 
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(Preferencia Carn)))
-			(case 2 then   (assert(Preferencia Peix)))
-			(case 3 then   (assert(Preferencia Fruita)))
-			(case 4 then   (assert(Preferencia Fruits_secs)))
-			(case 5 then   (assert(Preferencia Lactic)))
+			(case 1 then   (assert(PreferenciaN Carn)))
+			(case 2 then   (assert(PreferenciaN Peix)))
+			(case 3 then   (assert(PreferenciaN Fruita)))
+			(case 4 then   (assert(PreferenciaN Fruits_secs)))
+			(case 5 then   (assert(PreferenciaN Lactic)))
 			(case 6 then
+                (printout t crlf)
                 (bind ?q (pregunta-general "Escriu el nom del producte en qüestió (en singular si es possible):  "))
-                (assert (Preferencia ?q)))
+                (assert (PreferenciaN ?q)))
 
         )
 	)
-  (assert(PreferenciesAfegides))
+  (assert(PreferenciesAfegidesN))
+)
+
+;DEFINIM LES PREFERÈNCIES
+(defrule PREGUNTES::preguntar_preferencies_positives "regla para saber si tiene algun tipo de alergia o restricción"
+	(nou_usuari)
+	=>
+		(bind ?q (pregunta-general "Tens alguna preferència alimentària [Si(S) No(N)]:  "))
+		(switch ?q
+			(case S then (assert(PreferenciesP S)))
+			(case N then (assert(PreferenciesP N)))
+		)
+)
+
+
+(defrule PREGUNTES::definir_preferencies_positives "regla para saber si tiene algun tipo de preferencia de alimentos a no consumir"
+	(nou_usuari)
+	(PreferenciesP S)
+	=>
+	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
+	(printout t crlf)
+	(printout t "Indican's ara si hi ha algun producte o familia de productes que tinguis especial interès a consumir en la mesura del possible: " crlf)
+	(printout t "1. Carn " crlf)
+	(printout t "2. Peix " crlf)
+	(printout t "3. Fruita" crlf)
+	(printout t "4. Fruits secs" crlf)
+	(printout t "5. Làctics" crlf)
+	(printout t "6. Selecciona per poder indicar un aliment concret" crlf)
+	(bind ?pref (pregunta-lista "Escriu l'identificador dels aliments que preferiries consumir. Usa un espai entre cadascún: "))
+
+	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
+		(switch ?it
+			(case 1 then   (assert(PreferenciaP Carn)))
+			(case 2 then   (assert(PreferenciaP Peix)))
+			(case 3 then   (assert(PreferenciaP Fruita)))
+			(case 4 then   (assert(PreferenciaP Fruits_secs)))
+			(case 5 then   (assert(PreferenciaP Lactic)))
+			(case 6 then
+                (printout t crlf)
+                (bind ?q (pregunta-general "Escriu el nom del producte en qüestió (en singular si es possible):  "))
+                (assert (PreferenciaP ?q)))
+        )
+	)
+  (assert(PreferenciesAfegidesP))
 )
 
 
@@ -1080,11 +1124,11 @@
 
 
 ;Li sumem 1 a la puntuacio del plat per cada ingredient de temporada que conte
-(defrule PREFERENCIES::preferirProductes "aqui intentem potenciar els plats que tenen productes de temporada"
+(defrule PREFERENCIES::preferirProductesANoConsumir "aqui intentem potenciar els plats que tenen productes de temporada"
     (nou_usuari)
-    (Preferencies S)
-    (PreferenciesAfegides)
-    (Preferencia $?P)   ;poden haveri varies coses a potenciar
+    (PreferenciesN S)
+    (PreferenciesAfegidesN)
+    (PreferenciaN $?P)   ;poden haveri varies coses a potenciar
     ?plat <- (object (is-a Plat))
 
 	=>
@@ -1098,7 +1142,44 @@
 
         ;Comprovem si pertany a una familia a potenciar
         (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
-            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de la familia a potenciar "crlf)
+            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de la familia a potenciar de no menjar"crlf)
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
+            (send ?plat put-GrauRecomanacio ?grau)
+        )
+
+        (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
+         (progn$ (?it ?P)
+            (if (= (str-compare ?it ?a) 0) then
+            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient a potenciar de no menjar "crlf)
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
+            (send ?plat put-GrauRecomanacio ?grau))
+        )
+
+        (bind ?i (+ ?i 1))
+     )
+)
+
+
+;Li sumem 1 a la puntuacio del plat per cada ingredient de temporada que conte
+(defrule PREFERENCIES::preferirProductesAConsumir "aqui intentem potenciar els plats que tenen productes de temporada"
+    (nou_usuari)
+    (PreferenciesP S)
+    (PreferenciesAfegidesP)
+    (PreferenciaP $?P)   ;poden haveri varies coses a potenciar
+    ?plat <- (object (is-a Plat))
+
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+     (while (<= ?i (length$ (send ?plat get-Ingredients)))
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+
+        ;Comprovem si pertany a una familia a potenciar
+        (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
+            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de la familia a potenciar a menjar"crlf)
             (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
             (send ?plat put-GrauRecomanacio ?grau)
         )
@@ -1106,7 +1187,7 @@
         (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
          (progn$ (?it ?P)
             (if (= (str-compare ?it ?a) 0) then
-            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient a potenciar "crlf)
+            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient a potenciar a menjar "crlf)
             (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
             (send ?plat put-GrauRecomanacio ?grau))
         )
