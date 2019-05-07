@@ -1,4 +1,4 @@
-`; Sun May 05 12:50:41 CEST 2019
+; Sun May 05 12:50:41 CEST 2019
 ;
 ;+ (version "3.3.1")
 ;+ (build "Build 430")
@@ -265,7 +265,7 @@
 	(Familia Carn)
 	(Nom_ingredient "Arros")
 	(Nutrients [IA_Instance_4])
-	(Temporada Hivern Primavera Estiu Tardor)
+	(Temporada Hivern)
 	(Valor_energetic%28kcal%29 100))
 
 ([IA_Instance_6] of  InfoIngredient
@@ -335,7 +335,7 @@
 ([IP0_2] of  IngredientConcret
 
     (Cocci%C3%B3 Bullit)
-    (Ingredient_general [IA_Instance_32])
+    (Ingredient_general [I2])
     (Quantitat 225))
 
 ([I2] of  InfoIngredient
@@ -560,7 +560,7 @@
 ([IP2] of  Plat
 
     (Apat Esmorzar Dinar Sopar)
-    (Ingredients [IP2_0] [IP2_1] [IP2_2])
+    (Ingredients [IP2_0] [IP2_1])
     (Nom "Flam")
     (Tipus_plat Postres ))
 
@@ -762,12 +762,15 @@
 (defrule PREGUNTES::preguntar_edat "regla para saber la franja de edad en que se encuantra"
 	(nou_usuari)
 	=>
-	(bind ?q (pregunta-general "Indica la franja d'edat a la que es troba  [65-75(1) 75-90(2) >90(3)]:  "))
-	(switch ?q
-		(case 1 then (assert(Edat 1)))
-		(case 2 then (assert(Edat 2)))
-		(case 3 then (assert(Edat 3)))
-	)
+		(bind ?q (pregunta-numerica "Quants anys tens?" 0 120))
+	(if (and (> ?q 65) (< ?q 75)) then
+        (assert(Edat 1)))
+
+    (if (and (> ?q 74) (< ?q 90)) then
+        (assert(Edat 2)))
+
+    (if (> ?q 89) then
+        (assert(Edat 3)))
 )
 
 (defrule PREGUNTES::preguntar_activitat_fisica "regla para saber la cantidad de actividad física que realiza el usuario"
@@ -786,10 +789,10 @@
 	=>
 	(bind ?q (pregunta-general "Indica la estació actual de l'any [Hivern(1) Primavera(2) Estiu(3) Tardor(4)]:  "))
 	(switch ?q
-		(case 1 then (assert(Hivern)))
-		(case 2 then (assert(Primavera)))
-		(case 3 then (assert(Estiu)))
-		(case 4 then (assert(Tardor)))
+		(case 1 then (assert(Temporada Hivern)))
+		(case 2 then (assert(Temporada Primavera)))
+		(case 3 then (assert(Temporada Estiu)))
+		(case 4 then (assert(Temporada Tardor)))
 	)
 )
 
@@ -820,11 +823,11 @@
 
 	(progn$ (?it ?rest)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(CarnR)))
-			(case 2 then   (assert(PeixR)))
-			(case 3 then   (assert(FruitaR)))
-			(case 4 then   (assert(LacticR)))
-			(case 5 then   (assert(GlutenR)))
+			(case 1 then   (assert(Restriccio Carn)))
+			(case 2 then   (assert(Restriccio Peix)))
+			(case 3 then   (assert(Restriccio Fruita)))
+			(case 4 then   (assert(Restriccio Lactic)))
+			(case 5 then   (assert(Restriccio Gluten)))
 		)
 	)
   (assert(RestriccionsAfegides))
@@ -852,16 +855,21 @@
 	(printout t "3. Fruita" crlf)
 	(printout t "4. Fruits secs" crlf)
 	(printout t "5. Làctics" crlf)
+	(printout t "6. Selecciona per poder indicar un aliment concret" crlf)
 	(bind ?pref (pregunta-lista "Escriu l'identificador dels aliments que preferiries no pots consumir. Usa un espai entre cadascún: "))
 
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(CarnP)))
-			(case 2 then   (assert(PeixP)))
-			(case 3 then   (assert(FruitaP)))
-			(case 4 then   (assert(Fruits secsP)))
-			(case 5 then   (assert(LacticsP)))
-		)
+			(case 1 then   (assert(Preferencia Carn)))
+			(case 2 then   (assert(Preferencia Peix)))
+			(case 3 then   (assert(Preferencia Fruita)))
+			(case 4 then   (assert(Preferencia Fruits_secs)))
+			(case 5 then   (assert(Preferencia Lactic)))
+			(case 6 then
+                (bind ?q (pregunta-general "Escriu el nom del producte en qüestió (en singular si es possible):  "))
+                (assert (Preferencia ?q)))
+
+        )
 	)
   (assert(PreferenciesAfegides))
 )
@@ -932,10 +940,8 @@
 	(export ?ALL)
 )
 
-
-;DESCARTEM ELS PLATS QUE CONTENEN ALGUNA FAMILIA D'ELIMENTS PROHIBITS
 (defrule FILTRAT::descartarAmbCarn "regla para descartar los platos que contengan carne"
-  (CarnR)
+  (Restriccio Carn)
   (RestriccionsAfegides)
   ?plat <- (object (is-a Plat))
 	=>
@@ -958,7 +964,7 @@
 )
 
 (defrule FILTRAT::descartarAmbPeix "regla para descartar los platos que contengan carne"
-  (PeixR)
+  (Restriccio Peix)
   (RestriccionsAfegides)
   ?plat <- (object (is-a Plat))
 	=>
@@ -981,7 +987,7 @@
 )
 
 (defrule FILTRAT::descartarAmbFruita "regla para descartar los platos que contengan carne"
-  (FruitaR)
+  (Restriccio Fruita)
   (RestriccionsAfegides)
   ?plat <- (object (is-a Plat))
 	=>
@@ -1003,7 +1009,7 @@
 )
 
 (defrule FILTRAT::descartarLactic "regla para descartar los platos que contengan carne"
-  (LacticR)
+  (Restriccio Lactic)
   (RestriccionsAfegides)
   ?plat <- (object (is-a Plat))
 	=>
@@ -1029,11 +1035,94 @@
       (nou_usuari)
       =>
 			(printout t crlf)
-			(printout t "Passem al modul de formar menus: "crlf)
-      (focus MENUS)
+			(printout t "Passem al modul de marcar les preferencies: "crlf)
+      (focus PREFERENCIES)
 )
 
 
+
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+;;;----------  					MODULO DE PREFERENCIAS				---------- 				MODULO DE PREFERENCIAS
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+
+;; En este modulo se hace la abstraccion de los datos obtenidos del modulo de pregunatas
+(defmodule PREFERENCIES
+	(import MAIN ?ALL)
+	(import PREGUNTES ?ALL)
+	(import INFERIR_DADES ?ALL)
+	(import FILTRAT ?ALL)
+	(export ?ALL)
+)
+
+
+;Li sumem 1 a la puntuacio del plat per cada ingredient de temporada que conte
+(defrule PREFERENCIES::preferirProductesTemporada "aqui intentem potenciar els plats que tenen productes de temporada"
+    (nou_usuari)
+    (Temporada ?n)
+    ?plat <- (object (is-a Plat))
+
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+     (while (<= ?i (length$ (send ?plat get-Ingredients)))
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+        (if (member$ ?n (send ?ingredientGeneral get-Temporada)) then
+            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de temporada "crlf)
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
+            (send ?plat put-GrauRecomanacio ?grau)
+        )
+        (bind ?i (+ ?i 1))
+     )
+)
+
+
+;Li sumem 1 a la puntuacio del plat per cada ingredient de temporada que conte
+(defrule PREFERENCIES::preferirProductes "aqui intentem potenciar els plats que tenen productes de temporada"
+    (nou_usuari)
+    (Preferencies S)
+    (PreferenciesAfegides)
+    (Preferencia $?P)   ;poden haveri varies coses a potenciar
+    ?plat <- (object (is-a Plat))
+
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+     (while (<= ?i (length$ (send ?plat get-Ingredients)))
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+
+        ;Comprovem si pertany a una familia a potenciar
+        (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
+            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de la familia a potenciar "crlf)
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
+            (send ?plat put-GrauRecomanacio ?grau)
+        )
+
+        (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
+         (progn$ (?it ?P)
+            (if (= (str-compare ?it ?a) 0) then
+            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient a potenciar "crlf)
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
+            (send ?plat put-GrauRecomanacio ?grau))
+        )
+
+        (bind ?i (+ ?i 1))
+     )
+)
+
+
+(defrule PREFERENCIES::acabatLesPreferencia "Saltem al seguent modul"
+    (nou_usuari)
+    =>
+    (printout t crlf)
+    (printout t "Passem al modul de formar menus: "crlf)
+    (focus MENUS)
+)
 
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1047,10 +1136,11 @@
 	(import PREGUNTES ?ALL)
 	(import INFERIR_DADES ?ALL)
 	(import FILTRAT ?ALL)
+	(import PREFERENCIES ?ALL)
 	(export ?ALL)
 )
 
-(defrule dividirEnTipusPlats "Ara dividim tots els plats que han quedat en esmorzar, dinar primer i segon plat, sopar primer i segon plat i postres"
+(defrule MENUS::dividirEnTipusPlats "Ara dividim tots els plats que han quedat en esmorzar, dinar primer i segon plat, sopar primer i segon plat i postres"
 	(nou_usuari)
 	(not (FI))
 	=>
@@ -1098,7 +1188,7 @@
 
 
 ;ANEM A ORDENAR ELS RESULTATS
-(defrule ordenarEsmorzars "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+(defrule MENUS::ordenarEsmorzars "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaE (posicio ?pos1) (plat ?plat1))
@@ -1110,7 +1200,7 @@
 	(modify ?p2 (posicio ?pos1))
 )
 
-(defrule ordenarDinarPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+(defrule MENUS::ordenarDinarPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaDP (posicio ?pos1) (plat ?plat1))
@@ -1122,7 +1212,7 @@
 	(modify ?p2 (posicio ?pos1))
 )
 
-(defrule ordenarDinarSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+(defrule MENUS::ordenarDinarSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaDS (posicio ?pos1) (plat ?plat1))
@@ -1134,7 +1224,7 @@
 	(modify ?p2 (posicio ?pos1))
 )
 
-(defrule ordenarSoparPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+(defrule MENUS::ordenarSoparPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaSP (posicio ?pos1) (plat ?plat1))
@@ -1146,7 +1236,7 @@
 	(modify ?p2 (posicio ?pos1))
 )
 
-(defrule ordenarSoparSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+(defrule MENUS::ordenarSoparSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaSS (posicio ?pos1) (plat ?plat1))
@@ -1158,7 +1248,8 @@
 	(modify ?p2 (posicio ?pos1))
 )
 
-(defrule ordenarPostres "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+
+(defrule MENUS::ordenarPostres "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaP (posicio ?pos1) (plat ?plat1))
@@ -1257,4 +1348,3 @@
 
         (assert (FI))
 )
-`
