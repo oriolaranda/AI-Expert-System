@@ -751,7 +751,7 @@
 (defrule PREGUNTES::preguntar_sexe "regla para saber el sexo del usuario"
 	(nou_usuari)
 	=>
-	(bind ?q (pregunta-general "Indica tu genero [M F Indef]:  "))
+	(bind ?q (pregunta-general "What is your gender? [M F Indef]:  "))
 	(switch ?q
 		(case M then (assert(Genere M)))
 		(case F then (assert(Genere F)))
@@ -762,7 +762,7 @@
 (defrule PREGUNTES::preguntar_edat "regla para saber la franja de edad en que se encuantra"
 	(nou_usuari)
 	=>
-		(bind ?q (pregunta-numerica "Quants anys tens?" 65 120))
+		(bind ?q (pregunta-numerica "How old are you?" 65 120))
 	(if (and (> ?q 65) (< ?q 75)) then
         (assert(Edat 1)))
 
@@ -776,7 +776,7 @@
 (defrule PREGUNTES::preguntar_activitat_fisica "regla para saber la cantidad de actividad física que realiza el usuario"
 	(nou_usuari)
 	=>
-	(bind ?q (pregunta-numerica "Indica la cantidad de ejercicio que realiza [poco(1) regularmente(2) mucho(3)]:  " 1 3))
+	(bind ?q (pregunta-numerica "How often do you practice sport? [barely(1) regularly(2) often(3)]:  " 1 3))
 	(switch ?q
 		(case P then (assert(Actividad P)))
 		(case R then (assert(Actividad R)))
@@ -787,7 +787,7 @@
 (defrule PREGUNTES::preguntar_temporada "regla para saber la temporada del año en que nos encontramos"
 	(nou_usuari)
 	=>
-	(bind ?q (pregunta-numerica "Indica la estació actual de l'any [Hivern(1) Primavera(2) Estiu(3) Tardor(4)]:  " 1 4))
+	(bind ?q (pregunta-numerica "What season of the year are we in? [Winter(1) Spring(2) Summer(3) Autumn(4)]:  " 1 4))
 	(switch ?q
 		(case 1 then (assert(Temporada Hivern)))
 		(case 2 then (assert(Temporada Primavera)))
@@ -801,9 +801,9 @@
 (defrule PREGUNTES::preguntar_alergies_restriccions "regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
 	=>
-		(bind ?q (pregunta-general "Tens alguna restricció o alèrgia alimentària [Si(S) No(N)]:  "))
+		(bind ?q (pregunta-general "Do you have any restriction of food you MUST NOT eat? [Yes(Y) No(N)]:  "))
 		(switch ?q
-			(case S then (assert(Restriccio S)))
+			(case Y then (assert(Restriccio S)))
 			(case N then (assert(Restriccio N)))
 		)
 )
@@ -813,13 +813,14 @@
 	(Restriccio S)
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
-	(printout t "Restriccions o alèrgies: " crlf)
-	(printout t "1. Carn " crlf)
-	(printout t "2. Peix " crlf)
-	(printout t "3. Fruita" crlf)
-	(printout t "4. Làctic" crlf)
+	(printout t "Restrictions: " crlf)
+	(printout t "1. Meet " crlf)
+	(printout t "2. Fish " crlf)
+	(printout t "3. Fruit" crlf)
+	(printout t "4. Dairy (Lactic)" crlf)
 	(printout t "5. Gluten" crlf)
-	(bind ?rest (pregunta-lista "Escriu l'identificador dels aliments als què ets alèrgic o no pots consumir. Usa un espai entre cadascún: "))
+	(printout t "6. Specific food" crlf)
+	(bind ?rest (pregunta-lista "Separate your answer with a blank between each identifier (can be multiple) :"))
 
 	(progn$ (?it ?rest)	;Per a cadascun dels elements seleccionats
 		(switch ?it
@@ -828,8 +829,12 @@
 			(case 3 then   (assert(Restriccio Fruita)))
 			(case 4 then   (assert(Restriccio Lactic)))
 			(case 5 then   (assert(Restriccio Gluten)))
-		)
-	)
+			(case 6 then
+                (printout t crlf)
+                (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
+                (assert (Restriccio ?q)))
+        )
+    )
   (assert(RestriccionsAfegides))
 )
 
@@ -837,9 +842,9 @@
 (defrule PREGUNTES::preguntar_preferencies_negatives"regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
 	=>
-		(bind ?q (pregunta-general "Tens alguna preferència alimentària [Si(S) No(N)]:  "))
+		(bind ?q (pregunta-general "Do you have food you would RATHER NOT eat [Yes(Y) No(N)]:  "))
 		(switch ?q
-			(case S then (assert(PreferenciesN S)))
+			(case Y then (assert(PreferenciesN S)))
 			(case N then (assert(PreferenciesN N)))
 		)
 )
@@ -849,14 +854,14 @@
 	(PreferenciesN S)
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
-	(printout t "Preferències alimentàries d'aliments a preferiblement no consumir: " crlf)
-	(printout t "1. Carn " crlf)
-	(printout t "2. Peix " crlf)
-	(printout t "3. Fruita" crlf)
-	(printout t "4. Fruits secs" crlf)
-	(printout t "5. Làctics" crlf)
-	(printout t "6. Selecciona per poder indicar un aliment concret" crlf)
-	(bind ?pref (pregunta-lista "Escriu l'identificador dels aliments que preferiries no pots consumir. Usa un espai entre cadascún: "))
+	(printout t "Preferences of food you would rather not eat: " crlf)
+	(printout t "1. Meet " crlf)
+	(printout t "2. Fish " crlf)
+	(printout t "3. Fruit" crlf)
+	(printout t "4. Nuts" crlf)
+	(printout t "5. Dairy" crlf)
+	(printout t "6. Select to write specific food products" crlf)
+	(bind ?pref (pregunta-lista "Separate your answer with a blank between each identifier (in case there are several) : "))
 
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
@@ -867,7 +872,7 @@
 			(case 5 then   (assert(PreferenciaN Lactic)))
 			(case 6 then
                 (printout t crlf)
-                (bind ?q (pregunta-general "Escriu el nom del producte en qüestió (en singular si es possible):  "))
+                (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
                 (assert (PreferenciaN ?q)))
 
         )
@@ -879,9 +884,9 @@
 (defrule PREGUNTES::preguntar_preferencies_positives "regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
 	=>
-		(bind ?q (pregunta-general "Tens alguna preferència alimentària [Si(S) No(N)]:  "))
+		(bind ?q (pregunta-general "Do you have food you would LIKE to eat [Yes(Y) No(N)]:  "))
 		(switch ?q
-			(case S then (assert(PreferenciesP S)))
+			(case Y then (assert(PreferenciesP S)))
 			(case N then (assert(PreferenciesP N)))
 		)
 )
@@ -892,15 +897,14 @@
 	(PreferenciesP S)
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
-	(printout t crlf)
-	(printout t "Indican's ara si hi ha algun producte o familia de productes que tinguis especial interès a consumir en la mesura del possible: " crlf)
-	(printout t "1. Carn " crlf)
-	(printout t "2. Peix " crlf)
-	(printout t "3. Fruita" crlf)
-	(printout t "4. Fruits secs" crlf)
-	(printout t "5. Làctics" crlf)
-	(printout t "6. Selecciona per poder indicar un aliment concret" crlf)
-	(bind ?pref (pregunta-lista "Escriu l'identificador dels aliments que preferiries consumir. Usa un espai entre cadascún: "))
+	(printout t "Preferences of food you would like to eat: " crlf)
+	(printout t "1. Meet " crlf)
+	(printout t "2. Fish " crlf)
+	(printout t "3. Fruit" crlf)
+	(printout t "4. Nuts" crlf)
+	(printout t "5. Dairy" crlf)
+	(printout t "6. Select to write specific food products" crlf)
+	(bind ?pref (pregunta-lista "Separate your answer with a blank between each identifier (in case there are several) : "))
 
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
@@ -911,7 +915,7 @@
 			(case 5 then   (assert(PreferenciaP Lactic)))
 			(case 6 then
                 (printout t crlf)
-                (bind ?q (pregunta-general "Escriu el nom del producte en qüestió (en singular si es possible):  "))
+                (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
                 (assert (PreferenciaP ?q)))
         )
 	)
@@ -924,13 +928,13 @@
 	(nou_usuari)
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
-	(printout t "Indica si pateixes alguna de les seguents malalties: " crlf)
+	(printout t "Indicate whether you have any of these illneses: " crlf)
 	(printout t "1. Osteoporosis " crlf)
-	(printout t "2. Problemes articulars " crlf)
+	(printout t "2. Articular problems " crlf)
 	(printout t "3. Diabetis" crlf)
-	(printout t "4. Hipertensio" crlf)
-	(printout t "5. Cap de les anteriors" crlf)
-	(bind ?malalties (pregunta-lista "Escriu l'identificador de les malalties que tens. Usa un espai entre cadascún: "))
+	(printout t "4. Hipertension" crlf)
+	(printout t "5. Non of the above" crlf)
+	(bind ?malalties (pregunta-lista "Separate your answer with a blank between each identifier (in case there are several) : "))
 
 	(progn$ (?it ?malalties)	;Per a cadascun dels elements seleccionats
 		(switch ?it
@@ -967,10 +971,60 @@
   =>
 	(printout t crlf)
 	(printout t "Passem al modul de filtrar plats no possibles: "crlf)
-  (focus FILTRAT)
+  (focus MALALTIES)
 )
 
 
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+;;;----------  					MODUL DE MALALTIES			---------- 				MODUL DE MALALTIES
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+(defmodule MALALTIES
+	(import MAIN ?ALL)
+	(import PREGUNTES ?ALL)
+	(import INFERIR_DADES ?ALL)
+	(export ?ALL)
+)
+
+(defrule MALALTIES::osteoporosis "Aqui definim els fets que implica"
+	(nou_usuari)
+	(MalaltiesAfegides)
+	=>
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
+	(assert (PreferenciaP Lactic))
+)
+
+(defrule MALALTIES::problemes_articulars "Aqui definim els fets que implica"
+	(nou_usuari)
+	(MalaltiesAfegides)
+	=>
+
+
+)
+
+(defrule MALALTIES::hipertensio "Aqui definim els fets que implica"
+	(nou_usuari)
+	(MalaltiesAfegides)
+	=>
+
+
+)
+
+(defrule MALALTIES::diabetis "Aqui definim els fets que implica"
+	(nou_usuari)
+	(MalaltiesAfegides)
+	=>
+
+
+)
+
+(defrule MALALTIES::passemAFiltrat "No fa res. Passem al seguent modul"
+	(nou_usuari)
+	=>
+	(printout t crlf)
+	(printout t "Passem al modul de marcar les filtrat: "crlf)
+	(focus FILTRAT)
+)
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					MODULO DE FILTRADO				---------- 				MODULO DE FILTRADO
@@ -981,6 +1035,7 @@
 	(import MAIN ?ALL)
 	(import PREGUNTES ?ALL)
 	(import INFERIR_DADES ?ALL)
+	(import MALALTIES ?ALL)
 	(export ?ALL)
 )
 
@@ -1073,6 +1128,42 @@
         (bind ?i (+ ?i 1))
      )
 )
+
+(defrule FILTRAT::filtremPlatsRestringuits "aqui intentem potenciar els plats que tenen productes de temporada"
+    (nou_usuari)
+    (RestriccionsAfegides)
+    (Restriccio $?P)   ;poden haveri varies coses a potenciar
+    ?plat <- (object (is-a Plat))
+
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+
+     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+
+        ;Comprovem si pertany a una familia a potenciar
+        (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
+					(printout t " Eliminem el plat " (instance-name ?plat) crlf)
+					(send ?plat delete)
+					(bind ?FI TRUE)
+        )
+
+            (if (eq ?FI FALSE) then
+                (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
+                (progn$ (?it ?P)
+                    (if (= (str-compare ?it ?a) 0) then
+                                    (printout t " Eliminem el plat " (instance-name ?plat) crlf)
+                                    (send ?plat delete)
+                                )
+                )
+            )
+        (bind ?i (+ ?i 1))
+     )
+)
+
 
 
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
