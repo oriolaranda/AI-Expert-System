@@ -1424,10 +1424,6 @@
 
 	?menu <- (menuDiari (dia ?c))
 	=>
-
-	;L'afegim al menu d'aquell dia
-	(printout t "Hem modificat un plat" ?c crlf)
-
 	(modify ?menu (esmorzar ?plat))
 
 	(retract ?cc)
@@ -1446,14 +1442,13 @@
 
 
 (defrule MENUS::recuperemCounters1 "Tornem a settejar les variables per tornar a fer el counting"
-    (declare (salience -2))
+    (declare (salience -1))
     (nou_usuari)
     (not (Esmorzars omplerts))
     (not(FI))
     ?pph <- (PrimeraPosicio ?)
     ?cc <- (counter ?)
     =>
-    (printout t "Hi" crlf)
     (assert (PrimeraPosicio 1))
     (assert (counter 1))
     (assert (Esmorzars omplerts))
@@ -1462,7 +1457,7 @@
 
 ;Selecciona els 7 primers esmorzars o torna a començar si ja no en queden
 (defrule MENUS::seleccionar7DinarPrimers  "regla para mostrar solo 6 recomendaciones"
-   (declare (salience -3))
+   (declare (salience -1))
 	(nou_usuari)
 	(not (DinarP omplerts))
 	(Esmorzars omplerts)
@@ -1478,10 +1473,6 @@
 	?menu <- (menuDiari (dia ?c))
 
 	=>
-
-	;L'afegim al menu d'aquell dia
-	(printout t "Hem modificat un plat" ?c crlf)
-
 	(modify ?menu (dinarPrimer ?plat))
 
 	(retract ?cc)
@@ -1499,7 +1490,7 @@
 )
 
 (defrule MENUS::recuperemCounters2 "Tornem a settejar les variables per tornar a fer el counting"
-    (declare (salience -4))
+    (declare (salience -1))
     (nou_usuari)
     (not(FI))
     (Esmorzars omplerts)
@@ -1517,7 +1508,7 @@
 
 
 (defrule MENUS::countersPelMenu "Tornem a settejar les variables per tornar a fer el counting"
-    (declare (salience -3))
+    (declare (salience -2))
     (nou_usuari)
     (not(FI))
     =>
@@ -1526,7 +1517,7 @@
 
 
 (defrule MENUS::MostrarMenuDefinitiu "Aquesta regla mostra els menus definitius"
-    (declare (salience -5))
+    (declare (salience -3))
     (nou_usuari)
     ?dd <- (dia ?d)
     (test (<= ?d 7))
@@ -1544,10 +1535,10 @@
 		(case 7 then (printout t "SUNDAY" crlf)))
         (printout t "----------------------------------- " crlf)
 
-        (printout t "BREAKFAST : " ?e crlf)
+        (printout t "BREAKFAST : " (send ?e get-Nom) crlf)
         (printout t crlf)
         (printout t "LUNCH :" crlf)
-        (printout t "First dish: " ?dp crlf)
+        (printout t "First dish: " (send ?dp get-Nom) crlf)
         (printout t "Second dish : " ?ds crlf)
         (printout t "Desert : " ?dpostres crlf)
         (printout t crlf)
