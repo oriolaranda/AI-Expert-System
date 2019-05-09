@@ -248,6 +248,13 @@
 	(Nom "Maduixes")
 	(Tipus_plat 1r 2n))
 
+([IA_Instance_10] of  Plat
+
+	(Apat Esmorzar)
+	(Ingredients [IA_Instance_8])
+	(Nom "Maduixes2")
+	(Tipus_plat 1r 2n))
+
 
 ([IA_Instance_2] of  IngredientConcret
 
@@ -666,6 +673,24 @@
 )
 
 
+(deftemplate MAIN::menuDiari "solucio final on ordenem tots els plats"
+    (slot dia (type INTEGER))
+    ;DIA 1
+	;esmorzar
+	(slot esmorzar (type INSTANCE) (allowed-classes Plat))
+
+	;dinar
+	(slot dinarPrimer (type INSTANCE) (allowed-classes Plat))
+    (slot dinarSegon (type INSTANCE) (allowed-classes Plat))
+    (slot dinarPostres (type INSTANCE) (allowed-classes Plat))
+
+	;dinar
+	(slot soparPrimer (type INSTANCE) (allowed-classes Plat))
+    (slot soparSegon (type INSTANCE) (allowed-classes Plat))
+    (slot soparPostres (type INSTANCE) (allowed-classes Plat))
+
+)
+
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					FUNCIONES					 		---------- 								EXTRAS
 ;;;-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -724,6 +749,7 @@
 
 (defrule MAIN::primeraRegla "regla inicial"
 	(initial-fact)
+	(not (FI))
 	=>
 	(reset)
 	(printout t crlf)
@@ -989,9 +1015,9 @@
 	(nou_usuari)
 	(MalaltiesAfegides)
 	=>
-	(assert (PreferenciesP S))
-	(assert (PreferenciesAfegidesP))
-	(assert (PreferenciaP Lactic))
+	;(assert (PreferenciesP S))
+	;(assert (PreferenciesAfegidesP))
+	;(assert (PreferenciaP Lactic))
 )
 
 (defrule MALALTIES::problemes_articulars "Aqui definim els fets que implica"
@@ -1039,95 +1065,7 @@
 	(export ?ALL)
 )
 
-(defrule FILTRAT::descartarAmbCarn "regla para descartar los platos que contengan carne"
-  (Restriccio Carn)
-  (RestriccionsAfegides)
-  ?plat <- (object (is-a Plat))
-	=>
-	(bind ?i 1)
-	(bind ?FI FALSE)
 
-     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
-      do
-        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
-        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-        (if (eq (send ?ingredientGeneral get-Familia) Carn) then
-            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
-            (send ?plat delete)
-            (bind ?FI TRUE)
-        )
-
-        (bind ?i (+ ?i 1))
-
-     )
-)
-
-(defrule FILTRAT::descartarAmbPeix "regla para descartar los platos que contengan carne"
-  (Restriccio Peix)
-  (RestriccionsAfegides)
-  ?plat <- (object (is-a Plat))
-	=>
-	(bind ?i 1)
-	(bind ?FI FALSE)
-
-     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
-      do
-        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
-        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-        (if (eq (send ?ingredientGeneral get-Familia) Peix) then
-            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
-            (send ?plat delete)
-            (bind ?FI TRUE)
-        )
-
-        (bind ?i (+ ?i 1))
-
-     )
-)
-
-(defrule FILTRAT::descartarAmbFruita "regla para descartar los platos que contengan carne"
-  (Restriccio Fruita)
-  (RestriccionsAfegides)
-  ?plat <- (object (is-a Plat))
-	=>
-	(bind ?i 1)
-	(bind ?FI FALSE)
-
-     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
-      do
-        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
-        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-        (if (eq (send ?ingredientGeneral get-Familia) Fruita) then
-            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
-            (send ?plat delete)
-            (bind ?FI TRUE)
-        )
-
-        (bind ?i (+ ?i 1))
-     )
-)
-
-(defrule FILTRAT::descartarLactic "regla para descartar los platos que contengan carne"
-  (Restriccio Lactic)
-  (RestriccionsAfegides)
-  ?plat <- (object (is-a Plat))
-	=>
-	(bind ?i 1)
-	(bind ?FI FALSE)
-
-     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
-      do
-        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
-        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-        (if (eq (send ?ingredientGeneral get-Familia) Làctic) then
-            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
-            (send ?plat delete)
-            (bind ?FI TRUE)
-        )
-
-        (bind ?i (+ ?i 1))
-     )
-)
 
 (defrule FILTRAT::filtremPlatsRestringuits "aqui intentem potenciar els plats que tenen productes de temporada"
     (nou_usuari)
@@ -1151,15 +1089,15 @@
 					(bind ?FI TRUE)
         )
 
-            (if (eq ?FI FALSE) then
-                (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
-                (progn$ (?it ?P)
-                    (if (= (str-compare ?it ?a) 0) then
-                                    (printout t " Eliminem el plat " (instance-name ?plat) crlf)
-                                    (send ?plat delete)
-                                )
-                )
-            )
+        (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
+        (progn$ (?it ?P)
+            (if (= (str-compare ?it ?a) 0) then
+                            (printout t " Eliminem el plat " (instance-name ?plat) crlf)
+                            (send ?plat delete)
+                            (bind ?FI TRUE)
+                        )
+        )
+
         (bind ?i (+ ?i 1))
      )
 )
@@ -1205,8 +1143,7 @@
         (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
         (if (member$ ?n (send ?ingredientGeneral get-Temporada)) then
-            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de temporada "crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
+            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de temporada "crlf)c            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
             (send ?plat put-GrauRecomanacio ?grau)
         )
         (bind ?i (+ ?i 1))
@@ -1312,7 +1249,26 @@
 	(export ?ALL)
 )
 
+(defrule MENUS::reglaInicialMenus "Aqui creem alguns fets necessaris per a poder mostrejar el menu"
+    (declare (salience 0))
+    (nou_usuari)
+    (not (FI))
+    =>
+    (assert (menuDiari (dia 1)))
+    (assert (menuDiari (dia 2)))
+    (assert (menuDiari (dia 3)))
+    (assert (menuDiari (dia 4)))
+    (assert (menuDiari (dia 5)))
+    (assert (menuDiari (dia 6)))
+    (assert (menuDiari (dia 7)))
+    (assert (PrimeraPosicio 1))
+	(assert (counter 1))
+)
+
+
+;aixo ho divideix en tipus i a més ens ho ordena
 (defrule MENUS::dividirEnTipusPlats "Ara dividim tots els plats que han quedat en esmorzar, dinar primer i segon plat, sopar primer i segon plat i postres"
+    (declare (salience 1))
 	(nou_usuari)
 	(not (FI))
 	=>
@@ -1323,44 +1279,57 @@
 	(bind ?soparsSegons(find-all-instances ((?inst Plat)) (and (member$ Sopar ?inst:Apat)(member$ 2n ?inst:Tipus_plat)) ))
 	(bind ?postres(find-all-instances ((?inst Plat)) (member$ Postres ?inst:Tipus_plat)))
 
+	;declarem un parell de fets per a ajudar a fer el mostreig
+
 	(bind ?pos 1)
 	(progn$ (?i ?esmorzars)
 		(assert (solucionOrdenadaE (posicio ?pos) (plat ?i)))
 		(bind ?pos (+ ?pos 1))
 	)
+	(assert (numeroEsmorzars (- ?pos 1)))
 
 	(bind ?pos 1)
 	(progn$ (?i ?dinarsPrimers)
 		(assert (solucionOrdenadaDP (posicio ?pos) (plat ?i)))
 		(bind ?pos (+ ?pos 1))
 	)
+	(assert (numeroDinarPrimers (- ?pos 1)))
+
 	(bind ?pos 1)
+
 	(progn$ (?i ?dinarsSegons)
 		(assert (solucionOrdenadaDS (posicio ?pos) (plat ?i)))
 		(bind ?pos (+ ?pos 1))
 	)
+	(assert (numeroDinarSegons (- ?pos 1)))
+
+
 	(bind ?pos 1)
 	(progn$ (?i ?soparsPrimers)
 		(assert (solucionOrdenadaSP (posicio ?pos) (plat ?i)))
 		(bind ?pos (+ ?pos 1))
 	)
+	(assert (numeroSoparPrimers (- ?pos 1)))
 
 	(bind ?pos 1)
 	(progn$ (?i ?soparsSegons)
 		(assert (solucionOrdenadaSS (posicio ?pos) (plat ?i)))
 		(bind ?pos (+ ?pos 1))
 	)
+	(assert (numeroSoparSegons (- ?pos 1)))
 
 	(bind ?pos 1)
 	(progn$ (?i ?postres)
 		(assert (solucionOrdenadaP (posicio ?pos) (plat ?i)))
 		(bind ?pos (+ ?pos 1))
 	)
+	(assert (numeroPostres (- ?pos 1)))
 )
 
 
 ;ANEM A ORDENAR ELS RESULTATS
 (defrule MENUS::ordenarEsmorzars "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+    (declare (salience 0))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaE (posicio ?pos1) (plat ?plat1))
@@ -1373,6 +1342,7 @@
 )
 
 (defrule MENUS::ordenarDinarPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(declare (salience 0))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaDP (posicio ?pos1) (plat ?plat1))
@@ -1385,6 +1355,7 @@
 )
 
 (defrule MENUS::ordenarDinarSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(declare (salience 0))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaDS (posicio ?pos1) (plat ?plat1))
@@ -1397,6 +1368,7 @@
 )
 
 (defrule MENUS::ordenarSoparPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(declare (salience 0))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaSP (posicio ?pos1) (plat ?plat1))
@@ -1409,6 +1381,7 @@
 )
 
 (defrule MENUS::ordenarSoparSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(declare (salience 0))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaSS (posicio ?pos1) (plat ?plat1))
@@ -1422,6 +1395,7 @@
 
 
 (defrule MENUS::ordenarPostres "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
+	(declare (salience 0))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaP (posicio ?pos1) (plat ?plat1))
@@ -1434,9 +1408,166 @@
 )
 
 
+;Selecciona els 7 primers esmorzars o torna a començar si ja no en queden
+(defrule MENUS::seleccionar7Esmorzars  "regla para mostrar solo 6 recomendaciones"
+    (declare (salience -1))
+	(nou_usuari)
+	(not (Esmorzars omplerts))
+
+	(numeroEsmorzars ?posMaxima)
+	?cc <- (counter ?c)    ;aquest counter ens indica el nombre d'elements tractats
+
+	;aquest ens indica la posicio a la que hem d'excedir. Pot ser que hagui de tornar a començar perque falten elements
+	?pph <- (PrimeraPosicio ?pos)
+	(test (<= ?c 7))
+	?recH <- (solucionOrdenadaE (posicio ?pos) (plat ?plat))
+
+	?menu <- (menuDiari (dia ?c))
+	=>
+
+	;L'afegim al menu d'aquell dia
+	(printout t "Hem modificat un plat" ?c crlf)
+
+	(modify ?menu (esmorzar ?plat))
+
+	(retract ?cc)
+	(retract ?pph)
+
+	(assert(counter (+ ?c 1)))
+
+	;si ens hem passat, tornem a començar
+	(if (> (+ ?pos 1) ?posMaxima) then
+        (assert(PrimeraPosicio 1))
+
+    else
+        (assert(PrimeraPosicio (+ ?pos 1)))
+    )
+)
+
+
+(defrule MENUS::recuperemCounters1 "Tornem a settejar les variables per tornar a fer el counting"
+    (declare (salience -2))
+    (nou_usuari)
+    (not (Esmorzars omplerts))
+    (not(FI))
+    ?pph <- (PrimeraPosicio ?)
+    ?cc <- (counter ?)
+    =>
+    (printout t "Hi" crlf)
+    (assert (PrimeraPosicio 1))
+    (assert (counter 1))
+    (assert (Esmorzars omplerts))
+)
+
+
+;Selecciona els 7 primers esmorzars o torna a començar si ja no en queden
+(defrule MENUS::seleccionar7DinarPrimers  "regla para mostrar solo 6 recomendaciones"
+   (declare (salience -3))
+	(nou_usuari)
+	(not (DinarP omplerts))
+	(Esmorzars omplerts)
+
+	(numeroDinarPrimers ?posMaxima)
+	?cc <- (counter ?c)    ;aquest counter ens indica el nombre d'elements tractats
+
+	;aquest ens indica la posicio a la que hem d'excedir. Pot ser que hagui de tornar a començar perque falten elements
+	?pph <- (PrimeraPosicio ?pos)
+	(test (<= ?c 7))
+	?recH <- (solucionOrdenadaDP (posicio ?pos) (plat ?plat))
+
+	?menu <- (menuDiari (dia ?c))
+
+	=>
+
+	;L'afegim al menu d'aquell dia
+	(printout t "Hem modificat un plat" ?c crlf)
+
+	(modify ?menu (dinarPrimer ?plat))
+
+	(retract ?cc)
+	(retract ?pph)
+
+	(assert(counter (+ ?c 1)))
+
+	;si ens hem passat, tornem a començar
+	(if (> (+ ?pos 1) ?posMaxima) then
+        (assert(PrimeraPosicio 1))
+
+    else
+        (assert(PrimeraPosicio (+ ?pos 1)))
+    )
+)
+
+(defrule MENUS::recuperemCounters2 "Tornem a settejar les variables per tornar a fer el counting"
+    (declare (salience -4))
+    (nou_usuari)
+    (not(FI))
+    (Esmorzars omplerts)
+    (not (DinarP omplerts))
+    ?pph <- (PrimeraPosicio ?)
+    ?cc <- (counter ?)
+    =>
+    (assert (PrimeraPosicio 1))
+    (assert (counter 1))
+    (assert (DinarP omplerts))
+)
+
+
+
+
+
+(defrule MENUS::countersPelMenu "Tornem a settejar les variables per tornar a fer el counting"
+    (declare (salience -3))
+    (nou_usuari)
+    (not(FI))
+    =>
+    (assert (dia 1))
+)
+
+
+(defrule MENUS::MostrarMenuDefinitiu "Aquesta regla mostra els menus definitius"
+    (declare (salience -5))
+    (nou_usuari)
+    ?dd <- (dia ?d)
+    (test (<= ?d 7))
+
+    ?menu <- (menuDiari (dia ?d) (esmorzar ?e) (dinarPrimer ?dp) (dinarSegon ?ds) (dinarPostres ?dpostres) (soparPrimer ?sp) (soparSegon ?ss) (soparPostres ?spostres))
+    =>
+
+    (switch ?d
+		(case 1 then (printout t "MONDAY" crlf))
+		(case 2 then (printout t "TUESDAY" crlf))
+		(case 3 then (printout t "WEDNESDAY" crlf))
+		(case 4 then (printout t "THURSDAY" crlf))
+		(case 5 then (printout t "FRIDAY" crlf))
+		(case 6 then (printout t "SATURDAY" crlf))
+		(case 7 then (printout t "SUNDAY" crlf)))
+        (printout t "----------------------------------- " crlf)
+
+        (printout t "BREAKFAST : " ?e crlf)
+        (printout t crlf)
+        (printout t "LUNCH :" crlf)
+        (printout t "First dish: " ?dp crlf)
+        (printout t "Second dish : " ?ds crlf)
+        (printout t "Desert : " ?dpostres crlf)
+        (printout t crlf)
+        (printout t "DINNER :" crlf)
+        (printout t "First dish : " ?sp crlf)
+        (printout t "Second dish : " ?ss crlf)
+        (printout t "Desert : " ?spostres crlf)
+        (printout t crlf)
+
+        (retract ?dd)
+        (assert (dia (+ ?d 1)))
+        (assert (FI))
+)
+
+
 ;ANEM A MOSTRAR ELS RESULTATS
 (defrule MENUS::FormarMenu "regla per obtenir el menu final"
+    (declare (salience -7))
 	(nou_usuari)
+	(not (FI))
 	=>
 	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
 	(bind ?dinarsPrimers (find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat) (member$ 1r ?inst:Tipus_plat)) ))
@@ -1447,21 +1578,22 @@
 
 
 	(printout t crlf)
-	(printout t "AQUEST ÉS EL TEU MENÚ SETMANAL: " crlf)
+	(printout t "HERE IS YOUR WEEKLY MENU: " crlf)
 	(printout t "----------------------------------- " crlf)
 
 	(bind ?i 1)
 	(while (<= ?i 7)
       do
         (printout t crlf)
+        (printout t crlf)
         (switch ?i
-		(case 1 then (printout t "DILLUNS" crlf))
-		(case 2 then (printout t "DIMARTS" crlf))
-		(case 3 then (printout t "DIMECRES" crlf))
-		(case 4 then (printout t "DIJOUS" crlf))
-		(case 5 then (printout t "DIVENDRES" crlf))
-		(case 6 then (printout t "DISSABTE" crlf))
-		(case 7 then (printout t "DIUMENGE" crlf)))
+		(case 1 then (printout t "MONDAY" crlf))
+		(case 2 then (printout t "TUESDAY" crlf))
+		(case 3 then (printout t "WEDNESDAY" crlf))
+		(case 4 then (printout t "THURSDAY" crlf))
+		(case 5 then (printout t "FRIDAY" crlf))
+		(case 6 then (printout t "SATURDAY" crlf))
+		(case 7 then (printout t "SUNDAY" crlf)))
 
         (printout t "----------------------------------- " crlf)
 
@@ -1469,51 +1601,53 @@
             (bind ?j (+ (mod ?i (length$ ?esmorzars) ) 1 ))
             (bind ?esmorzar (nth$ ?j ?esmorzars)) ;agafem el n-èssim ingredient
             (bind ?e (send ?esmorzar get-Nom))
-            (printout t "ESMORZAR : " ?e crlf)
+            (printout t "BREAKFAST : " ?e crlf)
         )
 
-
-        (printout t "DINAR :" crlf)
+        (printout t crlf)
+        (printout t "LUNCH :" crlf)
         (if (> (length$ ?dinarsPrimers) 0) then
             (bind ?j (+ (mod ?i (length$ ?dinarsPrimers) ) 1 ))
             (bind ?dinar (nth$ ?j ?dinarsPrimers)) ;agafem el n-èssim ingredient
             (bind ?d (send ?dinar get-Nom))
-            (printout t "Primer: " ?d crlf)
+            (printout t "First dish: " ?d crlf)
         )
         (if (> (length$ ?dinarsSegons) 0) then
             (bind ?j (+ (mod ?i (length$ ?dinarsSegons) ) 1 ))
             (bind ?dinar (nth$ ?j ?dinarsSegons)) ;agafem el n-èssim ingredient
             (bind ?d (send ?dinar get-Nom))
-            (printout t "Segon : " ?d crlf)
+            (printout t "Second dish : " ?d crlf)
         )
         (if (> (length$ ?postres) 0) then
             (bind ?j (+ (mod ?i (length$ ?postres) ) 1 ))
             (bind ?postra (nth$ ?j ?postres)) ;agafem el n-èssim ingredient
             (bind ?d (send ?postra get-Nom))
-            (printout t "Postres : " ?d crlf)
+            (printout t "Desert : " ?d crlf)
         )
 
 
-        (printout t "SOPAR :" crlf)
+        (printout t crlf)
+        (printout t "DINNER :" crlf)
         (if (> (length$ ?soparsPrimers) 0) then
             (bind ?j (+ (mod ?i (length$ ?soparsPrimers) ) 1 ))
             (bind ?sopar (nth$ ?j ?soparsPrimers)) ;agafem el n-èssim ingredient
             (bind ?s (send ?sopar get-Nom))
-            (printout t "Primer : " ?s crlf)
+            (printout t "First dish : " ?s crlf)
         )
 
         (if (> (length$ ?soparsSegons) 0) then
             (bind ?j (+ (mod ?i (length$ ?soparsSegons) ) 1 ))
             (bind ?sopar (nth$ ?j ?soparsSegons)) ;agafem el n-èssim ingredient
             (bind ?s (send ?sopar get-Nom))
-            (printout t "Segon : " ?s crlf)
+            (printout t "Second dish : " ?s crlf)
         )
         (if (> (length$ ?postres) 0) then
             (bind ?j (+ (mod ?i (length$ ?postres) ) 1 ))
             (bind ?postra (nth$ ?j ?postres)) ;agafem el n-èssim ingredient
             (bind ?d (send ?postra get-Nom))
-            (printout t "Postres : " ?d crlf)
+            (printout t "Desert : " ?d crlf)
         )
+        (printout t crlf)
 
 
         (bind ?i (+ ?i 1)) )
