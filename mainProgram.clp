@@ -137,6 +137,12 @@
 				(allowed-values Esmorzar Dinar Sopar)
 				(cardinality 1 ?VARIABLE)
 				(create-accessor read-write))
+            (multislot Temporada
+                (type SYMBOL)
+                (allowed-values Hivern Primavera Estiu Tardor)
+                (default Hivern Primavera Estiu Tardor)
+                (cardinality 1 4)
+                (create-accessor read-write))
 			(single-slot GrauRecomanacio
 		;+		(comment "Ens indica com de recomanable es que una persona en mengui")
 				(type INTEGER)
@@ -183,6 +189,7 @@
 	(multislot Temporada
 		(type SYMBOL)
 		(allowed-values Hivern Primavera Estiu Tardor)
+		(default Hivern Primavera Estiu Tardor)
 		(cardinality 1 4)
 		(create-accessor read-write))
 	(multislot Nutrients
@@ -219,7 +226,7 @@
 	(single-slot Tipus_nutrient
 ;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
 		(type SYMBOL)
-		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos_mono_o_poliinsat Greixos_trans)
+		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos Sucre)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot Quantitat_nutrient
@@ -315,7 +322,7 @@
 ([I0_N0] of  Nutrient
 
     (Quantitat_nutrient 0.3)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 
 ;;500 pollastre
@@ -335,7 +342,7 @@
 ([I1_N0] of  Nutrient
 
     (Quantitat_nutrient 0.3)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 
 ;;225 llagostins
@@ -355,7 +362,7 @@
 ([I2_N0] of  Nutrient
 
     (Quantitat_nutrient 1.8)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 
 ;;250 molusc
@@ -375,7 +382,7 @@
 ([I3_N0] of  Nutrient
 
     (Quantitat_nutrient 1.96)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 
 ;;150 tomate
@@ -395,7 +402,7 @@
 ([I4_N0] of  Nutrient
 
     (Quantitat_nutrient 0.21)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 
 ;;0.7 safrà
@@ -415,7 +422,7 @@
 ([I5_N0] of  Nutrient
 
     (Quantitat_nutrient 5.85)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 ;;200 calamar
 ([IP0_6] of  IngredientConcret
@@ -434,7 +441,7 @@
 ([I6_N0] of  Nutrient
 
     (Quantitat_nutrient 1.4)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 
 ;;; Macarrons tomàquet
@@ -463,7 +470,7 @@
 ([I7_N0] of  Nutrient
 
     (Quantitat_nutrient 1.58)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 ;;50 mantega
 ([IP1_1] of  IngredientConcret
@@ -482,7 +489,7 @@
 ([I8_N0] of  Nutrient
 
     (Quantitat_nutrient 99.5)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 ;;50 mozzarella
 ([IP1_2] of  IngredientConcret
@@ -501,7 +508,7 @@
 ([I9_N0] of  Nutrient
 
     (Quantitat_nutrient 16.1)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 ;;250 tomaquet fregit
 ([IP1_3] of  IngredientConcret
@@ -520,7 +527,7 @@
 ([I10_N0] of  Nutrient
 
     (Quantitat_nutrient 6.4)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 ;;50 oli oliva
 ([IP1_4] of  IngredientConcret
@@ -539,7 +546,7 @@
 ([I11_N0] of  Nutrient
 
     (Quantitat_nutrient 99.9)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 ;;30 ceba
 ([IP1_5] of  IngredientConcret
@@ -558,7 +565,7 @@
 ([I12_N0] of  Nutrient
 
     (Quantitat_nutrient 0.25)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 
 
@@ -588,7 +595,7 @@
 ([I13_N0] of  Nutrient
 
     (Quantitat_nutrient 3.8)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 ;;240 ou gallina
 ([IP2_1] of  IngredientConcret
@@ -607,7 +614,7 @@
 ([I14_N0] of  Nutrient
 
     (Quantitat_nutrient 12.1)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Tipus_nutrient Greixos))
 
 ;;200 sucre blanc
 ([IP1_2] of  IngredientConcret
@@ -773,9 +780,11 @@
 	(export ?ALL))
 
 (defrule MAIN::primeraRegla "regla inicial"
-	(initial-fact)
+	?f <- (initial-fact)
 	(not (FI))
+	(not(executat))
 	=>
+	(assert (executat))
 	(reset)
 	(printout t crlf)
 	(printout t "--------------------------------------------------------------" crlf)
@@ -1280,8 +1289,8 @@
     (nou_usuari)
     (not (FI))
     =>
-		(assert (restriccionsNutricionalsDiaria))
-
+    (assert (restriccionsNutricionalsDiaria))
+    (assert (menusDiaris creats))
     (assert (menuDiari (dia 1)))
     (assert (menuDiari (dia 2)))
     (assert (menuDiari (dia 3)))
@@ -1303,25 +1312,24 @@
 
 (defrule MENUS::obtenirInfoNutricionalPlat "aqui sumarem la informacio nutricional de cada ingredient del plat"
 (nou_usuari)
-?plat <- (object (is-a Plat))
-?infoPlat <- (infoNutricionalPlat (plat ?plat)(Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (GreixosMonoOPoliinsat ?gmp) (GreixosTrans ?gt) (Aigua ?a)
-(Minerals ?m) (Fibra ?f))
 
+?plat <- (object (is-a Plat))
+(not(ValorNutricional ?plat))
+
+?infoPlat <- (infoNutricionalPlat (plat ?plat)(Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (GreixosMonoOPoliinsat ?gmp) (GreixosTrans ?gt) (Aigua ?a) (Minerals ?m) (Fibra ?f))
 
 =>
-(printout t "HI" crlf)
 (bind ?i 1)
 (while (<= ?i (length$ (send ?plat get-Ingredients)))	;Recorrem tots els ingredients
 	do
-        (printout t "Ingredient" crlf)
 		(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
 		(bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
 		(bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
 
 		(bind ?j 1)
 		(while (<= ?j (length$ (send ?ingredientGeneral get-Nutrients)))	;recorrem tots els nutrients
-                    (printout t "Nutrient" crlf)
 					(bind ?nutrient (nth$ ?j (send ?ingredientGeneral get-Nutrients)))
+
 					(bind ?tipus (send ?nutrient get-Tipus_nutrient))
 					(bind ?quantitat (send ?nutrient get-Quantitat_nutrient))	;tenim la quantitat de nutrients per cada 100g
 
@@ -1329,63 +1337,31 @@
 					(bind ?quantitatNova (* ?quantitat (/ ?quantitatIngredient 100)))	;trobem la quantitat del nutrient en funcio de la quantitat del ingredient
 
 					 (switch ?tipus
-                        (case Aigua then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?a))
-                            (bind ?infoPlat (modify ?infoPlat (Aigua ?quantitatFinal)))
-                        )
+                        (case Aigua then (bind ?a (+ ?quantitatNova ?a)))
 
-                        (case Minerals then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?m))
-                            (bind ?infoPlat (modify ?infoPlat (Minerals ?quantitatFinal)))
-                        )
+                        (case Minerals then (bind ?m (+ ?quantitatNova ?m)))
 
-                        (case Proteines then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?prot))
-                            (bind ?infoPlat (modify ?infoPlat (Proteines ?quantitatFinal)))
-                        )
+                        (case Proteines then (bind ?prot (+ ?quantitatNova ?prot)))
 
-                        (case Vitamines then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?vit))
-                            (bind ?infoPlat (modify ?infoPlat (Vitamines ?quantitatFinal)))
-                        )
+                        (case Vitamines then (bind ?vit (+ ?quantitatNova ?vit)))
 
-                        (case Fibra then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?f))
-                            (bind ?infoPlat (modify ?infoPlat (Fibra ?quantitatFinal)))
-                        )
+                        (case Fibra then (bind ?f (+ ?quantitatNova ?f)))
 
-                        (case Hidrats_de_carboni then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?hid))
-                            (bind ?infoPlat (modify ?infoPlat (Hidrats_de_carboni ?quantitatFinal)))
-                        )
+                        (case Hidrats_de_carboni then (bind ?hid (+ ?quantitatNova ?hid)))
 
-                        (case Greixos_mono_o_poliinsat then
-                            (printout t "Modifiquem greixos mono o poli" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?gmp))
-                            (bind ?infoPlat (modify ?infoPlat (GreixosMonoOPoliinsat ?quantitatFinal)))
-                        )
+                        (case Greixos_mono_o_poliinsat then (bind ?gmp (+ ?quantitatNova ?gmp)))
 
-                        (case Greixos_trans then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?gt))
-                            (bind ?infoPlat (modify ?infoPlat (GreixosTrans ?quantitatFinal)))
-                        )
+                        (case Greixos_trans then (bind ?gt (+ ?quantitatNova ?gt)))
                     )
 
 		(bind ?j (+ ?j 1))
 		)
 
-
-
 		(bind ?i (+ ?i 1))
  )
-
+ (modify ?infoPlat (Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (GreixosMonoOPoliinsat ?gmp) (GreixosTrans ?gt) (Aigua ?a) (Minerals ?m) (Fibra ?f))
+ (assert (ValorNutricional ?plat))
+ (assert (ValorsNutricionals afegits))
 )
 
 
@@ -1394,6 +1370,7 @@
     (declare (salience 1))
 	(nou_usuari)
 	(not (FI))
+
 	=>
 	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
 	(bind ?dinarsPrimers (find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat) (member$ 1r ?inst:Tipus_plat)) ))
@@ -1535,6 +1512,7 @@
 (defrule MENUS::seleccionar7Esmorzars  "regla para mostrar solo 6 recomendaciones"
     (declare (salience -1))
 	(nou_usuari)
+	(ValorsNutricionals afegits)
 	(not (Esmorzars omplerts))
 
 	(numeroEsmorzars ?posMaxima)
@@ -1626,54 +1604,144 @@
 (nou_usuari)
 (DinarP omplerts)
 (Esmorzars omplerts)
+(menusDiaris creats)
+(not (menuCompletat))
+(ValorsNutricionals afegits)
 
-?cc <- (counter ?c)    ;aquest counter ens indica el nombre d'elements tractats
-?menu <- (menuDiari (dia ?c))
-(test (<= ?c 7))
+;menus
+?menu1 <- (menuDiari (dia 1))
+?menu2 <- (menuDiari (dia 2))
+?menu3 <- (menuDiari (dia 3))
+?menu4 <- (menuDiari (dia 4))
+?menu5 <- (menuDiari (dia 5))
+?menu6 <- (menuDiari (dia 6))
+?menu7 <- (menuDiari (dia 7))
+
 
 ;anem a obtenir els limits nutricionals
 (restriccionsNutricionalsDiaria (kilocaloriesMinimes ?km) (kilocaloriesMaximes ?kM) (vitaminesMinimes ?vm) (hidratsCarboniMinim ?hcm)
 (grasasTransMaximes ?gtM) (proteinesMinimes ?pm) (proteinesMaximes ?pM) (fibraMinima ?fm) (mineralsMinims ?mm))
 
-;agafem els possibles plats
-?recDS <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS))
-?recDPostres <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres))
-?recSP <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP))
-?recSS <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS))
-?recSPostres <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres))
+;agafem els possibles plats DILLUNS
+?recDS1 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS1))
+?recDPostres1 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres1))
+?recSP1 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP1))
+?recSS1 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS1))
+?recSPostres1 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres1))
+
+;agafem els possibles plats DIMARTS
+?recDS2 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS2))
+?recDPostres2 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres2))
+?recSP2 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP2))
+?recSS2 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS2))
+?recSPostres2 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres2))
+
+;agafem els possibles plats DIMECRES
+?recDS3 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS3))
+?recDPostres3 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres3))
+?recSP3 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP3))
+?recSS3 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS3))
+?recSPostres3 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres3))
+
+;agafem els possibles plats DIJOUS
+?recDS4 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS4))
+?recDPostres4 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres4))
+?recSP4 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP4))
+?recSS4 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS4))
+?recSPostres4 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres4))
+
+;agafem els possibles plats DIVENDRES
+?recDS5 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS5))
+?recDPostres5 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres5))
+?recSP5 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP5))
+?recSS5 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS5))
+?recSPostres5 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres5))
+
+;agafem els possibles plats DISSABTE
+?recDS6 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS6))
+?recDPostres6 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres6))
+?recSP6 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP6))
+?recSS6 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS6))
+?recSPostres6 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres6))
+
+;agafem els possibles plats DIUMENGE
+?recDS7 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS7))
+?recDPostres7 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres7))
+?recSP7 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP7))
+?recSS7 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS7))
+?recSPostres7 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres7))
+
+
+;Agafem la informacio nutricional dels plats
+;(infoNutricionalPlat (plat ?platDS1) (Vitamines ?vit1) (Proteines ?prot1) (Hidrats_de_carboni ?hid1) (GreixosMonoOPoliinsat ?gmp1) (GreixosTrans ?gt1) (Aigua ?a1) (Minerals ?m1) (Fibra ?f1))
+;(infoNutricionalPlat(plat ?platSP1) (Vitamines ?vit2) (Proteines ?prot2) (Hidrats_de_carboni ?hid2) (GreixosMonoOPoliinsat ?gmp2) (GreixosTrans ?gt2) (Aigua ?a2) (Minerals ?m2) (Fibra ?f2))
+;(infoNutricionalPlat(plat ?platSS1) (Vitamines ?vit3) (Proteines ?prot3) (Hidrats_de_carboni ?hid3) (GreixosMonoOPoliinsat ?gmp3) (GreixosTrans ?gt3) (Aigua ?a3) (Minerals ?m3) (Fibra ?f3))
+;(infoNutricionalPlat(plat ?platDPostres1) (Vitamines ?vit4) (Proteines ?prot4) (Hidrats_de_carboni ?hid4) (GreixosMonoOPoliinsat ?gmp4) (GreixosTrans ?gt4) (Aigua ?a4) (Minerals ?m4) (Fibra ?f4))
+;(infoNutricionalPlat(plat ?platSPostres1) (Vitamines ?vit5) (Proteines ?prot5) (Hidrats_de_carboni ?hid5) (GreixosMonoOPoliinsat ?gmp5) (GreixosTrans ?gt5) (Aigua ?a5) (Minerals ?m5) (Fibra ?f5))
+
+;(infoNutricionalPlat(plat ?platDS2) (Vitamines ?vit6) (Proteines ?prot6) (Hidrats_de_carboni ?hid6) (GreixosMonoOPoliinsat ?gmp6) (GreixosTrans ?gt6) (Aigua ?a6) (Minerals ?m6) (Fibra ?f6))
+;(infoNutricionalPlat(plat ?platSP2) (Vitamines ?vit7) (Proteines ?prot7) (Hidrats_de_carboni ?hid7) (GreixosMonoOPoliinsat ?gmp7) (GreixosTrans ?gt7) (Aigua ?a7) (Minerals ?m7) (Fibra ?f7))
+;(infoNutricionalPlat(plat ?platSS2) (Vitamines ?vit8) (Proteines ?prot8) (Hidrats_de_carboni ?hid8) (GreixosMonoOPoliinsat ?gmp8) (GreixosTrans ?gt8) (Aigua ?a8) (Minerals ?m8) (Fibra ?f8))
+;(infoNutricionalPlat(plat ?platDPostres2) (Vitamines ?vit9) (Proteines ?prot9) (Hidrats_de_carboni ?hid9) (GreixosMonoOPoliinsat ?gmp9) (GreixosTrans ?gt9) (Aigua ?a9) (Minerals ?m9) (Fibra ?f9))
+;(infoNutricionalPlat(plat ?platSPostres2) (Vitamines ?vit10) (Proteines ?prot10) (Hidrats_de_carboni ?hid10) (GreixosMonoOPoliinsat ?gmp10) (GreixosTrans ?gt10) (Aigua ?a10) (Minerals ?m10) (Fibra ?f10))
+
+;(infoNutricionalPlat(plat ?platDS3) (Vitamines ?vit11) (Proteines ?prot11) (Hidrats_de_carboni ?hid11) (GreixosMonoOPoliinsat ?gmp11) (GreixosTrans ?gt11) (Aigua ?a11) (Minerals ?m11) (Fibra ?f11))
+;(infoNutricionalPlat(plat ?platSP3) (Vitamines ?vit12) (Proteines ?prot12) (Hidrats_de_carboni ?hid12) (GreixosMonoOPoliinsat ?gmp12) (GreixosTrans ?gt12) (Aigua ?a12) (Minerals ?m12) (Fibra ?f12))
+;(infoNutricionalPlat(plat ?platSS3) (Vitamines ?vit13) (Proteines ?prot13) (Hidrats_de_carboni ?hid13) (GreixosMonoOPoliinsat ?gmp13) (GreixosTrans ?gt13) (Aigua ?a13) (Minerals ?m13) (Fibra ?f13))
+;(infoNutricionalPlat(plat ?platDPostres3) (Vitamines ?vit14) (Proteines ?prot14) (Hidrats_de_carboni ?hid14) (GreixosMonoOPoliinsat ?gmp14) (GreixosTrans ?gt14) (Aigua ?a14) (Minerals ?m14) (Fibra ?f14))
+;(infoNutricionalPlat(plat ?platSPostres3) (Vitamines ?vit15) (Proteines ?prot15) (Hidrats_de_carboni ?hid15) (GreixosMonoOPoliinsat ?gmp15) (GreixosTrans ?gt15) (Aigua ?a15) (Minerals ?m15) (Fibra ?f15))
+
+;(infoNutricionalPlat (plat ?platDS4) (Vitamines ?vit16) (Proteines ?prot16) (Hidrats_de_carboni ?hid16) (GreixosMonoOPoliinsat ?gmp16) (GreixosTrans ?gt16) (Aigua ?a16) (Minerals ?m16) (Fibra ?f16))
+;(infoNutricionalPlat (plat ?platSP4) (Vitamines ?vit17) (Proteines ?prot17) (Hidrats_de_carboni ?hid17) (GreixosMonoOPoliinsat ?gmp17) (GreixosTrans ?gt17) (Aigua ?a17) (Minerals ?m17) (Fibra ?f17))
+;(infoNutricionalPlat (plat ?platSS4) (Vitamines ?vit18) (Proteines ?prot18) (Hidrats_de_carboni ?hid18) (GreixosMonoOPoliinsat ?gmp18) (GreixosTrans ?gt18) (Aigua ?a18) (Minerals ?m18) (Fibra ?f18))
+;(infoNutricionalPlat (plat ?platDPostres4) (Vitamines ?vit19) (Proteines ?prot19) (Hidrats_de_carboni ?hid19) (GreixosMonoOPoliinsat ?gmp19) (GreixosTrans ?gt19) (Aigua ?a19) (Minerals ?m19) (Fibra ?f19))
+;(infoNutricionalPlat(plat ?platSPostres4) (Vitamines ?vit20) (Proteines ?prot20) (Hidrats_de_carboni ?hid20) (GreixosMonoOPoliinsat ?gmp20) (GreixosTrans ?gt20) (Aigua ?a20) (Minerals ?m20) (Fibra ?f20))
+
+;(infoNutricionalPlat(plat ?platDS5) (Vitamines ?vit21) (Proteines ?prot21) (Hidrats_de_carboni ?hid21) (GreixosMonoOPoliinsat ?gmp21) (GreixosTrans ?gt21) (Aigua ?a21) (Minerals ?m21) (Fibra ?f21))
+;(infoNutricionalPlat(plat ?platSP5) (Vitamines ?vit22) (Proteines ?prot22) (Hidrats_de_carboni ?hid22) (GreixosMonoOPoliinsat ?gmp22) (GreixosTrans ?gt22) (Aigua ?a22) (Minerals ?m22) (Fibra ?f22))
+;(infoNutricionalPlat(plat ?platSS5) (Vitamines ?vit23) (Proteines ?prot23) (Hidrats_de_carboni ?hid23) (GreixosMonoOPoliinsat ?gmp23) (GreixosTrans ?gt23) (Aigua ?a23) (Minerals ?m23) (Fibra ?f23))
+;(infoNutricionalPlat(plat ?platDPostres5) (Vitamines ?vit24) (Proteines ?prot24) (Hidrats_de_carboni ?hid24) (GreixosMonoOPoliinsat ?gmp24) (GreixosTrans ?gt24) (Aigua ?a24) (Minerals ?m24) (Fibra ?f24))
+;(infoNutricionalPlat(plat ?platSPostres5) (Vitamines ?vit25) (Proteines ?prot25) (Hidrats_de_carboni ?hid25) (GreixosMonoOPoliinsat ?gmp25) (GreixosTrans ?gt25) (Aigua ?a25) (Minerals ?m25) (Fibra ?f25))
+
+;(infoNutricionalPlat (plat ?platDS6) (Vitamines ?vit26) (Proteines ?prot26) (Hidrats_de_carboni ?hid26) (GreixosMonoOPoliinsat ?gmp26) (GreixosTrans ?gt26) ;(Aigua ?a26) (Minerals ?m26) (Fibra ?f26))
+;(infoNutricionalPlat (plat ?platSP6) (Vitamines ?vit27) (Proteines ?prot27) (Hidrats_de_carboni ?hid27) (GreixosMonoOPoliinsat ?gmp27) (GreixosTrans ?gt27) (Aigua ?a27) (Minerals ?m27) (Fibra ?f27))
+;(infoNutricionalPlat (plat ?platSS6) (Vitamines ?vit28) (Proteines ?prot28) (Hidrats_de_carboni ?hid28) (GreixosMonoOPoliinsat ?gmp28) (GreixosTrans ?gt28) (Aigua ?a28) (Minerals ?m28) (Fibra ?f28))
+;(infoNutricionalPlat (plat ?platDPostres6) (Vitamines ?vit29) (Proteines ?prot29) (Hidrats_de_carboni ?hid29) (GreixosMonoOPoliinsat ?gmp29) (GreixosTrans ?gt29) (Aigua ?a29) (Minerals ?m29) (Fibra ?f29))
+;(infoNutricionalPlat (plat ?platSPostres6) (Vitamines ?vit30) (Proteines ?prot30) (Hidrats_de_carboni ?hid30) (GreixosMonoOPoliinsat ?gmp30) (GreixosTrans ?gt30) (Aigua ?a30) (Minerals ?m30) (Fibra ?f30))
+
+;(infoNutricionalPlat (plat ?platDS7) (Vitamines ?vit31) (Proteines ?prot31) (Hidrats_de_carboni ?hid31) (GreixosMonoOPoliinsat ?gmp31) (GreixosTrans ?gt31) (Aigua ?a31) (Minerals ?m31) (Fibra ?f31))
+;(infoNutricionalPlat (plat ?platSP7) (Vitamines ?vit32) (Proteines ?prot32) (Hidrats_de_carboni ?hid32) (GreixosMonoOPoliinsat ?gmp32) (GreixosTrans ?gt32) (Aigua ?a32) (Minerals ?m32) (Fibra ?f32))
+;(infoNutricionalPlat (plat ?platSS7) (Vitamines ?vit33) (Proteines ?prot33) (Hidrats_de_carboni ?hid33) (GreixosMonoOPoliinsat ?gmp33) (GreixosTrans ?gt33) (Aigua ?a33) (Minerals ?m33) (Fibra ?f33))
+;(infoNutricionalPlat (plat ?platDPostres7) (Vitamines ?vit34) (Proteines ?prot34) (Hidrats_de_carboni ?hid34) (GreixosMonoOPoliinsat ?gmp34) (GreixosTrans ?gt34) (Aigua ?a34) (Minerals ?m34) (Fibra ?f34))
+;(infoNutricionalPlat (plat ?platSPostres7) (Vitamines ?vit35) (Proteines ?prot35) (Hidrats_de_carboni ?hid35) (GreixosMonoOPoliinsat ?gmp35) (GreixosTrans ?gt35) (Aigua ?a35) (Minerals ?m35) (Fibra ?f35))
+
 
 ;anem a comprovar si compleix les restriccions
+;comprovar no menjar primer i segon plat del mateix tipus
+;comprovar kcal
+;comprovar fibra
+;comprovar hidrats
+;no repetir postres en un mateix dia
+
+;FALTA TOT AIXO
 
 =>
-(modify ?menu (dinarSegon ?platDS))
-(modify ?menu (soparPrimer ?platSP))
-(modify ?menu (soparSegon ?platSS))
-(modify ?menu (dinarPostres ?platDPostres))
-(modify ?menu (soparPostres ?platSPostres))
+(modify ?menu1 (dinarSegon ?platDS1) (soparPrimer ?platSP1) (soparSegon ?platSS1)(dinarPostres ?platDPostres1)(soparPostres ?platSPostres1))
+(modify ?menu2 (dinarSegon ?platDS2) (soparPrimer ?platSP2) (soparSegon ?platSS2)(dinarPostres ?platDPostres2)(soparPostres ?platSPostres2))
+(modify ?menu3 (dinarSegon ?platDS3) (soparPrimer ?platSP3) (soparSegon ?platSS3)(dinarPostres ?platDPostres3)(soparPostres ?platSPostres3))
+(modify ?menu4 (dinarSegon ?platDS4) (soparPrimer ?platSP4) (soparSegon ?platSS4)(dinarPostres ?platDPostres4)(soparPostres ?platSPostres4))
+(modify ?menu5 (dinarSegon ?platDS5) (soparPrimer ?platSP5) (soparSegon ?platSS5)(dinarPostres ?platDPostres5)(soparPostres ?platSPostres5))
+(modify ?menu6 (dinarSegon ?platDS6) (soparPrimer ?platSP6) (soparSegon ?platSS6)(dinarPostres ?platDPostres6)(soparPostres ?platSPostres6))
+(modify ?menu7 (dinarSegon ?platDS7) (soparPrimer ?platSP7) (soparSegon ?platSS7)(dinarPostres ?platDPostres7)(soparPostres ?platSPostres7))
 
-(retract ?cc)
-(assert(counter (+ ?c 1)))
-
-
-)
-
-
-
-
-(defrule MENUS::countersPelMenu "Tornem a settejar les variables per tornar a fer el counting"
-    (declare (salience -3))
-    (nou_usuari)
-    (not(FI))
-    =>
-    (assert (dia 1))
-		(assert (menuCompletat))
+(assert (menuCompletat))
+(assert (dia 1))
 )
 
 
 (defrule MENUS::MostrarMenuDefinitiu "Aquesta regla mostra els menus definitius"
-    (declare (salience -3))
     (nou_usuari)
-		(menuCompletat)
+    (menuCompletat)
     ?dd <- (dia ?d)
     (test (<= ?d 7))
 
