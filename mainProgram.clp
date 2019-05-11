@@ -1041,25 +1041,62 @@
 	(nou_usuari)
 	(MalaltiesAfegides)
 	=>
-	;(assert (PreferenciesP S))
-	;(assert (PreferenciesAfegidesP))
-	;(assert (PreferenciaP Lactic))
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
+
+	(assert (PreferenciaP Lactic))
+	(assert (PreferenciaP Datils))
+	(assert (PreferenciaP CerealsIntegrals))
+	(assert (PreferenciaP Espinacs))
+	(assert (PreferenciaP Nous))
+	(assert (PreferenciaP Taronja))
+	(assert (PreferenciaP Mongeta))
+	(assert (PreferenciaP Col))
+	(assert (PreferenciaP Almendras))
+	(assert (PreferenciaP PescadoAzul))
 )
 
 (defrule MALALTIES::problemes_articulars "Aqui definim els fets que implica"
 	(nou_usuari)
 	(MalaltiesAfegides)
 	=>
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
 
-
+	(assert (PreferenciaP Brocoli))
+	(assert (PreferenciaP Jengibre))
+	(assert (PreferenciaP frambuesas))
+	(assert (PreferenciaP Azufre))
+	(assert (PreferenciaP VitaminaD))
+	(assert (PreferenciaP Magnesi))
 )
 
 (defrule MALALTIES::hipertensio "Aqui definim els fets que implica"
 	(nou_usuari)
 	(MalaltiesAfegides)
 	=>
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
+	(assert (PreferenciesN S))
+	(assert (PreferenciesAfegidesN))
 
+	(assert (PreferenciaP Lactic))
+	(assert (PreferenciaP Peix))
+	;afegir carns amb poc greix
+	(assert (PreferenciaP Cereals))
+	(assert (PreferenciaP Patata))
+	(assert (PreferenciaP Llegums))
+	(assert (PreferenciaP Greixos))
 
+	(assert (PreferenciaN Chocolata))
+	(assert (PreferenciaN Carnsvermelles))
+	(assert (PreferenciaN Ramen))
+	(assert (PreferenciaN Begudesambsucre))
+	(assert (PreferenciaN Mostassa))
+	(assert (PreferenciaN regaliz))
+	(assert (PreferenciaN patatas))
+	(assert (PreferenciaN begudesalcoholicas))
+	(assert (PreferenciaN begudesambgas))
 )
 
 (defrule MALALTIES::diabetis "Aqui definim els fets que implica"
@@ -1067,7 +1104,33 @@
 	(MalaltiesAfegides)
 	=>
 
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
+	(assert (PreferenciesN S))
+	(assert (PreferenciesAfegidesN))
 
+	(assert (PreferenciaP Plàtan))
+	(assert (PreferenciaP Arandanos))
+	(assert (PreferenciaP Semillas))
+	(assert (PreferenciaP Fruits_secs))
+	(assert (PreferenciaP Canela))
+	(assert (PreferenciaP Trigo))
+	(assert (PreferenciaP Olives))
+	(assert (PreferenciaP Espinacs))
+	(assert (PreferenciaP Remolacha))
+	(assert (PreferenciaP Chucrut))
+
+	(assert (PreferenciaN alimentosazucarados))
+	(assert (PreferenciaN alimentosconsodio))
+	(assert (PreferenciaN harinasrefinadas))
+	(assert (PreferenciaN Lactic))
+	(assert (PreferenciaN mel))
+	(assert (PreferenciaN carmels))
+	(assert (PreferenciaN chocolatablanca))
+	(assert (PreferenciaN donuts))
+	(assert (PreferenciaN sucre))
+	(assert (PreferenciaN sucre de fruita))
+	(assert (PreferenciaN bolleria en general))
 )
 
 (defrule MALALTIES::passemAFiltrat "No fa res. Passem al seguent modul"
@@ -1298,94 +1361,6 @@
 	?plat <- (object (is-a Plat))
 	=>
 	(assert (infoNutricionalPlat (plat ?plat)))	;creem la informacio nutricional del plat
-)
-
-
-(defrule MENUS::obtenirInfoNutricionalPlat "aqui sumarem la informacio nutricional de cada ingredient del plat"
-(nou_usuari)
-?plat <- (object (is-a Plat))
-?infoPlat <- (infoNutricionalPlat (plat ?plat)(Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (GreixosMonoOPoliinsat ?gmp) (GreixosTrans ?gt) (Aigua ?a)
-(Minerals ?m) (Fibra ?f))
-
-
-=>
-(printout t "HI" crlf)
-(bind ?i 1)
-(while (<= ?i (length$ (send ?plat get-Ingredients)))	;Recorrem tots els ingredients
-	do
-        (printout t "Ingredient" crlf)
-		(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
-		(bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
-		(bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-
-		(bind ?j 1)
-		(while (<= ?j (length$ (send ?ingredientGeneral get-Nutrients)))	;recorrem tots els nutrients
-                    (printout t "Nutrient" crlf)
-					(bind ?nutrient (nth$ ?j (send ?ingredientGeneral get-Nutrients)))
-					(bind ?tipus (send ?nutrient get-Tipus_nutrient))
-					(bind ?quantitat (send ?nutrient get-Quantitat_nutrient))	;tenim la quantitat de nutrients per cada 100g
-
-					;actualitzem la informació del plat
-					(bind ?quantitatNova (* ?quantitat (/ ?quantitatIngredient 100)))	;trobem la quantitat del nutrient en funcio de la quantitat del ingredient
-
-					 (switch ?tipus
-                        (case Aigua then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?a))
-                            (bind ?infoPlat (modify ?infoPlat (Aigua ?quantitatFinal)))
-                        )
-
-                        (case Minerals then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?m))
-                            (bind ?infoPlat (modify ?infoPlat (Minerals ?quantitatFinal)))
-                        )
-
-                        (case Proteines then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?prot))
-                            (bind ?infoPlat (modify ?infoPlat (Proteines ?quantitatFinal)))
-                        )
-
-                        (case Vitamines then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?vit))
-                            (bind ?infoPlat (modify ?infoPlat (Vitamines ?quantitatFinal)))
-                        )
-
-                        (case Fibra then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?f))
-                            (bind ?infoPlat (modify ?infoPlat (Fibra ?quantitatFinal)))
-                        )
-
-                        (case Hidrats_de_carboni then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?hid))
-                            (bind ?infoPlat (modify ?infoPlat (Hidrats_de_carboni ?quantitatFinal)))
-                        )
-
-                        (case Greixos_mono_o_poliinsat then
-                            (printout t "Modifiquem greixos mono o poli" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?gmp))
-                            (bind ?infoPlat (modify ?infoPlat (GreixosMonoOPoliinsat ?quantitatFinal)))
-                        )
-
-                        (case Greixos_trans then
-                            (printout t "Modifiquem aigua" crlf)
-                            (bind ?quantitatFinal (+ ?quantitatNova ?gt))
-                            (bind ?infoPlat (modify ?infoPlat (GreixosTrans ?quantitatFinal)))
-                        )
-                    )
-
-		(bind ?j (+ ?j 1))
-		)
-
-
-
-		(bind ?i (+ ?i 1))
- )
-
 )
 
 
