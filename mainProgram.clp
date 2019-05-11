@@ -226,7 +226,7 @@
 	(single-slot Tipus_nutrient
 ;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
 		(type SYMBOL)
-		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos Sucre)
+		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos Sucre Colesterol)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot Quantitat_nutrient
@@ -810,6 +810,7 @@
 
 (defrule PREGUNTES::preguntar_sexe "regla para saber el sexo del usuario"
 	(nou_usuari)
+	(not(FI))
 	=>
 	(bind ?q (pregunta-general "What is your gender? [M F Indef]:  "))
 	(switch ?q
@@ -821,6 +822,7 @@
 
 (defrule PREGUNTES::preguntar_edat "regla para saber la franja de edad en que se encuantra"
 	(nou_usuari)
+	(not(FI))
 	=>
 		(bind ?q (pregunta-numerica "How old are you?" 65 120))
 	(if (and (> ?q 65) (< ?q 75)) then
@@ -835,6 +837,7 @@
 
 (defrule PREGUNTES::preguntar_activitat_fisica "regla para saber la cantidad de actividad física que realiza el usuario"
 	(nou_usuari)
+	(not(FI))
 	=>
 	(bind ?q (pregunta-numerica "How often do you practice sport? [barely(1) regularly(2) often(3)]:  " 1 3))
 	(switch ?q
@@ -846,6 +849,7 @@
 
 (defrule PREGUNTES::preguntar_temporada "regla para saber la temporada del año en que nos encontramos"
 	(nou_usuari)
+	(not(FI))
 	=>
 	(bind ?q (pregunta-numerica "What season of the year are we in? [Winter(1) Spring(2) Summer(3) Autumn(4)]:  " 1 4))
 	(switch ?q
@@ -860,6 +864,7 @@
 ;DEFINIM LES RESTRICCIONS
 (defrule PREGUNTES::preguntar_alergies_restriccions "regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
+	(not(FI))
 	=>
 		(bind ?q (pregunta-general "Do you have any restriction of food you MUST NOT eat? [Yes(Y) No(N)]:  "))
 		(switch ?q
@@ -871,6 +876,7 @@
 (defrule PREGUNTES::definir_alergies_restriccions"regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
 	(Restriccio S)
+	(not(FI))
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
 	(printout t "Restrictions: " crlf)
@@ -901,6 +907,7 @@
 ;DEFINIM LES PREFERÈNCIES
 (defrule PREGUNTES::preguntar_preferencies_negatives"regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
+	(not(FI))
 	=>
 		(bind ?q (pregunta-general "Do you have food you would RATHER NOT eat [Yes(Y) No(N)]:  "))
 		(switch ?q
@@ -912,6 +919,7 @@
 (defrule PREGUNTES::definir_preferencies_negatives "regla para saber si tiene algun tipo de preferencia de alimentos a no consumir"
 	(nou_usuari)
 	(PreferenciesN S)
+	(not(FI))
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
 	(printout t "Preferences of food you would rather not eat: " crlf)
@@ -943,6 +951,7 @@
 ;DEFINIM LES PREFERÈNCIES
 (defrule PREGUNTES::preguntar_preferencies_positives "regla para saber si tiene algun tipo de alergia o restricción"
 	(nou_usuari)
+	(not(FI))
 	=>
 		(bind ?q (pregunta-general "Do you have food you would LIKE to eat [Yes(Y) No(N)]:  "))
 		(switch ?q
@@ -955,6 +964,8 @@
 (defrule PREGUNTES::definir_preferencies_positives "regla para saber si tiene algun tipo de preferencia de alimentos a no consumir"
 	(nou_usuari)
 	(PreferenciesP S)
+	(not (MalaltiesAfegides))
+	(not(FI))
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
 	(printout t "Preferences of food you would like to eat: " crlf)
@@ -986,6 +997,7 @@
 ;PREGUNTEM SI TÉ ALGUNA DE LES SEGUENTS MALALTIES
 (defrule PREGUNTES::definir_malalties "regla para saber si tiene alguna de las siguientes enfermedades"
 	(nou_usuari)
+	(not(FI))
 	=>
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
 	(printout t "Indicate whether you have any of these illneses: " crlf)
@@ -1009,6 +1021,7 @@
 
 (defrule finalPreguntes "regla para pasar al modulo siguiente"
       (nou_usuari)
+      (not(FI))
       =>
 	  (printout t crlf)
 	  (printout t "Passem al modul de inferir dades: "crlf)
@@ -1112,7 +1125,6 @@
 	(nou_usuari)
 	(MalaltiesAfegides)
 	=>
-
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
 	(assert (PreferenciesN S))
@@ -1199,7 +1211,7 @@
 ;		(Nutrient ?N)
 ;		(Quantitat_nutrient ?Q)
 ;		?plat <- (object (is-a Plat))
-
+;
 ;		=>
 ;		(bind ?i 1)
 ;		(bind ?FI FALSE)
