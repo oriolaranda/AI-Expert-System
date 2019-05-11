@@ -820,31 +820,37 @@
 	)
 )
 
-(defrule PREGUNTES::preguntar_edat "regla para saber la franja de edad en que se encuantra"
+(defrule PREGUNTES::preguntar_edat "regla para saber la edat"
 	(nou_usuari)
 	(not(FI))
 	=>
 		(bind ?q (pregunta-numerica "How old are you?" 65 120))
-	(if (and (> ?q 65) (< ?q 75)) then
-        (assert(Edat 1)))
-
-    (if (and (> ?q 74) (< ?q 90)) then
-        (assert(Edat 2)))
-
-    (if (> ?q 89) then
-        (assert(Edat 3)))
+        (assert(Edat ?q))
 )
+
+(defrule PREGUNTES::preguntar_pes "regla para saber el pes"
+	(nou_usuari)
+	(not(FI))
+	=>
+		(bind ?q (pregunta-numerica "How much do you weight?" 30 150))
+        (assert(Pes ?q))
+)
+
+(defrule PREGUNTES::preguntar_altura "regla para saber la altura"
+	(nou_usuari)
+	(not(FI))
+	=>
+		(bind ?q (pregunta-numerica "How tall are you? (in meters)" 1.2 2.2))
+        (assert(Altura ?q))
+)
+
 
 (defrule PREGUNTES::preguntar_activitat_fisica "regla para saber la cantidad de actividad física que realiza el usuario"
 	(nou_usuari)
 	(not(FI))
 	=>
-	(bind ?q (pregunta-numerica "How often do you practice sport? [barely(1) regularly(2) often(3)]:  " 1 3))
-	(switch ?q
-		(case P then (assert(Actividad P)))
-		(case R then (assert(Actividad R)))
-		(case M then (assert(Actividad M)))
-	)
+	(bind ?q (pregunta-numerica "How often do you practice sport? [barely(1) regularly(2) often(3) very-often(4)]:  " 1 4))
+	(assert (Activitat ?q))
 )
 
 (defrule PREGUNTES::preguntar_temporada "regla para saber la temporada del año en que nos encontramos"
