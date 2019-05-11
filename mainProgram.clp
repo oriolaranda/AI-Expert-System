@@ -1191,7 +1191,34 @@
      )
 )
 
+(defrule FILTRAT::filtremIngredientsRestringits
+		(nou_usuari)
+		(Nutrient ?N)
+		(Quantitat_nutrient ?Q)
+		?plat <- (object (is-a Plat))
 
+		=>
+		(bind ?i 1)
+		(bind ?FI FALSE)
+
+			(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
+			do
+				(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+				(if (member$ (send ?ingredient get-Nutrients) ?N) then
+					(bind ?j 1)
+					(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?ingredient get-Nutrients))))
+						(bind ?nutrient (nth$ ?i (send ?I get-Nutrients))) ;agafem el n-èssim ingredient
+						(if (and (= ?nutrient ?N)(< ?Q ?nutrient get-Quantitat))
+							(printout t " Eliminem el plat " (instance-name ?plat) crlf)
+							(send ?plat delete)
+							(bind ?FI TRUE)
+						)
+						(bind ?j (+ ?j 1))
+					)
+				)
+				(bind ?i (+ ?i 1))
+			)
+)
 
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
