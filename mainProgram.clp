@@ -1050,25 +1050,62 @@
 	(nou_usuari)
 	(MalaltiesAfegides)
 	=>
-	;(assert (PreferenciesP S))
-	;(assert (PreferenciesAfegidesP))
-	;(assert (PreferenciaP Lactic))
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
+
+	(assert (PreferenciaP Lactic))
+	(assert (PreferenciaP Datils))
+	(assert (PreferenciaP CerealsIntegrals))
+	(assert (PreferenciaP Espinacs))
+	(assert (PreferenciaP Nous))
+	(assert (PreferenciaP Taronja))
+	(assert (PreferenciaP Mongeta))
+	(assert (PreferenciaP Col))
+	(assert (PreferenciaP Almendras))
+	(assert (PreferenciaP PescadoAzul))
 )
 
 (defrule MALALTIES::problemes_articulars "Aqui definim els fets que implica"
 	(nou_usuari)
 	(MalaltiesAfegides)
 	=>
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
 
-
+	(assert (PreferenciaP Brocoli))
+	(assert (PreferenciaP Jengibre))
+	(assert (PreferenciaP frambuesas))
+	(assert (PreferenciaP Azufre))
+	(assert (PreferenciaP VitaminaD))
+	(assert (PreferenciaP Magnesi))
 )
 
 (defrule MALALTIES::hipertensio "Aqui definim els fets que implica"
 	(nou_usuari)
 	(MalaltiesAfegides)
 	=>
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
+	(assert (PreferenciesN S))
+	(assert (PreferenciesAfegidesN))
 
+	(assert (PreferenciaP Lactic))
+	(assert (PreferenciaP Peix))
+	;afegir carns amb poc greix
+	(assert (PreferenciaP Cereals))
+	(assert (PreferenciaP Patata))
+	(assert (PreferenciaP Llegums))
+	(assert (PreferenciaP Greixos))
 
+	(assert (PreferenciaN Chocolata))
+	(assert (PreferenciaN Carnsvermelles))
+	(assert (PreferenciaN Ramen))
+	(assert (PreferenciaN Begudesambsucre))
+	(assert (PreferenciaN Mostassa))
+	(assert (PreferenciaN regaliz))
+	(assert (PreferenciaN patatas))
+	(assert (PreferenciaN begudesalcoholicas))
+	(assert (PreferenciaN begudesambgas))
 )
 
 (defrule MALALTIES::diabetis "Aqui definim els fets que implica"
@@ -1076,7 +1113,33 @@
 	(MalaltiesAfegides)
 	=>
 
+	(assert (PreferenciesP S))
+	(assert (PreferenciesAfegidesP))
+	(assert (PreferenciesN S))
+	(assert (PreferenciesAfegidesN))
 
+	(assert (PreferenciaP Plàtan))
+	(assert (PreferenciaP Arandanos))
+	(assert (PreferenciaP Semillas))
+	(assert (PreferenciaP Fruits_secs))
+	(assert (PreferenciaP Canela))
+	(assert (PreferenciaP Trigo))
+	(assert (PreferenciaP Olives))
+	(assert (PreferenciaP Espinacs))
+	(assert (PreferenciaP Remolacha))
+	(assert (PreferenciaP Chucrut))
+
+	(assert (PreferenciaN alimentosazucarados))
+	(assert (PreferenciaN alimentosconsodio))
+	(assert (PreferenciaN harinasrefinadas))
+	(assert (PreferenciaN Lactic))
+	(assert (PreferenciaN mel))
+	(assert (PreferenciaN carmels))
+	(assert (PreferenciaN chocolatablanca))
+	(assert (PreferenciaN donuts))
+	(assert (PreferenciaN sucre))
+	(assert (PreferenciaN sucre de fruita))
+	(assert (PreferenciaN bolleria en general))
 )
 
 (defrule MALALTIES::passemAFiltrat "No fa res. Passem al seguent modul"
@@ -1137,7 +1200,34 @@
      )
 )
 
+(defrule FILTRAT::filtremIngredientsRestringits
+		(nou_usuari)
+		(Nutrient ?N)
+		(Quantitat_nutrient ?Q)
+		?plat <- (object (is-a Plat))
 
+		=>
+		(bind ?i 1)
+		(bind ?FI FALSE)
+
+			(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
+			do
+				(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+				(if (member$ (send ?ingredient get-Nutrients) ?N) then
+					(bind ?j 1)
+					(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?ingredient get-Nutrients))))
+						(bind ?nutrient (nth$ ?i (send ?I get-Nutrients))) ;agafem el n-èssim ingredient
+						(if (and (= ?nutrient ?N)(< ?Q ?nutrient get-Quantitat))
+							(printout t " Eliminem el plat " (instance-name ?plat) crlf)
+							(send ?plat delete)
+							(bind ?FI TRUE)
+						)
+						(bind ?j (+ ?j 1))
+					)
+				)
+				(bind ?i (+ ?i 1))
+			)
+)
 
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
@@ -1310,6 +1400,7 @@
 )
 
 
+<<<<<<< HEAD
 (defrule MENUS::obtenirInfoNutricionalPlat "aqui sumarem la informacio nutricional de cada ingredient del plat"
 (nou_usuari)
 
@@ -1365,6 +1456,8 @@
 )
 
 
+=======
+>>>>>>> 678f4f610f6b0d711a50e89f87cb841fb36366c9
 ;aixo ho divideix en tipus i a més ens ho ordena
 (defrule MENUS::dividirEnTipusPlats "Ara dividim tots els plats que han quedat en esmorzar, dinar primer i segon plat, sopar primer i segon plat i postres"
     (declare (salience 1))
