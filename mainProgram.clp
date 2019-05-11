@@ -216,16 +216,16 @@
 (defclass Nutrient
 	(is-a USER)
 	(role concrete)
+	(single-slot Tipus_nutrient
+;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
+		(type SYMBOL)
+		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos_mono_o_poliinsat Greixos_trans)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot Quantitat_nutrient
 ;+		(comment "Valor en grams de nutrient")
 		(type INTEGER)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot Tipus_nutrient
-;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
-		(type SYMBOL)
-		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos_mono_o_poliinsat Greixos_trans)
-		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
 
@@ -625,8 +625,8 @@
 
 ([I15_N0] of  Nutrient
 
-    (Quantitat_nutrient 0.0)
-    (Tipus_nutrient Greixos_mono_o_poliinsat))
+    (Quantitat_nutrient 5)
+    (Tipus_nutrient Aigua))
 
 
 
@@ -680,16 +680,41 @@
 	(slot esmorzar (type INSTANCE) (allowed-classes Plat))
 
 	;dinar
-	(slot dinarPrimer (type INSTANCE) (allowed-classes Plat))
+	  (slot dinarPrimer (type INSTANCE) (allowed-classes Plat))
     (slot dinarSegon (type INSTANCE) (allowed-classes Plat))
     (slot dinarPostres (type INSTANCE) (allowed-classes Plat))
 
 	;dinar
-	(slot soparPrimer (type INSTANCE) (allowed-classes Plat))
+	  (slot soparPrimer (type INSTANCE) (allowed-classes Plat))
     (slot soparSegon (type INSTANCE) (allowed-classes Plat))
     (slot soparPostres (type INSTANCE) (allowed-classes Plat))
 
 )
+
+(deftemplate MAIN::restriccionsNutricionalsDiaria "aqui indiquem les diferents restriccions nutricionals d'un horari"
+	(slot kilocaloriesMinimes (type INTEGER))
+	(slot kilocaloriesMaximes (type INTEGER))
+	(slot vitaminesMinimes (type INTEGER))
+	(slot hidratsCarboniMinim (type INTEGER))
+	(slot grasasTransMaximes (type INTEGER))
+	(slot proteinesMinimes (type INTEGER))
+	(slot proteinesMaximes (type INTEGER))
+  (slot fibraMinima (type INTEGER))
+	(slot mineralsMinims (type INTEGER))
+)
+
+(deftemplate MAIN::infoNutricionalPlat "aqui mantindrem comptatge dels nutrients que té un plat"
+	(slot plat (type INSTANCE) (allowed-classes Plat))
+	(slot Aigua (type INTEGER) (default 0))
+	(slot Minerals (type INTEGER) (default 0))
+	(slot Proteines (type INTEGER) (default 0))
+	(slot Vitamines (type INTEGER) (default 0))
+	(slot Fibra (type INTEGER) (default 0))
+	(slot Hidrats_de_carboni (type INTEGER) (default 0))
+	(slot GreixosMonoOPoliinsat (type INTEGER) (default 0))
+	(slot GreixosTrans (type INTEGER) (default 0))
+)
+
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					FUNCIONES					 		---------- 								EXTRAS
@@ -984,6 +1009,7 @@
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					MODULO DE INFERENCIAS DE DATOS				---------- 				MODULO DE INFERENCIAS DE DATOS
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+;AQUI OMPLIM LES RESTRICCIONS NUTRICIONALS
 
 ;; En este modulo se hace la abstraccion de los datos obtenidos del modulo de pregunatas
 (defmodule INFERIR_DADES
@@ -1254,6 +1280,8 @@
     (nou_usuari)
     (not (FI))
     =>
+		(assert (restriccionsNutricionalsDiaria))
+
     (assert (menuDiari (dia 1)))
     (assert (menuDiari (dia 2)))
     (assert (menuDiari (dia 3)))
@@ -1262,7 +1290,102 @@
     (assert (menuDiari (dia 6)))
     (assert (menuDiari (dia 7)))
     (assert (PrimeraPosicio 1))
-	(assert (counter 1))
+		(assert (counter 1))
+)
+
+(defrule MENUS::inicialitzemInformacioPlats "aqui tant sols creem els fets de la informacio nutricional de cada plat"
+	(nou_usuari)
+	?plat <- (object (is-a Plat))
+	=>
+	(assert (infoNutricionalPlat (plat ?plat)))	;creem la informacio nutricional del plat
+)
+
+
+(defrule MENUS::obtenirInfoNutricionalPlat "aqui sumarem la informacio nutricional de cada ingredient del plat"
+(nou_usuari)
+?plat <- (object (is-a Plat))
+?infoPlat <- (infoNutricionalPlat (plat ?plat)(Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (GreixosMonoOPoliinsat ?gmp) (GreixosTrans ?gt) (Aigua ?a)
+(Minerals ?m) (Fibra ?f))
+
+
+=>
+(printout t "HI" crlf)
+(bind ?i 1)
+(while (<= ?i (length$ (send ?plat get-Ingredients)))	;Recorrem tots els ingredients
+	do
+        (printout t "Ingredient" crlf)
+		(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+		(bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+		(bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+
+		(bind ?j 1)
+		(while (<= ?j (length$ (send ?ingredientGeneral get-Nutrients)))	;recorrem tots els nutrients
+                    (printout t "Nutrient" crlf)
+					(bind ?nutrient (nth$ ?j (send ?ingredientGeneral get-Nutrients)))
+					(bind ?tipus (send ?nutrient get-Tipus_nutrient))
+					(bind ?quantitat (send ?nutrient get-Quantitat_nutrient))	;tenim la quantitat de nutrients per cada 100g
+
+					;actualitzem la informació del plat
+					(bind ?quantitatNova (* ?quantitat (/ ?quantitatIngredient 100)))	;trobem la quantitat del nutrient en funcio de la quantitat del ingredient
+
+					 (switch ?tipus
+                        (case Aigua then
+                            (printout t "Modifiquem aigua" crlf)
+                            (bind ?quantitatFinal (+ ?quantitatNova ?a))
+                            (bind ?infoPlat (modify ?infoPlat (Aigua ?quantitatFinal)))
+                        )
+
+                        (case Minerals then
+                            (printout t "Modifiquem aigua" crlf)
+                            (bind ?quantitatFinal (+ ?quantitatNova ?m))
+                            (bind ?infoPlat (modify ?infoPlat (Minerals ?quantitatFinal)))
+                        )
+
+                        (case Proteines then
+                            (printout t "Modifiquem aigua" crlf)
+                            (bind ?quantitatFinal (+ ?quantitatNova ?prot))
+                            (bind ?infoPlat (modify ?infoPlat (Proteines ?quantitatFinal)))
+                        )
+
+                        (case Vitamines then
+                            (printout t "Modifiquem aigua" crlf)
+                            (bind ?quantitatFinal (+ ?quantitatNova ?vit))
+                            (bind ?infoPlat (modify ?infoPlat (Vitamines ?quantitatFinal)))
+                        )
+
+                        (case Fibra then
+                            (printout t "Modifiquem aigua" crlf)
+                            (bind ?quantitatFinal (+ ?quantitatNova ?f))
+                            (bind ?infoPlat (modify ?infoPlat (Fibra ?quantitatFinal)))
+                        )
+
+                        (case Hidrats_de_carboni then
+                            (printout t "Modifiquem aigua" crlf)
+                            (bind ?quantitatFinal (+ ?quantitatNova ?hid))
+                            (bind ?infoPlat (modify ?infoPlat (Hidrats_de_carboni ?quantitatFinal)))
+                        )
+
+                        (case Greixos_mono_o_poliinsat then
+                            (printout t "Modifiquem greixos mono o poli" crlf)
+                            (bind ?quantitatFinal (+ ?quantitatNova ?gmp))
+                            (bind ?infoPlat (modify ?infoPlat (GreixosMonoOPoliinsat ?quantitatFinal)))
+                        )
+
+                        (case Greixos_trans then
+                            (printout t "Modifiquem aigua" crlf)
+                            (bind ?quantitatFinal (+ ?quantitatNova ?gt))
+                            (bind ?infoPlat (modify ?infoPlat (GreixosTrans ?quantitatFinal)))
+                        )
+                    )
+
+		(bind ?j (+ ?j 1))
+		)
+
+
+
+		(bind ?i (+ ?i 1))
+ )
+
 )
 
 
@@ -1457,11 +1580,10 @@
 
 ;Selecciona els 7 primers esmorzars o torna a començar si ja no en queden
 (defrule MENUS::seleccionar7DinarPrimers  "regla para mostrar solo 6 recomendaciones"
-   (declare (salience -1))
+  (declare (salience -1))
 	(nou_usuari)
 	(not (DinarP omplerts))
 	(Esmorzars omplerts)
-
 	(numeroDinarPrimers ?posMaxima)
 	?cc <- (counter ?c)    ;aquest counter ens indica el nombre d'elements tractats
 
@@ -1469,21 +1591,16 @@
 	?pph <- (PrimeraPosicio ?pos)
 	(test (<= ?c 7))
 	?recH <- (solucionOrdenadaDP (posicio ?pos) (plat ?plat))
-
 	?menu <- (menuDiari (dia ?c))
-
 	=>
 	(modify ?menu (dinarPrimer ?plat))
-
 	(retract ?cc)
 	(retract ?pph)
-
 	(assert(counter (+ ?c 1)))
 
 	;si ens hem passat, tornem a començar
 	(if (> (+ ?pos 1) ?posMaxima) then
         (assert(PrimeraPosicio 1))
-
     else
         (assert(PrimeraPosicio (+ ?pos 1)))
     )
@@ -1504,25 +1621,63 @@
 )
 
 
+(defrule MENUS::completarMenu "Completem el menu amb els plats que falten"
+(declare (salience -2))
+(nou_usuari)
+(DinarP omplerts)
+(Esmorzars omplerts)
+
+?cc <- (counter ?c)    ;aquest counter ens indica el nombre d'elements tractats
+?menu <- (menuDiari (dia ?c))
+(test (<= ?c 7))
+
+;anem a obtenir els limits nutricionals
+(restriccionsNutricionalsDiaria (kilocaloriesMinimes ?km) (kilocaloriesMaximes ?kM) (vitaminesMinimes ?vm) (hidratsCarboniMinim ?hcm)
+(grasasTransMaximes ?gtM) (proteinesMinimes ?pm) (proteinesMaximes ?pM) (fibraMinima ?fm) (mineralsMinims ?mm))
+
+;agafem els possibles plats
+?recDS <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS))
+?recDPostres <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres))
+?recSP <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP))
+?recSS <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS))
+?recSPostres <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres))
+
+;anem a comprovar si compleix les restriccions
+
+=>
+(modify ?menu (dinarSegon ?platDS))
+(modify ?menu (soparPrimer ?platSP))
+(modify ?menu (soparSegon ?platSS))
+(modify ?menu (dinarPostres ?platDPostres))
+(modify ?menu (soparPostres ?platSPostres))
+
+(retract ?cc)
+(assert(counter (+ ?c 1)))
+
+
+)
+
 
 
 
 (defrule MENUS::countersPelMenu "Tornem a settejar les variables per tornar a fer el counting"
-    (declare (salience -2))
+    (declare (salience -3))
     (nou_usuari)
     (not(FI))
     =>
     (assert (dia 1))
+		(assert (menuCompletat))
 )
 
 
 (defrule MENUS::MostrarMenuDefinitiu "Aquesta regla mostra els menus definitius"
     (declare (salience -3))
     (nou_usuari)
+		(menuCompletat)
     ?dd <- (dia ?d)
     (test (<= ?d 7))
 
-    ?menu <- (menuDiari (dia ?d) (esmorzar ?e) (dinarPrimer ?dp) (dinarSegon ?ds) (dinarPostres ?dpostres) (soparPrimer ?sp) (soparSegon ?ss) (soparPostres ?spostres))
+    ?menu <- (menuDiari (dia ?d) (esmorzar ?e) (dinarPrimer ?dp) (dinarSegon ?ds) (dinarPostres ?dpostres) (soparPrimer ?sp) (soparSegon ?ss)(soparPostres ?spostres))
     =>
 
     (switch ?d
@@ -1550,98 +1705,5 @@
 
         (retract ?dd)
         (assert (dia (+ ?d 1)))
-        (assert (FI))
-)
-
-
-;ANEM A MOSTRAR ELS RESULTATS
-(defrule MENUS::FormarMenu "regla per obtenir el menu final"
-    (declare (salience -7))
-	(nou_usuari)
-	(not (FI))
-	=>
-	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
-	(bind ?dinarsPrimers (find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat) (member$ 1r ?inst:Tipus_plat)) ))
-	(bind ?dinarsSegons(find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat)(member$ 2n ?inst:Tipus_plat)) ))
-	(bind ?soparsPrimers (find-all-instances ((?inst Plat)) (and (member$ Sopar ?inst:Apat)(member$ 1r ?inst:Tipus_plat)) ))
-	(bind ?soparsSegons(find-all-instances ((?inst Plat)) (and (member$ Sopar ?inst:Apat)(member$ 2n ?inst:Tipus_plat)) ))
-	(bind ?postres(find-all-instances ((?inst Plat)) (member$ Postres ?inst:Tipus_plat)))
-
-
-	(printout t crlf)
-	(printout t "HERE IS YOUR WEEKLY MENU: " crlf)
-	(printout t "----------------------------------- " crlf)
-
-	(bind ?i 1)
-	(while (<= ?i 7)
-      do
-        (printout t crlf)
-        (printout t crlf)
-        (switch ?i
-		(case 1 then (printout t "MONDAY" crlf))
-		(case 2 then (printout t "TUESDAY" crlf))
-		(case 3 then (printout t "WEDNESDAY" crlf))
-		(case 4 then (printout t "THURSDAY" crlf))
-		(case 5 then (printout t "FRIDAY" crlf))
-		(case 6 then (printout t "SATURDAY" crlf))
-		(case 7 then (printout t "SUNDAY" crlf)))
-
-        (printout t "----------------------------------- " crlf)
-
-        (if (> (length$ ?esmorzars) 0) then
-            (bind ?j (+ (mod ?i (length$ ?esmorzars) ) 1 ))
-            (bind ?esmorzar (nth$ ?j ?esmorzars)) ;agafem el n-èssim ingredient
-            (bind ?e (send ?esmorzar get-Nom))
-            (printout t "BREAKFAST : " ?e crlf)
-        )
-
-        (printout t crlf)
-        (printout t "LUNCH :" crlf)
-        (if (> (length$ ?dinarsPrimers) 0) then
-            (bind ?j (+ (mod ?i (length$ ?dinarsPrimers) ) 1 ))
-            (bind ?dinar (nth$ ?j ?dinarsPrimers)) ;agafem el n-èssim ingredient
-            (bind ?d (send ?dinar get-Nom))
-            (printout t "First dish: " ?d crlf)
-        )
-        (if (> (length$ ?dinarsSegons) 0) then
-            (bind ?j (+ (mod ?i (length$ ?dinarsSegons) ) 1 ))
-            (bind ?dinar (nth$ ?j ?dinarsSegons)) ;agafem el n-èssim ingredient
-            (bind ?d (send ?dinar get-Nom))
-            (printout t "Second dish : " ?d crlf)
-        )
-        (if (> (length$ ?postres) 0) then
-            (bind ?j (+ (mod ?i (length$ ?postres) ) 1 ))
-            (bind ?postra (nth$ ?j ?postres)) ;agafem el n-èssim ingredient
-            (bind ?d (send ?postra get-Nom))
-            (printout t "Desert : " ?d crlf)
-        )
-
-
-        (printout t crlf)
-        (printout t "DINNER :" crlf)
-        (if (> (length$ ?soparsPrimers) 0) then
-            (bind ?j (+ (mod ?i (length$ ?soparsPrimers) ) 1 ))
-            (bind ?sopar (nth$ ?j ?soparsPrimers)) ;agafem el n-èssim ingredient
-            (bind ?s (send ?sopar get-Nom))
-            (printout t "First dish : " ?s crlf)
-        )
-
-        (if (> (length$ ?soparsSegons) 0) then
-            (bind ?j (+ (mod ?i (length$ ?soparsSegons) ) 1 ))
-            (bind ?sopar (nth$ ?j ?soparsSegons)) ;agafem el n-èssim ingredient
-            (bind ?s (send ?sopar get-Nom))
-            (printout t "Second dish : " ?s crlf)
-        )
-        (if (> (length$ ?postres) 0) then
-            (bind ?j (+ (mod ?i (length$ ?postres) ) 1 ))
-            (bind ?postra (nth$ ?j ?postres)) ;agafem el n-èssim ingredient
-            (bind ?d (send ?postra get-Nom))
-            (printout t "Desert : " ?d crlf)
-        )
-        (printout t crlf)
-
-
-        (bind ?i (+ ?i 1)) )
-
         (assert (FI))
 )
