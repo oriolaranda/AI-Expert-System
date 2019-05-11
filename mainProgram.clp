@@ -1164,29 +1164,24 @@
 )
 
 
-
 (defrule FILTRAT::filtremPlatsRestringuits "aqui intentem potenciar els plats que tenen productes de temporada"
     (nou_usuari)
     (RestriccionsAfegides)
     (Restriccio $?P)   ;poden haveri varies coses a potenciar
     ?plat <- (object (is-a Plat))
-
 	=>
 	(bind ?i 1)
 	(bind ?FI FALSE)
-
      (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
       do
         (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-
         ;Comprovem si pertany a una familia a potenciar
         (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
 					(printout t " Eliminem el plat " (instance-name ?plat) crlf)
 					(send ?plat delete)
 					(bind ?FI TRUE)
         )
-
         (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
         (progn$ (?it ?P)
             (if (= (str-compare ?it ?a) 0) then
@@ -1195,39 +1190,38 @@
                             (bind ?FI TRUE)
                         )
         )
-
         (bind ?i (+ ?i 1))
      )
 )
 
-(defrule FILTRAT::filtremIngredientsRestringits
-		(nou_usuari)
-		(Nutrient ?N)
-		(Quantitat_nutrient ?Q)
-		?plat <- (object (is-a Plat))
+;(defrule FILTRAT::filtremIngredientsRestringits
+;		(nou_usuari)
+;		(Nutrient ?N)
+;		(Quantitat_nutrient ?Q)
+;		?plat <- (object (is-a Plat))
 
-		=>
-		(bind ?i 1)
-		(bind ?FI FALSE)
-
-			(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
-			do
-				(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
-				(if (member$ (send ?ingredient get-Nutrients) ?N) then
-					(bind ?j 1)
-					(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?ingredient get-Nutrients))))
-						(bind ?nutrient (nth$ ?i (send ?I get-Nutrients))) ;agafem el n-èssim ingredient
-						(if (and (= ?nutrient ?N)(< ?Q ?nutrient get-Quantitat))
-							(printout t " Eliminem el plat " (instance-name ?plat) crlf)
-							(send ?plat delete)
-							(bind ?FI TRUE)
-						)
-						(bind ?j (+ ?j 1))
-					)
-				)
-				(bind ?i (+ ?i 1))
-			)
-)
+;		=>
+;		(bind ?i 1)
+;		(bind ?FI FALSE)
+;
+;			(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
+;			do
+;				(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+;				(if (member$ (send ?ingredient get-Nutrients) ?N) then
+;					(bind ?j 1)
+;					(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?ingredient get-Nutrients))))
+;						(bind ?nutrient (nth$ ?i (send ?I get-Nutrients))) ;agafem el n-èssim ingredient
+;						(if (and (= ?nutrient ?N)(< ?Q ?nutrient get-Quantitat))
+;							(printout t " Eliminem el plat " (instance-name ?plat) crlf)
+;							(send ?plat delete)
+;							(bind ?FI TRUE)
+;						)
+;						(bind ?j (+ ?j 1))
+;					)
+;				)
+;				(bind ?i (+ ?i 1))
+;			)
+;)
 
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
@@ -1400,10 +1394,8 @@
 )
 
 
-<<<<<<< HEAD
 (defrule MENUS::obtenirInfoNutricionalPlat "aqui sumarem la informacio nutricional de cada ingredient del plat"
 (nou_usuari)
-
 ?plat <- (object (is-a Plat))
 (not(ValorNutricional ?plat))
 
@@ -1456,8 +1448,6 @@
 )
 
 
-=======
->>>>>>> 678f4f610f6b0d711a50e89f87cb841fb36366c9
 ;aixo ho divideix en tipus i a més ens ho ordena
 (defrule MENUS::dividirEnTipusPlats "Ara dividim tots els plats que han quedat en esmorzar, dinar primer i segon plat, sopar primer i segon plat i postres"
     (declare (salience 1))
