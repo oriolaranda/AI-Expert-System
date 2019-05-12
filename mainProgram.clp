@@ -57,7 +57,7 @@
 	(multislot Tipus_nutrient
 ;+		(comment "Indica el tipus de nutrient que estem tractant (dins de tota la familia general de nutrients i micronutrients).\n\nEls greixos mono o poliinsaturats són positius per la alimentació. Els greixos trans no.")
 		(type SYMBOL)
-		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos_mono_o_poliinsat Greixos_trans)
+		(allowed-values Aigua Minerals Proteines Vitamines Fibra Hidrats_de_carboni Greixos Sucre Colesterol)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot Hidrats+de+carboni
@@ -698,17 +698,19 @@
 
 )
 
-(deftemplate MAIN::restriccionsNutricionalsDiaria "aqui indiquem les diferents restriccions nutricionals d'un horari"
-	(slot kilocaloriesMinimes (type INTEGER))
-	(slot kilocaloriesMaximes (type INTEGER))
-	(slot vitaminesMinimes (type INTEGER))
-	(slot hidratsCarboniMinim (type INTEGER))
-	(slot grasasTransMaximes (type INTEGER))
-	(slot proteinesMinimes (type INTEGER))
-	(slot proteinesMaximes (type INTEGER))
-  (slot fibraMinima (type INTEGER))
-	(slot mineralsMinims (type INTEGER))
+
+(deftemplate MAIN::restriccionsNutricionalsDiaries "aqui indiquem les diferents restriccions nutricionals d'un horari (kcal i la resta grams)"
+	(slot kilocalories (type INTEGER))
+	(slot vitamines (type INTEGER))
+	(slot hidratsCarboni (type INTEGER))
+	(slot greixosMaxims (type INTEGER))
+	(slot proteines (type INTEGER))
+    (slot fibra (type INTEGER))
+	(slot minerals (type INTEGER))
+	(slot sucre (type INTEGER))
+	(slot colesterol (type INTEGER))
 )
+
 
 (deftemplate MAIN::infoNutricionalPlat "aqui mantindrem comptatge dels nutrients que té un plat"
 	(slot plat (type INSTANCE) (allowed-classes Plat))
@@ -718,8 +720,9 @@
 	(slot Vitamines (type INTEGER) (default 0))
 	(slot Fibra (type INTEGER) (default 0))
 	(slot Hidrats_de_carboni (type INTEGER) (default 0))
-	(slot GreixosMonoOPoliinsat (type INTEGER) (default 0))
-	(slot GreixosTrans (type INTEGER) (default 0))
+	(slot Greixos (type INTEGER) (default 0))
+    (slot Sucre (type INTEGER) (default 0))
+    (slot Colesterol (type INTEGER) (default 0))
 )
 
 
@@ -729,6 +732,7 @@
 
 ;;; Funcion para hacer una pregunta general
 (deffunction MAIN::pregunta-general (?pregunta)
+    (printout t crlf)
 	(format t "%s" ?pregunta)
 	(bind ?respuesta (read))
 	?respuesta
@@ -736,10 +740,11 @@
 
 ;;; Funcion para hacer una pregunta con respuesta en un rango dado
 (deffunction MAIN::pregunta-numerica (?pregunta ?rangini ?rangfi)
-	(format t "%s [%d, %d] " ?pregunta ?rangini ?rangfi)
+    (printout t crlf)
+	(format t "%s " ?pregunta)
 	(bind ?respuesta (read))
 	(while (not(and(>= ?respuesta ?rangini)(<= ?respuesta ?rangfi))) do
-		(format t "%s? [%d, %d] " ?pregunta ?rangini ?rangfi)
+		(format t "%s [%d, %d] " ?pregunta ?rangini ?rangfi)
 		(bind ?respuesta (read))
 	)
 	?respuesta
@@ -747,6 +752,7 @@
 
 ;;; Funcion para hacer una pregunta con un conjunto definido de valores de repuesta
 (deffunction MAIN::pregunta-lista (?pregunta)
+    (printout t crlf)
 	(format t "%s" ?pregunta)
 	(bind ?resposta (readline))
 	(bind ?res (str-explode ?resposta))
@@ -788,7 +794,7 @@
 	(reset)
 	(printout t crlf)
 	(printout t "--------------------------------------------------------------" crlf)
-	(printout t "------ Sistema de Recomendacion de un Menú semanal -----" crlf)
+	(printout t "-----------     Weekly menu calculation system     -----------" crlf)
 	(printout t "--------------------------------------------------------------" crlf)
 	(printout t crlf)
 	(assert (nou_usuari))	;;aixo ens permet crear un fact
@@ -812,11 +818,10 @@
 	(nou_usuari)
 	(not(FI))
 	=>
-	(bind ?q (pregunta-general "What is your gender? [M F Indef]:  "))
+	(bind ?q (pregunta-general "What is your gender? [M F]:  "))
 	(switch ?q
 		(case M then (assert(Genere M)))
 		(case F then (assert(Genere F)))
-		(case Indef then (assert(Genere Indef)))
 	)
 )
 
@@ -824,7 +829,7 @@
 	(nou_usuari)
 	(not(FI))
 	=>
-		(bind ?q (pregunta-numerica "How old are you?" 65 120))
+		(bind ?q (pregunta-numerica "How old are you?" 0 120))
         (assert(Edat ?q))
 )
 
@@ -840,7 +845,7 @@
 	(nou_usuari)
 	(not(FI))
 	=>
-		(bind ?q (pregunta-numerica "How tall are you? (in meters)" 1.2 2.2))
+		(bind ?q (pregunta-numerica "How tall are you? (in cm)" 120 220))
         (assert(Altura ?q))
 )
 
@@ -850,7 +855,12 @@
 	(not(FI))
 	=>
 	(bind ?q (pregunta-numerica "How often do you practice sport? [barely(1) regularly(2) often(3) very-often(4)]:  " 1 4))
-	(assert (Activitat ?q))
+	(switch ?q
+		(case 1 then (assert(Activitat 1.2)))
+		(case 2 then (assert(Activitat 1.375)))
+		(case 3 then (assert(Activitat 1.55)))
+		(case 4 then (assert(Activitat 1.725)))
+	)
 )
 
 (defrule PREGUNTES::preguntar_temporada "regla para saber la temporada del año en que nos encontramos"
@@ -865,6 +875,28 @@
 		(case 4 then (assert(Temporada Tardor)))
 	)
 )
+
+(defrule PREGUNTES::preguntar_vegetaria_o_vega "regla para saber si es vegetaria, vegà o no"
+	(nou_usuari)
+	(not(FI))
+	=>
+		(bind ?q (pregunta-general "Are you vegetaria or vegan? [Yes(Y) No(N)]:  " ))
+		(if (eq ?q Y) then
+			(assert(VegaOVegetaria)))
+)
+
+(defrule PREGUNTES::preguntar_quin_vegetaria_vega "regla para que es, vegetaria o vega"
+	(nou_usuari)
+	(not(FI))
+	(VegaOVegetaria)
+	=>
+		(bind ?q (pregunta-numerica "Which one are you specifically? [Vegeterian(1) Vegan(2)]:  " 1 2))
+		(switch ?q
+			(case 1 then (assert(Restriccio Carn)) (assert(Restriccio Peix))(assert (RestriccionsAfegides)))
+			(case 2 then (assert(Restriccio Carn)) (assert(Restriccio Peix)) (assert(Restriccio Lactic)) (assert(Restriccio Ous))(assert (RestriccionsAfegides)))
+		)
+)
+
 
 
 ;DEFINIM LES RESTRICCIONS
@@ -1029,6 +1061,12 @@
       (nou_usuari)
       (not(FI))
       =>
+        (printout t crlf)
+        (printout t "---------------------------------------------------------------" crlf)
+        (printout t "------------------           Debug           ------------------" crlf)
+        (printout t "---------------------------------------------------------------" crlf)
+        (printout t crlf)
+
 	  (printout t crlf)
 	  (printout t "Passem al modul de inferir dades: "crlf)
       (focus INFERIR_DADES)
@@ -1046,8 +1084,53 @@
 		(export ?ALL)
 )
 
+(defrule INFERIR_DADES::calcularNecessitatsNutricionals "Calculem els valors nutricionals"
+    (nou_usuari)
+    (Genere ?g)
+    (Altura ?a)
+    (Edat ?e)
+    (Pes ?p)
+    (Activitat ?v)
+    =>
+    ;REVISAR SI CAL FER-HO PER SEPARAT O TOT JUNT
+    (switch ?g
+		(case M then (bind ?energia (* (- (+ (* 10 ?p) (* 6.25 ?a) 5) (* 5 ?e)) ?v))
+                     (bind ?vitamines 0.071)) ;suma de totes les vitamines
+		(case F then (bind ?energia (* (- (+ (* 10 ?p) (* 6.25 ?a)) (* 5 ?e) 161 ) ?v))
+                     (bind ?vitamines 0.07088)) ;suma de totes les vitamines necessaries (A,D,E,K,B12,C)
+    )
+
+    ;?energia sera la quantitat d'energia que necessitem diariament en kcal
+    (bind ?prot (/ (* ?energia 0.15) 4)) ;15% de la energia
+    (bind ?colesterolMax 0.3) ; < 0.3g diariament
+    (bind ?hidrats (/ (* ?energia 0.55) 4)) ;15% de la energia
+    (bind ?greixosMaxims (/ (* ?energia 0.35) 9)) ;35% de la energia com a maxim en grams
+    (bind ?fibra 40)  ;40 grams segons la OMS
+    (bind ?sucre 50) ;OMS
+    (bind ?minerals 0);
+
+    (if (and (< ?e 70) (eq ?g M)) then
+        (bind ?minerals 1.66)
+    )
+    (if (and (< ?e 70) (eq ?g F)) then
+        (bind ?minerals 1.620)
+    )
+    (if (and (> ?e 70) (eq ?g M)) then
+        (bind ?minerals 1.766)
+    )
+    (if (and (> ?e 70) (eq ?g F)) then
+        (bind ?minerals 1.660)
+    )
+
+
+    (assert (restriccionsNutricionalsDiaries (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax)))
+    (assert(necessitat_calculades))
+
+)
+
 (defrule INFERIR_DADES::doesntDoAnything "Here we would add the different rules"
   (nou_usuari)
+  (necessitat_calculades)
   =>
 	(printout t crlf)
 	(printout t "Passem al modul de filtrar plats no possibles: "crlf)
@@ -1068,6 +1151,7 @@
 (defrule MALALTIES::osteoporosis "Aqui definim els fets que implica"
 	(nou_usuari)
 	(MalaltiesAfegides)
+	(Osteoporosis)
 	=>
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
@@ -1087,6 +1171,7 @@
 (defrule MALALTIES::problemes_articulars "Aqui definim els fets que implica"
 	(nou_usuari)
 	(MalaltiesAfegides)
+	(Problemes articulars)
 	=>
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
@@ -1102,6 +1187,7 @@
 (defrule MALALTIES::hipertensio "Aqui definim els fets que implica"
 	(nou_usuari)
 	(MalaltiesAfegides)
+	(Hipertensio)
 	=>
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
@@ -1130,6 +1216,7 @@
 (defrule MALALTIES::diabetis "Aqui definim els fets que implica"
 	(nou_usuari)
 	(MalaltiesAfegides)
+	(Diabetis)
 	=>
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
@@ -1391,7 +1478,6 @@
     (nou_usuari)
     (not (FI))
     =>
-    (assert (restriccionsNutricionalsDiaria))
     (assert (menusDiaris creats))
     (assert (menuDiari (dia 1)))
     (assert (menuDiari (dia 2)))
@@ -1417,7 +1503,7 @@
 ?plat <- (object (is-a Plat))
 (not(ValorNutricional ?plat))
 
-?infoPlat <- (infoNutricionalPlat (plat ?plat)(Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (GreixosMonoOPoliinsat ?gmp) (GreixosTrans ?gt) (Aigua ?a) (Minerals ?m) (Fibra ?f))
+?infoPlat <- (infoNutricionalPlat (plat ?plat)(Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (Greixos ?g) (Aigua ?a) (Minerals ?m) (Fibra ?f)(Sucre ?s)(Colesterol ?col))
 
 =>
 (bind ?i 1)
@@ -1450,9 +1536,11 @@
 
                         (case Hidrats_de_carboni then (bind ?hid (+ ?quantitatNova ?hid)))
 
-                        (case Greixos_mono_o_poliinsat then (bind ?gmp (+ ?quantitatNova ?gmp)))
+                        (case Greixos then (bind ?g (+ ?quantitatNova ?g)))
 
-                        (case Greixos_trans then (bind ?gt (+ ?quantitatNova ?gt)))
+                        (case Sucre then (bind ?s (+ ?quantitatNova ?s)))
+
+                        (case Colesterol then (bind ?col (+ ?quantitatNova ?col)))
                     )
 
 		(bind ?j (+ ?j 1))
@@ -1460,9 +1548,10 @@
 
 		(bind ?i (+ ?i 1))
  )
- (modify ?infoPlat (Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (GreixosMonoOPoliinsat ?gmp) (GreixosTrans ?gt) (Aigua ?a) (Minerals ?m) (Fibra ?f))
+ (modify ?infoPlat (Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (Greixos ?g) (Sucre ?s) (Aigua ?a) (Minerals ?m) (Fibra ?f)(Colesterol ?col))
  (assert (ValorNutricional ?plat))
  (assert (ValorsNutricionals afegits))
+
 )
 
 
@@ -1720,8 +1809,7 @@
 
 
 ;anem a obtenir els limits nutricionals
-(restriccionsNutricionalsDiaria (kilocaloriesMinimes ?km) (kilocaloriesMaximes ?kM) (vitaminesMinimes ?vm) (hidratsCarboniMinim ?hcm)
-(grasasTransMaximes ?gtM) (proteinesMinimes ?pm) (proteinesMaximes ?pM) (fibraMinima ?fm) (mineralsMinims ?mm))
+(restriccionsNutricionalsDiaries (kilocalories ?k) (vitamines ?v) (hidratsCarboni ?hc)(greixosMaxims ?g) (proteines ?p) (fibra ?f) (minerals ?m) (sucre ?s)(colesterol ?col))
 
 ;agafem els possibles plats DILLUNS
 ?recDS1 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS1))
@@ -1773,48 +1861,6 @@
 ?recSPostres7 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres7))
 
 
-;Agafem la informacio nutricional dels plats
-;(infoNutricionalPlat (plat ?platDS1) (Vitamines ?vit1) (Proteines ?prot1) (Hidrats_de_carboni ?hid1) (GreixosMonoOPoliinsat ?gmp1) (GreixosTrans ?gt1) (Aigua ?a1) (Minerals ?m1) (Fibra ?f1))
-;(infoNutricionalPlat(plat ?platSP1) (Vitamines ?vit2) (Proteines ?prot2) (Hidrats_de_carboni ?hid2) (GreixosMonoOPoliinsat ?gmp2) (GreixosTrans ?gt2) (Aigua ?a2) (Minerals ?m2) (Fibra ?f2))
-;(infoNutricionalPlat(plat ?platSS1) (Vitamines ?vit3) (Proteines ?prot3) (Hidrats_de_carboni ?hid3) (GreixosMonoOPoliinsat ?gmp3) (GreixosTrans ?gt3) (Aigua ?a3) (Minerals ?m3) (Fibra ?f3))
-;(infoNutricionalPlat(plat ?platDPostres1) (Vitamines ?vit4) (Proteines ?prot4) (Hidrats_de_carboni ?hid4) (GreixosMonoOPoliinsat ?gmp4) (GreixosTrans ?gt4) (Aigua ?a4) (Minerals ?m4) (Fibra ?f4))
-;(infoNutricionalPlat(plat ?platSPostres1) (Vitamines ?vit5) (Proteines ?prot5) (Hidrats_de_carboni ?hid5) (GreixosMonoOPoliinsat ?gmp5) (GreixosTrans ?gt5) (Aigua ?a5) (Minerals ?m5) (Fibra ?f5))
-
-;(infoNutricionalPlat(plat ?platDS2) (Vitamines ?vit6) (Proteines ?prot6) (Hidrats_de_carboni ?hid6) (GreixosMonoOPoliinsat ?gmp6) (GreixosTrans ?gt6) (Aigua ?a6) (Minerals ?m6) (Fibra ?f6))
-;(infoNutricionalPlat(plat ?platSP2) (Vitamines ?vit7) (Proteines ?prot7) (Hidrats_de_carboni ?hid7) (GreixosMonoOPoliinsat ?gmp7) (GreixosTrans ?gt7) (Aigua ?a7) (Minerals ?m7) (Fibra ?f7))
-;(infoNutricionalPlat(plat ?platSS2) (Vitamines ?vit8) (Proteines ?prot8) (Hidrats_de_carboni ?hid8) (GreixosMonoOPoliinsat ?gmp8) (GreixosTrans ?gt8) (Aigua ?a8) (Minerals ?m8) (Fibra ?f8))
-;(infoNutricionalPlat(plat ?platDPostres2) (Vitamines ?vit9) (Proteines ?prot9) (Hidrats_de_carboni ?hid9) (GreixosMonoOPoliinsat ?gmp9) (GreixosTrans ?gt9) (Aigua ?a9) (Minerals ?m9) (Fibra ?f9))
-;(infoNutricionalPlat(plat ?platSPostres2) (Vitamines ?vit10) (Proteines ?prot10) (Hidrats_de_carboni ?hid10) (GreixosMonoOPoliinsat ?gmp10) (GreixosTrans ?gt10) (Aigua ?a10) (Minerals ?m10) (Fibra ?f10))
-
-;(infoNutricionalPlat(plat ?platDS3) (Vitamines ?vit11) (Proteines ?prot11) (Hidrats_de_carboni ?hid11) (GreixosMonoOPoliinsat ?gmp11) (GreixosTrans ?gt11) (Aigua ?a11) (Minerals ?m11) (Fibra ?f11))
-;(infoNutricionalPlat(plat ?platSP3) (Vitamines ?vit12) (Proteines ?prot12) (Hidrats_de_carboni ?hid12) (GreixosMonoOPoliinsat ?gmp12) (GreixosTrans ?gt12) (Aigua ?a12) (Minerals ?m12) (Fibra ?f12))
-;(infoNutricionalPlat(plat ?platSS3) (Vitamines ?vit13) (Proteines ?prot13) (Hidrats_de_carboni ?hid13) (GreixosMonoOPoliinsat ?gmp13) (GreixosTrans ?gt13) (Aigua ?a13) (Minerals ?m13) (Fibra ?f13))
-;(infoNutricionalPlat(plat ?platDPostres3) (Vitamines ?vit14) (Proteines ?prot14) (Hidrats_de_carboni ?hid14) (GreixosMonoOPoliinsat ?gmp14) (GreixosTrans ?gt14) (Aigua ?a14) (Minerals ?m14) (Fibra ?f14))
-;(infoNutricionalPlat(plat ?platSPostres3) (Vitamines ?vit15) (Proteines ?prot15) (Hidrats_de_carboni ?hid15) (GreixosMonoOPoliinsat ?gmp15) (GreixosTrans ?gt15) (Aigua ?a15) (Minerals ?m15) (Fibra ?f15))
-
-;(infoNutricionalPlat (plat ?platDS4) (Vitamines ?vit16) (Proteines ?prot16) (Hidrats_de_carboni ?hid16) (GreixosMonoOPoliinsat ?gmp16) (GreixosTrans ?gt16) (Aigua ?a16) (Minerals ?m16) (Fibra ?f16))
-;(infoNutricionalPlat (plat ?platSP4) (Vitamines ?vit17) (Proteines ?prot17) (Hidrats_de_carboni ?hid17) (GreixosMonoOPoliinsat ?gmp17) (GreixosTrans ?gt17) (Aigua ?a17) (Minerals ?m17) (Fibra ?f17))
-;(infoNutricionalPlat (plat ?platSS4) (Vitamines ?vit18) (Proteines ?prot18) (Hidrats_de_carboni ?hid18) (GreixosMonoOPoliinsat ?gmp18) (GreixosTrans ?gt18) (Aigua ?a18) (Minerals ?m18) (Fibra ?f18))
-;(infoNutricionalPlat (plat ?platDPostres4) (Vitamines ?vit19) (Proteines ?prot19) (Hidrats_de_carboni ?hid19) (GreixosMonoOPoliinsat ?gmp19) (GreixosTrans ?gt19) (Aigua ?a19) (Minerals ?m19) (Fibra ?f19))
-;(infoNutricionalPlat(plat ?platSPostres4) (Vitamines ?vit20) (Proteines ?prot20) (Hidrats_de_carboni ?hid20) (GreixosMonoOPoliinsat ?gmp20) (GreixosTrans ?gt20) (Aigua ?a20) (Minerals ?m20) (Fibra ?f20))
-
-;(infoNutricionalPlat(plat ?platDS5) (Vitamines ?vit21) (Proteines ?prot21) (Hidrats_de_carboni ?hid21) (GreixosMonoOPoliinsat ?gmp21) (GreixosTrans ?gt21) (Aigua ?a21) (Minerals ?m21) (Fibra ?f21))
-;(infoNutricionalPlat(plat ?platSP5) (Vitamines ?vit22) (Proteines ?prot22) (Hidrats_de_carboni ?hid22) (GreixosMonoOPoliinsat ?gmp22) (GreixosTrans ?gt22) (Aigua ?a22) (Minerals ?m22) (Fibra ?f22))
-;(infoNutricionalPlat(plat ?platSS5) (Vitamines ?vit23) (Proteines ?prot23) (Hidrats_de_carboni ?hid23) (GreixosMonoOPoliinsat ?gmp23) (GreixosTrans ?gt23) (Aigua ?a23) (Minerals ?m23) (Fibra ?f23))
-;(infoNutricionalPlat(plat ?platDPostres5) (Vitamines ?vit24) (Proteines ?prot24) (Hidrats_de_carboni ?hid24) (GreixosMonoOPoliinsat ?gmp24) (GreixosTrans ?gt24) (Aigua ?a24) (Minerals ?m24) (Fibra ?f24))
-;(infoNutricionalPlat(plat ?platSPostres5) (Vitamines ?vit25) (Proteines ?prot25) (Hidrats_de_carboni ?hid25) (GreixosMonoOPoliinsat ?gmp25) (GreixosTrans ?gt25) (Aigua ?a25) (Minerals ?m25) (Fibra ?f25))
-
-;(infoNutricionalPlat (plat ?platDS6) (Vitamines ?vit26) (Proteines ?prot26) (Hidrats_de_carboni ?hid26) (GreixosMonoOPoliinsat ?gmp26) (GreixosTrans ?gt26) ;(Aigua ?a26) (Minerals ?m26) (Fibra ?f26))
-;(infoNutricionalPlat (plat ?platSP6) (Vitamines ?vit27) (Proteines ?prot27) (Hidrats_de_carboni ?hid27) (GreixosMonoOPoliinsat ?gmp27) (GreixosTrans ?gt27) (Aigua ?a27) (Minerals ?m27) (Fibra ?f27))
-;(infoNutricionalPlat (plat ?platSS6) (Vitamines ?vit28) (Proteines ?prot28) (Hidrats_de_carboni ?hid28) (GreixosMonoOPoliinsat ?gmp28) (GreixosTrans ?gt28) (Aigua ?a28) (Minerals ?m28) (Fibra ?f28))
-;(infoNutricionalPlat (plat ?platDPostres6) (Vitamines ?vit29) (Proteines ?prot29) (Hidrats_de_carboni ?hid29) (GreixosMonoOPoliinsat ?gmp29) (GreixosTrans ?gt29) (Aigua ?a29) (Minerals ?m29) (Fibra ?f29))
-;(infoNutricionalPlat (plat ?platSPostres6) (Vitamines ?vit30) (Proteines ?prot30) (Hidrats_de_carboni ?hid30) (GreixosMonoOPoliinsat ?gmp30) (GreixosTrans ?gt30) (Aigua ?a30) (Minerals ?m30) (Fibra ?f30))
-
-;(infoNutricionalPlat (plat ?platDS7) (Vitamines ?vit31) (Proteines ?prot31) (Hidrats_de_carboni ?hid31) (GreixosMonoOPoliinsat ?gmp31) (GreixosTrans ?gt31) (Aigua ?a31) (Minerals ?m31) (Fibra ?f31))
-;(infoNutricionalPlat (plat ?platSP7) (Vitamines ?vit32) (Proteines ?prot32) (Hidrats_de_carboni ?hid32) (GreixosMonoOPoliinsat ?gmp32) (GreixosTrans ?gt32) (Aigua ?a32) (Minerals ?m32) (Fibra ?f32))
-;(infoNutricionalPlat (plat ?platSS7) (Vitamines ?vit33) (Proteines ?prot33) (Hidrats_de_carboni ?hid33) (GreixosMonoOPoliinsat ?gmp33) (GreixosTrans ?gt33) (Aigua ?a33) (Minerals ?m33) (Fibra ?f33))
-;(infoNutricionalPlat (plat ?platDPostres7) (Vitamines ?vit34) (Proteines ?prot34) (Hidrats_de_carboni ?hid34) (GreixosMonoOPoliinsat ?gmp34) (GreixosTrans ?gt34) (Aigua ?a34) (Minerals ?m34) (Fibra ?f34))
-;(infoNutricionalPlat (plat ?platSPostres7) (Vitamines ?vit35) (Proteines ?prot35) (Hidrats_de_carboni ?hid35) (GreixosMonoOPoliinsat ?gmp35) (GreixosTrans ?gt35) (Aigua ?a35) (Minerals ?m35) (Fibra ?f35))
 
 
 ;anem a comprovar si compleix les restriccions
@@ -1839,16 +1885,33 @@
 (assert (dia 1))
 )
 
+(defrule MENUS::MostrarHemArribatAlFinal "Aqui simplement indiquem que ja no es debug i que treiem el menu"
+(nou_usuari)
+(menuCompletat)
+=>
+(assert (imprimir))
+(printout t crlf)
+(printout t "---------------------------------------------------------------" crlf)
+(printout t "------------------     Final weekly menu     ------------------" crlf)
+(printout t "---------------------------------------------------------------" crlf)
+(printout t crlf)
+
+)
+
+
 
 (defrule MENUS::MostrarMenuDefinitiu "Aquesta regla mostra els menus definitius"
     (nou_usuari)
     (menuCompletat)
+    (imprimir)
+
     ?dd <- (dia ?d)
     (test (<= ?d 7))
 
     ?menu <- (menuDiari (dia ?d) (esmorzar ?e) (dinarPrimer ?dp) (dinarSegon ?ds) (dinarPostres ?dpostres) (soparPrimer ?sp) (soparSegon ?ss)(soparPostres ?spostres))
     =>
-
+    (printout t crlf)
+    (printout t crlf)
     (switch ?d
 		(case 1 then (printout t "MONDAY" crlf))
 		(case 2 then (printout t "TUESDAY" crlf))
@@ -1859,17 +1922,96 @@
 		(case 7 then (printout t "SUNDAY" crlf)))
         (printout t "----------------------------------- " crlf)
 
+
+        (bind ?i 1)
         (printout t "BREAKFAST : " (send ?e get-Nom) crlf)
+        (while (<= ?i (length$ (send ?e get-Ingredients)))	;Recorrem tots els ingredients
+        do
+            (bind ?ingredient (nth$ ?i (send ?e get-Ingredients))) ;agafem el n-èssim IngredientConcret
+            (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+            (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (bind ?i (+ ?i 1))
+        )
+
+        (bind ?i 1)
+        (printout t crlf)
         (printout t crlf)
         (printout t "LUNCH :" crlf)
         (printout t "First dish: " (send ?dp get-Nom) crlf)
-        (printout t "Second dish : " ?ds crlf)
-        (printout t "Desert : " ?dpostres crlf)
+
+        (while (<= ?i (length$ (send ?dp get-Ingredients)))	;Recorrem tots els ingredients
+        do
+            (bind ?ingredient (nth$ ?i (send ?dp get-Ingredients))) ;agafem el n-èssim IngredientConcret
+            (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+            (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (bind ?i (+ ?i 1))
+        )
+
+        (bind ?i 1)
+        (printout t crlf)
+        (printout t "Second dish : " (send ?ds get-Nom) crlf)
+        (while (<= ?i (length$ (send ?ds get-Ingredients)))	;Recorrem tots els ingredients
+        do
+            (bind ?ingredient (nth$ ?i (send ?ds get-Ingredients))) ;agafem el n-èssim IngredientConcret
+            (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+            (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (bind ?i (+ ?i 1))
+        )
+
+        (printout t crlf)
+        (bind ?i 1)
+        (printout t "Desert : " (send ?dpostres get-Nom) crlf)
+        (while (<= ?i (length$ (send ?dpostres get-Ingredients)))	;Recorrem tots els ingredients
+        do
+            (bind ?ingredient (nth$ ?i (send ?dpostres get-Ingredients))) ;agafem el n-èssim IngredientConcret
+            (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+            (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (bind ?i (+ ?i 1))
+        )
+
+
+        (bind ?i 1)
+        (printout t crlf)
         (printout t crlf)
         (printout t "DINNER :" crlf)
-        (printout t "First dish : " ?sp crlf)
-        (printout t "Second dish : " ?ss crlf)
-        (printout t "Desert : " ?spostres crlf)
+        (printout t "First dish : " (send ?sp get-Nom) crlf)
+        (while (<= ?i (length$ (send ?sp get-Ingredients)))	;Recorrem tots els ingredients
+        do
+            (bind ?ingredient (nth$ ?i (send ?sp get-Ingredients))) ;agafem el n-èssim IngredientConcret
+            (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+            (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (bind ?i (+ ?i 1))
+        )
+
+        (bind ?i 1)
+        (printout t crlf)
+        (printout t "Second dish : " (send ?ss get-Nom) crlf)
+        (while (<= ?i (length$ (send ?ss get-Ingredients)))	;Recorrem tots els ingredients
+        do
+            (bind ?ingredient (nth$ ?i (send ?ss get-Ingredients))) ;agafem el n-èssim IngredientConcret
+            (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+            (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (bind ?i (+ ?i 1))
+        )
+
+        (bind ?i 1)
+        (printout t crlf)
+        (printout t "Desert : " (send ?spostres get-Nom) crlf)
+        (while (<= ?i (length$ (send ?spostres get-Ingredients)))	;Recorrem tots els ingredients
+        do
+            (bind ?ingredient (nth$ ?i (send ?spostres get-Ingredients))) ;agafem el n-èssim IngredientConcret
+            (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+            (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (bind ?i (+ ?i 1))
+        )
+
         (printout t crlf)
 
         (retract ?dd)
