@@ -233,6 +233,52 @@
 
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+;;;----------  					INSTANCIES					 		---------- 								INSTANCIES
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
+
+(definstances instancies
+
+([I90560] of InfoIngredient
+    (Familia Fish)
+    (Nom_ingredient "Mollusks, snail, raw")
+    (Nutrients [I90560N0] [I90560N1] [I90560N2] [I90560N3] [I90560N4] [I90560N5] [I90560N6] [I90560N7] [I90560N8])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 90))
+
+([I90560N0] of  Nutrient
+    (Quantitat_nutrient 79.2)
+    (Tipus_nutrient Aigua))
+([I90560N1] of  Nutrient
+    (Quantitat_nutrient 988.9)
+    (Tipus_nutrient Minerals))
+([I90560N2] of  Nutrient
+    (Quantitat_nutrient 16.1)
+    (Tipus_nutrient Proteines))
+([I90560N3] of  Nutrient
+    (Quantitat_nutrient 105.63)
+    (Tipus_nutrient Vitamines))
+([I90560N4] of  Nutrient
+    (Quantitat_nutrient 0.0)
+    (Tipus_nutrient Fibra))
+([I90560N5] of  Nutrient
+    (Quantitat_nutrient 2.0)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I90560N6] of  Nutrient
+    (Quantitat_nutrient 1.4)
+    (Tipus_nutrient Greixos))
+([I90560N7] of  Nutrient
+    (Quantitat_nutrient 50.0)
+    (Tipus_nutrient Colesterol))
+([I90560N8] of  Nutrient
+    (Quantitat_nutrient 0.0)
+    (Tipus_nutrient Sucre))
+
+)
+
+
+
+
+;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					TEMPLATES					 		---------- 								TEMPLATES
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 
