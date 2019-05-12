@@ -45,7 +45,7 @@
 	(single-slot Familia
 ;+		(comment "Indica a la familia general d'aliments a la que pertany.")
 		(type SYMBOL)
-		(allowed-values Carn Peix Verdura Llegum L%C3%A0ctic Fruita Fruits_secs Ous Cereals)
+		(allowed-values Meat Fruits Soups Pasta Nut Herbs Dairy_Eggs Vegetables Legumes Snacks Baked Fish Fats_Oils Sweets Breakfast_Cereals)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot Sopar
@@ -124,7 +124,7 @@
 	(multislot Tipus_plat
 ;+		(comment "Indica si el plat és un 1r, 2n, postres o beguda (pot ser varios)")
 		(type SYMBOL)
-		(allowed-values 1r 2n Postres Beguda)
+		(allowed-values 1r 2n Postres)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
@@ -155,9 +155,9 @@
 		;+		(cardinality 0 1)
 				(create-accessor read-write))
 			(multislot Tipus_plat
-		;+		(comment "Indica si el plat és un 1r, 2n, postres o beguda (pot ser varios)")
+		;+		(comment "Indica si el plat és un 1r, 2n, postres (pot ser varios)")
 				(type SYMBOL)
-				(allowed-values 1r 2n Postres Beguda)
+				(allowed-values 1r 2n Postres)
 				(cardinality 1 ?VARIABLE)
 				(create-accessor read-write))
 			(multislot Ingredients
@@ -173,7 +173,7 @@
 	(single-slot Familia
 ;+		(comment "Indica a la familia general d'aliments a la que pertany.")
 		(type SYMBOL)
-		(allowed-values Carn Peix Verdura Llegum L%C3%A0ctic Fruita Fruits_secs Ous Cereals)
+		(allowed-values Meat Fruits Soups Pasta Nut Herbs Dairy_Eggs Vegetables Legumes Snacks Baked Fish Fats_Oils Sweets Breakfast_Cereals)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot Nom_ingredient
@@ -241,477 +241,7 @@
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 
 (definstances instances
-
-([I1001] of InfoIngredient
-    (Familia "Dairy and Egg Products")
-    (Nom_ingredient "Butter, salted")
-    (Nutrients [I1001N0] [I1001N1] [I1001N2] [I1001N3] [I1001N4] [I1001N5] [I1001N6] [I1001N7] [I1001N8])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 717))    ;sobre un parentesis despres del nom de la instancia
-
-([I1001N0] of  Nutrient
-    (Quantitat_nutrient 15.87)
-    (Tipus_nutrient Aigua))
-([I1001N1] of  Nutrient
-    (Quantitat_nutrient 719.91)
-    (Tipus_nutrient Minerals))
-([I1001N2] of  Nutrient
-    (Quantitat_nutrient 0.85)
-    (Tipus_nutrient Proteines))
-([I1001N3] of  Nutrient
-    (Quantitat_nutrient 2501.6030000000005)
-    (Tipus_nutrient Vitamines))
-([I1001N4] of  Nutrient
-    (Quantitat_nutrient 0.0)
-    (Tipus_nutrient Fibra))
-([I1001N5] of  Nutrient
-    (Quantitat_nutrient 0.06)
-    (Tipus_nutrient Hidrats_de_carboni))
-([I1001N6] of  Nutrient
-    (Quantitat_nutrient 81.11)
-    (Tipus_nutrient Greixos))
-([I1001N7] of  Nutrient
-    (Quantitat_nutrient 215.0)
-    (Tipus_nutrient Colesterol))
-([I1001N8] of  Nutrient
-    (Quantitat_nutrient 0.06)
-    (Tipus_nutrient Sucre))
-
-
-
-([I1002] of InfoIngredient
-    (Familia "Dairy and Egg Products")
-    (Nom_ingredient "Butter, whipped, with salt")
-    (Nutrients [I1002N0] [I1002N1] [I1002N2] [I1002N3] [I1002N4] [I1002N5] [I1002N6] [I1002N7] [I1002N8])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 718))
-
-([I1002N0] of  Nutrient
-    (Quantitat_nutrient 16.72)
-    (Tipus_nutrient Aigua))
-([I1002N1] of  Nutrient
-    (Quantitat_nutrient 674.9109999999998)
-    (Tipus_nutrient Minerals))
-([I1002N2] of  Nutrient
-    (Quantitat_nutrient 0.49)
-    (Tipus_nutrient Proteines))
-([I1002N3] of  Nutrient
-    (Quantitat_nutrient 2469.545)
-    (Tipus_nutrient Vitamines))
-([I1002N4] of  Nutrient
-    (Quantitat_nutrient 0.0)
-    (Tipus_nutrient Fibra))
-([I1002N5] of  Nutrient
-    (Quantitat_nutrient 2.87)
-    (Tipus_nutrient Hidrats_de_carboni))
-([I1002N6] of  Nutrient
-    (Quantitat_nutrient 78.3)
-    (Tipus_nutrient Greixos))
-([I1002N7] of  Nutrient
-    (Quantitat_nutrient 225.0)
-    (Tipus_nutrient Colesterol))
-([I1002N8] of  Nutrient
-    (Quantitat_nutrient 0.06)
-    (Tipus_nutrient Sucre))
-
-
-
-
-
-
-([IA_Instance_1] of  Plat
-	(Apat Dinar Sopar)
-	(Ingredients [IA_Instance_2])
-	(Nom "Arros a la cubana")
-	(Tipus_plat 1r 2n))
-
-([IA_Instance_7] of  Plat
-
-	(Apat Esmorzar)
-	(Ingredients [IA_Instance_8])
-	(Nom "Maduixes")
-	(Tipus_plat 1r 2n))
-
-([IA_Instance_10] of  Plat
-
-	(Apat Esmorzar)
-	(Ingredients [IA_Instance_8])
-	(Nom "Maduixes2")
-	(Tipus_plat 1r 2n))
-
-
-([IA_Instance_2] of  IngredientConcret
-
-	(Cocci%C3%B3 Bullit)
-	(Ingredient_general [IA_Instance_3])
-	(Quantitat 100))
-
-([IA_Instance_8] of  IngredientConcret
-
-	(Cocci%C3%B3 Bullit)
-	(Ingredient_general [IA_Instance_6])
-	(Quantitat 100))
-
-([IA_Instance_3] of  InfoIngredient
-	(Familia Carn)
-	(Nom_ingredient "Arros")
-	(Nutrients [IA_Instance_4])
-	(Temporada Hivern)
-	(Valor_energetic%28kcal%29 100))
-
-([IA_Instance_6] of  InfoIngredient
-    (Familia Fruita)
-    (Nom_ingredient "Maduixa")
-    (Nutrients [IA_Instance_4])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 100))
-
-
-([IA_Instance_4] of  Nutrient
-
-	(Quantitat_nutrient 10)
-	(Tipus_nutrient Hidrats_de_carboni))
-
-
-;;; Paella
-
-([P0] of  Plat
-
-    (Apat Dinar Sopar)
-    (Ingredients  [IP0_0] [IP0_1] [IP0_2] [IP0_3] [IP0_4] [IP0_5] [IP0_6])
-    (Nom "Paella valenciana")
-    (Tipus_plat 1r 2n))
-
-;;400 arros
-([IP0_0] of  IngredientConcret
-
-    (Cocci%C3%B3 Bullit)
-    (Ingredient_general [I0])
-    (Quantitat 400))
-
-([I0] of  InfoIngredient
-    (Familia Cereals)
-    (Nom_ingredient "Arros")
-    (Nutrients [I0_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 130))
-
-([I0_N0] of  Nutrient
-
-    (Quantitat_nutrient 11)
-    (Tipus_nutrient Greixos))
-
-
-;;500 pollastre
-([IP0_1] of  IngredientConcret
-
-    (Cocci%C3%B3 Al_forn)
-    (Ingredient_general [I1])
-    (Quantitat 500))
-
-([I1] of  InfoIngredient
-    (Familia Carn)
-    (Nom_ingredient "Pollastre sencer")
-    (Nutrients [I1_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 239))
-
-([I1_N0] of  Nutrient
-
-    (Quantitat_nutrient 11)
-    (Tipus_nutrient Greixos))
-
-
-;;225 llagostins
-([IP0_2] of  IngredientConcret
-
-    (Cocci%C3%B3 Bullit)
-    (Ingredient_general [I2])
-    (Quantitat 225))
-
-([I2] of  InfoIngredient
-    (Familia Marisc)
-    (Nom_ingredient "Llagostins")
-    (Nutrients [I2_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 88))
-
-([I2_N0] of  Nutrient
-
-    (Quantitat_nutrient 1.8)
-    (Tipus_nutrient Greixos))
-
-
-;;250 molusc
-([IP0_3] of  IngredientConcret
-
-    (Cocci%C3%B3 Fresc)
-    (Ingredient_general [I3])
-    (Quantitat 250))
-
-([I3] of  InfoIngredient
-    (Familia Cereals)
-    (Nom_ingredient "Molusc")
-    (Nutrients [I3_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 72))
-
-([I3_N0] of  Nutrient
-
-    (Quantitat_nutrient 1.96)
-    (Tipus_nutrient Greixos))
-
-
-;;150 tomate
-([IP0_4] of  IngredientConcret
-
-    (Cocci%C3%B3 Fresc)
-    (Ingredient_general [I4])
-    (Quantitat 150))
-
-([I4] of  InfoIngredient
-    (Familia Vegetals)
-    (Nom_ingredient "Tomaquet fresc")
-    (Nutrients [I4_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 22.17))
-
-([I4_N0] of  Nutrient
-
-    (Quantitat_nutrient 0.21)
-    (Tipus_nutrient Greixos))
-
-
-;;0.7 safrà
-([IP0_5] of  IngredientConcret
-
-    (Cocci%C3%B3 Fresc)
-    (Ingredient_general [I5])
-    (Quantitat 0.7))
-
-([I5] of  InfoIngredient
-    (Familia Cereals)
-    (Nom_ingredient "Safrà")
-    (Nutrients [I5_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 352))
-
-([I5_N0] of  Nutrient
-
-    (Quantitat_nutrient 5.85)
-    (Tipus_nutrient Greixos))
-
-;;200 calamar
-([IP0_6] of  IngredientConcret
-
-    (Cocci%C3%B3 Bullit)
-    (Ingredient_general [I6])
-    (Quantitat 200))
-
-([I6] of  InfoIngredient
-    (Familia Marisc)
-    (Nom_ingredient "Calamar")
-    (Nutrients [I6_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 80.40))
-
-([I6_N0] of  Nutrient
-
-    (Quantitat_nutrient 1.4)
-    (Tipus_nutrient Greixos))
-
-
-;;; Macarrons tomàquet
-
-([IP1] of  Plat
-
-    (Apat Dinar Sopar)
-    (Ingredients [IP1_0] [IP1_1] [IP1_2] [IP1_3] [IP1_4] [IP1_5])
-    (Nom "Macarrons amb tomaquet")
-    (Tipus_plat 1r 2n))
-
-;;600 pasta
-([IP1_0] of  IngredientConcret
-
-    (Cocci%C3%B3 Bullit)
-    (Ingredient_general [I7])
-    (Quantitat 600))
-
-([I7] of  InfoIngredient
-    (Familia Cereals)
-    (Nom_ingredient "Pasta")
-    (Nutrients [I7_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 359))
-
-([I7_N0] of  Nutrient
-
-    (Quantitat_nutrient 1.58)
-    (Tipus_nutrient Greixos))
-
-;;50 mantega
-([IP1_1] of  IngredientConcret
-
-    (Cocci%C3%B3 Bullit)
-    (Ingredient_general [I8])
-    (Quantitat 50))
-
-([I8] of  InfoIngredient
-    (Familia Làctic)
-    (Nom_ingredient "Mantega")
-    (Nutrients [I8_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 897))
-
-([I8_N0] of  Nutrient
-
-    (Quantitat_nutrient 99.5)
-    (Tipus_nutrient Greixos))
-
-;;50 mozzarella
-([IP1_2] of  IngredientConcret
-
-    (Cocci%C3%B3 Bullit)
-    (Ingredient_general [I9])
-    (Quantitat 50))
-
-([I9] of  InfoIngredient
-    (Familia Làctic)
-    (Nom_ingredient "Mozzarella")
-    (Nutrients [I9_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 233))
-
-([I9_N0] of  Nutrient
-
-    (Quantitat_nutrient 16.1)
-    (Tipus_nutrient Greixos))
-
-;;250 tomaquet fregit
-([IP1_3] of  IngredientConcret
-
-    (Cocci%C3%B3 Fregit)
-    (Ingredient_general [I10])
-    (Quantitat 250))
-
-([I10] of  InfoIngredient
-    (Familia Làctic)
-    (Nom_ingredient "Tomaquet fregit")
-    (Nutrients [I10_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 87.6))
-
-([I10_N0] of  Nutrient
-
-    (Quantitat_nutrient 6.4)
-    (Tipus_nutrient Greixos))
-
-;;50 oli oliva
-([IP1_4] of  IngredientConcret
-
-    (Cocci%C3%B3 Fregit)
-    (Ingredient_general [I11])
-    (Quantitat 20))
-
-([I11] of  InfoIngredient
-    (Familia Làctic)
-    (Nom_ingredient "Oli oliva")
-    (Nutrients [I11_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 899))
-
-([I11_N0] of  Nutrient
-
-    (Quantitat_nutrient 99.9)
-    (Tipus_nutrient Greixos))
-
-;;30 ceba
-([IP1_5] of  IngredientConcret
-
-    (Cocci%C3%B3 Fregit)
-    (Ingredient_general [I10])
-    (Quantitat 250))
-
-([I12] of  InfoIngredient
-    (Familia Làctic)
-    (Nom_ingredient "Ceba")
-    (Nutrients [I12_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 31.85))
-
-([I12_N0] of  Nutrient
-
-    (Quantitat_nutrient 0.25)
-    (Tipus_nutrient Greixos))
-
-
-
-;;; Flam
-
-([IP2] of  Plat
-
-    (Apat Esmorzar Dinar Sopar)
-    (Ingredients [IP2_0] [IP2_1])
-    (Nom "Flam")
-    (Tipus_plat Postres ))
-
-;;500 llet vaca
-([IP2_0] of  IngredientConcret
-
-    (Cocci%C3%B3 Fresc)
-    (Ingredient_general [I13])
-    (Quantitat 500))
-
-([I13] of  InfoIngredient
-    (Familia Lactic)
-    (Nom_ingredient "Llet de vaca sencera")
-    (Nutrients [I13_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 65.4))
-
-([I13_N0] of  Nutrient
-
-    (Quantitat_nutrient 3.8)
-    (Tipus_nutrient Greixos))
-
-;;240 ou gallina
-([IP2_1] of  IngredientConcret
-
-    (Cocci%C3%B3 Fresc)
-    (Ingredient_general [I14])
-    (Quantitat 240))
-
-([I14] of  InfoIngredient
-    (Familia Ous)
-    (Nom_ingredient "Ou gallina")
-    (Nutrients [I8_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 162))
-
-([I14_N0] of  Nutrient
-
-    (Quantitat_nutrient 12.1)
-    (Tipus_nutrient Greixos))
-
-;;200 sucre blanc
-([IP1_2] of  IngredientConcret
-
-    (Cocci%C3%B3 Fresc)
-    (Ingredient_general [I15])
-    (Quantitat 200))
-
-([I15] of  InfoIngredient
-    (Familia Làctic)
-    (Nom_ingredient "Sucre blanc")
-    (Nutrients [I15_N0])
-    (Temporada Hivern Primavera Estiu Tardor)
-    (Valor_energetic%28kcal%29 399))
-
-([I15_N0] of  Nutrient
-
-    (Quantitat_nutrient 5)
-    (Tipus_nutrient Aigua))
-
+;Aqui les intancies
 
 
 )   ; cal aquest parentesis per acabar totes les instancies
@@ -865,9 +395,8 @@
 (defrule MAIN::primeraRegla "regla inicial"
 	?f <- (initial-fact)
 	(not (FI))
-	(not(executat))
+	(not(imprimir))
 	=>
-	(assert (executat))
 	(reset)
 	(printout t crlf)
 	(printout t "--------------------------------------------------------------" crlf)
@@ -969,8 +498,8 @@
 	=>
 		(bind ?q (pregunta-numerica "Which one are you specifically? [Vegeterian(1) Vegan(2)]:  " 1 2))
 		(switch ?q
-			(case 1 then (assert(Restriccio Carn)) (assert(Restriccio Peix))(assert (RestriccionsAfegides)))
-			(case 2 then (assert(Restriccio Carn)) (assert(Restriccio Peix)) (assert(Restriccio Lactic)) (assert(Restriccio Ous))(assert (RestriccionsAfegides)))
+			(case 1 then (assert(Restriccio Meet)) (assert(Restriccio Fish))(assert (RestriccionsAfegides)))
+			(case 2 then (assert(Restriccio Meet)) (assert(Restriccio Fish)) (assert(Restriccio Dairy_Eggs))(assert (RestriccionsAfegides)))
 		)
 )
 
@@ -996,21 +525,42 @@
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
 	(printout t "Restrictions: " crlf)
 	(printout t "1. Meet " crlf)
-	(printout t "2. Fish " crlf)
-	(printout t "3. Fruit" crlf)
-	(printout t "4. Dairy (Lactic)" crlf)
-	(printout t "5. Gluten" crlf)
-	(printout t "6. Specific food" crlf)
+	(printout t "2. Fruit " crlf)
+	(printout t "3. Soups" crlf)
+	(printout t "4. Pasta" crlf)
+	(printout t "5. Nut" crlf)
+	(printout t "6. Herbs " crlf)
+	(printout t "7. Dairy or eggs " crlf)
+	(printout t "8. Vegetables" crlf)
+	(printout t "9. Legumes" crlf)
+	(printout t "10. Snacks" crlf)
+	(printout t "11. Backed products " crlf)
+	(printout t "12. Fish " crlf)
+	(printout t "13. Fats or oils" crlf)
+	(printout t "14. Sweets" crlf)
+	(printout t "15. Breakfast cereals" crlf)
+	(printout t "16. Specific food" crlf)
+	(printout t crlf)
 	(bind ?rest (pregunta-lista "Separate your answer with a blank between each identifier (can be multiple) :"))
 
 	(progn$ (?it ?rest)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(Restriccio Carn)))
-			(case 2 then   (assert(Restriccio Peix)))
-			(case 3 then   (assert(Restriccio Fruita)))
-			(case 4 then   (assert(Restriccio Lactic)))
-			(case 5 then   (assert(Restriccio Gluten)))
-			(case 6 then
+			(case 1 then   (assert(Restriccio Meet)))
+			(case 2 then   (assert(Restriccio Fruit)))
+			(case 3 then   (assert(Restriccio Soups)))
+			(case 4 then   (assert(Restriccio Pasta)))
+			(case 5 then   (assert(Restriccio Nut)))
+			(case 6 then   (assert(Restriccio Herbs)))
+			(case 7 then   (assert(Restriccio Dairy_Eggs)))
+			(case 8 then   (assert(Restriccio Vegetables)))
+			(case 9 then   (assert(Restriccio Legumes)))
+			(case 10 then   (assert(Restriccio Snacks)))
+			(case 11 then   (assert(Restriccio Backed)))
+			(case 12 then   (assert(Restriccio Fish)))
+			(case 13 then   (assert(Restriccio Fats_Oils)))
+			(case 14 then   (assert(Restriccio Sweats)))
+			(case 15 then   (assert(Restriccio Breakfast_Cereals)))
+			(case 16 then
                 (printout t crlf)
                 (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
                 (assert (Restriccio ?q)))
@@ -1039,21 +589,42 @@
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
 	(printout t "Preferences of food you would rather not eat: " crlf)
 	(printout t "1. Meet " crlf)
-	(printout t "2. Fish " crlf)
-	(printout t "3. Fruit" crlf)
-	(printout t "4. Nuts" crlf)
-	(printout t "5. Dairy" crlf)
-	(printout t "6. Select to write specific food products" crlf)
+	(printout t "2. Fruit " crlf)
+	(printout t "3. Soups" crlf)
+	(printout t "4. Pasta" crlf)
+	(printout t "5. Nut" crlf)
+	(printout t "6. Herbs " crlf)
+	(printout t "7. Dairy or eggs " crlf)
+	(printout t "8. Vegetables" crlf)
+	(printout t "9. Legumes" crlf)
+	(printout t "10. Snacks" crlf)
+	(printout t "11. Backed products " crlf)
+	(printout t "12. Fish " crlf)
+	(printout t "13. Fats or oils" crlf)
+	(printout t "14. Sweets" crlf)
+	(printout t "15. Breakfast cereals" crlf)
+	(printout t "16. Specific food" crlf)
+	(printout t crlf)
 	(bind ?pref (pregunta-lista "Separate your answer with a blank between each identifier (in case there are several) : "))
 
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(PreferenciaN Carn)))
-			(case 2 then   (assert(PreferenciaN Peix)))
-			(case 3 then   (assert(PreferenciaN Fruita)))
-			(case 4 then   (assert(PreferenciaN Fruits_secs)))
-			(case 5 then   (assert(PreferenciaN Lactic)))
-			(case 6 then
+			(case 1 then   (assert(PreferenciaN Meet)))
+			(case 2 then   (assert(PreferenciaN Fruit)))
+			(case 3 then   (assert(PreferenciaN Soups)))
+			(case 4 then   (assert(PreferenciaN Pasta)))
+			(case 5 then   (assert(PreferenciaN Nut)))
+			(case 6 then   (assert(PreferenciaN Herbs)))
+			(case 7 then   (assert(PreferenciaN Dairy_Eggs)))
+			(case 8 then   (assert(PreferenciaN Vegetables)))
+			(case 9 then   (assert(PreferenciaN Legumes)))
+			(case 10 then   (assert(PreferenciaN Snacks)))
+			(case 11 then   (assert(PreferenciaN Backed)))
+			(case 12 then   (assert(PreferenciaN Fish)))
+			(case 13 then   (assert(PreferenciaN Fats_Oils)))
+			(case 14 then   (assert(PreferenciaN Sweats)))
+			(case 15 then   (assert(PreferenciaN Breakfast_Cereals)))
+			(case 16 then
                 (printout t crlf)
                 (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
                 (assert (PreferenciaN ?q)))
@@ -1085,21 +656,42 @@
 	;;AQUI CALDRIA AMPLIAR-HO MÉS A PODER SER
 	(printout t "Preferences of food you would like to eat: " crlf)
 	(printout t "1. Meet " crlf)
-	(printout t "2. Fish " crlf)
-	(printout t "3. Fruit" crlf)
-	(printout t "4. Nuts" crlf)
-	(printout t "5. Dairy" crlf)
-	(printout t "6. Select to write specific food products" crlf)
+	(printout t "2. Fruit " crlf)
+	(printout t "3. Soups" crlf)
+	(printout t "4. Pasta" crlf)
+	(printout t "5. Nut" crlf)
+	(printout t "6. Herbs " crlf)
+	(printout t "7. Dairy or eggs " crlf)
+	(printout t "8. Vegetables" crlf)
+	(printout t "9. Legumes" crlf)
+	(printout t "10. Snacks" crlf)
+	(printout t "11. Backed products " crlf)
+	(printout t "12. Fish " crlf)
+	(printout t "13. Fats or oils" crlf)
+	(printout t "14. Sweets" crlf)
+	(printout t "15. Breakfast cereals" crlf)
+	(printout t "16. Specific food" crlf)
+	(printout t crlf)
 	(bind ?pref (pregunta-lista "Separate your answer with a blank between each identifier (in case there are several) : "))
 
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(PreferenciaP Carn)))
-			(case 2 then   (assert(PreferenciaP Peix)))
-			(case 3 then   (assert(PreferenciaP Fruita)))
-			(case 4 then   (assert(PreferenciaP Fruits_secs)))
-			(case 5 then   (assert(PreferenciaP Lactic)))
-			(case 6 then
+			(case 1 then   (assert(PreferenciaP Meet)))
+			(case 2 then   (assert(PreferenciaP Fruit)))
+			(case 3 then   (assert(PreferenciaP Soups)))
+			(case 4 then   (assert(PreferenciaP Pasta)))
+			(case 5 then   (assert(PreferenciaP Nut)))
+			(case 6 then   (assert(PreferenciaP Herbs)))
+			(case 7 then   (assert(PreferenciaP Dairy_Eggs)))
+			(case 8 then   (assert(PreferenciaP Vegetables)))
+			(case 9 then   (assert(PreferenciaP Legumes)))
+			(case 10 then   (assert(PreferenciaP Snacks)))
+			(case 11 then   (assert(PreferenciaP Backed)))
+			(case 12 then   (assert(PreferenciaP Fish)))
+			(case 13 then   (assert(PreferenciaP Fats_Oils)))
+			(case 14 then   (assert(PreferenciaP Sweats)))
+			(case 15 then   (assert(PreferenciaP Breakfast_Cereals)))
+			(case 16 then
                 (printout t crlf)
                 (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
                 (assert (PreferenciaP ?q)))
@@ -1268,33 +860,30 @@
 	=>
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
-	(assert (PreferenciaP Lactic))
-	(assert (PreferenciaP Peix))
-	(assert (PreferenciaP Cereals))
-	(assert (PreferenciaP Patata))
-	(assert (PreferenciaP Llegums))
-	(assert (PreferenciaP Greixos))
+	(assert (PreferenciaP Dairy_Eggs))
+	(assert (PreferenciaP Fish))
+	(assert (PreferenciaP Pasta))
+	(assert (PreferenciaP Potatoe))
+	(assert (PreferenciaP Legumes))
+	;(assert (PreferenciaP Greixos)) ;Vigilar perque aixo tant sols es un nutrient
 
 
 	(assert (PreferenciesN S))
 	(assert (PreferenciesAfegidesN))
-	(assert (PreferenciaN Chocolata))
-	(assert (PreferenciaN Carnsvermelles))
+	(assert (PreferenciaN Chocolate))
+	;(assert (PreferenciaN Carnsvermelles)) Aixo es un subtipus. Definir alguns exemples concrets
 	(assert (PreferenciaN Ramen))
-	(assert (PreferenciaN Begudesambsucre))
 	(assert (PreferenciaN Mostassa))
 	(assert (PreferenciaN regaliz))
 	(assert (PreferenciaN patatas))
-	(assert (PreferenciaN begudesalcoholicas))
-	(assert (PreferenciaN begudesambgas))
 
 	;afegir carns amb poc greix (Aquesta sintexis per eliminar els plats que ho compleixin)
-	;(assert (RestriccionsAfegidesFamiliaNutrient))
-	;(assert (RestriccioFamiliaNutrient Carn Greixos 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
+	(assert (RestriccionsAfegidesFamiliaNutrient))
+	(assert (RestriccioFamiliaNutrient Meet Greixos 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
 
 		;afegir carns amb poc greix (Aquesta sintaxis per preferir no consumir els plats que ho compleixin)
-	(assert (PreferenciesAfegidesFamiliaNutrient))
-	(assert (PreferenciesFamiliaNutrient Carn Greixos 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
+	;(assert (PreferenciesAfegidesFamiliaNutrient))
+	;(assert (PreferenciesFamiliaNutrient Carn Greixos 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
 
 )
 
@@ -1308,10 +897,10 @@
 	(assert (PreferenciesN S))
 	(assert (PreferenciesAfegidesN))
 
-	(assert (PreferenciaP Plàtan))
-	(assert (PreferenciaP Arandanos))
+	(assert (PreferenciaP Banana))
+	(assert (PreferenciaP Strawberries))
 	(assert (PreferenciaP Semillas))
-	(assert (PreferenciaP Fruits_secs))
+	(assert (PreferenciaP Nuts))
 	(assert (PreferenciaP Canela))
 	(assert (PreferenciaP Trigo))
 	(assert (PreferenciaP Olives))
@@ -1322,14 +911,14 @@
 	(assert (PreferenciaN alimentosazucarados))
 	(assert (PreferenciaN alimentosconsodio))
 	(assert (PreferenciaN harinasrefinadas))
-	(assert (PreferenciaN Lactic))
-	(assert (PreferenciaN mel))
-	(assert (PreferenciaN carmels))
-	(assert (PreferenciaN chocolatablanca))
-	(assert (PreferenciaN donuts))
-	(assert (PreferenciaN sucre))
-	(assert (PreferenciaN sucre de fruita))
-	(assert (PreferenciaN bolleria en general))
+	(assert (PreferenciaN Dairy_Eggs))
+	(assert (PreferenciaN Honey))
+	(assert (PreferenciaN Sweets))
+	(assert (PreferenciaN White chocolate))
+	(assert (PreferenciaN Donuts))
+	(assert (PreferenciaN sucre))  ;aixo es un nutrient dels ingredients
+	(assert (PreferenciaN Fruit))
+	(assert (PreferenciaN Fats_Oils))
 )
 
 (defrule MALALTIES::passemAFiltrat "No fa res. Passem al seguent modul"
@@ -2016,26 +1605,25 @@
 (assert (dia 1))
 )
 
+
+
 (defrule MENUS::MostrarHemArribatAlFinal "Aqui simplement indiquem que ja no es debug i que treiem el menu"
-(nou_usuari)
+?n <- (nou_usuari)
 (menuCompletat)
 =>
+(retract ?n)
 (assert (imprimir))
 (printout t crlf)
 (printout t "---------------------------------------------------------------" crlf)
 (printout t "------------------     Final weekly menu     ------------------" crlf)
 (printout t "---------------------------------------------------------------" crlf)
 (printout t crlf)
-
 )
 
 
-
 (defrule MENUS::MostrarMenuDefinitiu "Aquesta regla mostra els menus definitius"
-    (nou_usuari)
     (menuCompletat)
     (imprimir)
-
     ?dd <- (dia ?d)
     (test (<= ?d 7))
 
