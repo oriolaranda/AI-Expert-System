@@ -242,6 +242,83 @@
 
 (definstances instances
 
+([I1001] of InfoIngredient
+    (Familia "Dairy and Egg Products")
+    (Nom_ingredient "Butter, salted")
+    (Nutrients [I1001N0] [I1001N1] [I1001N2] [I1001N3] [I1001N4] [I1001N5] [I1001N6] [I1001N7] [I1001N8])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 717))    ;sobre un parentesis despres del nom de la instancia
+
+([I1001N0] of  Nutrient
+    (Quantitat_nutrient 15.87)
+    (Tipus_nutrient Aigua))
+([I1001N1] of  Nutrient
+    (Quantitat_nutrient 719.91)
+    (Tipus_nutrient Minerals))
+([I1001N2] of  Nutrient
+    (Quantitat_nutrient 0.85)
+    (Tipus_nutrient Proteines))
+([I1001N3] of  Nutrient
+    (Quantitat_nutrient 2501.6030000000005)
+    (Tipus_nutrient Vitamines))
+([I1001N4] of  Nutrient
+    (Quantitat_nutrient 0.0)
+    (Tipus_nutrient Fibra))
+([I1001N5] of  Nutrient
+    (Quantitat_nutrient 0.06)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I1001N6] of  Nutrient
+    (Quantitat_nutrient 81.11)
+    (Tipus_nutrient Greixos))
+([I1001N7] of  Nutrient
+    (Quantitat_nutrient 215.0)
+    (Tipus_nutrient Colesterol))
+([I1001N8] of  Nutrient
+    (Quantitat_nutrient 0.06)
+    (Tipus_nutrient Sucre))
+
+
+
+([I1002] of InfoIngredient
+    (Familia "Dairy and Egg Products")
+    (Nom_ingredient "Butter, whipped, with salt")
+    (Nutrients [I1002N0] [I1002N1] [I1002N2] [I1002N3] [I1002N4] [I1002N5] [I1002N6] [I1002N7] [I1002N8])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic%28kcal%29 718))
+
+([I1002N0] of  Nutrient
+    (Quantitat_nutrient 16.72)
+    (Tipus_nutrient Aigua))
+([I1002N1] of  Nutrient
+    (Quantitat_nutrient 674.9109999999998)
+    (Tipus_nutrient Minerals))
+([I1002N2] of  Nutrient
+    (Quantitat_nutrient 0.49)
+    (Tipus_nutrient Proteines))
+([I1002N3] of  Nutrient
+    (Quantitat_nutrient 2469.545)
+    (Tipus_nutrient Vitamines))
+([I1002N4] of  Nutrient
+    (Quantitat_nutrient 0.0)
+    (Tipus_nutrient Fibra))
+([I1002N5] of  Nutrient
+    (Quantitat_nutrient 2.87)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I1002N6] of  Nutrient
+    (Quantitat_nutrient 78.3)
+    (Tipus_nutrient Greixos))
+([I1002N7] of  Nutrient
+    (Quantitat_nutrient 225.0)
+    (Tipus_nutrient Colesterol))
+([I1002N8] of  Nutrient
+    (Quantitat_nutrient 0.06)
+    (Tipus_nutrient Sucre))
+
+
+
+
+
+
 ([IA_Instance_1] of  Plat
 	(Apat Dinar Sopar)
 	(Ingredients [IA_Instance_2])
