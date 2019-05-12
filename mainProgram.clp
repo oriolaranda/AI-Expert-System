@@ -321,7 +321,7 @@
 
 ([I0_N0] of  Nutrient
 
-    (Quantitat_nutrient 0.3)
+    (Quantitat_nutrient 11)
     (Tipus_nutrient Greixos))
 
 
@@ -341,7 +341,7 @@
 
 ([I1_N0] of  Nutrient
 
-    (Quantitat_nutrient 0.3)
+    (Quantitat_nutrient 11)
     (Tipus_nutrient Greixos))
 
 
@@ -1191,17 +1191,16 @@
 	=>
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
-	(assert (PreferenciesN S))
-	(assert (PreferenciesAfegidesN))
-
 	(assert (PreferenciaP Lactic))
 	(assert (PreferenciaP Peix))
-	;afegir carns amb poc greix
 	(assert (PreferenciaP Cereals))
 	(assert (PreferenciaP Patata))
 	(assert (PreferenciaP Llegums))
 	(assert (PreferenciaP Greixos))
 
+
+	(assert (PreferenciesN S))
+	(assert (PreferenciesAfegidesN))
 	(assert (PreferenciaN Chocolata))
 	(assert (PreferenciaN Carnsvermelles))
 	(assert (PreferenciaN Ramen))
@@ -1211,6 +1210,15 @@
 	(assert (PreferenciaN patatas))
 	(assert (PreferenciaN begudesalcoholicas))
 	(assert (PreferenciaN begudesambgas))
+
+	;afegir carns amb poc greix (Aquesta sintexis per eliminar els plats que ho compleixin)
+	;(assert (RestriccionsAfegidesFamiliaNutrient))
+	;(assert (RestriccioFamiliaNutrient Carn Greixos 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
+
+		;afegir carns amb poc greix (Aquesta sintaxis per preferir no consumir els plats que ho compleixin)
+	(assert (PreferenciesAfegidesFamiliaNutrient))
+	(assert (PreferenciesFamiliaNutrient Carn Greixos 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
+
 )
 
 (defrule MALALTIES::diabetis "Aqui definim els fets que implica"
@@ -1269,7 +1277,7 @@
 )
 
 
-(defrule FILTRAT::filtremPlatsRestringuits "aqui intentem potenciar els plats que tenen productes de temporada"
+(defrule FILTRAT::filtremPlatsRestringuits "aqui eliminem els plats que tenen algun producte prohibit"
     (nou_usuari)
     (RestriccionsAfegides)
     (Restriccio $?P)   ;poden haveri varies coses a potenciar
@@ -1299,34 +1307,42 @@
      )
 )
 
-;(defrule FILTRAT::filtremIngredientsRestringits
-;		(nou_usuari)
-;		(Nutrient ?N)
-;		(Quantitat_nutrient ?Q)
-;		?plat <- (object (is-a Plat))
-;
-;		=>
-;		(bind ?i 1)
-;		(bind ?FI FALSE)
-;
-;			(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
-;			do
-;				(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
-;				(if (member$ (send ?ingredient get-Nutrients) ?N) then
-;					(bind ?j 1)
-;					(while (and (eq ?FI FALSE) (<= ?i (length$ (send ?ingredient get-Nutrients))))
-;						(bind ?nutrient (nth$ ?i (send ?I get-Nutrients))) ;agafem el n-èssim ingredient
-;						(if (and (= ?nutrient ?N)(< ?Q ?nutrient get-Quantitat))
-;							(printout t " Eliminem el plat " (instance-name ?plat) crlf)
-;							(send ?plat delete)
-;							(bind ?FI TRUE)
-;						)
-;						(bind ?j (+ ?j 1))
-;					)
-;				)
-;				(bind ?i (+ ?i 1))
-;			)
-;)
+(defrule FILTRAT::filtremPlatsRestringuits "aqui eliminem els plats que contenen algun producte que conte un nutrient que amb una certa quantitat es prohibida"
+    (nou_usuari)
+    (RestriccionsAfegidesFamiliaNutrient)
+    (RestriccioFamiliaNutrient ?f ?n ?q)   ;poden haveri varies coses a potenciar
+    ?plat <- (object (is-a Plat))
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+    (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients)))) ;recorrem tots els seus ingredients
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+        ;Comprovem si pertany a una familia a potenciar
+        (if (eq (send ?ingredientGeneral get-Familia) ?f) then    ;comprovem si son de la mateixa familia
+
+			;Recorrem els seus nutrients
+            (bind ?j 1)
+            (while (and (eq ?FI FALSE) (<= ?j (length$ (send ?ingredientGeneral get-Nutrients))))	;recorrem tots els nutrients
+					(bind ?nutrient (nth$ ?j (send ?ingredientGeneral get-Nutrients)))
+
+					(bind ?tipus (send ?nutrient get-Tipus_nutrient))
+					(bind ?quantitat (send ?nutrient get-Quantitat_nutrient))	;tenim la quantitat de nutrients per cada 100g
+
+					;Comprovem si es del tipus de nutrient passat i en te la suficient quantitat de greix
+                    (if (and (eq ?tipus ?n) (>= ?quantitat ?q)) then
+                        (printout t " Eliminem el plat " (instance-name ?plat) " per contenir " ?quantitat " grams del nutrient " ?n crlf)
+                        (send ?plat delete)
+                        (bind ?FI TRUE)
+                    )
+
+            (bind ?j (+ ?j 1)))
+        )
+        (bind ?i (+ ?i 1))
+     )
+)
+
 
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
@@ -1406,6 +1422,44 @@
             (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
             (send ?plat put-GrauRecomanacio ?grau))
         )
+
+        (bind ?i (+ ?i 1))
+     )
+)
+
+
+;Nomes esta fet el cas negatiu. Indicar aquells plats no preferibles si son d'una certa familia i tenen una certa quantitat d'un nutrient
+(defrule PREFERENCIES::NopreferirPerFamiliaINutrient "aqui fem que siguin menys preferibles els plats que contenen algun producte que conte un nutrient que amb una certa quantitat es prohibida"
+
+    (nou_usuari)
+    (PreferenciesAfegidesFamiliaNutrient)
+    (PreferenciesFamiliaNutrient ?f ?n ?q)   ;poden haveri varies coses a potenciar
+    ?plat <- (object (is-a Plat))
+	=>
+	(bind ?i 1)
+	(bind ?FI FALSE)
+    (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients)))) ;recorrem tots els seus ingredients
+      do
+        (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+        (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+        ;Comprovem si pertany a una familia a potenciar
+        (if (eq (send ?ingredientGeneral get-Familia) ?f) then    ;comprovem si son de la mateixa familia
+
+			;Recorrem els seus nutrients
+            (bind ?j 1)
+            (while (and (eq ?FI FALSE) (<= ?j (length$ (send ?ingredientGeneral get-Nutrients))))	;recorrem tots els nutrients
+					(bind ?nutrient (nth$ ?j (send ?ingredientGeneral get-Nutrients)))
+
+					(bind ?tipus (send ?nutrient get-Tipus_nutrient))
+					(bind ?quantitat (send ?nutrient get-Quantitat_nutrient))	;tenim la quantitat de nutrients per cada 100g
+
+					;Comprovem si es del tipus de nutrient passat i en te la suficient quantitat de greix
+                    (if (and (eq ?tipus ?n) (>= ?quantitat ?q)) then
+                        (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient que conte " ?quantitat " grams de " ?tipus crlf)
+                        (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
+                        (send ?plat put-GrauRecomanacio ?grau))
+            (bind ?j (+ ?j 1)))
+            )
 
         (bind ?i (+ ?i 1))
      )
