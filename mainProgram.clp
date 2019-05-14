@@ -337,33 +337,45 @@
 
 )
 
-
 (deftemplate MAIN::restriccionsNutricionalsDiaries "aqui indiquem les diferents restriccions nutricionals d'un horari (kcal i la resta grams)"
-	(slot kilocalories (type INTEGER))
-	(slot vitamines (type INTEGER))
-	(slot hidratsCarboni (type INTEGER))
-	(slot greixosMaxims (type INTEGER))
-	(slot proteines (type INTEGER))
-    (slot fibra (type INTEGER))
-	(slot minerals (type INTEGER))
-	(slot sucre (type INTEGER))
-	(slot colesterol (type INTEGER))
+	(slot kilocalories (type FLOAT) (default 0.0))
+	(slot vitamines (type FLOAT)(default 0.0))
+	(slot hidratsCarboni (type FLOAT)(default 0.0))
+	(slot greixosMaxims (type FLOAT)(default 0.0))
+	(slot proteines (type FLOAT)(default 0.0))
+    (slot fibra (type FLOAT)(default 0.0))
+	(slot minerals (type FLOAT)(default 0.0))
+	(slot sucre (type FLOAT)(default 0.0))
+	(slot colesterol (type FLOAT)(default 0.0))
 )
 
 
 (deftemplate MAIN::infoNutricionalPlat "aqui mantindrem comptatge dels nutrients que té un plat"
 	(slot plat (type INSTANCE) (allowed-classes Plat))
-	(slot Aigua (type INTEGER) (default 0))
-	(slot Minerals (type INTEGER) (default 0))
-	(slot Proteines (type INTEGER) (default 0))
-	(slot Vitamines (type INTEGER) (default 0))
-	(slot Fibra (type INTEGER) (default 0))
-	(slot Hidrats_de_carboni (type INTEGER) (default 0))
-	(slot Greixos (type INTEGER) (default 0))
-    (slot Sucre (type INTEGER) (default 0))
-    (slot Colesterol (type INTEGER) (default 0))
+	(slot Aigua (type FLOAT) (default 0.0))
+	(slot Minerals (type FLOAT) (default 0.0))
+	(slot Proteines (type FLOAT) (default 0.0))
+	(slot Vitamines (type FLOAT) (default 0.0))
+	(slot Fibra (type FLOAT) (default 0.0))
+	(slot Hidrats_de_carboni (type FLOAT) (default 0.0))
+	(slot Greixos (type FLOAT) (default 0.0))
+    (slot Sucre (type FLOAT) (default 0.0))
+    (slot Colesterol (type FLOAT) (default 0.0))
+    (slot Energia (type FLOAT) (default 0.0))
 )
 
+(deftemplate MAIN::infoNutricionalMenu "aqui mantindrem comptatge dels nutrients que té un plat"
+	(slot Aigua (type FLOAT) (default 0.0))
+	(slot Minerals (type FLOAT) (default 0.0))
+	(slot Proteines (type FLOAT) (default 0.0))
+	(slot Vitamines (type FLOAT) (default 0.0))
+	(slot Fibra (type FLOAT) (default 0.0))
+	(slot Hidrats_de_carboni (type FLOAT) (default 0.0))
+	(slot Greixos (type FLOAT) (default 0.0))
+    (slot Sucre (type FLOAT) (default 0.0))
+    (slot Colesterol (type FLOAT) (default 0.0))
+    (slot Energia (type FLOAT) (default 0.0))
+)
 
 ;;;------------------------------------------------------------------------------------------------------------------------------------------------------
 ;;;----------  					FUNCIONES					 		---------- 								EXTRAS
@@ -1229,7 +1241,9 @@
     (declare (salience 0))
     (nou_usuari)
     (not (FI))
+    (not (AnemACalcular))
     =>
+    (assert (infoNutricionalMenu))
     (assert (menusDiaris creats))
     (assert (menuDiari (dia 1)))
     (assert (menuDiari (dia 2)))
@@ -1239,70 +1253,74 @@
     (assert (menuDiari (dia 6)))
     (assert (menuDiari (dia 7)))
     (assert (PrimeraPosicio 1))
-		(assert (counter 1))
+    (assert (counter 1))
 )
 
 (defrule MENUS::inicialitzemInformacioPlats "aqui tant sols creem els fets de la informacio nutricional de cada plat"
 	(nou_usuari)
 	?plat <- (object (is-a Plat))
+	(not (AnemACalcular))
 	=>
 	(assert (infoNutricionalPlat (plat ?plat)))	;creem la informacio nutricional del plat
 )
 
 
 (defrule MENUS::obtenirInfoNutricionalPlat "aqui sumarem la informacio nutricional de cada ingredient del plat"
-(nou_usuari)
-?plat <- (object (is-a Plat))
-(not(ValorNutricional ?plat))
+    (nou_usuari)
+    (not (AnemACalcular))
+    ?plat <- (object (is-a Plat))
+    (not(ValorNutricional ?plat))
 
-?infoPlat <- (infoNutricionalPlat (plat ?plat)(Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (Greixos ?g) (Aigua ?a) (Minerals ?m) (Fibra ?f)(Sucre ?s)(Colesterol ?col))
 
-=>
-(bind ?i 1)
-(while (<= ?i (length$ (send ?plat get-Ingredients)))	;Recorrem tots els ingredients
-	do
-		(bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
-		(bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
-		(bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+    ?infoPlat <- (infoNutricionalPlat (plat ?plat)(Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (Greixos ?g) (Aigua ?a) (Minerals ?m) (Fibra ?f)(Sucre ?s)(Colesterol ?col))
 
-		(bind ?j 1)
-		(while (<= ?j (length$ (send ?ingredientGeneral get-Nutrients)))	;recorrem tots els nutrients
-					(bind ?nutrient (nth$ ?j (send ?ingredientGeneral get-Nutrients)))
+    =>
+    (bind ?i 1)
+    (bind ?kcals 0)
+    (while (<= ?i (length$ (send ?plat get-Ingredients)))	;Recorrem tots els ingredients
+        do
+            (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
+            (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
+            (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
+            (bind ?kcal (+ ?kcal (send ?ingredient get-Valor_energetic%28kcal%29)))
+            (bind ?j 1)
+            (while (<= ?j (length$ (send ?ingredientGeneral get-Nutrients)))	;recorrem tots els nutrients
+                        (bind ?nutrient (nth$ ?j (send ?ingredientGeneral get-Nutrients)))
 
-					(bind ?tipus (send ?nutrient get-Tipus_nutrient))
-					(bind ?quantitat (send ?nutrient get-Quantitat_nutrient))	;tenim la quantitat de nutrients per cada 100g
+                        (bind ?tipus (send ?nutrient get-Tipus_nutrient))
+                        (bind ?quantitat (send ?nutrient get-Quantitat_nutrient))	;tenim la quantitat de nutrients per cada 100g
 
-					;actualitzem la informació del plat
-					(bind ?quantitatNova (* ?quantitat (/ ?quantitatIngredient 100)))	;trobem la quantitat del nutrient en funcio de la quantitat del ingredient
+                        ;actualitzem la informació del plat
+                        (bind ?quantitatNova (* ?quantitat (/ ?quantitatIngredient 100)))	;trobem la quantitat del nutrient en funcio de la quantitat del ingredient
 
-					 (switch ?tipus
-                        (case Aigua then (bind ?a (+ ?quantitatNova ?a)))
+                        (switch ?tipus
+                            (case Aigua then (bind ?a (+ ?quantitatNova ?a)))
 
-                        (case Minerals then (bind ?m (+ ?quantitatNova ?m)))
+                            (case Minerals then (bind ?m (+ ?quantitatNova ?m)))
 
-                        (case Proteines then (bind ?prot (+ ?quantitatNova ?prot)))
+                            (case Proteines then (bind ?prot (+ ?quantitatNova ?prot)))
 
-                        (case Vitamines then (bind ?vit (+ ?quantitatNova ?vit)))
+                            (case Vitamines then (bind ?vit (+ ?quantitatNova ?vit)))
 
-                        (case Fibra then (bind ?f (+ ?quantitatNova ?f)))
+                            (case Fibra then (bind ?f (+ ?quantitatNova ?f)))
 
-                        (case Hidrats_de_carboni then (bind ?hid (+ ?quantitatNova ?hid)))
+                            (case Hidrats_de_carboni then (bind ?hid (+ ?quantitatNova ?hid)))
 
-                        (case Greixos then (bind ?g (+ ?quantitatNova ?g)))
+                            (case Greixos then (bind ?g (+ ?quantitatNova ?g)))
 
-                        (case Sucre then (bind ?s (+ ?quantitatNova ?s)))
+                            (case Sucre then (bind ?s (+ ?quantitatNova ?s)))
 
-                        (case Colesterol then (bind ?col (+ ?quantitatNova ?col)))
-                    )
+                            (case Colesterol then (bind ?col (+ ?quantitatNova ?col)))
+                        )
 
-		(bind ?j (+ ?j 1))
-		)
+            (bind ?j (+ ?j 1))
+            )
 
-		(bind ?i (+ ?i 1))
- )
- (modify ?infoPlat (Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (Greixos ?g) (Sucre ?s) (Aigua ?a) (Minerals ?m) (Fibra ?f)(Colesterol ?col))
- (assert (ValorNutricional ?plat))
- (assert (ValorsNutricionals afegits))
+            (bind ?i (+ ?i 1))
+    )
+    (modify ?infoPlat (Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (Greixos ?g) (Sucre ?s) (Aigua ?a) (Minerals ?m) (Fibra ?f)(Colesterol ?col) (Energia ?kcals))
+    (assert (ValorNutricional ?plat))
+    (assert (ValorsNutricionals afegits))
 
 )
 
@@ -1312,6 +1330,7 @@
     (declare (salience 1))
 	(nou_usuari)
 	(not (FI))
+	(not (AnemACalcular))
 
 	=>
 	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
@@ -1373,6 +1392,7 @@
 (defrule MENUS::ordenarEsmorzars "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
     (declare (salience 0))
 	(not (FI))
+	(not (AnemACalcular))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaE (posicio ?pos1) (plat ?plat1))
 	?p2 <- (solucionOrdenadaE (posicio ?pos2) (plat ?plat2))
@@ -1387,6 +1407,7 @@
 	(declare (salience 0))
 	(not (FI))
 	(nou_usuari)
+	(not (AnemACalcular))
 	?p1 <- (solucionOrdenadaDP (posicio ?pos1) (plat ?plat1))
 	?p2 <- (solucionOrdenadaDP (posicio ?pos2) (plat ?plat2))
 	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
@@ -1399,6 +1420,7 @@
 (defrule MENUS::ordenarDinarSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(declare (salience 0))
 	(not (FI))
+	(not (AnemACalcular))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaDS (posicio ?pos1) (plat ?plat1))
 	?p2 <- (solucionOrdenadaDS (posicio ?pos2) (plat ?plat2))
@@ -1412,6 +1434,7 @@
 (defrule MENUS::ordenarSoparPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(declare (salience 0))
 	(not (FI))
+	(not (AnemACalcular))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaSP (posicio ?pos1) (plat ?plat1))
 	?p2 <- (solucionOrdenadaSP (posicio ?pos2) (plat ?plat2))
@@ -1425,6 +1448,7 @@
 (defrule MENUS::ordenarSoparSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(declare (salience 0))
 	(not (FI))
+	(not (AnemACalcular))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaSS (posicio ?pos1) (plat ?plat1))
 	?p2 <- (solucionOrdenadaSS (posicio ?pos2) (plat ?plat2))
@@ -1439,6 +1463,7 @@
 (defrule MENUS::ordenarPostres "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
 	(declare (salience 0))
 	(not (FI))
+	(not (AnemACalcular))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaP (posicio ?pos1) (plat ?plat1))
 	?p2 <- (solucionOrdenadaP (posicio ?pos2) (plat ?plat2))
@@ -1454,6 +1479,7 @@
 (defrule MENUS::seleccionar7Esmorzars  "regla para mostrar solo 6 recomendaciones"
     (declare (salience -1))
 	(nou_usuari)
+	(not (AnemACalcular))
 	(ValorsNutricionals afegits)
 	(not (Esmorzars omplerts))
 
@@ -1487,6 +1513,7 @@
 (defrule MENUS::recuperemCounters1 "Tornem a settejar les variables per tornar a fer el counting"
     (declare (salience -1))
     (nou_usuari)
+    (not (AnemACalcular))
     (not (Esmorzars omplerts))
     (not(FI))
     ?pph <- (PrimeraPosicio ?)
@@ -1502,6 +1529,7 @@
 (defrule MENUS::seleccionar7DinarPrimers  "regla para mostrar solo 6 recomendaciones"
   (declare (salience -1))
 	(nou_usuari)
+	(not (AnemACalcular))
 	(not (DinarP omplerts))
 	(Esmorzars omplerts)
 	(numeroDinarPrimers ?posMaxima)
@@ -1526,115 +1554,118 @@
     )
 )
 
+
 (defrule MENUS::recuperemCounters2 "Tornem a settejar les variables per tornar a fer el counting"
     (declare (salience -1))
     (nou_usuari)
+    (not (AnemACalcular))
     (not(FI))
     (Esmorzars omplerts)
     (not (DinarP omplerts))
     ?pph <- (PrimeraPosicio ?)
-    ?cc <- (counter ?)
+    ?dd <- (dia ?)
     =>
+    (retract ?dd)
     (assert (PrimeraPosicio 1))
-    (assert (counter 1))
+    (assert (dia 1))
     (assert (DinarP omplerts))
+    (assert (AnemACalcular))
 )
 
 
 (defrule MENUS::completarMenu "Completem el menu amb els plats que falten"
-(declare (salience -2))
-(nou_usuari)
-(DinarP omplerts)
-(Esmorzars omplerts)
-(menusDiaris creats)
-(not (menuCompletat))
-(ValorsNutricionals afegits)
 
-;menus
-?menu1 <- (menuDiari (dia 1))
-?menu2 <- (menuDiari (dia 2))
-?menu3 <- (menuDiari (dia 3))
-?menu4 <- (menuDiari (dia 4))
-?menu5 <- (menuDiari (dia 5))
-?menu6 <- (menuDiari (dia 6))
-?menu7 <- (menuDiari (dia 7))
+    (declare (salience -2))
+    (nou_usuari)
+    (AnemACalcular)
+    (DinarP omplerts)
+    (Esmorzars omplerts)
+    (menusDiaris creats)
+    (not (menuCompletat))
+    (ValorsNutricionals afegits)
+    ?dd <- (dia ?d)
+    ?menu <- (menuDiari (dia ?d))
+    (test (<= ?d 8))
 
+    ?recDS1 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS1))
+    ?recDPostres1 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres1))
+    ?recSP1 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP1))
+    ?recSS1 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS1))
+    ?recSPostres1 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres1))
 
-;anem a obtenir els limits nutricionals
-(restriccionsNutricionalsDiaries (kilocalories ?k) (vitamines ?v) (hidratsCarboni ?hc)(greixosMaxims ?g) (proteines ?p) (fibra ?f) (minerals ?m) (sucre ?s)(colesterol ?col))
-
-;agafem els possibles plats DILLUNS
-?recDS1 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS1))
-?recDPostres1 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres1))
-?recSP1 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP1))
-?recSS1 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS1))
-?recSPostres1 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres1))
-
-;agafem els possibles plats DIMARTS
-?recDS2 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS2))
-?recDPostres2 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres2))
-?recSP2 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP2))
-?recSS2 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS2))
-?recSPostres2 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres2))
-
-;agafem els possibles plats DIMECRES
-?recDS3 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS3))
-?recDPostres3 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres3))
-?recSP3 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP3))
-?recSS3 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS3))
-?recSPostres3 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres3))
-
-;agafem els possibles plats DIJOUS
-?recDS4 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS4))
-?recDPostres4 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres4))
-?recSP4 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP4))
-?recSS4 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS4))
-?recSPostres4 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres4))
-
-;agafem els possibles plats DIVENDRES
-?recDS5 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS5))
-?recDPostres5 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres5))
-?recSP5 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP5))
-?recSS5 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS5))
-?recSPostres5 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres5))
-
-;agafem els possibles plats DISSABTE
-?recDS6 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS6))
-?recDPostres6 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres6))
-?recSP6 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP6))
-?recSS6 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS6))
-?recSPostres6 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres6))
-
-;agafem els possibles plats DIUMENGE
-?recDS7 <- (solucionOrdenadaDS (posicio ?posDS) (plat ?platDS7))
-?recDPostres7 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres7))
-?recSP7 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP7))
-?recSS7 <- (solucionOrdenadaDS (posicio ?posSS) (plat ?platSS7))
-?recSPostres7 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres7))
+    =>
+    (if (< ?d 8) then
+        (modify ?menu (dinarSegon ?platDS1) (soparPrimer ?platSP1) (soparSegon ?platSS1)(dinarPostres ?platDPostres1)(soparPostres ?platSPostres1))
+        (retract ?dd)
+        (assert (dia (+ ?d 1)))
+    else
+        (assert (menuCompletat))
+        (assert (dia ))
+    )
+)
 
 
 
 
-;anem a comprovar si compleix les restriccions
-;comprovar no menjar primer i segon plat del mateix tipus
-;comprovar kcal
-;comprovar fibra
-;comprovar hidrats
-;no repetir postres en un mateix dia
+(defrule MENUS::calculValorNutricionalMenu "Calculem el total de nutrients que consumim semanalment"
+	(nou_usuari)
+	?mc <- (menuCompletat)
+	(AnemACalcular)
+	?dd <- (dia ?d)    ;aquest counter ens indica el nombre d'elements tractats
+    (test (<= ?d 8))
+    (menuDiari (dia ?d) (esmorzar ?platE) (dinarPrimer ?platDP)(dinarSegon ?platDS) (soparPrimer ?platSP) (soparSegon ?platSS)(dinarPostres ?platDPostres)(soparPostres ?platSPostres))
 
-;FALTA TOT AIXO
+    ?ms <- (infoNutricionalMenu (Aigua ?a0) (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
+
+	?n1 <- (infoNutricionalPlat (plat ?platE)(Aigua ?a1) (Minerals ?m1) (Proteines ?p1) (Vitamines ?v1) (Fibra ?f1)(Hidrats_de_carboni ?h1) (Greixos ?g1) (Sucre ?s1) (Colesterol ?c1)(Energia ?e1))
+	?n2 <- (infoNutricionalPlat (plat ?platDP)(Aigua ?a2) (Minerals ?m2) (Proteines ?p2) (Vitamines ?v2) (Fibra ?f2)(Hidrats_de_carboni ?h2) (Greixos ?g2) (Sucre ?s2) (Colesterol ?c2)(Energia ?e2))
+	?n3 <- (infoNutricionalPlat (plat ?platDS)(Aigua ?a3) (Minerals ?m3) (Proteines ?p3) (Vitamines ?v3) (Fibra ?f3)(Hidrats_de_carboni ?h3) (Greixos ?g3) (Sucre ?s3) (Colesterol ?c3)(Energia ?e3))
+	?n4 <- (infoNutricionalPlat (plat ?platSP)(Aigua ?a4) (Minerals ?m4) (Proteines ?p4) (Vitamines ?v4) (Fibra ?f4)(Hidrats_de_carboni ?h4) (Greixos ?g4) (Sucre ?s4) (Colesterol ?c4)(Energia ?e4))
+	?n5 <- (infoNutricionalPlat (plat ?platSS)(Aigua ?a5) (Minerals ?m5) (Proteines ?p5) (Vitamines ?v5) (Fibra ?f5)(Hidrats_de_carboni ?h5) (Greixos ?g5) (Sucre ?s5) (Colesterol ?c5)(Energia ?e5))
+	?n6 <- (infoNutricionalPlat (plat ?platDPostres)(Aigua ?a6) (Minerals ?m6) (Proteines ?p6) (Vitamines ?v6) (Fibra ?f6)(Hidrats_de_carboni ?h6) (Greixos ?g6) (Sucre ?s6) (Colesterol ?c6)(Energia ?e6))
+	?n7 <- (infoNutricionalPlat (plat ?platSPostres)(Aigua ?a7) (Minerals ?m7) (Proteines ?p7) (Vitamines ?v7) (Fibra ?f7)(Hidrats_de_carboni ?h7) (Greixos ?g7) (Sucre ?s7) (Colesterol ?c7)(Energia ?e7))
+
+	=>
+	(if (eq ?d 8) then     ;si ja ens hem passat
+        (assert(valorNutricionalCalculat))
+
+    else
+        (printout t "Dia " ?d crlf)
+        (bind ?a (+ ?a0 ?a1 ?a2 ?a3 ?a4 ?a5 ?a6 ?a7))
+        (bind ?m (+ ?m0 ?m1 ?m2 ?m3 ?m4 ?m5 ?m6 ?m7))
+        (bind ?p (+ ?p0 ?p1 ?p2 ?p3 ?p4 ?p5 ?p6 ?p7))
+        (bind ?v (+ ?v0 ?v1 ?v2 ?v3 ?v4 ?v5 ?v6 ?v7))
+        (bind ?f (+ ?f0 ?f1 ?f2 ?f3 ?f4 ?f5 ?f6 ?f7))
+        (bind ?h (+ ?h0 ?h1 ?h2 ?h3 ?h4 ?h5 ?h6 ?h7))
+        (bind ?g (+ ?g0 ?g1 ?g2 ?g3 ?g4 ?g5 ?g6 ?g7))
+        (bind ?s (+ ?s0 ?s1 ?s2 ?s3 ?s4 ?s5 ?s6 ?s7))
+        (bind ?c (+ ?c0 ?c1 ?c2 ?c3 ?c4 ?c5 ?c6 ?c7))
+        (bind ?e (+ ?e0 ?e1 ?e2 ?e3 ?e4 ?e5 ?e6 ?e7))
+
+        (modify ?ms (Aigua ?a) (Minerals ?m) (Proteines ?p) (Vitamines ?v) (Fibra ?f)(Hidrats_de_carboni ?h) (Greixos ?g) (Sucre ?s) (Colesterol ?c)(Energia ?e))
+        (retract ?dd)
+        (assert (dia (+ ?d 1))))  ;iterem sobre el seguent dia
+)
+
+
+
+(defrule MENUS::ComprovemMenu "Aqui comprovem si el menu compleix les nostres condicions nutricionals"
+    ?mc <- (menuCompletat)
+    ?vn <- (valorNutricionalCalculat)
+
+   (infoNutricionalMenu (Aigua ?a1) (Minerals ?m1) (Proteines ?p1) (Vitamines ?v1) (Fibra ?f1)(Hidrats_de_carboni ?h1) (Greixos ?g1) (Sucre ?s1) (Colesterol ?c1)(Energia ?e1))
+   (restriccionsNutricionalsDiaries (kilocalories ?e2) (vitamines ?v2) (hidratsCarboni ?h2)(greixosMaxims ?g2) (proteines ?p2) (fibra ?f2) (minerals ?m2) (sucre ?s2)(colesterol ?c2))
 
 =>
-(modify ?menu1 (dinarSegon ?platDS1) (soparPrimer ?platSP1) (soparSegon ?platSS1)(dinarPostres ?platDPostres1)(soparPostres ?platSPostres1))
-(modify ?menu2 (dinarSegon ?platDS2) (soparPrimer ?platSP2) (soparSegon ?platSS2)(dinarPostres ?platDPostres2)(soparPostres ?platSPostres2))
-(modify ?menu3 (dinarSegon ?platDS3) (soparPrimer ?platSP3) (soparSegon ?platSS3)(dinarPostres ?platDPostres3)(soparPostres ?platSPostres3))
-(modify ?menu4 (dinarSegon ?platDS4) (soparPrimer ?platSP4) (soparSegon ?platSS4)(dinarPostres ?platDPostres4)(soparPostres ?platSPostres4))
-(modify ?menu5 (dinarSegon ?platDS5) (soparPrimer ?platSP5) (soparSegon ?platSS5)(dinarPostres ?platDPostres5)(soparPostres ?platSPostres5))
-(modify ?menu6 (dinarSegon ?platDS6) (soparPrimer ?platSP6) (soparSegon ?platSS6)(dinarPostres ?platDPostres6)(soparPostres ?platSPostres6))
-(modify ?menu7 (dinarSegon ?platDS7) (soparPrimer ?platSP7) (soparSegon ?platSS7)(dinarPostres ?platDPostres7)(soparPostres ?platSPostres7))
+    ;falta incloure rangs per veure que estiguin dins (treure l'aigua??) Incloure les kcal
+    (if (and (> ?v1 ?v2) (< ?p1 ?p2) (> ?f1 ?f2) (< ?h1 ?h2) (< ?g1 ?g2) (> ?m1 ?m2) (< ?c1 ?c2) (< ?s1 ?s2) (< ?e1 ?e2)) then
+        (assert(menuCompletat)) ;si correcte
 
-(assert (menuCompletat))
-(assert (dia 1))
+    else
+        (retract ?mc)
+        (retract ?vn)   ;aixi forcem a tornar a calcular el menu
+    )
+
 )
 
 
@@ -1642,6 +1673,7 @@
 (defrule MENUS::MostrarHemArribatAlFinal "Aqui simplement indiquem que ja no es debug i que treiem el menu"
 (nou_usuari)
 (menuCompletat)
+(AnemACalcular)
 =>
 (assert (imprimir))
 (printout t crlf)
@@ -1652,8 +1684,9 @@
 )
 
 
+
 (defrule MENUS::MostrarMenuDefinitiu "Aquesta regla mostra els menus definitius"
-    (menuCompletat)
+    (menuCorrecte)
     (imprimir)
     ?dd <- (dia ?d)
     (test (<= ?d 7))
