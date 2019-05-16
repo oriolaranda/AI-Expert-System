@@ -1542,6 +1542,7 @@
 
 		;aqui sabem el que tenim
 		?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
+
 		?r <- (restriccionsNutricionalsDiaries (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
 
         ;Trobem combinacions dels plats
@@ -1569,8 +1570,6 @@
 		?menu5 <- (menuDiari (dia 5))
 		?menu6 <- (menuDiari (dia 6))
 		?menu7 <- (menuDiari (dia 7))
-
-        ?msF <- (infoNutricionalMenu (Aigua ?a0) (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
 
 
 		=>
@@ -1609,7 +1608,7 @@
             (modify ?menu7 (dinarSegon ?dinar7)(soparSegon ?sopar7))
 
             ;actualitzem els nutrients del nostre menu
-            (modify ?msF (Minerals (+ ?m ?mFinal)) (Proteines (+ ?p ?protFinal)) (Vitamines (+ ?v ?vitFinal)) (Fibra (+ ?f ?fFinal))(Hidrats_de_carboni (+ ?h ?hidFinal)) (Greixos (+ ?g ?gFinal)) (Sucre (+ ?s ?sFinal)) (Colesterol (+ ?c ?colFinal))(Energia (+ ?e ?kcalFinal)))
+            (modify ?ms (Minerals (+ ?m ?mFinal)) (Proteines (+ ?p ?protFinal)) (Vitamines (+ ?v ?vitFinal)) (Fibra (+ ?f ?fFinal))(Hidrats_de_carboni (+ ?h ?hidFinal)) (Greixos (+ ?g ?gFinal)) (Sucre (+ ?s ?sFinal)) (Colesterol (+ ?c ?colFinal))(Energia (+ ?e ?kcalFinal)))
 
             (assert(menuCompletat))
 
@@ -1752,5 +1751,68 @@
 
         (retract ?dd)
         (assert (dia (+ ?d 1)))
+        (assert (imprimit))
+)
+
+(defrule imprimirValorsNutricionals "Imprimim quins son els valors nutricionals setmanals"
+        (imprimit)
+
+    	?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
+
+		?r <- (restriccionsNutricionalsDiaries (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
+
+        =>
+
+        (printout t crlf)
+        (printout t "---------------------------------------------------------------" crlf)
+        (printout t "-----------     Weekly nutritional information     ------------" crlf)
+        (printout t "---------------------------------------------------------------" crlf)
+        (printout t crlf)
+
+        (printout t "Energy :" crlf)
+        (printout t "Recomended: " ?energia crlf)
+        (printout t "Obtained: " ?e0 crlf)
+        (printout t crlf)
+
+        (printout t "Minerals :" crlf)
+        (printout t "Recomended: " ?minerals crlf)
+        (printout t "Obtained: " ?m0 crlf)
+        (printout t crlf)
+
+        (printout t "Proteins :" crlf)
+        (printout t "Recomended: " ?prot crlf)
+        (printout t "Obtained: " ?p0 crlf)
+        (printout t crlf)
+
+        (printout t "Vitamins :" crlf)
+        (printout t "Recomended: " ?vitamines crlf)
+        (printout t "Obtained: " ?v0 crlf)
+        (printout t crlf)
+
+        (printout t "Fibra :" crlf)
+        (printout t "Recomended: " ?fibra crlf)
+        (printout t "Obtained: " ?f0 crlf)
+        (printout t crlf)
+
+        (printout t "Hidrats :" crlf)
+        (printout t "Recomended: " ?hidrats crlf)
+        (printout t "Obtained: " ?h0 crlf)
+        (printout t crlf)
+
+        (printout t "Greixos :" crlf)
+        (printout t "Recomended: " ?greixosMaxims crlf)
+        (printout t "Obtained: " ?g0 crlf)
+        (printout t crlf)
+
+        (printout t "Sugar :" crlf)
+        (printout t "Recomended: " ?sucre crlf)
+        (printout t "Obtained: " ?s0 crlf)
+        (printout t crlf)
+
+        (printout t "Colesterol :" crlf)
+        (printout t "Recomended: " ?colesterolMax crlf)
+        (printout t "Obtained: " ?c0 crlf)
+        (printout t crlf)
         (assert (FI))
+
 )
