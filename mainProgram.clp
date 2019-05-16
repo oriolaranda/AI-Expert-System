@@ -1533,6 +1533,8 @@
 
 
 ;aqui haurem d'agafar 7 dinars segons i 7 sopars segons. Veure que aquests sumen els valors que busquem. Llavors els assignem
+;Faltaria comprovar que esta dins de un rang, no simplement més gran
+
 (defrule MENUS::completarLaResta "Completem el que queda de menu per tal que compleixi les restriccions"
 		(nou_usuari)
 		(menuCompletat1)
@@ -1753,6 +1755,8 @@
         (assert (dia (+ ?d 1)))
         (assert (imprimit))
 )
+
+
 
 (defrule imprimirValorsNutricionals "Imprimim quins son els valors nutricionals setmanals"
         (imprimit)
