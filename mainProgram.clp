@@ -1495,15 +1495,14 @@
 	?mc <- (menuCompletat1)
 	?dd <- (dia ?d)    ;aquest counter ens indica el nombre d'elements tractats
     (test (<= ?d 8))
-    (menuDiari (dia ?d) (esmorzar ?platE) (dinarPrimer ?platDP)(dinarSegon ?platDS) (soparPrimer ?platSP) (soparSegon ?platSS)(dinarPostres ?platDPostres)(soparPostres ?platSPostres))
+    (menuDiari (dia ?d) (esmorzar ?platE) (dinarPrimer ?platDP) (soparPrimer ?platSP) (dinarPostres ?platDPostres)(soparPostres ?platSPostres))
+
 
   ?ms <- (infoNutricionalMenu (Aigua ?a0) (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
 
 	?n1 <- (infoNutricionalPlat (plat ?platE)(Aigua ?a1) (Minerals ?m1) (Proteines ?p1) (Vitamines ?v1) (Fibra ?f1)(Hidrats_de_carboni ?h1) (Greixos ?g1) (Sucre ?s1) (Colesterol ?c1)(Energia ?e1))
 	?n2 <- (infoNutricionalPlat (plat ?platDP)(Aigua ?a2) (Minerals ?m2) (Proteines ?p2) (Vitamines ?v2) (Fibra ?f2)(Hidrats_de_carboni ?h2) (Greixos ?g2) (Sucre ?s2) (Colesterol ?c2)(Energia ?e2))
-	?n3 <- (infoNutricionalPlat (plat ?platDS)(Aigua ?a3) (Minerals ?m3) (Proteines ?p3) (Vitamines ?v3) (Fibra ?f3)(Hidrats_de_carboni ?h3) (Greixos ?g3) (Sucre ?s3) (Colesterol ?c3)(Energia ?e3))
 	?n4 <- (infoNutricionalPlat (plat ?platSP)(Aigua ?a4) (Minerals ?m4) (Proteines ?p4) (Vitamines ?v4) (Fibra ?f4)(Hidrats_de_carboni ?h4) (Greixos ?g4) (Sucre ?s4) (Colesterol ?c4)(Energia ?e4))
-	?n5 <- (infoNutricionalPlat (plat ?platSS)(Aigua ?a5) (Minerals ?m5) (Proteines ?p5) (Vitamines ?v5) (Fibra ?f5)(Hidrats_de_carboni ?h5) (Greixos ?g5) (Sucre ?s5) (Colesterol ?c5)(Energia ?e5))
 	?n6 <- (infoNutricionalPlat (plat ?platDPostres)(Aigua ?a6) (Minerals ?m6) (Proteines ?p6) (Vitamines ?v6) (Fibra ?f6)(Hidrats_de_carboni ?h6) (Greixos ?g6) (Sucre ?s6) (Colesterol ?c6)(Energia ?e6))
 	?n7 <- (infoNutricionalPlat (plat ?platSPostres)(Aigua ?a7) (Minerals ?m7) (Proteines ?p7) (Vitamines ?v7) (Fibra ?f7)(Hidrats_de_carboni ?h7) (Greixos ?g7) (Sucre ?s7) (Colesterol ?c7)(Energia ?e7))
 
@@ -1515,16 +1514,16 @@
 
     else
         (printout t "Dia " ?d crlf)
-        (bind ?a (+ ?a0 ?a1 ?a2 ?a3 ?a4 ?a5 ?a6 ?a7))	;aigua s'ha de treure de tot arreu
-        (bind ?m (+ ?m0 ?m1 ?m2 ?m3 ?m4 ?m5 ?m6 ?m7))
-        (bind ?p (+ ?p0 ?p1 ?p2 ?p3 ?p4 ?p5 ?p6 ?p7))
-        (bind ?v (+ ?v0 ?v1 ?v2 ?v3 ?v4 ?v5 ?v6 ?v7))
-        (bind ?f (+ ?f0 ?f1 ?f2 ?f3 ?f4 ?f5 ?f6 ?f7))
-        (bind ?h (+ ?h0 ?h1 ?h2 ?h3 ?h4 ?h5 ?h6 ?h7))
-        (bind ?g (+ ?g0 ?g1 ?g2 ?g3 ?g4 ?g5 ?g6 ?g7))
-        (bind ?s (+ ?s0 ?s1 ?s2 ?s3 ?s4 ?s5 ?s6 ?s7))
-        (bind ?c (+ ?c0 ?c1 ?c2 ?c3 ?c4 ?c5 ?c6 ?c7))
-        (bind ?e (+ ?e0 ?e1 ?e2 ?e3 ?e4 ?e5 ?e6 ?e7))
+        (bind ?a (+ ?a0 ?a1 ?a2 ?a4 ?a6 ?a7))	;aigua s'ha de treure de tot arreu
+        (bind ?m (+ ?m0 ?m1 ?m2 ?m4 ?m6 ?m7))
+        (bind ?p (+ ?p0 ?p1 ?p2 ?p4 ?p6 ?p7))
+        (bind ?v (+ ?v0 ?v1 ?v2 ?v4 ?v6 ?v7))
+        (bind ?f (+ ?f0 ?f1 ?f2 ?f4 ?f6 ?f7))
+        (bind ?h (+ ?h0 ?h1 ?h2 ?h4 ?h6 ?h7))
+        (bind ?g (+ ?g0 ?g1 ?g2 ?g4 ?g6 ?g7))
+        (bind ?s (+ ?s0 ?s1 ?s2 ?s4 ?s6 ?s7))
+        (bind ?c (+ ?c0 ?c1 ?c2 ?c4 ?c6 ?c7))
+        (bind ?e (+ ?e0 ?e1 ?e2 ?e4 ?e6 ?e7))
 
         (modify ?ms (Minerals ?m) (Proteines ?p) (Vitamines ?v) (Fibra ?f)(Hidrats_de_carboni ?h) (Greixos ?g) (Sucre ?s) (Colesterol ?c)(Energia ?e))
         (retract ?dd)
@@ -1571,6 +1570,9 @@
 		?menu6 <- (menuDiari (dia 6))
 		?menu7 <- (menuDiari (dia 7))
 
+        ?msF <- (infoNutricionalMenu (Aigua ?a0) (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
+
+
 		=>
 		(bind $?list (obtenirInfoPlats (create$ ?dinar1 ?dinar2 ?dinar3 ?dinar4 ?dinar5 ?dinar6 ?dinar7 ?sopar1 ?sopar2 ?sopar3 ?sopar4 ?sopar5 ?sopar6 ?sopar7)))
 
@@ -1605,6 +1607,10 @@
             (modify ?menu5 (dinarSegon ?dinar5)(soparSegon ?sopar5))
             (modify ?menu6 (dinarSegon ?dinar6)(soparSegon ?sopar6))
             (modify ?menu7 (dinarSegon ?dinar7)(soparSegon ?sopar7))
+
+            ;actualitzem els nutrients del nostre menu
+            (modify ?msF (Minerals (+ ?m ?mFinal)) (Proteines (+ ?p ?protFinal)) (Vitamines (+ ?v ?vitFinal)) (Fibra (+ ?f ?fFinal))(Hidrats_de_carboni (+ ?h ?hidFinal)) (Greixos (+ ?g ?gFinal)) (Sucre (+ ?s ?sFinal)) (Colesterol (+ ?c ?colFinal))(Energia (+ ?e ?kcalFinal)))
+
             (assert(menuCompletat))
 
 
