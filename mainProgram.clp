@@ -3309,6 +3309,23 @@
 	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
 	(modify ?p1 (posicio ?pos2))
 	(modify ?p2 (posicio ?pos1))
+	(assert(totOrdenat))
+)
+
+
+(defrule MENUS::calculaPosicionsAleatories
+    (totOrdenat)
+    (numeroSoparPrimers ?nSP)
+    (numeroDinarPrimers ?nDP)
+    (numeroEsmorzars ?nE)
+    (numeroPostres ?nP)
+    =>
+    (assert (pos1 (random 1 ?nE)))
+    (assert (pos2 (random 1 ?nDP)))
+    (assert (pos3 (random 1 ?nP)))
+    (assert (pos4 (random 1 ?nSP)))
+    (assert (pos5 (random 1 ?nP)))
+    (assert (podemCalcular))
 )
 
 
@@ -3318,8 +3335,23 @@
     (nou_usuari)
     (not (FI))
     (ValorNutricionalPlats)
+    (podemCalcular)
+    (not(menuMigOmplert))
 
     ?dd <- (dia ?d)
+    ?p1 <- (pos1 ?pos1)
+    ?p2 <- (pos2 ?pos2)
+    ?p3 <- (pos3 ?pos3)
+    ?p4 <- (pos4 ?pos4)
+    ?p5 <- (pos5 ?pos5)
+
+    ;Aixo ho farem servir per si ens cal tornar a buscar una altre combinacio
+    (numeroSoparPrimers ?nSP)
+    (numeroDinarPrimers ?nDP)
+    (numeroEsmorzars ?nE)
+    (numeroPostres ?nP)
+
+    ?menu <- (menuDiari (dia ?d))
 
     ;carreguem els nutrients que tenim del menu fins ara
     ?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
@@ -3327,48 +3359,77 @@
     ;carreguem les restriccions nutricionals setmanals
     ?r <- (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
 
-    ?menu <- (menuDiari (dia ?d))
+
     ;si cal podem jugar en marcar nosaltres la posicio per tal que sigui sempre dels primers
-    ?recE <- (solucionOrdenadaE (posicio ?posE) (plat ?platE1))
-    ?recDP1 <- (solucionOrdenadaDP (posicio ?posDP) (plat ?platDP1))
-    ?recDPostres1 <- (solucionOrdenadaP (posicio ?posDPostres) (plat ?platDPostres1))
-    ?recSP1 <- (solucionOrdenadaDS (posicio ?posSP) (plat ?platSP1))
-    ?recSPostres1 <- (solucionOrdenadaP (posicio ?posSPostres) (plat ?platSPostres1))
+    ?recE <- (solucionOrdenadaE (posicio ?pos1) (plat ?platE1))
+    ?recDP1 <- (solucionOrdenadaDP (posicio ?pos2) (plat ?platDP1))
+    ?recDPostres1 <- (solucionOrdenadaP (posicio ?pos3) (plat ?platDPostres1))
+    ?recSP1 <- (solucionOrdenadaDS (posicio ?pos4) (plat ?platSP1))
+    ?recSPostres1 <- (solucionOrdenadaP (posicio ?pos5) (plat ?platSPostres1))
+
+
 
     =>
-        (modify ?menu (esmorzar ?platE1)(dinarPrimer ?platDP1)(soparPrimer ?platSP1)(dinarPostres ?platDPostres1)(soparPostres ?platSPostres1))
+    ;Nomes agafarem plats que siguin recomanables. La eleccio sera aleatoria
+    (if (and (> (send ?platE1 get-GrauRecomanacio) 0)
+             (> (send ?platDP1 get-GrauRecomanacio) 0)
+             (> (send ?platDPostres1 get-GrauRecomanacio) 0)
+             (> (send ?platSP1 get-GrauRecomanacio) 0)
+             (> (send ?platSPostres1 get-GrauRecomanacio) 0))   then   ;comprovem que siguin recomanables
 
         ;actualitzem la informacio del menu setmanal
         (bind $?info (obtenirInfoPlats (create$ ?platE1 ?platDP1 ?platSP1 ?platDPostres1 ?platSPostres1)))
+        (printout t ?info crlf)
+        (printout t ?d crlf)
+        (printout t ?pos1 " " ?pos2 " " ?pos3 " " ?pos4 " "?pos5 crlf)
 
-        ;garantim que en aquell dia no ens hem passat de mes del 50% del recomanat de res
-
+        (modify ?menu (esmorzar ?platE1)(dinarPrimer ?platDP1)(soparPrimer ?platSP1)(dinarPostres ?platDPostres1)(soparPostres ?platSPostres1))
 
         ;calculem els nous valors nutricionals setmanals
-		(bind ?kcal (+ ?e0 (nth$ 1 ?info)))
-		(bind ?prot (+ ?p0 (nth$ 2 ?info)))
-		(bind ?hid (+ ?h0 (nth$ 3 ?info)))
-		(bind ?g (+ ?g0 (nth$ 4 ?info)))
-		(bind ?m (+ ?m0 (nth$ 6 ?info)))
-		(bind ?f (+ ?f0 (nth$ 7 ?info)))
-		(bind ?s (+ ?s0 (nth$ 8 ?info)))
-		(bind ?col (+ ?c0 (nth$ 9 ?info)))
-		(bind ?vit (+ ?v0 (nth$ 10 ?info)))
+        (bind ?kcal (+ ?e0 (nth$ 1 ?info)))
+        (bind ?prot (+ ?p0 (nth$ 2 ?info)))
+        (bind ?hid (+ ?h0 (nth$ 3 ?info)))
+        (bind ?g (+ ?g0 (nth$ 4 ?info)))
+        (bind ?m (+ ?m0 (nth$ 6 ?info)))
+        (bind ?f (+ ?f0 (nth$ 7 ?info)))
+        (bind ?s (+ ?s0 (nth$ 8 ?info)))
+        (bind ?col (+ ?c0 (nth$ 9 ?info)))
+        (bind ?vit (+ ?v0 (nth$ 10 ?info)))
 
-		;actualitzem la info nutricional del menu
+        ;actualitzem la info nutricional del menu
         (modify ?ms (Energia ?kcal)(Minerals ?m) (Proteines ?prot) (Vitamines ?vit) (Fibra ?f)(Hidrats_de_carboni ?hid) (Greixos ?g) (Sucre ?s) (Colesterol ?col))
 
         (retract ?dd)
-        (assert (dia (+ ?d 1)))
+        (assert (dia (+ ?d 1))) ;fem el seguent dia
+    )
+
+     (retract ?p1)
+     (retract ?p2)
+     (retract ?p3)
+     (retract ?p4)
+     (retract ?p5)
+     (assert (pos1 (random 1 ?nE)))
+     (assert (pos2 (random 1 ?nDP)))
+     (assert (pos3 (random 1 ?nP)))
+     (assert (pos4 (random 1 ?nSP)))
+     (assert (pos5 (random 1 ?nP)))
+
+     (if (eq ?d 7) then
+        (assert (menuMigOmplert))
+        (facts))
 )
 
+
+
+
+
+
 (defrule MENUS:reinicialitzemCountersIValorsAleatoris
-    ?dd <- (dia 8)
     (not (FI))
     (numeroSoparSegons ?nSS)
     (numeroDinarSegons ?nDS)
+    (menuMigOmplert)
     =>
-    (retract ?dd)
     (assert (counter 1))
     (assert (menuCompletat1))
     (assert (pos1 (random 1 ?nDS)))
@@ -3447,6 +3508,7 @@
 		?menu7 <- (menuDiari (dia 7))
 
 		=>
+		(printout t "Hi" crlf)
 		(bind $?list (obtenirInfoPlats (create$ ?dinar1 ?dinar2 ?dinar3 ?dinar4 ?dinar5 ?dinar6 ?dinar7 ?sopar1 ?sopar2 ?sopar3 ?sopar4 ?sopar5 ?sopar6 ?sopar7)))
 
         (bind ?kcalFinal (nth$ 1 ?list))
@@ -3481,7 +3543,8 @@
                      (> ?hidFinal (* 0.8 ?h)) ;(< ?hidFinal (* 1.2 ?h))
                      (> ?gFinal (* 0.8 ?g)) ;(< ?mFinal (* 1.2 ?g))
                      (> ?sFinal (* 0.8 ?s)); (< ?sFinal (* 1.2 ?s))
-                    (< ?colFinal (* 1.2 ?c)))
+                  ;  (< ?colFinal (* 1.2 ?c))
+                    )
                 (> ?c 10000)) then
 
             (modify ?menu1 (dinarSegon ?dinar1)(soparSegon ?sopar1))
