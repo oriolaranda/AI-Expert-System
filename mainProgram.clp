@@ -3312,12 +3312,11 @@
 )
 
 
-;ANEM A CALCULAR UN MENU
 
-;Aqui completem el 60% del menu per exemple. De moment no assignem cap segon plat del dinar o sopar
 (defrule MENUS::completarMenu "Completem el menu amb els plats que falten"
     (declare (salience -2))
     (nou_usuari)
+    (not (FI))
     (ValorNutricionalPlats)
 
     ?dd <- (dia ?d)
@@ -3325,6 +3324,8 @@
     ;carreguem els nutrients que tenim del menu fins ara
     ?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
 
+    ;carreguem les restriccions nutricionals setmanals
+    ?r <- (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
 
     ?menu <- (menuDiari (dia ?d))
     ;si cal podem jugar en marcar nosaltres la posicio per tal que sigui sempre dels primers
@@ -3339,7 +3340,11 @@
 
         ;actualitzem la informacio del menu setmanal
         (bind $?info (obtenirInfoPlats (create$ ?platE1 ?platDP1 ?platSP1 ?platDPostres1 ?platSPostres1)))
-        (printout t ?info crlf)
+
+        ;garantim que en aquell dia no ens hem passat de mes del 50% del recomanat de res
+
+
+        ;calculem els nous valors nutricionals setmanals
 		(bind ?kcal (+ ?e0 (nth$ 1 ?info)))
 		(bind ?prot (+ ?p0 (nth$ 2 ?info)))
 		(bind ?hid (+ ?h0 (nth$ 3 ?info)))
@@ -3350,23 +3355,22 @@
 		(bind ?col (+ ?c0 (nth$ 9 ?info)))
 		(bind ?vit (+ ?v0 (nth$ 10 ?info)))
 
-
+		;actualitzem la info nutricional del menu
         (modify ?ms (Energia ?kcal)(Minerals ?m) (Proteines ?prot) (Vitamines ?vit) (Fibra ?f)(Hidrats_de_carboni ?hid) (Greixos ?g) (Sucre ?s) (Colesterol ?col))
 
-        (printout t ?d crlf)
         (retract ?dd)
         (assert (dia (+ ?d 1)))
 )
 
-(defrule MENUS:asdlfj
+(defrule MENUS:reinicialitzemCountersIValorsAleatoris
     ?dd <- (dia 8)
+    (not (FI))
     (numeroSoparSegons ?nSS)
     (numeroDinarSegons ?nDS)
     =>
     (retract ?dd)
     (assert (counter 1))
     (assert (menuCompletat1))
-
     (assert (pos1 (random 1 ?nDS)))
     (assert (pos2 (random 1 ?nDS)))
     (assert (pos3 (random 1 ?nDS)))
@@ -3388,6 +3392,7 @@
 (defrule MENUS::completarLaResta "Completem el que queda de menu per tal que compleixi les restriccions"
 		(nou_usuari)
 		(menuCompletat1)
+		(not (FI))
 		(not (menuCompletat))
 		?p1 <- (pos1 ?pos1)
 		?p2 <- (pos2 ?pos2)
@@ -3403,7 +3408,6 @@
 		?p12 <- (pos12 ?pos12)
 		?p13 <- (pos13 ?pos13)
 		?p14 <- (pos14 ?pos14)
-
 
 		?cc <- (counter ?c)
 
@@ -3443,7 +3447,6 @@
 		?menu7 <- (menuDiari (dia 7))
 
 		=>
-
 		(bind $?list (obtenirInfoPlats (create$ ?dinar1 ?dinar2 ?dinar3 ?dinar4 ?dinar5 ?dinar6 ?dinar7 ?sopar1 ?sopar2 ?sopar3 ?sopar4 ?sopar5 ?sopar6 ?sopar7)))
 
         (bind ?kcalFinal (nth$ 1 ?list))
@@ -3470,15 +3473,15 @@
 
 
         ;Farem les comparacions per a veure si aconseguim que estigui en un rang de +- 20%
-        (if (or (and (and (> ?mFinal (* 0.8 ?m0)) (< ?mFinal (* 1.2 ?m0)))
-                    (and (> ?kcalFinal (* 0.8 ?e0)) (< ?mFinal (* 1.2 ?e0)))
-                    (and (> ?protFinal (* 0.8 ?p0)) (< ?protFinal (* 1.2 ?p0)))
-                    (and (> ?vitFinal (* 0.8 ?v0)) (< ?vitFinal (* 1.2 ?v0)))
-                    (and (> ?fFinal (* 0.8 ?f0)) (< ?fFinal (* 1.2 ?f0)))
-                    (and (> ?hidFinal (* 0.8 ?h0)) (< ?hidFinal (* 1.2 ?h0)))
-                    (and (> ?gFinal (* 0.8 ?g0)) (< ?mFinal (* 1.2 ?g0)))
-                    (and (> ?sFinal (* 0.8 ?s0)) (< ?mFinal (* 1.2 ?s0)))
-                    (< ?colFinal (* 1.2 ?c0)))
+        (if (or (and (> ?mFinal (* 0.8 ?m)) ;(< ?mFinal (* 1.2 ?m))
+                     (> ?kcalFinal (* 0.8 ?e)); (< ?kcalFinal (* 1.2 ?e))
+                     (> ?protFinal (* 0.8 ?p)) ;(< ?protFinal (* 1.2 ?p))
+                     (> ?vitFinal (* 0.8 ?v)); (< ?vitFinal (* 1.2 ?v))
+                     (> ?fFinal (* 0.8 ?f)) ;(< ?fFinal (* 1.2 ?f))
+                     (> ?hidFinal (* 0.8 ?h)) ;(< ?hidFinal (* 1.2 ?h))
+                     (> ?gFinal (* 0.8 ?g)) ;(< ?mFinal (* 1.2 ?g))
+                     (> ?sFinal (* 0.8 ?s)); (< ?sFinal (* 1.2 ?s))
+                    (< ?colFinal (* 1.2 ?c)))
                 (> ?c 10000)) then
 
             (modify ?menu1 (dinarSegon ?dinar1)(soparSegon ?sopar1))
@@ -3489,11 +3492,23 @@
             (modify ?menu6 (dinarSegon ?dinar6)(soparSegon ?sopar6))
             (modify ?menu7 (dinarSegon ?dinar7)(soparSegon ?sopar7))
 
-            ;actualitzem els nutrients del nostre menu
             (modify ?ms (Minerals (+ ?m0 ?mFinal)) (Proteines (+ ?p0 ?protFinal)) (Vitamines (+ ?v0 ?vitFinal)) (Fibra (+ ?f0 ?fFinal))(Hidrats_de_carboni (+ ?h0 ?hidFinal)) (Greixos (+ ?g0 ?gFinal)) (Sucre (+ ?s0 ?sFinal)) (Colesterol (+ ?c0 ?colFinal))(Energia (+ ?e0 ?kcalFinal)))
 
-            (facts)
-            (assert(menuCompletat))
+            (retract ?p1)
+            (retract ?p2)
+            (retract ?p3)
+            (retract ?p4)
+            (retract ?p5)
+            (retract ?p6)
+            (retract ?p7)
+            (retract ?p8)
+            (retract ?p9)
+            (retract ?p10)
+            (retract ?p11)
+            (retract ?p12)
+            (retract ?p13)
+            (retract ?p14)
+            (assert (menuCompletat))
 
 		else  ;fem aquesta "TRAMPA" per tal que segueixi buscant combinacions fins que en trobi una
             (retract ?p1)
@@ -3534,31 +3549,34 @@
 
 
 
-
-
 (defrule MENUS::MostrarHemArribatAlFinal "Aqui simplement indiquem que ja no es debug i que treiem el menu"
-(nou_usuari)
-?mc <- (menuCompletat)
-=>
-(assert (imprimir))
-(printout t crlf)
-(printout t "---------------------------------------------------------------" crlf)
-(printout t "------------------     Final weekly menu     ------------------" crlf)
-(printout t "---------------------------------------------------------------" crlf)
-(printout t crlf)
-(facts)
+    (nou_usuari)
+    (not (FI))
+    ?mc <- (menuCompletat)
+    =>
+    (retract ?mc)
+    (assert (imprimir))
+    (assert (dia 1))
+
+    (printout t crlf)
+    (printout t "---------------------------------------------------------------" crlf)
+    (printout t "------------------     Final weekly menu     ------------------" crlf)
+    (printout t "---------------------------------------------------------------" crlf)
+    (printout t crlf)
 )
 
 
 ;Potser mostrar la informacio nutricional diaria fent una crida a la funcio i imprimint-ho
 (defrule MENUS::MostrarMenuDefinitiu "Aquesta regla mostra els menus definitius"
     (imprimir)
+    (not(imprimit))
     ?dd <- (dia ?d)
     (test (<= ?d 7))
 
     ?menu <- (menuDiari (dia ?d) (esmorzar ?e) (dinarPrimer ?dp) (dinarSegon ?ds) (dinarPostres ?dpostres) (soparPrimer ?sp) (soparSegon ?ss)(soparPostres ?spostres))
     =>
-    (printout t crlf)
+
+   (printout t crlf)
     (printout t crlf)
     (switch ?d
 		(case 1 then (printout t "MONDAY" crlf))
@@ -3662,16 +3680,21 @@
 
         (printout t crlf)
 
-        (retract ?dd)
-        (assert (dia (+ ?d 1)))
-        (assert (imprimit))
+
+        (if (eq ?d 7) then
+            (retract ?dd)
+            (assert(imprimit))
+        else
+            (retract ?dd)
+            (assert (dia (+ ?d 1)))
+        )
 )
 
 
 
 (defrule imprimirValorsNutricionals "Imprimim quins son els valors nutricionals setmanals"
         (imprimit)
-
+        (not (FI))
     	?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
 
 		?r <- (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
