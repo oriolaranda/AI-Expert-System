@@ -238,6 +238,30 @@
 
 (definstances instancies
 
+([I2069] of InfoIngredient
+    (Familia Herbs)
+    (Nom_ingredient "Vinegar")
+    (Nutrients [I2069N0] [I2069N1] [I2069N2] [I2069N3] [I2069N4])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 88))
+
+([I2069N0] of  Nutrient
+    (Quantitat_nutrient 76.45)
+    (Tipus_nutrient Aigua))
+([I2069N1] of  Nutrient
+    (Quantitat_nutrient 0.19)
+    (Tipus_nutrient Minerals))
+([I2069N2] of  Nutrient
+    (Quantitat_nutrient 0.49)
+    (Tipus_nutrient Proteines))
+([I2069N3] of  Nutrient
+    (Quantitat_nutrient 17.03)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I2069N4] of  Nutrient
+    (Quantitat_nutrient 14.95)
+    (Tipus_nutrient Sucre))
+
+
 ([I4002] of InfoIngredient
     (Familia Fats_Oils)
     (Nom_ingredient "Lard")
@@ -273,11 +297,41 @@
     (Quantitat_nutrient 9.2)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I7051N4] of  Nutrient
-    (Quantitat_nutrient 16.5)
+    (Quantitat_nutrient 10.5)
     (Tipus_nutrient Greixos))
 ([I7051N5] of  Nutrient
     (Quantitat_nutrient 0.04)
     (Tipus_nutrient Colesterol))
+
+
+([I7056] of InfoIngredient
+    (Familia Meat)
+    (Nom_ingredient "Peppered")
+    (Nutrients [I7056N0] [I7056N1] [I7056N2] [I7056N3] [I7056N4] [I7056N5] [I7056N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 149))
+
+([I7056N0] of  Nutrient
+    (Quantitat_nutrient 67.4)
+    (Tipus_nutrient Aigua))
+([I7056N1] of  Nutrient
+    (Quantitat_nutrient 1.37)
+    (Tipus_nutrient Minerals))
+([I7056N2] of  Nutrient
+    (Quantitat_nutrient 17.3)
+    (Tipus_nutrient Proteines))
+([I7056N3] of  Nutrient
+    (Quantitat_nutrient 4.53)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I7056N4] of  Nutrient
+    (Quantitat_nutrient 6.37)
+    (Tipus_nutrient Greixos))
+([I7056N5] of  Nutrient
+    (Quantitat_nutrient 0.05)
+    (Tipus_nutrient Colesterol))
+([I7056N6] of  Nutrient
+    (Quantitat_nutrient 4.61)
+    (Tipus_nutrient Sucre))
 
 
 ([I7977] of InfoIngredient
@@ -310,6 +364,39 @@
     (Tipus_nutrient Sucre))
 
 
+([I9039] of InfoIngredient
+    (Familia Fruits)
+    (Nom_ingredient "Avocados")
+    (Nutrients [I9039N0] [I9039N1] [I9039N2] [I9039N3] [I9039N4] [I9039N5] [I9039N6] [I9039N7])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 120))
+
+([I9039N0] of  Nutrient
+    (Quantitat_nutrient 78.81)
+    (Tipus_nutrient Aigua))
+([I9039N1] of  Nutrient
+    (Quantitat_nutrient 0.43)
+    (Tipus_nutrient Minerals))
+([I9039N2] of  Nutrient
+    (Quantitat_nutrient 2.23)
+    (Tipus_nutrient Proteines))
+([I9039N3] of  Nutrient
+    (Quantitat_nutrient 0.02)
+    (Tipus_nutrient Vitamines))
+([I9039N4] of  Nutrient
+    (Quantitat_nutrient 5.6)
+    (Tipus_nutrient Fibra))
+([I9039N5] of  Nutrient
+    (Quantitat_nutrient 7.82)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I9039N6] of  Nutrient
+    (Quantitat_nutrient 7.06)
+    (Tipus_nutrient Greixos))
+([I9039N7] of  Nutrient
+    (Quantitat_nutrient 2.42)
+    (Tipus_nutrient Sucre))
+
+
 ([I9041] of InfoIngredient
     (Familia Fruits)
     (Nom_ingredient "Bananas")
@@ -339,7 +426,7 @@
     (Quantitat_nutrient 1.81)
     (Tipus_nutrient Greixos))
 ([I9041N7] of  Nutrient
-    (Quantitat_nutrient 47.3)
+    (Quantitat_nutrient 37.3)
     (Tipus_nutrient Sucre))
 
 
@@ -360,7 +447,7 @@
     (Quantitat_nutrient 0.48)
     (Tipus_nutrient Proteines))
 ([I9134N3] of  Nutrient
-    (Quantitat_nutrient 0.6)
+    (Quantitat_nutrient 2.6)
     (Tipus_nutrient Fibra))
 ([I9134N4] of  Nutrient
     (Quantitat_nutrient 19.65)
@@ -369,8 +456,38 @@
     (Quantitat_nutrient 0.1)
     (Tipus_nutrient Greixos))
 ([I9134N6] of  Nutrient
-    (Quantitat_nutrient 19.05)
+    (Quantitat_nutrient 11.05)
     (Tipus_nutrient Sucre))
+
+
+([I9140] of InfoIngredient
+    (Familia Fruits)
+    (Nom_ingredient "Guavas")
+    (Nutrients [I9140N0] [I9140N1] [I9140N2] [I9140N3] [I9140N4] [I9140N5] [I9140N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 69))
+
+([I9140N0] of  Nutrient
+    (Quantitat_nutrient 80.66)
+    (Tipus_nutrient Aigua))
+([I9140N1] of  Nutrient
+    (Quantitat_nutrient 0.39)
+    (Tipus_nutrient Minerals))
+([I9140N2] of  Nutrient
+    (Quantitat_nutrient 0.58)
+    (Tipus_nutrient Proteines))
+([I9140N3] of  Nutrient
+    (Quantitat_nutrient 0.04)
+    (Tipus_nutrient Vitamines))
+([I9140N4] of  Nutrient
+    (Quantitat_nutrient 5.4)
+    (Tipus_nutrient Fibra))
+([I9140N5] of  Nutrient
+    (Quantitat_nutrient 17.36)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I9140N6] of  Nutrient
+    (Quantitat_nutrient 0.6)
+    (Tipus_nutrient Greixos))
 
 
 ([I9150] of InfoIngredient
@@ -393,7 +510,7 @@
     (Quantitat_nutrient 0.05)
     (Tipus_nutrient Vitamines))
 ([I9150N4] of  Nutrient
-    (Quantitat_nutrient 2.8)
+    (Quantitat_nutrient 4.8)
     (Tipus_nutrient Fibra))
 ([I9150N5] of  Nutrient
     (Quantitat_nutrient 9.32)
@@ -462,7 +579,7 @@
     (Quantitat_nutrient 3.84)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I9195N5] of  Nutrient
-    (Quantitat_nutrient 15.32)
+    (Quantitat_nutrient 9.32)
     (Tipus_nutrient Greixos))
 ([I9195N6] of  Nutrient
     (Quantitat_nutrient 0.54)
@@ -489,7 +606,7 @@
     (Quantitat_nutrient 0.07)
     (Tipus_nutrient Vitamines))
 ([I9205N4] of  Nutrient
-    (Quantitat_nutrient 4.5)
+    (Quantitat_nutrient 7.5)
     (Tipus_nutrient Fibra))
 ([I9205N5] of  Nutrient
     (Quantitat_nutrient 15.5)
@@ -528,7 +645,7 @@
     (Quantitat_nutrient 0.13)
     (Tipus_nutrient Greixos))
 ([I9320N7] of  Nutrient
-    (Quantitat_nutrient 24.01)
+    (Quantitat_nutrient 18.01)
     (Tipus_nutrient Sucre))
 
 
@@ -565,6 +682,96 @@
     (Tipus_nutrient Sucre))
 
 
+([I9353] of InfoIngredient
+    (Familia Fruits)
+    (Nom_ingredient "Blueberries")
+    (Nutrients [I9353N0] [I9353N1] [I9353N2] [I9353N3] [I9353N4] [I9353N5] [I9353N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 107))
+
+([I9353N0] of  Nutrient
+    (Quantitat_nutrient 70.63)
+    (Tipus_nutrient Aigua))
+([I9353N1] of  Nutrient
+    (Quantitat_nutrient 0.09)
+    (Tipus_nutrient Minerals))
+([I9353N2] of  Nutrient
+    (Quantitat_nutrient 0.56)
+    (Tipus_nutrient Proteines))
+([I9353N3] of  Nutrient
+    (Quantitat_nutrient 5.9)
+    (Tipus_nutrient Fibra))
+([I9353N4] of  Nutrient
+    (Quantitat_nutrient 28.32)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I9353N5] of  Nutrient
+    (Quantitat_nutrient 0.34)
+    (Tipus_nutrient Greixos))
+([I9353N6] of  Nutrient
+    (Quantitat_nutrient 13.28)
+    (Tipus_nutrient Sucre))
+
+
+([I9367] of InfoIngredient
+    (Familia Fruits)
+    (Nom_ingredient "Cherries")
+    (Nutrients [I9367N0] [I9367N1] [I9367N2] [I9367N3] [I9367N4] [I9367N5] [I9367N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 83))
+
+([I9367N0] of  Nutrient
+    (Quantitat_nutrient 77.61)
+    (Tipus_nutrient Aigua))
+([I9367N1] of  Nutrient
+    (Quantitat_nutrient 0.19)
+    (Tipus_nutrient Minerals))
+([I9367N2] of  Nutrient
+    (Quantitat_nutrient 0.73)
+    (Tipus_nutrient Proteines))
+([I9367N3] of  Nutrient
+    (Quantitat_nutrient 4.3)
+    (Tipus_nutrient Fibra))
+([I9367N4] of  Nutrient
+    (Quantitat_nutrient 21.07)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I9367N5] of  Nutrient
+    (Quantitat_nutrient 0.21)
+    (Tipus_nutrient Greixos))
+([I9367N6] of  Nutrient
+    (Quantitat_nutrient 12.18)
+    (Tipus_nutrient Sucre))
+
+
+([I9379] of InfoIngredient
+    (Familia Fruits)
+    (Nom_ingredient "Plums")
+    (Nutrients [I9379N0] [I9379N1] [I9379N2] [I9379N3] [I9379N4] [I9379N5] [I9379N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 89))
+
+([I9379N0] of  Nutrient
+    (Quantitat_nutrient 76.06)
+    (Tipus_nutrient Aigua))
+([I9379N1] of  Nutrient
+    (Quantitat_nutrient 0.14)
+    (Tipus_nutrient Minerals))
+([I9379N2] of  Nutrient
+    (Quantitat_nutrient 0.44)
+    (Tipus_nutrient Proteines))
+([I9379N3] of  Nutrient
+    (Quantitat_nutrient 1.5)
+    (Tipus_nutrient Fibra))
+([I9379N4] of  Nutrient
+    (Quantitat_nutrient 23.12)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I9379N5] of  Nutrient
+    (Quantitat_nutrient 0.14)
+    (Tipus_nutrient Greixos))
+([I9379N6] of  Nutrient
+    (Quantitat_nutrient 21.58)
+    (Tipus_nutrient Sucre))
+
+
 ([I9415] of InfoIngredient
     (Familia Fruits)
     (Nom_ingredient "Pears")
@@ -582,7 +789,7 @@
     (Quantitat_nutrient 0.44)
     (Tipus_nutrient Proteines))
 ([I9415N3] of  Nutrient
-    (Quantitat_nutrient 3.1)
+    (Quantitat_nutrient 7.1)
     (Tipus_nutrient Fibra))
 ([I9415N4] of  Nutrient
     (Quantitat_nutrient 15.79)
@@ -658,6 +865,69 @@
     (Tipus_nutrient Sucre))
 
 
+([I9520] of InfoIngredient
+    (Familia Fruits)
+    (Nom_ingredient "Kiwifruit")
+    (Nutrients [I9520N0] [I9520N1] [I9520N2] [I9520N3] [I9520N4] [I9520N5] [I9520N6] [I9520N7])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 63))
+
+([I9520N0] of  Nutrient
+    (Quantitat_nutrient 82.44)
+    (Tipus_nutrient Aigua))
+([I9520N1] of  Nutrient
+    (Quantitat_nutrient 0.37)
+    (Tipus_nutrient Minerals))
+([I9520N2] of  Nutrient
+    (Quantitat_nutrient 1.02)
+    (Tipus_nutrient Proteines))
+([I9520N3] of  Nutrient
+    (Quantitat_nutrient 0.16)
+    (Tipus_nutrient Vitamines))
+([I9520N4] of  Nutrient
+    (Quantitat_nutrient 1.4)
+    (Tipus_nutrient Fibra))
+([I9520N5] of  Nutrient
+    (Quantitat_nutrient 15.79)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I9520N6] of  Nutrient
+    (Quantitat_nutrient 0.28)
+    (Tipus_nutrient Greixos))
+([I9520N7] of  Nutrient
+    (Quantitat_nutrient 12.3)
+    (Tipus_nutrient Sucre))
+
+
+([I11206] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Cucumber")
+    (Nutrients [I11206N0] [I11206N1] [I11206N2] [I11206N3] [I11206N4] [I11206N5] [I11206N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 12))
+
+([I11206N0] of  Nutrient
+    (Quantitat_nutrient 96.73)
+    (Tipus_nutrient Aigua))
+([I11206N1] of  Nutrient
+    (Quantitat_nutrient 0.19)
+    (Tipus_nutrient Minerals))
+([I11206N2] of  Nutrient
+    (Quantitat_nutrient 0.59)
+    (Tipus_nutrient Proteines))
+([I11206N3] of  Nutrient
+    (Quantitat_nutrient 0.7)
+    (Tipus_nutrient Fibra))
+([I11206N4] of  Nutrient
+    (Quantitat_nutrient 2.16)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11206N5] of  Nutrient
+    (Quantitat_nutrient 0.16)
+    (Tipus_nutrient Greixos))
+([I11206N6] of  Nutrient
+    (Quantitat_nutrient 1.38)
+    (Tipus_nutrient Sucre))
+
+
 ([I11257] of InfoIngredient
     (Familia Vegetables)
     (Nom_ingredient "Lettuce")
@@ -719,6 +989,105 @@
 ([I11625N6] of  Nutrient
     (Quantitat_nutrient 5.2)
     (Tipus_nutrient Greixos))
+
+
+([I11703] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Artichokes")
+    (Nutrients [I11703N0] [I11703N1] [I11703N2] [I11703N3] [I11703N4] [I11703N5] [I11703N6] [I11703N7])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 45))
+
+([I11703N0] of  Nutrient
+    (Quantitat_nutrient 86.5)
+    (Tipus_nutrient Aigua))
+([I11703N1] of  Nutrient
+    (Quantitat_nutrient 0.67)
+    (Tipus_nutrient Minerals))
+([I11703N2] of  Nutrient
+    (Quantitat_nutrient 3.11)
+    (Tipus_nutrient Proteines))
+([I11703N3] of  Nutrient
+    (Quantitat_nutrient 0.01)
+    (Tipus_nutrient Vitamines))
+([I11703N4] of  Nutrient
+    (Quantitat_nutrient 4.6)
+    (Tipus_nutrient Fibra))
+([I11703N5] of  Nutrient
+    (Quantitat_nutrient 9.18)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11703N6] of  Nutrient
+    (Quantitat_nutrient 0.5)
+    (Tipus_nutrient Greixos))
+([I11703N7] of  Nutrient
+    (Quantitat_nutrient 0.84)
+    (Tipus_nutrient Sucre))
+
+
+([I11709] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Asparagus")
+    (Nutrients [I11709N0] [I11709N1] [I11709N2] [I11709N3] [I11709N4] [I11709N5] [I11709N6] [I11709N7])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 18))
+
+([I11709N0] of  Nutrient
+    (Quantitat_nutrient 94.1)
+    (Tipus_nutrient Aigua))
+([I11709N1] of  Nutrient
+    (Quantitat_nutrient 0.49)
+    (Tipus_nutrient Minerals))
+([I11709N2] of  Nutrient
+    (Quantitat_nutrient 2.95)
+    (Tipus_nutrient Proteines))
+([I11709N3] of  Nutrient
+    (Quantitat_nutrient 0.03)
+    (Tipus_nutrient Vitamines))
+([I11709N4] of  Nutrient
+    (Quantitat_nutrient 1.6)
+    (Tipus_nutrient Fibra))
+([I11709N5] of  Nutrient
+    (Quantitat_nutrient 1.92)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11709N6] of  Nutrient
+    (Quantitat_nutrient 0.42)
+    (Tipus_nutrient Greixos))
+([I11709N7] of  Nutrient
+    (Quantitat_nutrient 0.32)
+    (Tipus_nutrient Sucre))
+
+
+([I11765] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Chard")
+    (Nutrients [I11765N0] [I11765N1] [I11765N2] [I11765N3] [I11765N4] [I11765N5] [I11765N6] [I11765N7])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 20))
+
+([I11765N0] of  Nutrient
+    (Quantitat_nutrient 92.65)
+    (Tipus_nutrient Aigua))
+([I11765N1] of  Nutrient
+    (Quantitat_nutrient 1.14)
+    (Tipus_nutrient Minerals))
+([I11765N2] of  Nutrient
+    (Quantitat_nutrient 1.88)
+    (Tipus_nutrient Proteines))
+([I11765N3] of  Nutrient
+    (Quantitat_nutrient 0.03)
+    (Tipus_nutrient Vitamines))
+([I11765N4] of  Nutrient
+    (Quantitat_nutrient 2.1)
+    (Tipus_nutrient Fibra))
+([I11765N5] of  Nutrient
+    (Quantitat_nutrient 4.13)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11765N6] of  Nutrient
+    (Quantitat_nutrient 0.08)
+    (Tipus_nutrient Greixos))
+([I11765N7] of  Nutrient
+    (Quantitat_nutrient 1.1)
+    (Tipus_nutrient Sucre))
 
 
 ([I11795] of InfoIngredient
@@ -817,6 +1186,99 @@
     (Tipus_nutrient Sucre))
 
 
+([I11848] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Pumpkin")
+    (Nutrients [I11848N0] [I11848N1] [I11848N2] [I11848N3] [I11848N4] [I11848N5] [I11848N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 21))
+
+([I11848N0] of  Nutrient
+    (Quantitat_nutrient 92.51)
+    (Tipus_nutrient Aigua))
+([I11848N1] of  Nutrient
+    (Quantitat_nutrient 0.85)
+    (Tipus_nutrient Minerals))
+([I11848N2] of  Nutrient
+    (Quantitat_nutrient 2.72)
+    (Tipus_nutrient Proteines))
+([I11848N3] of  Nutrient
+    (Quantitat_nutrient 2.7)
+    (Tipus_nutrient Fibra))
+([I11848N4] of  Nutrient
+    (Quantitat_nutrient 3.39)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11848N5] of  Nutrient
+    (Quantitat_nutrient 0.22)
+    (Tipus_nutrient Greixos))
+([I11848N6] of  Nutrient
+    (Quantitat_nutrient 0.69)
+    (Tipus_nutrient Sucre))
+
+
+([I11856] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Spinach")
+    (Nutrients [I11856N0] [I11856N1] [I11856N2] [I11856N3] [I11856N4] [I11856N5] [I11856N6] [I11856N7])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 34))
+
+([I11856N0] of  Nutrient
+    (Quantitat_nutrient 88.94)
+    (Tipus_nutrient Aigua))
+([I11856N1] of  Nutrient
+    (Quantitat_nutrient 0.91)
+    (Tipus_nutrient Minerals))
+([I11856N2] of  Nutrient
+    (Quantitat_nutrient 4.01)
+    (Tipus_nutrient Proteines))
+([I11856N3] of  Nutrient
+    (Quantitat_nutrient 0.02)
+    (Tipus_nutrient Vitamines))
+([I11856N4] of  Nutrient
+    (Quantitat_nutrient 3.7)
+    (Tipus_nutrient Fibra))
+([I11856N5] of  Nutrient
+    (Quantitat_nutrient 4.8)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11856N6] of  Nutrient
+    (Quantitat_nutrient 0.87)
+    (Tipus_nutrient Greixos))
+([I11856N7] of  Nutrient
+    (Quantitat_nutrient 0.51)
+    (Tipus_nutrient Sucre))
+
+
+([I11890] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Turnips")
+    (Nutrients [I11890N0] [I11890N1] [I11890N2] [I11890N3] [I11890N4] [I11890N5] [I11890N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 21))
+
+([I11890N0] of  Nutrient
+    (Quantitat_nutrient 93.6)
+    (Tipus_nutrient Aigua))
+([I11890N1] of  Nutrient
+    (Quantitat_nutrient 0.53)
+    (Tipus_nutrient Minerals))
+([I11890N2] of  Nutrient
+    (Quantitat_nutrient 1.53)
+    (Tipus_nutrient Proteines))
+([I11890N3] of  Nutrient
+    (Quantitat_nutrient 2.0)
+    (Tipus_nutrient Fibra))
+([I11890N4] of  Nutrient
+    (Quantitat_nutrient 3.73)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11890N5] of  Nutrient
+    (Quantitat_nutrient 0.24)
+    (Tipus_nutrient Greixos))
+([I11890N6] of  Nutrient
+    (Quantitat_nutrient 1.73)
+    (Tipus_nutrient Sucre))
+
+
 ([I11956] of InfoIngredient
     (Familia Vegetables)
     (Nom_ingredient "Tomatoes")
@@ -843,7 +1305,7 @@
     (Quantitat_nutrient 23.33)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I11956N6] of  Nutrient
-    (Quantitat_nutrient 14.08)
+    (Quantitat_nutrient 11.08)
     (Tipus_nutrient Greixos))
 
 
@@ -880,6 +1342,69 @@
     (Tipus_nutrient Sucre))
 
 
+([I11968] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Cauliflower")
+    (Nutrients [I11968N0] [I11968N1] [I11968N2] [I11968N3] [I11968N4] [I11968N5] [I11968N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 32))
+
+([I11968N0] of  Nutrient
+    (Quantitat_nutrient 89.47)
+    (Tipus_nutrient Aigua))
+([I11968N1] of  Nutrient
+    (Quantitat_nutrient 0.65)
+    (Tipus_nutrient Minerals))
+([I11968N2] of  Nutrient
+    (Quantitat_nutrient 3.04)
+    (Tipus_nutrient Proteines))
+([I11968N3] of  Nutrient
+    (Quantitat_nutrient 0.07)
+    (Tipus_nutrient Vitamines))
+([I11968N4] of  Nutrient
+    (Quantitat_nutrient 3.3)
+    (Tipus_nutrient Fibra))
+([I11968N5] of  Nutrient
+    (Quantitat_nutrient 6.28)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11968N6] of  Nutrient
+    (Quantitat_nutrient 0.31)
+    (Tipus_nutrient Greixos))
+
+
+([I11994] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Broccoli")
+    (Nutrients [I11994N0] [I11994N1] [I11994N2] [I11994N3] [I11994N4] [I11994N5] [I11994N6] [I11994N7])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 30))
+
+([I11994N0] of  Nutrient
+    (Quantitat_nutrient 92.55)
+    (Tipus_nutrient Aigua))
+([I11994N1] of  Nutrient
+    (Quantitat_nutrient 0.45)
+    (Tipus_nutrient Minerals))
+([I11994N2] of  Nutrient
+    (Quantitat_nutrient 1.2)
+    (Tipus_nutrient Proteines))
+([I11994N3] of  Nutrient
+    (Quantitat_nutrient 0.03)
+    (Tipus_nutrient Vitamines))
+([I11994N4] of  Nutrient
+    (Quantitat_nutrient 4.6)
+    (Tipus_nutrient Fibra))
+([I11994N5] of  Nutrient
+    (Quantitat_nutrient 4.67)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I11994N6] of  Nutrient
+    (Quantitat_nutrient 0.76)
+    (Tipus_nutrient Greixos))
+([I11994N7] of  Nutrient
+    (Quantitat_nutrient 0.88)
+    (Tipus_nutrient Sucre))
+
+
 ([I11998] of InfoIngredient
     (Familia Vegetables)
     (Nom_ingredient "Mushrooms")
@@ -910,6 +1435,39 @@
     (Tipus_nutrient Greixos))
 ([I11998N7] of  Nutrient
     (Quantitat_nutrient 2.5)
+    (Tipus_nutrient Sucre))
+
+
+([I12738] of InfoIngredient
+    (Familia Nut)
+    (Nom_ingredient "Nuts")
+    (Nutrients [I12738N0] [I12738N1] [I12738N2] [I12738N3] [I12738N4] [I12738N5] [I12738N6] [I12738N7])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 607))
+
+([I12738N0] of  Nutrient
+    (Quantitat_nutrient 3.15)
+    (Tipus_nutrient Aigua))
+([I12738N1] of  Nutrient
+    (Quantitat_nutrient 1.71)
+    (Tipus_nutrient Minerals))
+([I12738N2] of  Nutrient
+    (Quantitat_nutrient 17.86)
+    (Tipus_nutrient Proteines))
+([I12738N3] of  Nutrient
+    (Quantitat_nutrient 0.01)
+    (Tipus_nutrient Vitamines))
+([I12738N4] of  Nutrient
+    (Quantitat_nutrient 7.1)
+    (Tipus_nutrient Fibra))
+([I12738N5] of  Nutrient
+    (Quantitat_nutrient 25.0)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I12738N6] of  Nutrient
+    (Quantitat_nutrient 30.0)
+    (Tipus_nutrient Greixos))
+([I12738N7] of  Nutrient
+    (Quantitat_nutrient 5.21)
     (Tipus_nutrient Sucre))
 
 
@@ -963,8 +1521,38 @@
     (Quantitat_nutrient 8.09)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I16107N5] of  Nutrient
-    (Quantitat_nutrient 18.16)
+    (Quantitat_nutrient 15.16)
     (Tipus_nutrient Greixos))
+
+
+([I16370] of InfoIngredient
+    (Familia Legumes)
+    (Nom_ingredient "Lentils")
+    (Nutrients [I16370N0] [I16370N1] [I16370N2] [I16370N3] [I16370N4] [I16370N5] [I16370N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 114))
+
+([I16370N0] of  Nutrient
+    (Quantitat_nutrient 69.64)
+    (Tipus_nutrient Aigua))
+([I16370N1] of  Nutrient
+    (Quantitat_nutrient 0.85)
+    (Tipus_nutrient Minerals))
+([I16370N2] of  Nutrient
+    (Quantitat_nutrient 9.02)
+    (Tipus_nutrient Proteines))
+([I16370N3] of  Nutrient
+    (Quantitat_nutrient 7.9)
+    (Tipus_nutrient Fibra))
+([I16370N4] of  Nutrient
+    (Quantitat_nutrient 19.54)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I16370N5] of  Nutrient
+    (Quantitat_nutrient 0.38)
+    (Tipus_nutrient Greixos))
+([I16370N6] of  Nutrient
+    (Quantitat_nutrient 1.8)
+    (Tipus_nutrient Sucre))
 
 
 ([I16386] of InfoIngredient
@@ -984,7 +1572,7 @@
     (Quantitat_nutrient 8.34)
     (Tipus_nutrient Proteines))
 ([I16386N3] of  Nutrient
-    (Quantitat_nutrient 8.3)
+    (Quantitat_nutrient 10.3)
     (Tipus_nutrient Fibra))
 ([I16386N4] of  Nutrient
     (Quantitat_nutrient 20.51)
@@ -1017,7 +1605,7 @@
     (Quantitat_nutrient 0.15)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I17438N4] of  Nutrient
-    (Quantitat_nutrient 10.57)
+    (Quantitat_nutrient 8.57)
     (Tipus_nutrient Greixos))
 ([I17438N5] of  Nutrient
     (Quantitat_nutrient 0.08)
@@ -1041,7 +1629,7 @@
     (Quantitat_nutrient 30.9)
     (Tipus_nutrient Proteines))
 ([I17464N3] of  Nutrient
-    (Quantitat_nutrient 16.96)
+    (Quantitat_nutrient 13.96)
     (Tipus_nutrient Greixos))
 ([I17464N4] of  Nutrient
     (Quantitat_nutrient 0.1)
@@ -1071,7 +1659,7 @@
     (Quantitat_nutrient 47.0)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I18241N5] of  Nutrient
-    (Quantitat_nutrient 20.9)
+    (Quantitat_nutrient 15.9)
     (Tipus_nutrient Greixos))
 ([I18241N6] of  Nutrient
     (Quantitat_nutrient 0.06)
@@ -1104,7 +1692,7 @@
     (Quantitat_nutrient 46.7)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I18417N5] of  Nutrient
-    (Quantitat_nutrient 23.3)
+    (Quantitat_nutrient 19.3)
     (Tipus_nutrient Greixos))
 ([I18417N6] of  Nutrient
     (Quantitat_nutrient 0.03)
@@ -1164,7 +1752,7 @@
     (Quantitat_nutrient 41.72)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I18963N5] of  Nutrient
-    (Quantitat_nutrient 16.61)
+    (Quantitat_nutrient 14.61)
     (Tipus_nutrient Greixos))
 ([I18963N6] of  Nutrient
     (Quantitat_nutrient 3.69)
@@ -1194,13 +1782,13 @@
     (Quantitat_nutrient 48.6)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I18964N5] of  Nutrient
-    (Quantitat_nutrient 26.61)
+    (Quantitat_nutrient 22.61)
     (Tipus_nutrient Greixos))
 ([I18964N6] of  Nutrient
     (Quantitat_nutrient 0.01)
     (Tipus_nutrient Colesterol))
 ([I18964N7] of  Nutrient
-    (Quantitat_nutrient 25.7)
+    (Quantitat_nutrient 21.7)
     (Tipus_nutrient Sucre))
 
 
@@ -1227,7 +1815,7 @@
     (Quantitat_nutrient 44.83)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I18972N5] of  Nutrient
-    (Quantitat_nutrient 20.83)
+    (Quantitat_nutrient 17.83)
     (Tipus_nutrient Greixos))
 ([I18972N6] of  Nutrient
     (Quantitat_nutrient 0.01)
@@ -1260,13 +1848,13 @@
     (Quantitat_nutrient 45.8)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I18999N5] of  Nutrient
-    (Quantitat_nutrient 10.2)
+    (Quantitat_nutrient 6.2)
     (Tipus_nutrient Greixos))
 ([I18999N6] of  Nutrient
     (Quantitat_nutrient 0.03)
     (Tipus_nutrient Colesterol))
 ([I18999N7] of  Nutrient
-    (Quantitat_nutrient 18.1)
+    (Quantitat_nutrient 10.1)
     (Tipus_nutrient Sucre))
 
 
@@ -1293,10 +1881,10 @@
     (Quantitat_nutrient 45.9)
     (Tipus_nutrient Hidrats_de_carboni))
 ([I19904N5] of  Nutrient
-    (Quantitat_nutrient 42.63)
+    (Quantitat_nutrient 32.63)
     (Tipus_nutrient Greixos))
 ([I19904N6] of  Nutrient
-    (Quantitat_nutrient 23.99)
+    (Quantitat_nutrient 18.99)
     (Tipus_nutrient Sucre))
 
 
@@ -1471,6 +2059,66 @@
     (Tipus_nutrient Sucre))
 
 
+([I43144] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Cabbage")
+    (Nutrients [I43144N0] [I43144N1] [I43144N2] [I43144N3] [I43144N4] [I43144N5] [I43144N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 28))
+
+([I43144N0] of  Nutrient
+    (Quantitat_nutrient 92.1)
+    (Tipus_nutrient Aigua))
+([I43144N1] of  Nutrient
+    (Quantitat_nutrient 1.07)
+    (Tipus_nutrient Minerals))
+([I43144N2] of  Nutrient
+    (Quantitat_nutrient 1.1)
+    (Tipus_nutrient Proteines))
+([I43144N3] of  Nutrient
+    (Quantitat_nutrient 3.1)
+    (Tipus_nutrient Fibra))
+([I43144N4] of  Nutrient
+    (Quantitat_nutrient 5.63)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I43144N5] of  Nutrient
+    (Quantitat_nutrient 0.1)
+    (Tipus_nutrient Greixos))
+([I43144N6] of  Nutrient
+    (Quantitat_nutrient 1.4)
+    (Tipus_nutrient Sucre))
+
+
+([I43146] of InfoIngredient
+    (Familia Vegetables)
+    (Nom_ingredient "Eggplant")
+    (Nutrients [I43146N0] [I43146N1] [I43146N2] [I43146N3] [I43146N4] [I43146N5] [I43146N6])
+    (Temporada Hivern Primavera Estiu Tardor)
+    (Valor_energetic 49))
+
+([I43146N0] of  Nutrient
+    (Quantitat_nutrient 86.9)
+    (Tipus_nutrient Aigua))
+([I43146N1] of  Nutrient
+    (Quantitat_nutrient 1.73)
+    (Tipus_nutrient Minerals))
+([I43146N2] of  Nutrient
+    (Quantitat_nutrient 0.9)
+    (Tipus_nutrient Proteines))
+([I43146N3] of  Nutrient
+    (Quantitat_nutrient 2.5)
+    (Tipus_nutrient Fibra))
+([I43146N4] of  Nutrient
+    (Quantitat_nutrient 9.77)
+    (Tipus_nutrient Hidrats_de_carboni))
+([I43146N5] of  Nutrient
+    (Quantitat_nutrient 0.7)
+    (Tipus_nutrient Greixos))
+([I43146N6] of  Nutrient
+    (Quantitat_nutrient 4.8)
+    (Tipus_nutrient Sucre))
+
+
 ([I43212] of InfoIngredient
     (Familia Legumes)
     (Nom_ingredient "Bacon")
@@ -1551,7 +2199,7 @@
     (Quantitat_nutrient 0.2)
     (Tipus_nutrient Greixos))
 ([I43261N5] of  Nutrient
-    (Quantitat_nutrient 19.0)
+    (Quantitat_nutrient 14.0)
     (Tipus_nutrient Sucre))
 
 
@@ -1806,7 +2454,7 @@
     (Quantitat_nutrient 4.8)
     (Tipus_nutrient Proteines))
 ([I43449N3] of  Nutrient
-    (Quantitat_nutrient 5.5)
+    (Quantitat_nutrient 8.5)
     (Tipus_nutrient Fibra))
 ([I43449N4] of  Nutrient
     (Quantitat_nutrient 20.49)
@@ -1978,8 +2626,7 @@
     (Tipus_nutrient Colesterol))
 
 
-
-;------------------------------------------------------------------------------------------------------------
+;----------------------------------------------------------------------------------------------
 
 
 ([P0] of  Plat
@@ -2078,12 +2725,12 @@
     (Apat Dinar Sopar)
     (Ingredients [IP3_0] [IP3_1] [IP3_2] [IP3_3] [IP3_4])
     (Nom "Rice with mushrooms")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 2n))
 
 ([IP3_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I42204])
-    (Quantitat 91.35))
+    (Quantitat 85.35))
 ([IP3_1] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I44005])
@@ -2095,11 +2742,11 @@
 ([IP3_3] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11998])
-    (Quantitat 76.12))
+    (Quantitat 71.12))
 ([IP3_4] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11625])
-    (Quantitat 2.54))
+    (Quantitat 13.54))
 
 
 ([P4] of  Plat
@@ -2207,7 +2854,7 @@
 ([IP6_7] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11625])
-    (Quantitat 0.86))
+    (Quantitat 4.86))
 ([IP6_8] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11807])
@@ -2431,11 +3078,11 @@
 ([IP14_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I20521])
-    (Quantitat 161.67))
+    (Quantitat 151.67))
 ([IP14_1] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11956])
-    (Quantitat 80.83))
+    (Quantitat 76.83))
 ([IP14_2] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I83110])
@@ -2455,7 +3102,7 @@
 ([IP14_6] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11625])
-    (Quantitat 2.02))
+    (Quantitat 5.02))
 ([IP14_7] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I18963])
@@ -2531,7 +3178,7 @@
 ([IP17_1] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I44055])
-    (Quantitat 4.63))
+    (Quantitat 12.63))
 ([IP17_2] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11257])
@@ -3155,7 +3802,7 @@
 ([IP43_4] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11625])
-    (Quantitat 1.25))
+    (Quantitat 4.25))
 
 
 ([P44] of  Plat
@@ -3303,7 +3950,7 @@
 ([IP49_4] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I11625])
-    (Quantitat 0.91))
+    (Quantitat 3.91))
 ([IP49_5] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I31034])
@@ -3502,6 +4149,1038 @@
     (Quantitat 200.0))
 
 
+([P62] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP62_0])
+    (Nom "Kiwi")
+    (Tipus_plat Postres))
+
+([IP62_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9520])
+    (Quantitat 200.0))
+
+
+([P63] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP63_0])
+    (Nom "Cherries")
+    (Tipus_plat Postres))
+
+([IP63_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9367])
+    (Quantitat 200.0))
+
+
+([P64] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP64_0])
+    (Nom "Plums")
+    (Tipus_plat Postres))
+
+([IP64_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9379])
+    (Quantitat 200.0))
+
+
+([P65] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP65_0])
+    (Nom "Guava")
+    (Tipus_plat Postres))
+
+([IP65_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9140])
+    (Quantitat 200.0))
+
+
+([P66] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP66_0])
+    (Nom "Blueberries")
+    (Tipus_plat Postres))
+
+([IP66_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9353])
+    (Quantitat 200.0))
+
+
+([P67] of  Plat
+    (Apat Esmorzar Dinar Sopar)
+    (Ingredients [IP67_0] [IP67_1] [IP67_2] [IP67_3] [IP67_4] [IP67_5])
+    (Nom "Carrot cake")
+    (Tipus_plat Postres))
+
+([IP67_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 40.0))
+([IP67_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 28.0))
+([IP67_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 5.0))
+([IP67_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43214])
+    (Quantitat 25.0))
+([IP67_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44048])
+    (Quantitat 20.0))
+([IP67_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43285])
+    (Quantitat 20.0))
+
+
+([P68] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP68_0] [IP68_1] [IP68_2] [IP68_3])
+    (Nom "Lemon cake")
+    (Tipus_plat Postres))
+
+([IP68_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 30.0))
+([IP68_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43214])
+    (Quantitat 10.0))
+([IP68_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9150])
+    (Quantitat 100.0))
+([IP68_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43285])
+    (Quantitat 100.0))
+
+
+([P69] of  Plat
+    (Apat Esmorzar Dinar Sopar)
+    (Ingredients [IP69_0] [IP69_1] [IP69_2] [IP69_3] [IP69_4])
+    (Nom "Chocolate brownie")
+    (Tipus_plat Postres))
+
+([IP69_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I19904])
+    (Quantitat 16.0))
+([IP69_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43214])
+    (Quantitat 16.0))
+([IP69_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43285])
+    (Quantitat 100.0))
+([IP69_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 40.0))
+([IP69_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I12738])
+    (Quantitat 20.0))
+
+
+([P70] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP70_0] [IP70_1] [IP70_2] [IP70_3] [IP70_4] [IP70_5] [IP70_6])
+    (Nom "Vegetable stew")
+    (Tipus_plat 1r 2n))
+
+([IP70_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I16386])
+    (Quantitat 153.85))
+([IP70_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11703])
+    (Quantitat 38.46))
+([IP70_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43449])
+    (Quantitat 76.92))
+([IP70_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 38.46))
+([IP70_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 76.92))
+([IP70_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 15.38))
+([IP70_6] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 7.69))
+
+
+([P71] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP71_0] [IP71_1] [IP71_2] [IP71_3] [IP71_4] [IP71_5])
+    (Nom "Baked vegetables")
+    (Tipus_plat 1r 2n))
+
+([IP71_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 126.32))
+([IP71_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11856])
+    (Quantitat 39.47))
+([IP71_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11709])
+    (Quantitat 39.47))
+([IP71_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 39.47))
+([IP71_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11994])
+    (Quantitat 39.47))
+([IP71_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11848])
+    (Quantitat 39.47))
+
+
+([P72] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP72_0] [IP72_1] [IP72_2] [IP72_3] [IP72_4])
+    (Nom "Peppers filled with tuna")
+    (Tipus_plat 1r 2n))
+
+([IP72_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I15117])
+    (Quantitat 100.0))
+([IP72_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 50.0))
+([IP72_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 10.0))
+([IP72_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43214])
+    (Quantitat 6.0))
+([IP72_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 25.0))
+
+
+([P73] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP73_0] [IP73_1] [IP73_2] [IP73_3] [IP73_4] [IP73_5])
+    (Nom "Escalivada")
+    (Tipus_plat 1r 2n))
+
+([IP73_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43146])
+    (Quantitat 76.9))
+([IP73_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 76.9))
+([IP73_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 76.9))
+([IP73_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 76.9))
+([IP73_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 3.08))
+([IP73_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11625])
+    (Quantitat 3.54))
+
+
+([P74] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP74_0] [IP74_1] [IP74_2] [IP74_3] [IP74_4])
+    (Nom "Stewed potatoes")
+    (Tipus_plat 1r 2n))
+
+([IP74_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 272.73))
+([IP74_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 13.64))
+([IP74_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 6.82))
+([IP74_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 4.09))
+([IP74_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 1.36))
+
+
+([P75] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP75_0] [IP75_1] [IP75_2] [IP75_3])
+    (Nom "Stewed cauliflower")
+    (Tipus_plat 1r 2n))
+
+([IP75_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11968])
+    (Quantitat 120.0))
+([IP75_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 120.0))
+([IP75_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 15.0))
+([IP75_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 6.0))
+
+
+([P76] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP76_0] [IP76_1] [IP76_2] [IP76_3])
+    (Nom "Cucumber salad")
+    (Tipus_plat 1r 2n))
+
+([IP76_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11206])
+    (Quantitat 150.0))
+([IP76_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 90.0))
+([IP76_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 9.0))
+([IP76_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 6.0))
+
+
+([P77] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP77_0] [IP77_1] [IP77_2] [IP77_3])
+    (Nom "Avocado salad")
+    (Tipus_plat 1r 2n))
+
+([IP77_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9039])
+    (Quantitat 150.0))
+([IP77_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 100.0))
+([IP77_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 5.0))
+([IP77_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11257])
+    (Quantitat 50.0))
+
+
+([P78] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP78_0] [IP78_1] [IP78_2])
+    (Nom "Garlic mushrooms")
+    (Tipus_plat 1r 2n))
+
+([IP78_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11998])
+    (Quantitat 181.82))
+([IP78_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 7.27))
+([IP78_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 10.91))
+
+
+([P79] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP79_0] [IP79_1] [IP79_2] [IP79_3] [IP79_4])
+    (Nom "Pisto")
+    (Tipus_plat 1r 2n))
+
+([IP79_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 100.0))
+([IP79_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 100.0))
+([IP79_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 50.0))
+([IP79_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43146])
+    (Quantitat 20.0))
+([IP79_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 25.0))
+
+
+([P80] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP80_0] [IP80_1] [IP80_2] [IP80_3] [IP80_4])
+    (Nom "Vegetables soup")
+    (Tipus_plat 1r 2n))
+
+([IP80_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 52.5))
+([IP80_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 52.5))
+([IP80_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43449])
+    (Quantitat 52.5))
+([IP80_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11795])
+    (Quantitat 52.5))
+([IP80_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I16386])
+    (Quantitat 42.0))
+
+
+([P81] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP81_0] [IP81_1] [IP81_2] [IP81_3])
+    (Nom "Creamed spinach")
+    (Tipus_plat 1r 2n))
+
+([IP81_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11856])
+    (Quantitat 333.33))
+([IP81_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43214])
+    (Quantitat 4.44))
+([IP81_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43543])
+    (Quantitat 55.56))
+([IP81_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 3.33))
+
+
+([P82] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP82_0] [IP82_1] [IP82_2] [IP82_3])
+    (Nom "Mushrooms' cream")
+    (Tipus_plat 1r 2n))
+
+([IP82_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11998])
+    (Quantitat 210.77))
+([IP82_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I42141])
+    (Quantitat 42.15))
+([IP82_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 5.27))
+([IP82_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9150])
+    (Quantitat 21.08))
+
+
+([P83] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP83_0] [IP83_1] [IP83_2] [IP83_3] [IP83_4] [IP83_5])
+    (Nom "Gazpacho")
+    (Tipus_plat 1r 2n))
+
+([IP83_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 71.88))
+([IP83_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 103.5))
+([IP83_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11206])
+    (Quantitat 35.94))
+([IP83_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 14.38))
+([IP83_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18972])
+    (Quantitat 43.12))
+([IP83_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 1.44))
+
+
+([P84] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP84_0] [IP84_1] [IP84_2] [IP84_3] [IP84_4] [IP84_5])
+    (Nom "Legumes' puree")
+    (Tipus_plat 1r 2n))
+
+([IP84_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I16370])
+    (Quantitat 127.85))
+([IP84_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 63.92))
+([IP84_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 42.62))
+([IP84_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 42.62))
+([IP84_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 17.05))
+([IP84_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18972])
+    (Quantitat 63.92))
+
+
+([P85] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP85_0] [IP85_1] [IP85_2] [IP85_3] [IP85_4] [IP85_5])
+    (Nom "Vegetables' puree")
+    (Tipus_plat 1r 2n))
+
+([IP85_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11848])
+    (Quantitat 127.85))
+([IP85_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 63.92))
+([IP85_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 42.62))
+([IP85_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 42.62))
+([IP85_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 17.05))
+([IP85_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11968])
+    (Quantitat 63.92))
+
+
+([P86] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP86_0] [IP86_1] [IP86_2] [IP86_3] [IP86_4])
+    (Nom "Mashed potatoes")
+    (Tipus_plat 1r 2n))
+
+([IP86_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 191.67))
+([IP86_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 25.56))
+([IP86_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43214])
+    (Quantitat 10.22))
+([IP86_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43543])
+    (Quantitat 10.22))
+([IP86_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 2.56))
+
+
+([P87] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP87_0] [IP87_1] [IP87_2] [IP87_3] [IP87_4] [IP87_5] [IP87_6] [IP87_7])
+    (Nom "Mashed vegetables")
+    (Tipus_plat 1r 2n))
+
+([IP87_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11765])
+    (Quantitat 65.2))
+([IP87_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11848])
+    (Quantitat 27.17))
+([IP87_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11856])
+    (Quantitat 32.6))
+([IP87_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43543])
+    (Quantitat 54.33))
+([IP87_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43214])
+    (Quantitat 8.15))
+([IP87_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 40.75))
+([IP87_6] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 54.33))
+([IP87_7] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11890])
+    (Quantitat 67.92))
+
+
+([P88] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP88_0] [IP88_1] [IP88_2])
+    (Nom "Mashed carrots")
+    (Tipus_plat 1r 2n))
+
+([IP88_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 228.57))
+([IP88_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43214])
+    (Quantitat 22.86))
+([IP88_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 228.57))
+
+
+([P89] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP89_0] [IP89_1] [IP89_2] [IP89_3] [IP89_4])
+    (Nom "Castilian soup")
+    (Tipus_plat 1r 2n))
+
+([IP89_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43285])
+    (Quantitat 100.0))
+([IP89_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18972])
+    (Quantitat 66.67))
+([IP89_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I16107])
+    (Quantitat 16.67))
+([IP89_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 16.67))
+([IP89_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 8.33))
+
+
+([P90] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP90_0] [IP90_1] [IP90_2] [IP90_3] [IP90_4])
+    (Nom "Rice soup")
+    (Tipus_plat 1r 2n))
+
+([IP90_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I42204])
+    (Quantitat 191.67))
+([IP90_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 38.33))
+([IP90_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I16386])
+    (Quantitat 38.33))
+([IP90_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 38.33))
+([IP90_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 38.33))
+
+
+([P91] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP91_0] [IP91_1] [IP91_2] [IP91_3] [IP91_4])
+    (Nom "Fish soup")
+    (Tipus_plat 1r 2n))
+
+([IP91_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 22.22))
+([IP91_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I83110])
+    (Quantitat 111.11))
+([IP91_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 44.44))
+([IP91_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11795])
+    (Quantitat 33.33))
+([IP91_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 66.67))
+
+
+([P92] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP92_0] [IP92_1] [IP92_2] [IP92_3] [IP92_4])
+    (Nom "Tomato soup")
+    (Tipus_plat 1r 2n))
+
+([IP92_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 249.33))
+([IP92_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43543])
+    (Quantitat 9.97))
+([IP92_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I42141])
+    (Quantitat 62.33))
+([IP92_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43311])
+    (Quantitat 37.4))
+([IP92_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11795])
+    (Quantitat 18.7))
+
+
+([P93] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP93_0] [IP93_1] [IP93_2] [IP93_3] [IP93_4] [IP93_5] [IP93_6] [IP93_7] [IP93_8])
+    (Nom "Julianne soup")
+    (Tipus_plat 1r 2n))
+
+([IP93_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11960])
+    (Quantitat 74.0))
+([IP93_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11257])
+    (Quantitat 74.0))
+([IP93_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11795])
+    (Quantitat 29.4))
+([IP93_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I16386])
+    (Quantitat 26.4))
+([IP93_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11890])
+    (Quantitat 74.0))
+([IP93_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 33.6))
+([IP93_6] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 33.6))
+([IP93_7] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43144])
+    (Quantitat 42.0))
+([IP93_8] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44055])
+    (Quantitat 27.0))
+
+
+([P94] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP94_0] [IP94_1] [IP94_2] [IP94_3] [IP94_4] [IP94_5])
+    (Nom "Mero in sauce")
+    (Tipus_plat 2n))
+
+([IP94_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I83110])
+    (Quantitat 200.0))
+([IP94_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 12.5))
+([IP94_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 25.0))
+([IP94_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11709])
+    (Quantitat 10.0))
+([IP94_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 10.0))
+([IP94_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 2.5))
+
+
+([P95] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP95_0] [IP95_1] [IP95_2] [IP95_3] [IP95_4])
+    (Nom "Baked hake")
+    (Tipus_plat 2n))
+
+([IP95_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I83110])
+    (Quantitat 178.57))
+([IP95_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I43285])
+    (Quantitat 21.43))
+([IP95_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9150])
+    (Quantitat 8.93))
+([IP95_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 17.86))
+([IP95_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 26.79))
+
+
+([P96] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP96_0] [IP96_1] [IP96_2] [IP96_3] [IP96_4] [IP96_5] [IP96_6])
+    (Nom "Baked golden fish")
+    (Tipus_plat 2n))
+
+([IP96_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I83110])
+    (Quantitat 160.71))
+([IP96_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 24.11))
+([IP96_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 12.86))
+([IP96_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 154.29))
+([IP96_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9195])
+    (Quantitat 16.07))
+([IP96_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I9150])
+    (Quantitat 32.14))
+([IP96_6] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I7056])
+    (Quantitat 57.86))
+
+
+([P97] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP97_0] [IP97_1] [IP97_2] [IP97_3])
+    (Nom "Rape stew")
+    (Tipus_plat 2n))
+
+([IP97_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I83110])
+    (Quantitat 316.0))
+([IP97_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 23.7))
+([IP97_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I16386])
+    (Quantitat 15.8))
+([IP97_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11956])
+    (Quantitat 31.6))
+
+
+([P98] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP98_0] [IP98_1] [IP98_2] [IP98_3] [IP98_4] [IP98_5] [IP98_6])
+    (Nom "Baked salmon")
+    (Tipus_plat 2n))
+
+([IP98_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I83110])
+    (Quantitat 176.92))
+([IP98_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 35.38))
+([IP98_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18972])
+    (Quantitat 3.54))
+([IP98_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 0.88))
+([IP98_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 1.77))
+([IP98_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 8.85))
+([IP98_6] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11625])
+    (Quantitat 1.88))
+
+
+([P99] of  Plat
+    (Apat Dinar Sopar)
+    (Ingredients [IP99_0] [IP99_1] [IP99_2] [IP99_3] [IP99_4] [IP99_5] [IP99_6])
+    (Nom "Sardines in marinade")
+    (Tipus_plat 2n))
+
+([IP99_0] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I83110])
+    (Quantitat 240.0))
+([IP99_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I44005])
+    (Quantitat 32.0))
+([IP99_2] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I2069])
+    (Quantitat 64.0))
+([IP99_3] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I11807])
+    (Quantitat 32.0))
+([IP99_4] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18963])
+    (Quantitat 4.8))
+([IP99_5] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I20080])
+    (Quantitat 32.0))
+([IP99_6] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I31034])
+    (Quantitat 3.2))
+
+
+
+
+
+
 
 
 
@@ -3673,6 +5352,7 @@
 	?f <- (initial-fact)
 	(not (FI))
 	(not(imprimir))
+	(not (totOrdenat))
 	=>
 	(reset)
 	(printout t crlf)
@@ -3737,12 +5417,10 @@
 	(nou_usuari)
 	(not(FI))
 	=>
-	(bind ?q (pregunta-numerica "How often do you practice sport? [barely(1) regularly(2) often(3) very-often(4)]:  " 1 4))
+	(bind ?q (pregunta-numerica "How often do you practice sport? [not-much(1) regularly(2)]:  " 1 2))
 	(switch ?q
 		(case 1 then (assert(Activitat 1.2)))
 		(case 2 then (assert(Activitat 1.375)))
-		(case 3 then (assert(Activitat 1.55)))
-		(case 4 then (assert(Activitat 1.725)))
 	)
 )
 
@@ -3841,7 +5519,7 @@
 			(case 15 then   (assert(Restriccio Breakfast_Cereals)))
 			(case 16 then
                 (printout t crlf)
-                (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
+                (bind ?q (pregunta-general "Write the name of the product:  "))
                 (assert (Restriccio ?q)))
         )
     )
@@ -3905,7 +5583,7 @@
 			(case 15 then   (assert(PreferenciaN Breakfast_Cereals)))
 			(case 16 then
                 (printout t crlf)
-                (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
+                (bind ?q (pregunta-general "Write the name of the product:  "))
                 (assert (PreferenciaN ?q)))
 
         )
@@ -3972,7 +5650,7 @@
 			(case 15 then   (assert(PreferenciaP Breakfast_Cereals)))
 			(case 16 then
                 (printout t crlf)
-                (bind ?q (pregunta-general "Write the name of the product (in singular if possible):  "))
+                (bind ?q (pregunta-general "Write the name of the product:  "))
                 (assert (PreferenciaP ?q)))
         )
 	)
@@ -3996,13 +5674,13 @@
 
 	(progn$ (?it ?malalties)	;Per a cadascun dels elements seleccionats
 		(switch ?it
-			(case 1 then   (assert(Osteoporosis)))
-			(case 2 then   (assert(Problemes articulars)))
-			(case 3 then   (assert(Diabetis)))
-			(case 4 then   (assert(Hipertensio)))
+			(case 1 then   (assert(Osteoporosis))(assert(MalaltiesAfegides)))
+			(case 2 then   (assert(Problemes articulars))(assert(MalaltiesAfegides)))
+			(case 3 then   (assert(Diabetis))(assert(MalaltiesAfegides)))
+			(case 4 then   (assert(Hipertensio))(assert(MalaltiesAfegides)))
 		)
 	)
-  (assert(MalaltiesAfegides))
+
 )
 
 (defrule finalPreguntes "regla para pasar al modulo siguiente"
@@ -4016,7 +5694,6 @@
         (printout t crlf)
 
 	  (printout t crlf)
-	  (printout t "Passem al modul de inferir dades: "crlf)
       (focus INFERIR_DADES)
 )
 
@@ -4085,7 +5762,6 @@
 
     (assert (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax)))
     (assert(necessitat_calculades))
-
 )
 
 
@@ -4102,9 +5778,9 @@
     )
 
     ;si entra, modifiquem les quantitats proporcionalment
-    (if (and (> ?quantitat 120) (not (member$ Postres (send ?plat get-Tipus_plat)))) then
+    (if (and (> ?quantitat 150) (not (member$ Postres (send ?plat get-Tipus_plat)))) then
 
-        (bind ?proporcio (/ 120 ?quantitat))    ;trobem la proporcio amb la que ho hem de reduir
+        (bind ?proporcio (/ 150 ?quantitat))    ;trobem la proporcio amb la que ho hem de reduir
         (progn$ (?ing ?ingredients)
             (bind ?a (instance-address * ?ing))
             (bind ?quantitatNova (* (send ?a get-Quantitat) ?proporcio))
@@ -4114,8 +5790,8 @@
     )
 
       ;si entra, modifiquem les quantitats proporcionalment
-    (if (and (> ?quantitat 150) (member$ Postres (send ?plat get-Tipus_plat))) then
-        (bind ?proporcio (/ 150 ?quantitat))    ;trobem la proporcio amb la que ho hem de reduir
+    (if (and (> ?quantitat 130) (member$ Postres (send ?plat get-Tipus_plat))) then
+        (bind ?proporcio (/ 130 ?quantitat))    ;trobem la proporcio amb la que ho hem de reduir
         (progn$ (?ing ?ingredients)
             (bind ?a (instance-address * ?ing))
             (bind ?quantitatNova (* (send ?a get-Quantitat) ?proporcio))
@@ -4130,8 +5806,6 @@
   (nou_usuari)
   (necessitat_calculades)
   =>
-	(printout t crlf)
-	(printout t "Passem al modul de filtrar plats no possibles: "crlf)
   (focus MALALTIES)
 )
 
@@ -4253,8 +5927,6 @@
 (defrule MALALTIES::passemAFiltrat "No fa res. Passem al seguent modul"
 	(nou_usuari)
 	=>
-	(printout t crlf)
-	(printout t "Passem al modul de marcar les filtrat: "crlf)
 	(focus FILTRAT)
 )
 
@@ -4288,14 +5960,15 @@
         ;Comprovem si pertany a una familia a potenciar
 
        (if (eq (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
-					(printout t " Eliminem el plat " (instance-name ?plat) crlf)
+					(printout t "We delete the dish " (send ?plat get-Nom) " because it contains" (send ?ingredientGeneral get-Nom_ingredient) crlf)
 					(send ?plat delete)
 					(bind ?FI TRUE)
         )
 
         (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
             (if (and(= (str-compare ?P ?a) 0) (eq ?FI FALSE)) then
-                            (printout t " Eliminem el plat " (instance-name ?plat) "perque conte" ?P crlf)
+                            (printout t "We delete the dish " (send ?plat get-Nom) " because it contains" (send ?ingredientGeneral get-Nom_ingredient) crlf)
+                            (printout t crlf)
                             (send ?plat delete)
                             (bind ?FI TRUE)
            )
@@ -4334,7 +6007,8 @@
 
 					;Comprovem si es del tipus de nutrient passat i en te la suficient quantitat de greix
                     (if (and (eq ?tipus ?n) (>= ?quantitat ?q)) then
-                        (printout t " Eliminem el plat " (instance-name ?plat) " per contenir " ?quantitat " grams del nutrient " ?n " i ser de la familia " ?f crlf)
+                        (printout t "We delete the dish " (send ?plat get-Nom) " because it contains " ?quantitat " grams of " ?n " and is of type " ?f crlf)
+                        (printout t crlf)
                         (send ?plat delete)
                         (bind ?FI TRUE)
                     )
@@ -4349,8 +6023,6 @@
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
       =>
-			(printout t crlf)
-			(printout t "Passem al modul de marcar les preferencies: "crlf)
       (focus PREFERENCIES)
 )
 
@@ -4380,8 +6052,8 @@
 	(progn$ (?ingredient ?ingredients_plat)
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
         (if (member$ ?n (send ?ingredientGeneral get-Temporada)) then
-            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de temporada "crlf)
-						(bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
+            (printout t "We encourage the dish " (send ?plat get-Nom) " because it contains "  (send ?ingredientGeneral get-Nom_ingredient) " which is of this season." crlf)
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
             (send ?plat put-GrauRecomanacio ?grau)
         )
   )
@@ -4402,7 +6074,7 @@
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
         ;Comprovem si pertany a una familia a potenciar
         (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
-            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de la familia a potenciar de no menjar"crlf)
+            (printout t "We do not encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
             (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
             (send ?plat put-GrauRecomanacio ?grau)
         )
@@ -4410,7 +6082,7 @@
         (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
          (progn$ (?it ?P)
             (if (= (str-compare ?it ?a) 0) then
-            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient a potenciar de no menjar "crlf)
+            (printout t "We do not encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
             (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
             (send ?plat put-GrauRecomanacio ?grau))
         )
@@ -4445,7 +6117,7 @@
 
 					;Comprovem si es del tipus de nutrient passat i en te la suficient quantitat de greix
                     (if (and (eq ?tipus ?n) (>= ?quantitat ?q)) then
-                        (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient que conte " ?quantitat " grams de " ?tipus crlf)
+                        (printout t "We don't encourage the dish " (send ?plat get-Nom) " because it contains " ?quantitat " grams of " ?n " and is of type " ?f crlf)
                         (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
                         (send ?plat put-GrauRecomanacio ?grau))
             (bind ?j (+ ?j 1)))
@@ -4471,7 +6143,7 @@
 
         ;Comprovem si pertany a una familia a potenciar
         (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
-            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient de la familia a potenciar a menjar"crlf)
+            (printout t "We do encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
             (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
             (send ?plat put-GrauRecomanacio ?grau)
         )
@@ -4479,7 +6151,7 @@
         (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
          (progn$ (?it ?P)
             (if (= (str-compare ?it ?a) 0) then
-            (printout t " Potenciem el plat " (instance-name ?plat) " perque te un ingredient a potenciar a menjar "crlf)
+            (printout t "We do encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
             (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
             (send ?plat put-GrauRecomanacio ?grau))
         )
@@ -4491,8 +6163,6 @@
 (defrule PREFERENCIES::acabatLesPreferencia "Saltem al seguent modul"
     (nou_usuari)
     =>
-    (printout t crlf)
-    (printout t "Passem al modul de formar menus: "crlf)
     (focus MENUS)
 )
 
@@ -4604,7 +6274,6 @@
 
     (assert (infoNutricionalPlat (plat ?plat) (Vitamines ?vit) (Proteines ?prot) (Hidrats_de_carboni ?hid) (Greixos ?g) (Sucre ?s) (Aigua ?a) (Minerals ?m) (Fibra ?f)(Colesterol ?col) (Energia ?kcal)))
     (assert (ValorNutricionalPlats))
-
 )
 
 
@@ -4685,7 +6354,7 @@
 )
 
 (defrule MENUS::ordenarDinarPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience 0))
+	(declare (salience -1))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaDP (posicio ?pos1) (plat ?plat1))
@@ -4698,7 +6367,7 @@
 )
 
 (defrule MENUS::ordenarDinarSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience 0))
+	(declare (salience -2))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaDS (posicio ?pos1) (plat ?plat1))
@@ -4711,7 +6380,7 @@
 )
 
 (defrule MENUS::ordenarSoparPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience 0))
+	(declare (salience -3))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaSP (posicio ?pos1) (plat ?plat1))
@@ -4724,7 +6393,7 @@
 )
 
 (defrule MENUS::ordenarSoparSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience 0))
+	(declare (salience -4))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaSS (posicio ?pos1) (plat ?plat1))
@@ -4738,7 +6407,7 @@
 
 
 (defrule MENUS::ordenarPostres "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience 0))
+	(declare (salience -5))
 	(not (FI))
 	(nou_usuari)
 	?p1 <- (solucionOrdenadaP (posicio ?pos1) (plat ?plat1))
@@ -4755,22 +6424,21 @@
 (defrule MENUS::calculaPosicionsAleatories
     (totOrdenat)
     (numeroSoparPrimers ?nSP)
-    (numeroDinarPrimers ?nDP)
+    (numeroDinarPrimers ?nDS)
     (numeroEsmorzars ?nE)
     (numeroPostres ?nP)
     =>
     (assert (pos1 (random 1 ?nE)))
-    (assert (pos2 (random 1 ?nDP)))
-    (assert (pos3 (random 1 ?nP)))
-    (assert (pos4 (random 1 ?nSP)))
-    (assert (pos5 (random 1 ?nP)))
+    (assert (pos2 (random 1 ?nDS)))
+    (assert (pos3 (random 1 ?nSP)))
+    (assert (pos4 (random 1 ?nP)))
     (assert (podemCalcular))
+
 )
 
 
 
-(defrule MENUS::completarMenu "Completem el menu amb els plats que falten"
-    (declare (salience -2))
+(defrule MENUS::completarMenu "Completem el esmorzar, dinar segon i sopar primer i sopar postres"
     (nou_usuari)
     (not (FI))
     (ValorNutricionalPlats)
@@ -4782,11 +6450,10 @@
     ?p2 <- (pos2 ?pos2)
     ?p3 <- (pos3 ?pos3)
     ?p4 <- (pos4 ?pos4)
-    ?p5 <- (pos5 ?pos5)
 
     ;Aixo ho farem servir per si ens cal tornar a buscar una altre combinacio
     (numeroSoparPrimers ?nSP)
-    (numeroDinarPrimers ?nDP)
+    (numeroDinarSegons ?nDS)
     (numeroEsmorzars ?nE)
     (numeroPostres ?nP)
 
@@ -4801,25 +6468,26 @@
 
     ;si cal podem jugar en marcar nosaltres la posicio per tal que sigui sempre dels primers
     ?recE <- (solucionOrdenadaE (posicio ?pos1) (plat ?platE1))
-    ?recDP1 <- (solucionOrdenadaDP (posicio ?pos2) (plat ?platDP1))
-    ?recDPostres1 <- (solucionOrdenadaP (posicio ?pos3) (plat ?platDPostres1))
-    ?recSP1 <- (solucionOrdenadaSP (posicio ?pos4) (plat ?platSP1))
-    ?recSPostres1 <- (solucionOrdenadaP (posicio ?pos5) (plat ?platSPostres1))
-
-
+    ?recDS1 <- (solucionOrdenadaDS (posicio ?pos2) (plat ?platDS1))
+    ?recSP1 <- (solucionOrdenadaSP (posicio ?pos3) (plat ?platSP1))
+    ?recSPostres1 <- (solucionOrdenadaP (posicio ?pos4) (plat ?platSPostres1))
 
     =>
+    (retract ?p1)
+    (retract ?p2)
+    (retract ?p3)
+    (retract ?p4)
+
     ;Nomes agafarem plats que siguin recomanables. La eleccio sera aleatoria
-    (if (and (> (send ?platE1 get-GrauRecomanacio) 0)
-             (> (send ?platDP1 get-GrauRecomanacio) 0)
-             (> (send ?platDPostres1 get-GrauRecomanacio) 0)
-             (> (send ?platSP1 get-GrauRecomanacio) 0)
-             (> (send ?platSPostres1 get-GrauRecomanacio) 0))   then   ;comprovem que siguin recomanables
+    (if (and (>= (send ?platE1 get-GrauRecomanacio) 0)
+             (>= (send ?platDS1 get-GrauRecomanacio) 0)
+             (>= (send ?platSP1 get-GrauRecomanacio) 0)
+             (>= (send ?platSPostres1 get-GrauRecomanacio) 0))   then   ;comprovem que siguin recomanables
 
         ;actualitzem la informacio del menu setmanal
-        (bind $?info (obtenirInfoPlats (create$ ?platE1 ?platDP1 ?platSP1 ?platDPostres1 ?platSPostres1)))
+        (bind $?info (obtenirInfoPlats (create$ ?platE1 ?platDS1 ?platSP1 ?platSPostres1)))
 
-        (modify ?menu (esmorzar ?platE1)(dinarPrimer ?platDP1)(soparPrimer ?platSP1)(dinarPostres ?platDPostres1)(soparPostres ?platSPostres1))
+        (modify ?menu (esmorzar ?platE1)(dinarSegon ?platDS1)(soparPrimer ?platSP1)(soparPostres ?platSPostres1))
 
         ;calculem els nous valors nutricionals setmanals
         (bind ?kcal (+ ?e0 (nth$ 1 ?info)))
@@ -4837,42 +6505,44 @@
 
         (retract ?dd)
         (assert (dia (+ ?d 1))) ;fem el seguent dia
+
+        (if (< ?d 7) then
+            (assert (pos1 (random 1 ?nE)))
+            (assert (pos2 (random 1 ?nDS)))
+            (assert (pos3 (random 1 ?nSP)))
+            (assert (pos4 (random 1 ?nP)))
+
+        else
+            (assert (menuMigOmplert))
+        )
+
+    else
+        (assert (pos1 (random 1 ?nE)))
+        (assert (pos2 (random 1 ?nDS)))
+        (assert (pos3 (random 1 ?nSP)))
+        (assert (pos4 (random 1 ?nP)))
     )
-
-     (retract ?p1)
-     (retract ?p2)
-     (retract ?p3)
-     (retract ?p4)
-     (retract ?p5)
-     (assert (pos1 (random 1 ?nE)))
-     (assert (pos2 (random 1 ?nDP)))
-     (assert (pos3 (random 1 ?nP)))
-     (assert (pos4 (random 1 ?nSP)))
-     (assert (pos5 (random 1 ?nP)))
-
-     (if (eq ?d 7) then
-        (assert (menuMigOmplert)))
 )
-
-
 
 
 
 (defrule MENUS::reinicialitzemCountersIValorsAleatoris
     (not (FI))
     (numeroSoparSegons ?nSS)
-    (numeroDinarSegons ?nDS)
+    (numeroDinarPrimers ?nDP)
+    (numeroPostres ?nP)
     (menuMigOmplert)
     =>
+    (facts)
     (assert (counter 1))
     (assert (menuCompletat1))
-    (assert (pos1 (random 1 ?nDS)))
-    (assert (pos2 (random 1 ?nDS)))
-    (assert (pos3 (random 1 ?nDS)))
-    (assert (pos4 (random 1 ?nDS)))
-    (assert (pos5 (random 1 ?nDS)))
-    (assert (pos6 (random 1 ?nDS)))
-    (assert (pos7 (random 1 ?nDS)))
+    (assert (pos1 (random 1 ?nDP)))
+    (assert (pos2 (random 1 ?nDP)))
+    (assert (pos3 (random 1 ?nDP)))
+    (assert (pos4 (random 1 ?nDP)))
+    (assert (pos5 (random 1 ?nDP)))
+    (assert (pos6 (random 1 ?nDP)))
+    (assert (pos7 (random 1 ?nDP)))
 
     (assert (pos8 (random 1 ?nSS)))
     (assert (pos9 (random 1 ?nSS)))
@@ -4881,7 +6551,14 @@
     (assert (pos12 (random 1 ?nSS)))
     (assert (pos13 (random 1 ?nSS)))
     (assert (pos14 (random 1 ?nSS)))
-    (facts)
+
+    (assert (pos15 (random 1 ?nP)))
+    (assert (pos16 (random 1 ?nP)))
+    (assert (pos17 (random 1 ?nP)))
+    (assert (pos18 (random 1 ?nP)))
+    (assert (pos19 (random 1 ?nP)))
+    (assert (pos20 (random 1 ?nP)))
+    (assert (pos21 (random 1 ?nP)))
 )
 
 
@@ -4890,6 +6567,7 @@
 		(menuCompletat1)
 		(not (FI))
 		(not (menuCompletat))
+
 		?p1 <- (pos1 ?pos1)
 		?p2 <- (pos2 ?pos2)
 		?p3 <- (pos3 ?pos3)
@@ -4904,34 +6582,52 @@
 		?p12 <- (pos12 ?pos12)
 		?p13 <- (pos13 ?pos13)
 		?p14 <- (pos14 ?pos14)
+		?p15 <- (pos15 ?pos15)
+		?p16 <- (pos16 ?pos16)
+		?p17 <- (pos17 ?pos17)
+		?p18 <- (pos18 ?pos18)
+		?p19 <- (pos19 ?pos19)
+		?p20 <- (pos20 ?pos20)
+		?p21 <- (pos21 ?pos21)
 
 		?cc <- (counter ?counter)
 
         (numeroSoparSegons ?nSS)
-        (numeroDinarSegons ?nDS)
+        (numeroDinarPrimers ?nDP)
+        (numeroPostres ?nP)
 
 		;aqui sabem el que tenim
 		?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
 
 		?r <- (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
 
-        ;Trobem dinars
-		?d1 <- (solucionOrdenadaDS (posicio ?pos1) (plat ?dinar1))
-		?d2 <- (solucionOrdenadaDS (posicio ?pos2) (plat ?dinar2))
-		?d3 <- (solucionOrdenadaDS (posicio ?pos3) (plat ?dinar3))
-		?d4 <- (solucionOrdenadaDS (posicio ?pos4) (plat ?dinar4))
-		?d5 <- (solucionOrdenadaDS (posicio ?pos5) (plat ?dinar5))
-		?d6 <- (solucionOrdenadaDS (posicio ?pos6) (plat ?dinar6))
-		?d7 <- (solucionOrdenadaDS (posicio ?pos7) (plat ?dinar7))
+        ;Trobem dinars primers
+		?d1 <- (solucionOrdenadaDP (posicio ?pos1) (plat ?dinar1))
+		?d2 <- (solucionOrdenadaDP (posicio ?pos2) (plat ?dinar2))
+		?d3 <- (solucionOrdenadaDP (posicio ?pos3) (plat ?dinar3))
+		?d4 <- (solucionOrdenadaDP (posicio ?pos4) (plat ?dinar4))
+		?d5 <- (solucionOrdenadaDP (posicio ?pos5) (plat ?dinar5))
+		?d6 <- (solucionOrdenadaDP (posicio ?pos6) (plat ?dinar6))
+		?d7 <- (solucionOrdenadaDP (posicio ?pos7) (plat ?dinar7))
 
-		;Trobem sopars
-		?s1 <- (solucionOrdenadaDS (posicio ?pos8) (plat ?sopar1))
-		?s2 <- (solucionOrdenadaDS (posicio ?pos9) (plat ?sopar2))
-		?s3 <- (solucionOrdenadaDS (posicio ?pos10) (plat ?sopar3))
-		?s4 <- (solucionOrdenadaDS (posicio ?pos11) (plat ?sopar4))
-		?s5 <- (solucionOrdenadaDS (posicio ?pos12) (plat ?sopar5))
-		?s6 <- (solucionOrdenadaDS (posicio ?pos13) (plat ?sopar6))
-		?s7 <- (solucionOrdenadaDS (posicio ?pos14) (plat ?sopar7))
+		;Trobem sopars segons
+		?s1 <- (solucionOrdenadaSS (posicio ?pos8) (plat ?sopar1))
+		?s2 <- (solucionOrdenadaSS (posicio ?pos9) (plat ?sopar2))
+		?s3 <- (solucionOrdenadaSS (posicio ?pos10) (plat ?sopar3))
+		?s4 <- (solucionOrdenadaSS (posicio ?pos11) (plat ?sopar4))
+		?s5 <- (solucionOrdenadaSS (posicio ?pos12) (plat ?sopar5))
+		?s6 <- (solucionOrdenadaSS (posicio ?pos13) (plat ?sopar6))
+		?s7 <- (solucionOrdenadaSS (posicio ?pos14) (plat ?sopar7))
+
+		;Trobem els dinars postres
+		?h1 <- (solucionOrdenadaP (posicio ?pos15) (plat ?postre1))
+		?h2 <- (solucionOrdenadaP (posicio ?pos16) (plat ?postre2))
+		?h3 <- (solucionOrdenadaP (posicio ?pos17) (plat ?postre3))
+		?h4 <- (solucionOrdenadaP (posicio ?pos18) (plat ?postre4))
+		?h5 <- (solucionOrdenadaP (posicio ?pos19) (plat ?postre5))
+		?h6 <- (solucionOrdenadaP (posicio ?pos20) (plat ?postre6))
+		?h7 <- (solucionOrdenadaP (posicio ?pos21) (plat ?postre7))
+
 
 		;carreguem els menus
 		?menu1 <- (menuDiari (dia 1))
@@ -4943,8 +6639,9 @@
 		?menu7 <- (menuDiari (dia 7))
 
 		=>
-		(bind $?list (obtenirInfoPlats (create$ ?dinar1 ?dinar2 ?dinar3 ?dinar4 ?dinar5 ?dinar6 ?dinar7 ?sopar1 ?sopar2 ?sopar3 ?sopar4 ?sopar5 ?sopar6 ?sopar7)))
+		(bind $?list (obtenirInfoPlats (create$ ?dinar1 ?dinar2 ?dinar3 ?dinar4 ?dinar5 ?dinar6 ?dinar7 ?sopar1 ?sopar2 ?sopar3 ?sopar4 ?sopar5 ?sopar6 ?sopar7 ?postre1 ?postre2 ?postre3 ?postre4 ?postre5 ?postre6 ?postre7)))
 
+		;Aquestes son les que tenim amb aquesta nova seleccio
         (bind ?kcalFinal (nth$ 1 ?list))
 		(bind ?protFinal (nth$ 2 ?list))
 		(bind ?hidFinal (nth$ 3 ?list))
@@ -4956,79 +6653,77 @@
 		(bind ?colFinal (nth$ 9 ?list))
 		(bind ?vitFinal (nth$ 10 ?list))
 
-		;Aquests son els nutrients que ens falten per aconseguir
-        (bind ?m (- ?minerals ?m0))
-        (bind ?e (- ?energia ?e0))
-        (bind ?p (- ?prot ?p0))
-        (bind ?v (- ?vitamines ?v0))
-        (bind ?f (- ?fibra ?f0))
-        (bind ?h (- ?hidrats ?h0))
-        (bind ?g (- ?greixosMaxims ?g0))
-        (bind ?s (- ?sucre ?s0))
-        (bind ?c (- ?colesterolMax ?c0))
+
+        ;Potencialment definitius
+        (bind ?mDef (+ ?mFinal ?m0))
+        (bind ?eDef (+ ?kcalFinal ?e0))
+        (bind ?pDef (+ ?protFinal ?p0))
+        (bind ?vDef (+ ?vitFinal ?v0))
+        (bind ?fDef (+ ?fFinal ?f0))
+        (bind ?hDef (+ ?hidFinal ?h0))
+        (bind ?gDef (+ ?gFinal ?g0))
+        (bind ?sDef (+ ?sFinal ?s0))
+        (bind ?cDef (+ ?colFinal ?c0))
+
+
+        (retract ?p1)
+        (retract ?p2)
+        (retract ?p3)
+        (retract ?p4)
+        (retract ?p5)
+        (retract ?p6)
+        (retract ?p7)
+        (retract ?p8)
+        (retract ?p9)
+        (retract ?p10)
+        (retract ?p11)
+        (retract ?p12)
+        (retract ?p13)
+        (retract ?p14)
+        (retract ?p15)
+        (retract ?p16)
+        (retract ?p17)
+        (retract ?p18)
+        (retract ?p19)
+        (retract ?p20)
+        (retract ?p21)
+
 
         ;Farem les comparacions per a veure si aconseguim que estigui en un rang de +- 20%
-        (if (or (and (> ?mFinal (* 0.8 ?m)) (< ?mFinal (* 1.2 ?m))
-                     (> ?kcalFinal (* 0.8 ?e)) (< ?kcalFinal (* 1.2 ?e))
-                     (> ?protFinal (* 0.8 ?p)) (< ?protFinal (* 1.2 ?p))
-                     (> ?vitFinal (* 0.8 ?v)) (< ?vitFinal (* 1.2 ?v))
-                     (> ?fFinal (* 0.8 ?f)) (< ?fFinal (* 1.2 ?f))
-                     (> ?hidFinal (* 0.8 ?h)) (< ?hidFinal (* 1.2 ?h))
-                     (> ?gFinal (* 0.8 ?g)) (< ?mFinal (* 1.2 ?g))
-                     (> ?sFinal (* 0.8 ?s)) (< ?sFinal (* 1.2 ?s))
-                    (< ?colFinal (* 1.2 ?c))
+        (if (or (and (> ?mDef (* 0.8 ?minerals))
+                     (> ?eDef (* 0.8 ?energia)) (< ?eDef (* 1.2 ?energia))
+                     (> ?pDef (* 0.8 ?prot)) (< ?pDef (* 1.2 ?prot))
+                     (> ?vDef (* 0.8 ?vitamines))
+                     (> ?fDef (* 0.5 ?fibra))
+                     (> ?hDef (* 0.8 ?hidrats)) (< ?hDef (* 1.2 ?hidrats))
+                     (< ?gDef (* 1.2 ?greixosMaxims))
+                     (< ?sDef (* 1.2 ?sucre))
+                     (< ?cDef (* 1.2 ?colesterolMax))
                     )
                 (> ?counter 10000)) then
 
-            (modify ?menu1 (dinarSegon ?dinar1)(soparSegon ?sopar1))
-            (modify ?menu2 (dinarSegon ?dinar2)(soparSegon ?sopar2))
-            (modify ?menu3 (dinarSegon ?dinar3)(soparSegon ?sopar3))
-            (modify ?menu4 (dinarSegon ?dinar4)(soparSegon ?sopar4))
-            (modify ?menu5 (dinarSegon ?dinar5)(soparSegon ?sopar5))
-            (modify ?menu6 (dinarSegon ?dinar6)(soparSegon ?sopar6))
-            (modify ?menu7 (dinarSegon ?dinar7)(soparSegon ?sopar7))
+            (modify ?menu1 (dinarPrimer ?dinar1)(soparSegon ?sopar1)(dinarPostres ?postre1))
+            (modify ?menu2 (dinarPrimer ?dinar2)(soparSegon ?sopar2)(dinarPostres ?postre2))
+            (modify ?menu3 (dinarPrimer ?dinar3)(soparSegon ?sopar3)(dinarPostres ?postre3))
+            (modify ?menu4 (dinarPrimer ?dinar4)(soparSegon ?sopar4)(dinarPostres ?postre4))
+            (modify ?menu5 (dinarPrimer ?dinar5)(soparSegon ?sopar5)(dinarPostres ?postre5))
+            (modify ?menu6 (dinarPrimer ?dinar6)(soparSegon ?sopar6)(dinarPostres ?postre6))
+            (modify ?menu7 (dinarPrimer ?dinar7)(soparSegon ?sopar7)(dinarPostres ?postre7))
 
-            (modify ?ms (Minerals (+ ?m0 ?mFinal)) (Proteines (+ ?p0 ?protFinal)) (Vitamines (+ ?v0 ?vitFinal)) (Fibra (+ ?f0 ?fFinal))(Hidrats_de_carboni (+ ?h0 ?hidFinal)) (Greixos (+ ?g0 ?gFinal)) (Sucre (+ ?s0 ?sFinal)) (Colesterol (+ ?c0 ?colFinal))(Energia (+ ?e0 ?kcalFinal)))
+            (modify ?ms (Minerals ?mDef) (Proteines ?pDef) (Vitamines ?vDef) (Fibra ?fDef)(Hidrats_de_carboni ?hDef) (Greixos ?gDef) (Sucre ?sDef) (Colesterol ?cDef)(Energia ?eDef))
 
-            (retract ?p1)
-            (retract ?p2)
-            (retract ?p3)
-            (retract ?p4)
-            (retract ?p5)
-            (retract ?p6)
-            (retract ?p7)
-            (retract ?p8)
-            (retract ?p9)
-            (retract ?p10)
-            (retract ?p11)
-            (retract ?p12)
-            (retract ?p13)
-            (retract ?p14)
+
             (assert (menuCompletat))
 
 		else  ;fem aquesta "TRAMPA" per tal que segueixi buscant combinacions fins que en trobi una
-            (retract ?p1)
-            (retract ?p2)
-            (retract ?p3)
-            (retract ?p4)
-            (retract ?p5)
-            (retract ?p6)
-            (retract ?p7)
-            (retract ?p8)
-            (retract ?p9)
-            (retract ?p10)
-            (retract ?p11)
-            (retract ?p12)
-            (retract ?p13)
-            (retract ?p14)
+            (assert (pos1 (random 1 ?nDP)))
+            (assert (pos2 (random 1 ?nDP)))
+            (assert (pos3 (random 1 ?nDP)))
+            (assert (pos4 (random 1 ?nDP)))
+            (assert (pos5 (random 1 ?nDP)))
+            (assert (pos6 (random 1 ?nDP)))
+            (assert (pos7 (random 1 ?nDP)))
 
-            (assert (pos1 (random 1 ?nDS)))
-            (assert (pos2 (random 1 ?nDS)))
-            (assert (pos3 (random 1 ?nDS)))
-            (assert (pos4 (random 1 ?nDS)))
-            (assert (pos5 (random 1 ?nDS)))
-            (assert (pos6 (random 1 ?nDS)))
-            (assert (pos7 (random 1 ?nDS)))
             (assert (pos8 (random 1 ?nSS)))
             (assert (pos9 (random 1 ?nSS)))
             (assert (pos10 (random 1 ?nSS)))
@@ -5036,6 +6731,14 @@
             (assert (pos12 (random 1 ?nSS)))
             (assert (pos13 (random 1 ?nSS)))
             (assert (pos14 (random 1 ?nSS)))
+
+            (assert (pos15 (random 1 ?nP)))
+            (assert (pos16 (random 1 ?nP)))
+            (assert (pos17 (random 1 ?nP)))
+            (assert (pos18 (random 1 ?nP)))
+            (assert (pos19 (random 1 ?nP)))
+            (assert (pos20 (random 1 ?nP)))
+            (assert (pos21 (random 1 ?nP)))
 
             (retract ?cc)
             (assert (counter (+ ?counter 1)))
@@ -5203,50 +6906,51 @@
         (printout t "---------------------------------------------------------------" crlf)
         (printout t crlf)
         (printout t "In our nutritional restrictions we give a margin of 20% to be a little flexible" crlf)
+        (printout t crlf)
 
         (printout t "Energy :" crlf)
-        (printout t "Recomended from " (* 0.8 ?energia) "kcal to " (* 1.2 ?energia) "kcal:" crlf)
-        (printout t "Obtained: " ?e0 "kcal" crlf)
+        (printout t "Recomended from " (* 0.8 ?energia) " kcal to " (* 1.2 ?energia) " kcal:" crlf)
+        (printout t "Obtained: " ?e0 " kcal" crlf)
         (printout t crlf)
 
         (printout t "Minerals :" crlf)
-        (printout t "Recomended at least: " ?minerals crlf)
-        (printout t "Obtained: " ?m0 "g" crlf)
+        (printout t "Recomended at least: " ?minerals " g"crlf)
+        (printout t "Obtained: " ?m0 " g" crlf)
         (printout t crlf)
 
         (printout t "Proteins :" crlf)
-        (printout t "Recomended from " (* 0.8 ?prot) "g to " (* 1.2 ?prot) "g:" crlf)
-        (printout t "Obtained: " ?p0 "g" crlf)
+        (printout t "Recomended from " (* 0.8 ?prot) " g to " (* 1.2 ?prot) "g:" crlf)
+        (printout t "Obtained: " ?p0 " g" crlf)
         (printout t crlf)
 
         (printout t "Vitamins :" crlf)
-        (printout t "Recomended at least: " ?vitamines "g" crlf)
-        (printout t "Obtained: " ?v0 "g" crlf)
+        (printout t "Recomended at least: " (* 0.8 ?vitamines) " g" crlf)
+        (printout t "Obtained: " ?v0 " g" crlf)
         (printout t crlf)
 
         (printout t "Fibra :" crlf)
-        (printout t "Recomended at least: " ?fibra "g" crlf)
-        (printout t "Obtained: " ?f0 "g" crlf)
+        (printout t "Recomended at least: " ?fibra " g" crlf)
+        (printout t "Obtained: " ?f0 " g" crlf)
         (printout t crlf)
 
         (printout t "Hidrats :" crlf)
-        (printout t "Recomended from " (* 0.8 ?hidrats) "g to " (* 1.2 ?hidrats) "g:" crlf)
-        (printout t "Obtained: " ?h0 "g" crlf)
+        (printout t "Recomended from " (* 0.8 ?hidrats) " g to " (* 1.2 ?hidrats) "g:" crlf)
+        (printout t "Obtained: " ?h0 " g" crlf)
         (printout t crlf)
 
         (printout t "Greixos :" crlf)
-        (printout t "Recomended at most: " (* 1.2 ?greixosMaxims) "g" crlf)
-        (printout t "Obtained: " ?g0 "g" crlf)
+        (printout t "Recomended at most: " (* 1.2 ?greixosMaxims) " g" crlf)
+        (printout t "Obtained: " ?g0 " g" crlf)
         (printout t crlf)
 
         (printout t "Sugar :" crlf)
-        (printout t "Recomended from " (* 0.8 ?sucre) "g to " (* 1.2 ?sucre) "g:" crlf)
-        (printout t "Obtained: " ?s0 "g"crlf)
+        (printout t "Recomended at most: " (* 1.2 ?sucre) " g:" crlf)
+        (printout t "Obtained: " ?s0 " g"crlf)
         (printout t crlf)
 
         (printout t "Colesterol :" crlf)
-        (printout t "Recomended at most: " ?colesterolMax crlf)
-        (printout t "Obtained: " ?c0 "g" crlf)
+        (printout t "Recomended at most: " (* 1.2 ?colesterolMax) " g:" crlf)
+        (printout t "Obtained: " ?c0 " g" crlf)
         (printout t crlf)
         (assert (FI))
 
