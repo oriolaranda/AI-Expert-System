@@ -6864,7 +6864,7 @@
         (printout t "Obtained: " (precisioDoble ?g0) " g" crlf)
         (printout t crlf)
 
-        (printout t "Sugar :" crlf)
+        (printout t "Sugar :" crlf )
         (printout t "Recomended at most: " (* 1.2 (precisioDoble ?sucre)) " g:" crlf)
         (printout t "Obtained: " (precisioDoble ?s0) " g"crlf)
         (printout t crlf)
