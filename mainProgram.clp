@@ -3113,7 +3113,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP15_0] [IP15_1] [IP15_2])
     (Nom "Tomato salad")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP15_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -3377,7 +3377,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP25_0] [IP25_1] [IP25_2] [IP25_3] [IP25_4])
     (Nom "Chicken croquette")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP25_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -3469,7 +3469,7 @@
     (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP28_0] [IP28_1] [IP28_2])
     (Nom "Fried egg with bread")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP28_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -3649,7 +3649,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP38_0] [IP38_1] [IP38_2] [IP38_3] [IP38_4] [IP38_5])
     (Nom "Orange salad")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP38_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -3681,7 +3681,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP39_0] [IP39_1] [IP39_2] [IP39_3] [IP39_4])
     (Nom "Mixed salad")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP39_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4026,7 +4026,7 @@
 
 
 ([P52] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP52_0])
     (Nom "Apple")
     (Tipus_plat Postres))
@@ -4038,7 +4038,7 @@
 
 
 ([P53] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP53_0])
     (Nom "Orange")
     (Tipus_plat Postres))
@@ -4050,7 +4050,7 @@
 
 
 ([P54] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP54_0])
     (Nom "Pear")
     (Tipus_plat Postres))
@@ -4062,7 +4062,7 @@
 
 
 ([P55] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP55_0])
     (Nom "Banana")
     (Tipus_plat Postres))
@@ -4074,7 +4074,7 @@
 
 
 ([P56] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP56_0])
     (Nom "Strawberry")
     (Tipus_plat Postres))
@@ -4086,7 +4086,7 @@
 
 
 ([P57] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP57_0])
     (Nom "Pineapple")
     (Tipus_plat Postres))
@@ -4098,7 +4098,7 @@
 
 
 ([P58] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP58_0])
     (Nom "Grapes")
     (Tipus_plat Postres))
@@ -4150,7 +4150,7 @@
 
 
 ([P62] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP62_0])
     (Nom "Kiwi")
     (Tipus_plat Postres))
@@ -4198,7 +4198,7 @@
 
 
 ([P66] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP66_0])
     (Nom "Blueberries")
     (Tipus_plat Postres))
@@ -4242,7 +4242,7 @@
 
 
 ([P68] of  Plat
-    (Apat Dinar Sopar)
+    (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP68_0] [IP68_1] [IP68_2] [IP68_3])
     (Nom "Lemon cake")
     (Tipus_plat Postres))
@@ -4297,7 +4297,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP70_0] [IP70_1] [IP70_2] [IP70_3] [IP70_4] [IP70_5] [IP70_6])
     (Nom "Vegetable stew")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP70_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4333,7 +4333,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP71_0] [IP71_1] [IP71_2] [IP71_3] [IP71_4] [IP71_5])
     (Nom "Baked vegetables")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r ))
 
 ([IP71_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4453,7 +4453,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP75_0] [IP75_1] [IP75_2] [IP75_3])
     (Nom "Stewed cauliflower")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP75_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4477,7 +4477,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP76_0] [IP76_1] [IP76_2] [IP76_3])
     (Nom "Cucumber salad")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP76_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4501,7 +4501,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP77_0] [IP77_1] [IP77_2] [IP77_3])
     (Nom "Avocado salad")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP77_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4525,7 +4525,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP78_0] [IP78_1] [IP78_2])
     (Nom "Garlic mushrooms")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP78_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4573,7 +4573,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP80_0] [IP80_1] [IP80_2] [IP80_3] [IP80_4])
     (Nom "Vegetables soup")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r ))
 
 ([IP80_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4601,7 +4601,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP81_0] [IP81_1] [IP81_2] [IP81_3])
     (Nom "Creamed spinach")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r ))
 
 ([IP81_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4625,7 +4625,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP82_0] [IP82_1] [IP82_2] [IP82_3])
     (Nom "Mushrooms' cream")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP82_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4649,7 +4649,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP83_0] [IP83_1] [IP83_2] [IP83_3] [IP83_4] [IP83_5])
     (Nom "Gazpacho")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP83_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4713,7 +4713,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP85_0] [IP85_1] [IP85_2] [IP85_3] [IP85_4] [IP85_5])
     (Nom "Vegetables' puree")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP85_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4813,7 +4813,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP88_0] [IP88_1] [IP88_2])
     (Nom "Mashed carrots")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP88_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4833,7 +4833,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP89_0] [IP89_1] [IP89_2] [IP89_3] [IP89_4])
     (Nom "Castilian soup")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP89_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4889,7 +4889,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP91_0] [IP91_1] [IP91_2] [IP91_3] [IP91_4])
     (Nom "Fish soup")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP91_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4917,7 +4917,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP92_0] [IP92_1] [IP92_2] [IP92_3] [IP92_4])
     (Nom "Tomato soup")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP92_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -4945,7 +4945,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP93_0] [IP93_1] [IP93_2] [IP93_3] [IP93_4] [IP93_5] [IP93_6] [IP93_7] [IP93_8])
     (Nom "Julianne soup")
-    (Tipus_plat 1r 2n))
+    (Tipus_plat 1r))
 
 ([IP93_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -5726,11 +5726,11 @@
     )
 
     ;?energia sera la quantitat d'energia que necessitem diariament en kcal
-    (bind ?prot (/ (* ?energia 0.15) 4)) ;15% de la energia
+    (bind ?prot (/ (* ?energia 0.13) 4)) ;13% de la energia
     (bind ?colesterolMax 0.3) ; < 0.3g diariament
-    (bind ?hidrats (/ (* ?energia 0.55) 4)) ;15% de la energia
+    (bind ?hidrats (/ (* ?energia 0.50) 4)) ;15% de la energia
     (bind ?greixosMaxims (/ (* ?energia 0.35) 9)) ;35% de la energia com a maxim en grams
-    (bind ?fibra 40)  ;40 grams segons la OMS
+    (bind ?fibra 25)
     (bind ?sucre 50) ;OMS
     (bind ?minerals 0);
 
@@ -5790,8 +5790,8 @@
     )
 
       ;si entra, modifiquem les quantitats proporcionalment
-    (if (and (> ?quantitat 130) (member$ Postres (send ?plat get-Tipus_plat))) then
-        (bind ?proporcio (/ 130 ?quantitat))    ;trobem la proporcio amb la que ho hem de reduir
+    (if (and (> ?quantitat 100) (member$ Postres (send ?plat get-Tipus_plat))) then
+        (bind ?proporcio (/ 100 ?quantitat))    ;trobem la proporcio amb la que ho hem de reduir
         (progn$ (?ing ?ingredients)
             (bind ?a (instance-address * ?ing))
             (bind ?quantitatNova (* (send ?a get-Quantitat) ?proporcio))
@@ -6196,7 +6196,6 @@
     (assert (menuDiari (dia 5)))
     (assert (menuDiari (dia 6)))
     (assert (menuDiari (dia 7)))
-    (assert (dia 1))
 )
 
 
@@ -6428,12 +6427,12 @@
     (numeroEsmorzars ?nE)
     (numeroPostres ?nP)
     =>
+    (assert (dia 1))
     (assert (pos1 (random 1 ?nE)))
     (assert (pos2 (random 1 ?nDS)))
     (assert (pos3 (random 1 ?nSP)))
     (assert (pos4 (random 1 ?nP)))
     (assert (podemCalcular))
-
 )
 
 
@@ -6533,7 +6532,7 @@
     (numeroPostres ?nP)
     (menuMigOmplert)
     =>
-    (facts)
+    (printout t "Hello" crlf)
     (assert (counter 1))
     (assert (menuCompletat1))
     (assert (pos1 (random 1 ?nDP)))
@@ -6559,6 +6558,7 @@
     (assert (pos19 (random 1 ?nP)))
     (assert (pos20 (random 1 ?nP)))
     (assert (pos21 (random 1 ?nP)))
+
 )
 
 
@@ -6694,7 +6694,7 @@
                      (> ?eDef (* 0.8 ?energia)) (< ?eDef (* 1.2 ?energia))
                      (> ?pDef (* 0.8 ?prot)) (< ?pDef (* 1.2 ?prot))
                      (> ?vDef (* 0.8 ?vitamines))
-                     (> ?fDef (* 0.5 ?fibra))
+                     (> ?fDef (* 0.8 ?fibra))
                      (> ?hDef (* 0.8 ?hidrats)) (< ?hDef (* 1.2 ?hidrats))
                      (< ?gDef (* 1.2 ?greixosMaxims))
                      (< ?sDef (* 1.2 ?sucre))
@@ -6929,7 +6929,7 @@
         (printout t crlf)
 
         (printout t "Fibra :" crlf)
-        (printout t "Recomended at least: " ?fibra " g" crlf)
+        (printout t "Recomended at least: " (* 0.8 ?fibra) " g" crlf)
         (printout t "Obtained: " ?f0 " g" crlf)
         (printout t crlf)
 
