@@ -281,7 +281,7 @@
     (Familia Meat)
     (Nom_ingredient "Olive")
     (Nutrients [I7051N0] [I7051N1] [I7051N2] [I7051N3] [I7051N4] [I7051N5])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Estiu Tardor)
     (Valor_energetic 235))
 
 ([I7051N0] of  Nutrient
@@ -368,7 +368,7 @@
     (Familia Fruits)
     (Nom_ingredient "Avocados")
     (Nutrients [I9039N0] [I9039N1] [I9039N2] [I9039N3] [I9039N4] [I9039N5] [I9039N6] [I9039N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern Tardor)
     (Valor_energetic 120))
 
 ([I9039N0] of  Nutrient
@@ -434,7 +434,7 @@
     (Familia Fruits)
     (Nom_ingredient "Grapes")
     (Nutrients [I9134N0] [I9134N1] [I9134N2] [I9134N3] [I9134N4] [I9134N5] [I9134N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Primavera)
     (Valor_energetic 76))
 
 ([I9134N0] of  Nutrient
@@ -464,7 +464,7 @@
     (Familia Fruits)
     (Nom_ingredient "Guavas")
     (Nutrients [I9140N0] [I9140N1] [I9140N2] [I9140N3] [I9140N4] [I9140N5] [I9140N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Primavera Estiu )
     (Valor_energetic 69))
 
 ([I9140N0] of  Nutrient
@@ -494,7 +494,7 @@
     (Familia Fruits)
     (Nom_ingredient "Lemons")
     (Nutrients [I9150N0] [I9150N1] [I9150N2] [I9150N3] [I9150N4] [I9150N5] [I9150N6] [I9150N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Primavera Tardor)
     (Valor_energetic 29))
 
 ([I9150N0] of  Nutrient
@@ -527,7 +527,7 @@
     (Familia Fruits)
     (Nom_ingredient "Melons")
     (Nutrients [I9184N0] [I9184N1] [I9184N2] [I9184N3] [I9184N4] [I9184N5] [I9184N6] [I9184N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Estiu)
     (Valor_energetic 36))
 
 ([I9184N0] of  Nutrient
@@ -590,7 +590,7 @@
     (Familia Fruits)
     (Nom_ingredient "Oranges")
     (Nutrients [I9205N0] [I9205N1] [I9205N2] [I9205N3] [I9205N4] [I9205N5] [I9205N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern)
     (Valor_energetic 63))
 
 ([I9205N0] of  Nutrient
@@ -653,7 +653,7 @@
     (Familia Fruits)
     (Nom_ingredient "Watermelon")
     (Nutrients [I9326N0] [I9326N1] [I9326N2] [I9326N3] [I9326N4] [I9326N5] [I9326N6] [I9326N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Estiu Tardor)
     (Valor_energetic 30))
 
 ([I9326N0] of  Nutrient
@@ -716,7 +716,7 @@
     (Familia Fruits)
     (Nom_ingredient "Cherries")
     (Nutrients [I9367N0] [I9367N1] [I9367N2] [I9367N3] [I9367N4] [I9367N5] [I9367N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Estiu)
     (Valor_energetic 83))
 
 ([I9367N0] of  Nutrient
@@ -776,7 +776,7 @@
     (Familia Fruits)
     (Nom_ingredient "Pears")
     (Nutrients [I9415N0] [I9415N1] [I9415N2] [I9415N3] [I9415N4] [I9415N5] [I9415N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern Primavera)
     (Valor_energetic 66))
 
 ([I9415N0] of  Nutrient
@@ -806,7 +806,7 @@
     (Familia Fruits)
     (Nom_ingredient "Apples")
     (Nutrients [I9504N0] [I9504N1] [I9504N2] [I9504N3] [I9504N4] [I9504N5] [I9504N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern)
     (Valor_energetic 63))
 
 ([I9504N0] of  Nutrient
@@ -836,7 +836,7 @@
     (Familia Fruits)
     (Nom_ingredient "Pineapple")
     (Nutrients [I9510N0] [I9510N1] [I9510N2] [I9510N3] [I9510N4] [I9510N5] [I9510N6] [I9510N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern Primavera Tardor)
     (Valor_energetic 50))
 
 ([I9510N0] of  Nutrient
@@ -869,7 +869,7 @@
     (Familia Fruits)
     (Nom_ingredient "Kiwifruit")
     (Nutrients [I9520N0] [I9520N1] [I9520N2] [I9520N3] [I9520N4] [I9520N5] [I9520N6] [I9520N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern)
     (Valor_energetic 63))
 
 ([I9520N0] of  Nutrient
@@ -1028,7 +1028,7 @@
     (Familia Vegetables)
     (Nom_ingredient "Asparagus")
     (Nutrients [I11709N0] [I11709N1] [I11709N2] [I11709N3] [I11709N4] [I11709N5] [I11709N6] [I11709N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Tardor)
     (Valor_energetic 18))
 
 ([I11709N0] of  Nutrient
@@ -1190,7 +1190,7 @@
     (Familia Vegetables)
     (Nom_ingredient "Pumpkin")
     (Nutrients [I11848N0] [I11848N1] [I11848N2] [I11848N3] [I11848N4] [I11848N5] [I11848N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern Tardor)
     (Valor_energetic 21))
 
 ([I11848N0] of  Nutrient
@@ -1283,7 +1283,7 @@
     (Familia Vegetables)
     (Nom_ingredient "Tomatoes")
     (Nutrients [I11956N0] [I11956N1] [I11956N2] [I11956N3] [I11956N4] [I11956N5] [I11956N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Primavera Tardor)
     (Valor_energetic 213))
 
 ([I11956N0] of  Nutrient
@@ -1313,7 +1313,7 @@
     (Familia Vegetables)
     (Nom_ingredient "Carrots")
     (Nutrients [I11960N0] [I11960N1] [I11960N2] [I11960N3] [I11960N4] [I11960N5] [I11960N6] [I11960N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Primavera Tardor)
     (Valor_energetic 35))
 
 ([I11960N0] of  Nutrient
@@ -1376,7 +1376,7 @@
     (Familia Vegetables)
     (Nom_ingredient "Broccoli")
     (Nutrients [I11994N0] [I11994N1] [I11994N2] [I11994N3] [I11994N4] [I11994N5] [I11994N6] [I11994N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern Tardor)
     (Valor_energetic 30))
 
 ([I11994N0] of  Nutrient
@@ -1409,7 +1409,7 @@
     (Familia Vegetables)
     (Nom_ingredient "Mushrooms")
     (Nutrients [I11998N0] [I11998N1] [I11998N2] [I11998N3] [I11998N4] [I11998N5] [I11998N6] [I11998N7])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Primavera Tardor)
     (Valor_energetic 22))
 
 ([I11998N0] of  Nutrient
@@ -1499,7 +1499,7 @@
 
 
 ([I16107] of InfoIngredient
-    (Familia Legumes)
+    (Familia Meat)
     (Nom_ingredient "Sausage")
     (Nutrients [I16107N0] [I16107N1] [I16107N2] [I16107N3] [I16107N4] [I16107N5])
     (Temporada Hivern Primavera Estiu Tardor)
@@ -1559,7 +1559,7 @@
     (Familia Legumes)
     (Nom_ingredient "Peas")
     (Nutrients [I16386N0] [I16386N1] [I16386N2] [I16386N3] [I16386N4] [I16386N5] [I16386N6])
-    (Temporada Hivern Primavera Estiu Tardor)
+    (Temporada Hivern)
     (Valor_energetic 116))
 
 ([I16386N0] of  Nutrient
@@ -3599,7 +3599,7 @@
 
 ([P35] of  Plat
     (Apat Esmorzar)
-    (Ingredients [IP35_0])
+    (Ingredients [IP35_0] [IP35_1])
     (Nom "Milk with kellog's")
     (Tipus_plat Postres))
 
@@ -3607,6 +3607,10 @@
     (Cocci%C3%B3 Fresc)
     (Ingredient_general [I43543])
     (Quantitat 270.0))
+([IP35_1] of  IngredientConcret
+    (Cocci%C3%B3 Fresc)
+    (Ingredient_general [I18999])
+    (Quantitat 200.0))
 
 
 ([P36] of  Plat
@@ -5441,7 +5445,7 @@
 	(nou_usuari)
 	(not(FI))
 	=>
-		(bind ?q (pregunta-general "Are you vegetaria or vegan? [Yes(Y) No(N)]:  " ))
+		(bind ?q (pregunta-general "Are you vegetarian or vegan? [Yes(Y) No(N)]:  " ))
 		(if (eq ?q Y) then
 			(assert(VegaOVegetaria)))
 )
@@ -6041,7 +6045,6 @@
 	(progn$ (?ingredient ?ingredients_plat)
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
         (if (member$ ?n (send ?ingredientGeneral get-Temporada)) then
-            (printout t "We encourage the dish " (send ?plat get-Nom) " because it contains "  (send ?ingredientGeneral get-Nom_ingredient) " which is of this season." crlf)
             (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
             (send ?plat put-GrauRecomanacio ?grau)
         )
@@ -6064,7 +6067,7 @@
         ;Comprovem si pertany a una familia a potenciar
         (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
             (printout t "We do not encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -10))
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -15))
             (send ?plat put-GrauRecomanacio ?grau)
         )
 
@@ -6072,7 +6075,7 @@
          (progn$ (?it ?P)
             (if (= (str-compare ?it ?a) 0) then
             (printout t "We do not encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -10))
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -15))
             (send ?plat put-GrauRecomanacio ?grau))
         )
   )
@@ -6107,7 +6110,7 @@
 					;Comprovem si es del tipus de nutrient passat i en te la suficient quantitat de greix
                     (if (and (eq ?tipus ?n) (>= ?quantitat ?q)) then
                         (printout t "We don't encourage the dish " (send ?plat get-Nom) " because it contains " ?quantitat " grams of " ?n " and is of type " ?f crlf)
-                        (bind ?grau (+ (send ?plat get-GrauRecomanacio) -10))
+                        (bind ?grau (+ (send ?plat get-GrauRecomanacio) -15))
                         (send ?plat put-GrauRecomanacio ?grau))
             (bind ?j (+ ?j 1)))
             )
@@ -6133,7 +6136,7 @@
         ;Comprovem si pertany a una familia a potenciar
         (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
             (printout t "We do encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 5))
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 8))
             (send ?plat put-GrauRecomanacio ?grau)
         )
 
@@ -6141,7 +6144,7 @@
          (progn$ (?it ?P)
             (if (= (str-compare ?it ?a) 0) then
             (printout t "We do encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 5))
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 8))
             (send ?plat put-GrauRecomanacio ?grau))
         )
   )
@@ -6621,8 +6624,6 @@
             (modify ?menu7 (dinarPrimer ?dinar7)(soparSegon ?sopar7)(dinarPostres ?postre7))
 
             (modify ?ms (Minerals ?mDef) (Proteines ?pDef) (Vitamines ?vDef) (Fibra ?fDef)(Hidrats_de_carboni ?hDef) (Greixos ?gDef) (Sucre ?sDef) (Colesterol ?cDef)(Energia ?eDef))
-
-
             (assert (menuCompletat))
 
 		else  ;fem aquesta "TRAMPA" per tal que segueixi buscant combinacions fins que en trobi una
@@ -6653,7 +6654,6 @@
             (retract ?cc)
             (assert (counter (+ ?counter 1)))
         )
-
 )
 
 
@@ -6699,8 +6699,6 @@
     ?menu <- (menuDiari (dia ?d) (esmorzar ?e) (dinarPrimer ?dp) (dinarSegon ?ds) (dinarPostres ?dpostres) (soparPrimer ?sp) (soparSegon ?ss)(soparPostres ?spostres))
     =>
 
-   (printout t crlf)
-    (printout t crlf)
     (switch ?d
 		(case 1 then (printout t "MONDAY" crlf))
 		(case 2 then (printout t "TUESDAY" crlf))
@@ -6724,7 +6722,6 @@
         )
 
         (bind ?i 1)
-        (printout t crlf)
         (printout t crlf)
         (printout t "LUNCH :" crlf)
         (printout t "First dish: " (send ?dp get-Nom) crlf)
@@ -6764,7 +6761,6 @@
 
 
         (bind ?i 1)
-        (printout t crlf)
         (printout t crlf)
         (printout t "DINNER :" crlf)
         (printout t "First dish : " (send ?sp get-Nom) crlf)
@@ -6833,48 +6829,48 @@
         (printout t crlf)
 
         (printout t "Energy :" crlf)
-        (printout t "Recomended from " (* 0.8 ?energia) " kcal to " (* 1.2 ?energia) " kcal:" crlf)
+        (printout t "Recomended from " (* 0.8 (precisioDoble ?energia)) " kcal to " (* 1.2 (precisioDoble ?energia)) " kcal:" crlf)
 
         (printout t "Obtained: " (precisioDoble ?e0) " kcal" crlf)
         (printout t crlf)
 
         (printout t "Minerals :" crlf)
-        (printout t "Recomended at least: " ?minerals " g"crlf)
+        (printout t "Recomended at least: " (precisioDoble ?minerals) " g"crlf)
         (printout t "Obtained: " (precisioDoble ?m0) " g" crlf)
         (printout t crlf)
 
         (printout t "Proteins :" crlf)
-        (printout t "Recomended from " (* 0.8 ?prot) " g to " (* 1.2 ?prot) "g:" crlf)
+        (printout t "Recomended from " (* 0.8 (precisioDoble ?prot) ) " g to " (* 1.2 (precisioDoble ?prot)) "g:" crlf)
         (printout t "Obtained: " (precisioDoble ?p0) " g" crlf)
         (printout t crlf)
 
         (printout t "Vitamins :" crlf)
-        (printout t "Recomended at least: " (* 0.8 ?vitamines) " g" crlf)
+        (printout t "Recomended at least: " (* 0.8 (precisioDoble ?vitamines)) " g" crlf)
         (printout t "Obtained: " (precisioDoble ?v0) " g" crlf)
         (printout t crlf)
 
         (printout t "Fibra :" crlf)
-        (printout t "Recomended at least: " (* 0.8 ?fibra) " g" crlf)
+        (printout t "Recomended at least: " (* 0.8 (precisioDoble ?fibra)) " g" crlf)
         (printout t "Obtained: " (precisioDoble ?f0) " g" crlf)
         (printout t crlf)
 
         (printout t "Hidrats :" crlf)
-        (printout t "Recomended from " (* 0.8 ?hidrats) " g to " (* 1.2 ?hidrats) "g:" crlf)
+        (printout t "Recomended from " (* 0.8 (precisioDoble ?hidrats) ) " g to " (* 1.2 (precisioDoble ?hidrats)) "g:" crlf)
         (printout t "Obtained: " (precisioDoble ?h0) " g" crlf)
         (printout t crlf)
 
         (printout t "Greixos :" crlf)
-        (printout t "Recomended at most: " (* 1.2 ?greixosMaxims) " g" crlf)
+        (printout t "Recomended at most: " (* 1.2 (precisioDoble ?greixosMaxims)) " g" crlf)
         (printout t "Obtained: " (precisioDoble ?g0) " g" crlf)
         (printout t crlf)
 
         (printout t "Sugar :" crlf)
-        (printout t "Recomended at most: " (* 1.2 ?sucre) " g:" crlf)
+        (printout t "Recomended at most: " (* 1.2 (precisioDoble ?sucre)) " g:" crlf)
         (printout t "Obtained: " (precisioDoble ?s0) " g"crlf)
-        (printout t crlf ) 
+        (printout t crlf)
 
         (printout t "Colesterol :" crlf)
-        (printout t "Recomended at most: " (* 1.2 ?colesterolMax) " g:" crlf)
+        (printout t "Recomended at most: " (* 1.2 (precisioDoble ?colesterolMax)) " g:" crlf)
         (printout t "Obtained: " (precisioDoble ?c0) " g" crlf)
         (printout t crlf)
         (assert (FI))
