@@ -2411,7 +2411,7 @@
 
 
 ([I43410] of InfoIngredient
-    (Familia Legumes)
+    (Familia Meat)
     (Nom_ingredient "Chicken")
     (Nutrients [I43410N0] [I43410N1] [I43410N2] [I43410N3] [I43410N4] [I43410N5])
     (Temporada Hivern Primavera Estiu Tardor)
@@ -3113,7 +3113,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP15_0] [IP15_1] [IP15_2])
     (Nom "Tomato salad")
-    (Tipus_plat 1r))
+    (Tipus_plat 1r 2n))
 
 ([IP15_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -3681,7 +3681,7 @@
     (Apat Dinar Sopar)
     (Ingredients [IP39_0] [IP39_1] [IP39_2] [IP39_3] [IP39_4])
     (Nom "Mixed salad")
-    (Tipus_plat 1r))
+    (Tipus_plat 1r 2n))
 
 ([IP39_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -5352,7 +5352,7 @@
 	?f <- (initial-fact)
 	(not (FI))
 	(not(imprimir))
-	(not (totOrdenat))
+	(not (noTornisPrincipi))
 	=>
 	(reset)
 	(printout t crlf)
@@ -5728,7 +5728,7 @@
     ;?energia sera la quantitat d'energia que necessitem diariament en kcal
     (bind ?prot (/ (* ?energia 0.13) 4)) ;13% de la energia
     (bind ?colesterolMax 0.3) ; < 0.3g diariament
-    (bind ?hidrats (/ (* ?energia 0.50) 4)) ;15% de la energia
+    (bind ?hidrats (/ (* ?energia 0.5) 4)) ;15% de la energia
     (bind ?greixosMaxims (/ (* ?energia 0.35) 9)) ;35% de la energia com a maxim en grams
     (bind ?fibra 25)
     (bind ?sucre 50) ;OMS
@@ -5828,16 +5828,14 @@
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
 
-	(assert (PreferenciaP Lactic))
-	(assert (PreferenciaP Datils))
-	(assert (PreferenciaP CerealsIntegrals))
-	(assert (PreferenciaP Espinacs))
-	(assert (PreferenciaP Nous))
-	(assert (PreferenciaP Taronja))
-	(assert (PreferenciaP Mongeta))
-	(assert (PreferenciaP Col))
-	(assert (PreferenciaP Almendras))
-	(assert (PreferenciaP PescadoAzul))
+	(assert (PreferenciaP Dairy_Eggs))
+	(assert (PreferenciaP Breakfast_Cereals))
+	(assert (PreferenciaP Spinach))
+	(assert (PreferenciaP Nuts))
+	(assert (PreferenciaP Oranges))
+	(assert (PreferenciaP Beans))
+	(assert (PreferenciaP Cabbage))
+	(assert (PreferenciaP Fish))
 )
 
 (defrule MALALTIES::problemes_articulars "Aqui definim els fets que implica"
@@ -5848,12 +5846,8 @@
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
 
-	(assert (PreferenciaP Brocoli))
-	(assert (PreferenciaP Jengibre))
-	(assert (PreferenciaP frambuesas))
-	(assert (PreferenciaP Azufre))
-	(assert (PreferenciaP VitaminaD))
-	(assert (PreferenciaP Magnesi))
+	(assert (PreferenciaP Broccoli))
+	(assert (PreferenciaP Raspberries))
 )
 
 (defrule MALALTIES::hipertensio "Aqui definim els fets que implica"
@@ -5866,19 +5860,15 @@
 	(assert (PreferenciaP Dairy_Eggs))
 	(assert (PreferenciaP Fish))
 	(assert (PreferenciaP Pasta))
-	(assert (PreferenciaP Potatoe))
+	(assert (PreferenciaP Potatoes))
 	(assert (PreferenciaP Legumes))
-	;(assert (PreferenciaP Greixos)) ;Vigilar perque aixo tant sols es un nutrient
 
 
 	(assert (PreferenciesN S))
 	(assert (PreferenciesAfegidesN))
 	(assert (PreferenciaN Chocolate))
-	;(assert (PreferenciaN Carnsvermelles)) Aixo es un subtipus. Definir alguns exemples concrets
-	(assert (PreferenciaN Ramen))
-	(assert (PreferenciaN Mostassa))
-	(assert (PreferenciaN regaliz))
-	(assert (PreferenciaN patatas))
+	(assert (PreferenciaN Meat))
+	(assert (PreferenciaN Mustard))
 
 	;afegir carns amb poc greix (Aquesta sintexis per eliminar els plats que ho compleixin)
 	(assert (RestriccionsAfegidesFamiliaNutrient))
@@ -5900,28 +5890,26 @@
 	(assert (PreferenciesN S))
 	(assert (PreferenciesAfegidesN))
 
-	(assert (PreferenciaP Banana))
+	(assert (PreferenciaP Bananas))
 	(assert (PreferenciaP Strawberries))
-	(assert (PreferenciaP Semillas))
 	(assert (PreferenciaP Nuts))
-	(assert (PreferenciaP Canela))
-	(assert (PreferenciaP Trigo))
+	(assert (PreferenciaP Cinnamon))
+	(assert (PreferenciaP Wheat-flour))
 	(assert (PreferenciaP Olives))
-	(assert (PreferenciaP Espinacs))
-	(assert (PreferenciaP Remolacha))
-	(assert (PreferenciaP Chucrut))
+	(assert (PreferenciaP Spinach))
 
-	(assert (PreferenciaN alimentosazucarados))
-	(assert (PreferenciaN alimentosconsodio))
-	(assert (PreferenciaN harinasrefinadas))
 	(assert (PreferenciaN Dairy_Eggs))
 	(assert (PreferenciaN Honey))
 	(assert (PreferenciaN Sweets))
-	(assert (PreferenciaN White chocolate))
-	(assert (PreferenciaN Donuts))
-	(assert (PreferenciaN sucre))  ;aixo es un nutrient dels ingredients
-	(assert (PreferenciaN Fruit))
+	(assert (PreferenciaN Chocolate))
+	(assert (PreferenciaN Fruits))
 	(assert (PreferenciaN Fats_Oils))
+
+	(assert (RestriccionsAfegidesFamiliaNutrient))
+	(assert (RestriccioFamiliaNutrient Sweets Sucre 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
+	(assert (RestriccioFamiliaNutrient Fruits Sucre 10))
+	(assert (RestriccioFamiliaNutrient Breakfast_Cereals Sucre 10))
+	(assert (RestriccioFamiliaNutrient Baked Sucre 10))
 )
 
 (defrule MALALTIES::passemAFiltrat "No fa res. Passem al seguent modul"
@@ -6023,6 +6011,7 @@
 (defrule FILTRAT::finalFiltrat "regla para pasar al modulo siguiente"
       (nou_usuari)
       =>
+      (assert (noTornisPrincipi))
       (focus PREFERENCIES)
 )
 
@@ -6075,7 +6064,7 @@
         ;Comprovem si pertany a una familia a potenciar
         (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
             (printout t "We do not encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -10))
             (send ?plat put-GrauRecomanacio ?grau)
         )
 
@@ -6083,7 +6072,7 @@
          (progn$ (?it ?P)
             (if (= (str-compare ?it ?a) 0) then
             (printout t "We do not encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) -10))
             (send ?plat put-GrauRecomanacio ?grau))
         )
   )
@@ -6118,7 +6107,7 @@
 					;Comprovem si es del tipus de nutrient passat i en te la suficient quantitat de greix
                     (if (and (eq ?tipus ?n) (>= ?quantitat ?q)) then
                         (printout t "We don't encourage the dish " (send ?plat get-Nom) " because it contains " ?quantitat " grams of " ?n " and is of type " ?f crlf)
-                        (bind ?grau (+ (send ?plat get-GrauRecomanacio) -2))
+                        (bind ?grau (+ (send ?plat get-GrauRecomanacio) -10))
                         (send ?plat put-GrauRecomanacio ?grau))
             (bind ?j (+ ?j 1)))
             )
@@ -6144,7 +6133,7 @@
         ;Comprovem si pertany a una familia a potenciar
         (if (member$ (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
             (printout t "We do encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 5))
             (send ?plat put-GrauRecomanacio ?grau)
         )
 
@@ -6152,10 +6141,9 @@
          (progn$ (?it ?P)
             (if (= (str-compare ?it ?a) 0) then
             (printout t "We do encourage the dish " (send ?plat get-Nom) " because it contains " (send ?ingredientGeneral get-Nom_ingredient) "." crlf)
-            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 1))
+            (bind ?grau (+ (send ?plat get-GrauRecomanacio) 5))
             (send ?plat put-GrauRecomanacio ?grau))
         )
-
   )
 )
 
@@ -6183,11 +6171,10 @@
 )
 
 (defrule MENUS::reglaInicialMenus "Aqui creem alguns fets necessaris per a poder mostrejar el menu"
-    (declare (salience 0))
     (nou_usuari)
     (not (FI))
     =>
-    (assert (infoNutricionalMenu))
+
     (assert (menusDiaris creats))
     (assert (menuDiari (dia 1)))
     (assert (menuDiari (dia 2)))
@@ -6196,6 +6183,7 @@
     (assert (menuDiari (dia 5)))
     (assert (menuDiari (dia 6)))
     (assert (menuDiari (dia 7)))
+    (assert (infoNutricionalMenu))
 )
 
 
@@ -6257,6 +6245,7 @@
 
 (defrule MENUS::obtenirInfoNutricionalPlat "aqui sumarem la informacio nutricional de cada ingredient del plat"
     (nou_usuari)
+    (infoNutricionalMenu)
     ?plat <- (object (is-a Plat))
     =>
 		(bind $?info (obtenirInfoPlats ?plat))
@@ -6335,97 +6324,19 @@
 		(bind ?pos (+ ?pos 1))
 	)
 	(assert (numeroPostres (- ?pos 1)))
+
+	(assert (hemCalculatElsPlats))
+
 )
 
-
-;ANEM A ORDENAR ELS RESULTATS
-(defrule MENUS::ordenarEsmorzars "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-    (declare (salience 0))
-	(not (FI))
-	(nou_usuari)
-	?p1 <- (solucionOrdenadaE (posicio ?pos1) (plat ?plat1))
-	?p2 <- (solucionOrdenadaE (posicio ?pos2) (plat ?plat2))
-	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
-	=>
-	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
-	(modify ?p1 (posicio ?pos2))
-	(modify ?p2 (posicio ?pos1))
-)
-
-(defrule MENUS::ordenarDinarPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience -1))
-	(not (FI))
-	(nou_usuari)
-	?p1 <- (solucionOrdenadaDP (posicio ?pos1) (plat ?plat1))
-	?p2 <- (solucionOrdenadaDP (posicio ?pos2) (plat ?plat2))
-	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
-	=>
-	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
-	(modify ?p1 (posicio ?pos2))
-	(modify ?p2 (posicio ?pos1))
-)
-
-(defrule MENUS::ordenarDinarSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience -2))
-	(not (FI))
-	(nou_usuari)
-	?p1 <- (solucionOrdenadaDS (posicio ?pos1) (plat ?plat1))
-	?p2 <- (solucionOrdenadaDS (posicio ?pos2) (plat ?plat2))
-	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
-	=>
-	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
-	(modify ?p1 (posicio ?pos2))
-	(modify ?p2 (posicio ?pos1))
-)
-
-(defrule MENUS::ordenarSoparPrimers "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience -3))
-	(not (FI))
-	(nou_usuari)
-	?p1 <- (solucionOrdenadaSP (posicio ?pos1) (plat ?plat1))
-	?p2 <- (solucionOrdenadaSP (posicio ?pos2) (plat ?plat2))
-	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
-	=>
-	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
-	(modify ?p1 (posicio ?pos2))
-	(modify ?p2 (posicio ?pos1))
-)
-
-(defrule MENUS::ordenarSoparSegons "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience -4))
-	(not (FI))
-	(nou_usuari)
-	?p1 <- (solucionOrdenadaSS (posicio ?pos1) (plat ?plat1))
-	?p2 <- (solucionOrdenadaSS (posicio ?pos2) (plat ?plat2))
-	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
-	=>
-	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
-	(modify ?p1 (posicio ?pos2))
-	(modify ?p2 (posicio ?pos1))
-)
-
-
-(defrule MENUS::ordenarPostres "regla para ordenar las recomendaciones descendentemente por el grado de recomendacion"
-	(declare (salience -5))
-	(not (FI))
-	(nou_usuari)
-	?p1 <- (solucionOrdenadaP (posicio ?pos1) (plat ?plat1))
-	?p2 <- (solucionOrdenadaP (posicio ?pos2) (plat ?plat2))
-	(test (and (> (send ?plat1 get-GrauRecomanacio) (send ?plat2 get-GrauRecomanacio)) (< ?pos1 ?pos2)))
-	=>
-	;anem modificant les posicions entre ells fins que cada plat te la seva posicio correcta
-	(modify ?p1 (posicio ?pos2))
-	(modify ?p2 (posicio ?pos1))
-	(assert(totOrdenat))
-)
 
 
 (defrule MENUS::calculaPosicionsAleatories
-    (totOrdenat)
     (numeroSoparPrimers ?nSP)
     (numeroDinarPrimers ?nDS)
     (numeroEsmorzars ?nE)
     (numeroPostres ?nP)
+    (hemCalculatElsPlats)
     =>
     (assert (dia 1))
     (assert (pos1 (random 1 ?nE)))
@@ -6532,7 +6443,6 @@
     (numeroPostres ?nP)
     (menuMigOmplert)
     =>
-    (printout t "Hello" crlf)
     (assert (counter 1))
     (assert (menuCompletat1))
     (assert (pos1 (random 1 ?nDP)))
@@ -6752,17 +6662,31 @@
     (nou_usuari)
     (not (FI))
     ?mc <- (menuCompletat)
+    ?cc <- (counter ?counter)
     =>
     (retract ?mc)
     (assert (imprimir))
     (assert (dia 1))
 
     (printout t crlf)
+    (printout t crlf)
     (printout t "---------------------------------------------------------------" crlf)
     (printout t "------------------     Final weekly menu     ------------------" crlf)
     (printout t "---------------------------------------------------------------" crlf)
     (printout t crlf)
+
+    (if (> ?counter 10000) then
+        (printout t "Unfortunately we have not been able to find a menu that follows all restriction." crlf)
+        (printout t "Despite this, we show you the closest one we found. " crlf)
+    )
 )
+
+
+
+(deffunction MENUS::precisioDoble (?q)
+
+    (bind ?r (/ (integer (* ?q 100)) 100))
+    (return ?r))
 
 
 ;Potser mostrar la informacio nutricional diaria fent una crida a la funcio i imprimint-ho
@@ -6795,7 +6719,7 @@
             (bind ?ingredient (nth$ ?i (send ?e get-Ingredients))) ;agafem el n-èssim IngredientConcret
             (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
             (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (printout t ?i ". " (precisioDoble ?quantitatIngredient) " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
             (bind ?i (+ ?i 1))
         )
 
@@ -6810,7 +6734,7 @@
             (bind ?ingredient (nth$ ?i (send ?dp get-Ingredients))) ;agafem el n-èssim IngredientConcret
             (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
             (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (printout t ?i ". " (precisioDoble ?quantitatIngredient) " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
             (bind ?i (+ ?i 1))
         )
 
@@ -6822,7 +6746,7 @@
             (bind ?ingredient (nth$ ?i (send ?ds get-Ingredients))) ;agafem el n-èssim IngredientConcret
             (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
             (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (printout t ?i ". " (precisioDoble ?quantitatIngredient) " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
             (bind ?i (+ ?i 1))
         )
 
@@ -6834,7 +6758,7 @@
             (bind ?ingredient (nth$ ?i (send ?dpostres get-Ingredients))) ;agafem el n-èssim IngredientConcret
             (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
             (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (printout t ?i ". " (precisioDoble ?quantitatIngredient) " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
             (bind ?i (+ ?i 1))
         )
 
@@ -6849,7 +6773,7 @@
             (bind ?ingredient (nth$ ?i (send ?sp get-Ingredients))) ;agafem el n-èssim IngredientConcret
             (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
             (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (printout t ?i ". " (precisioDoble ?quantitatIngredient) " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
             (bind ?i (+ ?i 1))
         )
 
@@ -6861,7 +6785,7 @@
             (bind ?ingredient (nth$ ?i (send ?ss get-Ingredients))) ;agafem el n-èssim IngredientConcret
             (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
             (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (printout t ?i ". " (precisioDoble ?quantitatIngredient) " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
             (bind ?i (+ ?i 1))
         )
 
@@ -6873,7 +6797,7 @@
             (bind ?ingredient (nth$ ?i (send ?spostres get-Ingredients))) ;agafem el n-èssim IngredientConcret
             (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
             (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-            (printout t ?i ". " ?quantitatIngredient " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
+            (printout t ?i ". " (precisioDoble ?quantitatIngredient) " grams of " (send ?ingredientGeneral get-Nom_ingredient) crlf)
             (bind ?i (+ ?i 1))
         )
 
@@ -6910,47 +6834,48 @@
 
         (printout t "Energy :" crlf)
         (printout t "Recomended from " (* 0.8 ?energia) " kcal to " (* 1.2 ?energia) " kcal:" crlf)
-        (printout t "Obtained: " ?e0 " kcal" crlf)
+
+        (printout t "Obtained: " (precisioDoble ?e0) " kcal" crlf)
         (printout t crlf)
 
         (printout t "Minerals :" crlf)
         (printout t "Recomended at least: " ?minerals " g"crlf)
-        (printout t "Obtained: " ?m0 " g" crlf)
+        (printout t "Obtained: " (precisioDoble ?m0) " g" crlf)
         (printout t crlf)
 
         (printout t "Proteins :" crlf)
         (printout t "Recomended from " (* 0.8 ?prot) " g to " (* 1.2 ?prot) "g:" crlf)
-        (printout t "Obtained: " ?p0 " g" crlf)
+        (printout t "Obtained: " (precisioDoble ?p0) " g" crlf)
         (printout t crlf)
 
         (printout t "Vitamins :" crlf)
         (printout t "Recomended at least: " (* 0.8 ?vitamines) " g" crlf)
-        (printout t "Obtained: " ?v0 " g" crlf)
+        (printout t "Obtained: " (precisioDoble ?v0) " g" crlf)
         (printout t crlf)
 
         (printout t "Fibra :" crlf)
         (printout t "Recomended at least: " (* 0.8 ?fibra) " g" crlf)
-        (printout t "Obtained: " ?f0 " g" crlf)
+        (printout t "Obtained: " (precisioDoble ?f0) " g" crlf)
         (printout t crlf)
 
         (printout t "Hidrats :" crlf)
         (printout t "Recomended from " (* 0.8 ?hidrats) " g to " (* 1.2 ?hidrats) "g:" crlf)
-        (printout t "Obtained: " ?h0 " g" crlf)
+        (printout t "Obtained: " (precisioDoble ?h0) " g" crlf)
         (printout t crlf)
 
         (printout t "Greixos :" crlf)
         (printout t "Recomended at most: " (* 1.2 ?greixosMaxims) " g" crlf)
-        (printout t "Obtained: " ?g0 " g" crlf)
+        (printout t "Obtained: " (precisioDoble ?g0) " g" crlf)
         (printout t crlf)
 
         (printout t "Sugar :" crlf)
         (printout t "Recomended at most: " (* 1.2 ?sucre) " g:" crlf)
-        (printout t "Obtained: " ?s0 " g"crlf)
+        (printout t "Obtained: " (precisioDoble ?s0) " g"crlf)
         (printout t crlf)
 
         (printout t "Colesterol :" crlf)
         (printout t "Recomended at most: " (* 1.2 ?colesterolMax) " g:" crlf)
-        (printout t "Obtained: " ?c0 " g" crlf)
+        (printout t "Obtained: " (precisioDoble ?c0) " g" crlf)
         (printout t crlf)
         (assert (FI))
 
