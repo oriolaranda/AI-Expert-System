@@ -5828,16 +5828,14 @@
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
 
-	(assert (PreferenciaP Lactic))
-	(assert (PreferenciaP Datils))
-	(assert (PreferenciaP CerealsIntegrals))
-	(assert (PreferenciaP Espinacs))
-	(assert (PreferenciaP Nous))
-	(assert (PreferenciaP Taronja))
-	(assert (PreferenciaP Mongeta))
-	(assert (PreferenciaP Col))
-	(assert (PreferenciaP Almendras))
-	(assert (PreferenciaP PescadoAzul))
+	(assert (PreferenciaP Dairy_Eggs))
+	(assert (PreferenciaP Breakfast_Cereals))
+	(assert (PreferenciaP Spinach))
+	(assert (PreferenciaP Nuts))
+	(assert (PreferenciaP Oranges))
+	(assert (PreferenciaP Beans))
+	(assert (PreferenciaP Cabbage))
+	(assert (PreferenciaP Fish))
 )
 
 (defrule MALALTIES::problemes_articulars "Aqui definim els fets que implica"
@@ -5848,12 +5846,8 @@
 	(assert (PreferenciesP S))
 	(assert (PreferenciesAfegidesP))
 
-	(assert (PreferenciaP Brocoli))
-	(assert (PreferenciaP Jengibre))
-	(assert (PreferenciaP frambuesas))
-	(assert (PreferenciaP Azufre))
-	(assert (PreferenciaP VitaminaD))
-	(assert (PreferenciaP Magnesi))
+	(assert (PreferenciaP Broccoli))
+	(assert (PreferenciaP Raspberries))
 )
 
 (defrule MALALTIES::hipertensio "Aqui definim els fets que implica"
@@ -5866,19 +5860,15 @@
 	(assert (PreferenciaP Dairy_Eggs))
 	(assert (PreferenciaP Fish))
 	(assert (PreferenciaP Pasta))
-	(assert (PreferenciaP Potatoe))
+	(assert (PreferenciaP Potatoes))
 	(assert (PreferenciaP Legumes))
-	;(assert (PreferenciaP Greixos)) ;Vigilar perque aixo tant sols es un nutrient
-
+	
 
 	(assert (PreferenciesN S))
 	(assert (PreferenciesAfegidesN))
 	(assert (PreferenciaN Chocolate))
-	;(assert (PreferenciaN Carnsvermelles)) Aixo es un subtipus. Definir alguns exemples concrets
-	(assert (PreferenciaN Ramen))
-	(assert (PreferenciaN Mostassa))
-	(assert (PreferenciaN regaliz))
-	(assert (PreferenciaN patatas))
+	(assert (PreferenciaN Meat))
+	(assert (PreferenciaN Mustard))
 
 	;afegir carns amb poc greix (Aquesta sintexis per eliminar els plats que ho compleixin)
 	(assert (RestriccionsAfegidesFamiliaNutrient))
@@ -5900,28 +5890,26 @@
 	(assert (PreferenciesN S))
 	(assert (PreferenciesAfegidesN))
 
-	(assert (PreferenciaP Banana))
+	(assert (PreferenciaP Bananas))
 	(assert (PreferenciaP Strawberries))
-	(assert (PreferenciaP Semillas))
 	(assert (PreferenciaP Nuts))
-	(assert (PreferenciaP Canela))
-	(assert (PreferenciaP Trigo))
+	(assert (PreferenciaP Cinnamon))
+	(assert (PreferenciaP Wheat-flour))
 	(assert (PreferenciaP Olives))
-	(assert (PreferenciaP Espinacs))
-	(assert (PreferenciaP Remolacha))
-	(assert (PreferenciaP Chucrut))
+	(assert (PreferenciaP Spinach))
 
-	(assert (PreferenciaN alimentosazucarados))
-	(assert (PreferenciaN alimentosconsodio))
-	(assert (PreferenciaN harinasrefinadas))
 	(assert (PreferenciaN Dairy_Eggs))
 	(assert (PreferenciaN Honey))
 	(assert (PreferenciaN Sweets))
-	(assert (PreferenciaN White chocolate))
-	(assert (PreferenciaN Donuts))
-	(assert (PreferenciaN sucre))  ;aixo es un nutrient dels ingredients
-	(assert (PreferenciaN Fruit))
+	(assert (PreferenciaN Chocolate))
+	(assert (PreferenciaN Fruits))
 	(assert (PreferenciaN Fats_Oils))
+	
+	(assert (RestriccionsAfegidesFamiliaNutrient))
+	(assert (RestriccioFamiliaNutrient Sweets Sucre 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
+	(assert (RestriccioFamiliaNutrient Fruits Sucre 10))
+	(assert (RestriccioFamiliaNutrient Breakfast_Cereals Sucre 10))
+	(assert (RestriccioFamiliaNutrient Baked Sucre 10))
 )
 
 (defrule MALALTIES::passemAFiltrat "No fa res. Passem al seguent modul"
