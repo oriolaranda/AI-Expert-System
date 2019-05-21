@@ -244,7 +244,7 @@
     (Nutrients [I2069N0] [I2069N1] [I2069N2] [I2069N3] [I2069N4])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 88))
-
+    
 ([I2069N0] of  Nutrient
     (Quantitat_nutrient 76.45)
     (Tipus_nutrient Aigua))
@@ -268,7 +268,7 @@
     (Nutrients [I4002N0] [I4002N1])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 902))
-
+    
 ([I4002N0] of  Nutrient
     (Quantitat_nutrient 100.0)
     (Tipus_nutrient Greixos))
@@ -283,7 +283,7 @@
     (Nutrients [I7051N0] [I7051N1] [I7051N2] [I7051N3] [I7051N4] [I7051N5])
     (Temporada Estiu Tardor)
     (Valor_energetic 235))
-
+    
 ([I7051N0] of  Nutrient
     (Quantitat_nutrient 58.2)
     (Tipus_nutrient Aigua))
@@ -310,7 +310,7 @@
     (Nutrients [I7056N0] [I7056N1] [I7056N2] [I7056N3] [I7056N4] [I7056N5] [I7056N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 149))
-
+    
 ([I7056N0] of  Nutrient
     (Quantitat_nutrient 67.4)
     (Tipus_nutrient Aigua))
@@ -340,7 +340,7 @@
     (Nutrients [I7977N0] [I7977N1] [I7977N2] [I7977N3] [I7977N4] [I7977N5] [I7977N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 141))
-
+    
 ([I7977N0] of  Nutrient
     (Quantitat_nutrient 64.59)
     (Tipus_nutrient Aigua))
@@ -370,7 +370,7 @@
     (Nutrients [I9039N0] [I9039N1] [I9039N2] [I9039N3] [I9039N4] [I9039N5] [I9039N6] [I9039N7])
     (Temporada Hivern Tardor)
     (Valor_energetic 120))
-
+    
 ([I9039N0] of  Nutrient
     (Quantitat_nutrient 78.81)
     (Tipus_nutrient Aigua))
@@ -403,7 +403,7 @@
     (Nutrients [I9041N0] [I9041N1] [I9041N2] [I9041N3] [I9041N4] [I9041N5] [I9041N6] [I9041N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 346))
-
+    
 ([I9041N0] of  Nutrient
     (Quantitat_nutrient 3.0)
     (Tipus_nutrient Aigua))
@@ -436,7 +436,7 @@
     (Nutrients [I9134N0] [I9134N1] [I9134N2] [I9134N3] [I9134N4] [I9134N5] [I9134N6])
     (Temporada Primavera)
     (Valor_energetic 76))
-
+    
 ([I9134N0] of  Nutrient
     (Quantitat_nutrient 79.53)
     (Tipus_nutrient Aigua))
@@ -466,7 +466,7 @@
     (Nutrients [I9140N0] [I9140N1] [I9140N2] [I9140N3] [I9140N4] [I9140N5] [I9140N6])
     (Temporada Primavera Estiu )
     (Valor_energetic 69))
-
+    
 ([I9140N0] of  Nutrient
     (Quantitat_nutrient 80.66)
     (Tipus_nutrient Aigua))
@@ -496,7 +496,7 @@
     (Nutrients [I9150N0] [I9150N1] [I9150N2] [I9150N3] [I9150N4] [I9150N5] [I9150N6] [I9150N7])
     (Temporada Primavera Tardor)
     (Valor_energetic 29))
-
+    
 ([I9150N0] of  Nutrient
     (Quantitat_nutrient 88.98)
     (Tipus_nutrient Aigua))
@@ -529,7 +529,7 @@
     (Nutrients [I9184N0] [I9184N1] [I9184N2] [I9184N3] [I9184N4] [I9184N5] [I9184N6] [I9184N7])
     (Temporada Estiu)
     (Valor_energetic 36))
-
+    
 ([I9184N0] of  Nutrient
     (Quantitat_nutrient 89.82)
     (Tipus_nutrient Aigua))
@@ -562,7 +562,7 @@
     (Nutrients [I9195N0] [I9195N1] [I9195N2] [I9195N3] [I9195N4] [I9195N5] [I9195N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 145))
-
+    
 ([I9195N0] of  Nutrient
     (Quantitat_nutrient 75.28)
     (Tipus_nutrient Aigua))
@@ -592,7 +592,7 @@
     (Nutrients [I9205N0] [I9205N1] [I9205N2] [I9205N3] [I9205N4] [I9205N5] [I9205N6])
     (Temporada Hivern)
     (Valor_energetic 63))
-
+    
 ([I9205N0] of  Nutrient
     (Quantitat_nutrient 82.3)
     (Tipus_nutrient Aigua))
@@ -622,7 +622,7 @@
     (Nutrients [I9320N0] [I9320N1] [I9320N2] [I9320N3] [I9320N4] [I9320N5] [I9320N6] [I9320N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 96))
-
+    
 ([I9320N0] of  Nutrient
     (Quantitat_nutrient 73.18)
     (Tipus_nutrient Aigua))
@@ -655,7 +655,7 @@
     (Nutrients [I9326N0] [I9326N1] [I9326N2] [I9326N3] [I9326N4] [I9326N5] [I9326N6] [I9326N7])
     (Temporada Estiu Tardor)
     (Valor_energetic 30))
-
+    
 ([I9326N0] of  Nutrient
     (Quantitat_nutrient 91.45)
     (Tipus_nutrient Aigua))
@@ -688,7 +688,7 @@
     (Nutrients [I9353N0] [I9353N1] [I9353N2] [I9353N3] [I9353N4] [I9353N5] [I9353N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 107))
-
+    
 ([I9353N0] of  Nutrient
     (Quantitat_nutrient 70.63)
     (Tipus_nutrient Aigua))
@@ -718,7 +718,7 @@
     (Nutrients [I9367N0] [I9367N1] [I9367N2] [I9367N3] [I9367N4] [I9367N5] [I9367N6])
     (Temporada Estiu)
     (Valor_energetic 83))
-
+    
 ([I9367N0] of  Nutrient
     (Quantitat_nutrient 77.61)
     (Tipus_nutrient Aigua))
@@ -748,7 +748,7 @@
     (Nutrients [I9379N0] [I9379N1] [I9379N2] [I9379N3] [I9379N4] [I9379N5] [I9379N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 89))
-
+    
 ([I9379N0] of  Nutrient
     (Quantitat_nutrient 76.06)
     (Tipus_nutrient Aigua))
@@ -778,7 +778,7 @@
     (Nutrients [I9415N0] [I9415N1] [I9415N2] [I9415N3] [I9415N4] [I9415N5] [I9415N6])
     (Temporada Hivern Primavera)
     (Valor_energetic 66))
-
+    
 ([I9415N0] of  Nutrient
     (Quantitat_nutrient 83.31)
     (Tipus_nutrient Aigua))
@@ -808,7 +808,7 @@
     (Nutrients [I9504N0] [I9504N1] [I9504N2] [I9504N3] [I9504N4] [I9504N5] [I9504N6])
     (Temporada Hivern)
     (Valor_energetic 63))
-
+    
 ([I9504N0] of  Nutrient
     (Quantitat_nutrient 84.16)
     (Tipus_nutrient Aigua))
@@ -838,7 +838,7 @@
     (Nutrients [I9510N0] [I9510N1] [I9510N2] [I9510N3] [I9510N4] [I9510N5] [I9510N6] [I9510N7])
     (Temporada Hivern Primavera Tardor)
     (Valor_energetic 50))
-
+    
 ([I9510N0] of  Nutrient
     (Quantitat_nutrient 87.06)
     (Tipus_nutrient Aigua))
@@ -871,7 +871,7 @@
     (Nutrients [I9520N0] [I9520N1] [I9520N2] [I9520N3] [I9520N4] [I9520N5] [I9520N6] [I9520N7])
     (Temporada Hivern)
     (Valor_energetic 63))
-
+    
 ([I9520N0] of  Nutrient
     (Quantitat_nutrient 82.44)
     (Tipus_nutrient Aigua))
@@ -904,7 +904,7 @@
     (Nutrients [I11206N0] [I11206N1] [I11206N2] [I11206N3] [I11206N4] [I11206N5] [I11206N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 12))
-
+    
 ([I11206N0] of  Nutrient
     (Quantitat_nutrient 96.73)
     (Tipus_nutrient Aigua))
@@ -934,7 +934,7 @@
     (Nutrients [I11257N0] [I11257N1] [I11257N2] [I11257N3] [I11257N4] [I11257N5] [I11257N6] [I11257N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 16))
-
+    
 ([I11257N0] of  Nutrient
     (Quantitat_nutrient 95.64)
     (Tipus_nutrient Aigua))
@@ -967,7 +967,7 @@
     (Nutrients [I11625N0] [I11625N1] [I11625N2] [I11625N3] [I11625N4] [I11625N5] [I11625N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 271))
-
+    
 ([I11625N0] of  Nutrient
     (Quantitat_nutrient 2.0)
     (Tipus_nutrient Aigua))
@@ -997,7 +997,7 @@
     (Nutrients [I11703N0] [I11703N1] [I11703N2] [I11703N3] [I11703N4] [I11703N5] [I11703N6] [I11703N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 45))
-
+    
 ([I11703N0] of  Nutrient
     (Quantitat_nutrient 86.5)
     (Tipus_nutrient Aigua))
@@ -1030,7 +1030,7 @@
     (Nutrients [I11709N0] [I11709N1] [I11709N2] [I11709N3] [I11709N4] [I11709N5] [I11709N6] [I11709N7])
     (Temporada Tardor)
     (Valor_energetic 18))
-
+    
 ([I11709N0] of  Nutrient
     (Quantitat_nutrient 94.1)
     (Tipus_nutrient Aigua))
@@ -1063,7 +1063,7 @@
     (Nutrients [I11765N0] [I11765N1] [I11765N2] [I11765N3] [I11765N4] [I11765N5] [I11765N6] [I11765N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 20))
-
+    
 ([I11765N0] of  Nutrient
     (Quantitat_nutrient 92.65)
     (Tipus_nutrient Aigua))
@@ -1096,7 +1096,7 @@
     (Nutrients [I11795N0] [I11795N1] [I11795N2] [I11795N3] [I11795N4] [I11795N5] [I11795N6] [I11795N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 31))
-
+    
 ([I11795N0] of  Nutrient
     (Quantitat_nutrient 90.8)
     (Tipus_nutrient Aigua))
@@ -1129,7 +1129,7 @@
     (Nutrients [I11801N0] [I11801N1] [I11801N2] [I11801N3] [I11801N4] [I11801N5] [I11801N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 16))
-
+    
 ([I11801N0] of  Nutrient
     (Quantitat_nutrient 94.5)
     (Tipus_nutrient Aigua))
@@ -1159,7 +1159,7 @@
     (Nutrients [I11807N0] [I11807N1] [I11807N2] [I11807N3] [I11807N4] [I11807N5] [I11807N6] [I11807N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 26))
-
+    
 ([I11807N0] of  Nutrient
     (Quantitat_nutrient 92.24)
     (Tipus_nutrient Aigua))
@@ -1192,7 +1192,7 @@
     (Nutrients [I11848N0] [I11848N1] [I11848N2] [I11848N3] [I11848N4] [I11848N5] [I11848N6])
     (Temporada Hivern Tardor)
     (Valor_energetic 21))
-
+    
 ([I11848N0] of  Nutrient
     (Quantitat_nutrient 92.51)
     (Tipus_nutrient Aigua))
@@ -1222,7 +1222,7 @@
     (Nutrients [I11856N0] [I11856N1] [I11856N2] [I11856N3] [I11856N4] [I11856N5] [I11856N6] [I11856N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 34))
-
+    
 ([I11856N0] of  Nutrient
     (Quantitat_nutrient 88.94)
     (Tipus_nutrient Aigua))
@@ -1255,7 +1255,7 @@
     (Nutrients [I11890N0] [I11890N1] [I11890N2] [I11890N3] [I11890N4] [I11890N5] [I11890N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 21))
-
+    
 ([I11890N0] of  Nutrient
     (Quantitat_nutrient 93.6)
     (Tipus_nutrient Aigua))
@@ -1285,7 +1285,7 @@
     (Nutrients [I11956N0] [I11956N1] [I11956N2] [I11956N3] [I11956N4] [I11956N5] [I11956N6])
     (Temporada Primavera Tardor)
     (Valor_energetic 213))
-
+    
 ([I11956N0] of  Nutrient
     (Quantitat_nutrient 53.83)
     (Tipus_nutrient Aigua))
@@ -1315,7 +1315,7 @@
     (Nutrients [I11960N0] [I11960N1] [I11960N2] [I11960N3] [I11960N4] [I11960N5] [I11960N6] [I11960N7])
     (Temporada Primavera Tardor)
     (Valor_energetic 35))
-
+    
 ([I11960N0] of  Nutrient
     (Quantitat_nutrient 90.35)
     (Tipus_nutrient Aigua))
@@ -1348,7 +1348,7 @@
     (Nutrients [I11968N0] [I11968N1] [I11968N2] [I11968N3] [I11968N4] [I11968N5] [I11968N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 32))
-
+    
 ([I11968N0] of  Nutrient
     (Quantitat_nutrient 89.47)
     (Tipus_nutrient Aigua))
@@ -1378,7 +1378,7 @@
     (Nutrients [I11994N0] [I11994N1] [I11994N2] [I11994N3] [I11994N4] [I11994N5] [I11994N6] [I11994N7])
     (Temporada Hivern Tardor)
     (Valor_energetic 30))
-
+    
 ([I11994N0] of  Nutrient
     (Quantitat_nutrient 92.55)
     (Tipus_nutrient Aigua))
@@ -1411,7 +1411,7 @@
     (Nutrients [I11998N0] [I11998N1] [I11998N2] [I11998N3] [I11998N4] [I11998N5] [I11998N6] [I11998N7])
     (Temporada Primavera Tardor)
     (Valor_energetic 22))
-
+    
 ([I11998N0] of  Nutrient
     (Quantitat_nutrient 92.82)
     (Tipus_nutrient Aigua))
@@ -1444,7 +1444,7 @@
     (Nutrients [I12738N0] [I12738N1] [I12738N2] [I12738N3] [I12738N4] [I12738N5] [I12738N6] [I12738N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 607))
-
+    
 ([I12738N0] of  Nutrient
     (Quantitat_nutrient 3.15)
     (Tipus_nutrient Aigua))
@@ -1477,7 +1477,7 @@
     (Nutrients [I15117N0] [I15117N1] [I15117N2] [I15117N3] [I15117N4] [I15117N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 144))
-
+    
 ([I15117N0] of  Nutrient
     (Quantitat_nutrient 68.09)
     (Tipus_nutrient Aigua))
@@ -1504,7 +1504,7 @@
     (Nutrients [I16107N0] [I16107N1] [I16107N2] [I16107N3] [I16107N4] [I16107N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 255))
-
+    
 ([I16107N0] of  Nutrient
     (Quantitat_nutrient 50.4)
     (Tipus_nutrient Aigua))
@@ -1531,7 +1531,7 @@
     (Nutrients [I16370N0] [I16370N1] [I16370N2] [I16370N3] [I16370N4] [I16370N5] [I16370N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 114))
-
+    
 ([I16370N0] of  Nutrient
     (Quantitat_nutrient 69.64)
     (Tipus_nutrient Aigua))
@@ -1561,7 +1561,7 @@
     (Nutrients [I16386N0] [I16386N1] [I16386N2] [I16386N3] [I16386N4] [I16386N5] [I16386N6])
     (Temporada Hivern)
     (Valor_energetic 116))
-
+    
 ([I16386N0] of  Nutrient
     (Quantitat_nutrient 69.49)
     (Tipus_nutrient Aigua))
@@ -1591,7 +1591,7 @@
     (Nutrients [I17438N0] [I17438N1] [I17438N2] [I17438N3] [I17438N4] [I17438N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 199))
-
+    
 ([I17438N0] of  Nutrient
     (Quantitat_nutrient 62.96)
     (Tipus_nutrient Aigua))
@@ -1618,7 +1618,7 @@
     (Nutrients [I17464N0] [I17464N1] [I17464N2] [I17464N3] [I17464N4])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 276))
-
+    
 ([I17464N0] of  Nutrient
     (Quantitat_nutrient 51.74)
     (Tipus_nutrient Aigua))
@@ -1642,7 +1642,7 @@
     (Nutrients [I18241N0] [I18241N1] [I18241N2] [I18241N3] [I18241N4] [I18241N5] [I18241N6] [I18241N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 414))
-
+    
 ([I18241N0] of  Nutrient
     (Quantitat_nutrient 21.0)
     (Tipus_nutrient Aigua))
@@ -1675,7 +1675,7 @@
     (Nutrients [I18417N0] [I18417N1] [I18417N2] [I18417N3] [I18417N4] [I18417N5] [I18417N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 418))
-
+    
 ([I18417N0] of  Nutrient
     (Quantitat_nutrient 21.9)
     (Tipus_nutrient Aigua))
@@ -1705,7 +1705,7 @@
     (Nutrients [I18423N0] [I18423N1] [I18423N2] [I18423N3] [I18423N4] [I18423N5] [I18423N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 363))
-
+    
 ([I18423N0] of  Nutrient
     (Quantitat_nutrient 19.5)
     (Tipus_nutrient Aigua))
@@ -1735,7 +1735,7 @@
     (Nutrients [I18963N0] [I18963N1] [I18963N2] [I18963N3] [I18963N4] [I18963N5] [I18963N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 350))
-
+    
 ([I18963N0] of  Nutrient
     (Quantitat_nutrient 31.78)
     (Tipus_nutrient Aigua))
@@ -1765,7 +1765,7 @@
     (Nutrients [I18964N0] [I18964N1] [I18964N2] [I18964N3] [I18964N4] [I18964N5] [I18964N6] [I18964N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 452))
-
+    
 ([I18964N0] of  Nutrient
     (Quantitat_nutrient 18.98)
     (Tipus_nutrient Aigua))
@@ -1798,7 +1798,7 @@
     (Nutrients [I18972N0] [I18972N1] [I18972N2] [I18972N3] [I18972N4] [I18972N5] [I18972N6] [I18972N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 408))
-
+    
 ([I18972N0] of  Nutrient
     (Quantitat_nutrient 21.13)
     (Tipus_nutrient Aigua))
@@ -1831,7 +1831,7 @@
     (Nutrients [I18999N0] [I18999N1] [I18999N2] [I18999N3] [I18999N4] [I18999N5] [I18999N6] [I18999N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 293))
-
+    
 ([I18999N0] of  Nutrient
     (Quantitat_nutrient 35.29)
     (Tipus_nutrient Aigua))
@@ -1864,7 +1864,7 @@
     (Nutrients [I19904N0] [I19904N1] [I19904N2] [I19904N3] [I19904N4] [I19904N5] [I19904N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 598))
-
+    
 ([I19904N0] of  Nutrient
     (Quantitat_nutrient 1.37)
     (Tipus_nutrient Aigua))
@@ -1894,7 +1894,7 @@
     (Nutrients [I19908N0] [I19908N1] [I19908N2] [I19908N3])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 399))
-
+    
 ([I19908N0] of  Nutrient
     (Quantitat_nutrient 0.03)
     (Tipus_nutrient Aigua))
@@ -1915,7 +1915,7 @@
     (Nutrients [I20080N0] [I20080N1] [I20080N2] [I20080N3] [I20080N4] [I20080N5] [I20080N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 340))
-
+    
 ([I20080N0] of  Nutrient
     (Quantitat_nutrient 10.74)
     (Tipus_nutrient Aigua))
@@ -1945,7 +1945,7 @@
     (Nutrients [I20521N0] [I20521N1] [I20521N2] [I20521N3] [I20521N4] [I20521N5] [I20521N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 157))
-
+    
 ([I20521N0] of  Nutrient
     (Quantitat_nutrient 62.13)
     (Tipus_nutrient Aigua))
@@ -1975,7 +1975,7 @@
     (Nutrients [I31034N0] [I31034N1] [I31034N2] [I31034N3] [I31034N4] [I31034N5] [I31034N6] [I31034N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 22))
-
+    
 ([I31034N0] of  Nutrient
     (Quantitat_nutrient 90.2)
     (Tipus_nutrient Aigua))
@@ -2008,7 +2008,7 @@
     (Nutrients [I42141N0] [I42141N1] [I42141N2] [I42141N3] [I42141N4] [I42141N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 71))
-
+    
 ([I42141N0] of  Nutrient
     (Quantitat_nutrient 86.2)
     (Tipus_nutrient Aigua))
@@ -2035,7 +2035,7 @@
     (Nutrients [I42204N0] [I42204N1] [I42204N2] [I42204N3] [I42204N4] [I42204N5] [I42204N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 392))
-
+    
 ([I42204N0] of  Nutrient
     (Quantitat_nutrient 5.8)
     (Tipus_nutrient Aigua))
@@ -2065,7 +2065,7 @@
     (Nutrients [I43144N0] [I43144N1] [I43144N2] [I43144N3] [I43144N4] [I43144N5] [I43144N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 28))
-
+    
 ([I43144N0] of  Nutrient
     (Quantitat_nutrient 92.1)
     (Tipus_nutrient Aigua))
@@ -2095,7 +2095,7 @@
     (Nutrients [I43146N0] [I43146N1] [I43146N2] [I43146N3] [I43146N4] [I43146N5] [I43146N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 49))
-
+    
 ([I43146N0] of  Nutrient
     (Quantitat_nutrient 86.9)
     (Tipus_nutrient Aigua))
@@ -2125,7 +2125,7 @@
     (Nutrients [I43212N0] [I43212N1] [I43212N2] [I43212N3] [I43212N4] [I43212N5] [I43212N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 476))
-
+    
 ([I43212N0] of  Nutrient
     (Quantitat_nutrient 8.0)
     (Tipus_nutrient Aigua))
@@ -2155,7 +2155,7 @@
     (Nutrients [I43214N0] [I43214N1] [I43214N2] [I43214N3] [I43214N4] [I43214N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 373))
-
+    
 ([I43214N0] of  Nutrient
     (Quantitat_nutrient 5.0)
     (Tipus_nutrient Aigua))
@@ -2182,7 +2182,7 @@
     (Nutrients [I43261N0] [I43261N1] [I43261N2] [I43261N3] [I43261N4] [I43261N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 95))
-
+    
 ([I43261N0] of  Nutrient
     (Quantitat_nutrient 75.4)
     (Tipus_nutrient Aigua))
@@ -2209,7 +2209,7 @@
     (Nutrients [I43285N0] [I43285N1] [I43285N2] [I43285N3] [I43285N4] [I43285N5] [I43285N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 131))
-
+    
 ([I43285N0] of  Nutrient
     (Quantitat_nutrient 72.7)
     (Tipus_nutrient Aigua))
@@ -2239,7 +2239,7 @@
     (Nutrients [I43299N0] [I43299N1] [I43299N2] [I43299N3] [I43299N4] [I43299N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 151))
-
+    
 ([I43299N0] of  Nutrient
     (Quantitat_nutrient 70.9)
     (Tipus_nutrient Aigua))
@@ -2266,7 +2266,7 @@
     (Nutrients [I43311N0] [I43311N1] [I43311N2] [I43311N3] [I43311N4] [I43311N5] [I43311N6] [I43311N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 62))
-
+    
 ([I43311N0] of  Nutrient
     (Quantitat_nutrient 84.3)
     (Tipus_nutrient Aigua))
@@ -2299,7 +2299,7 @@
     (Nutrients [I43365N0] [I43365N1] [I43365N2] [I43365N3] [I43365N4] [I43365N5] [I43365N6] [I43365N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 22))
-
+    
 ([I43365N0] of  Nutrient
     (Quantitat_nutrient 93.5)
     (Tipus_nutrient Aigua))
@@ -2332,7 +2332,7 @@
     (Nutrients [I43378N0] [I43378N1] [I43378N2] [I43378N3] [I43378N4] [I43378N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 541))
-
+    
 ([I43378N0] of  Nutrient
     (Quantitat_nutrient 12.32)
     (Tipus_nutrient Aigua))
@@ -2359,7 +2359,7 @@
     (Nutrients [I43384N0] [I43384N1] [I43384N2] [I43384N3] [I43384N4] [I43384N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 310))
-
+    
 ([I43384N0] of  Nutrient
     (Quantitat_nutrient 54.8)
     (Tipus_nutrient Aigua))
@@ -2386,7 +2386,7 @@
     (Nutrients [I43406N0] [I43406N1] [I43406N2] [I43406N3] [I43406N4] [I43406N5] [I43406N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 185))
-
+    
 ([I43406N0] of  Nutrient
     (Quantitat_nutrient 40.9)
     (Tipus_nutrient Aigua))
@@ -2416,7 +2416,7 @@
     (Nutrients [I43410N0] [I43410N1] [I43410N2] [I43410N3] [I43410N4] [I43410N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 234))
-
+    
 ([I43410N0] of  Nutrient
     (Quantitat_nutrient 56.44)
     (Tipus_nutrient Aigua))
@@ -2443,7 +2443,7 @@
     (Nutrients [I43449N0] [I43449N1] [I43449N2] [I43449N3] [I43449N4] [I43449N5] [I43449N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 105))
-
+    
 ([I43449N0] of  Nutrient
     (Quantitat_nutrient 72.6)
     (Tipus_nutrient Aigua))
@@ -2473,7 +2473,7 @@
     (Nutrients [I43543N0] [I43543N1] [I43543N2] [I43543N3] [I43543N4] [I43543N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 46))
-
+    
 ([I43543N0] of  Nutrient
     (Quantitat_nutrient 90.0)
     (Tipus_nutrient Aigua))
@@ -2500,7 +2500,7 @@
     (Nutrients [I43598N0] [I43598N1] [I43598N2] [I43598N3] [I43598N4] [I43598N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 688))
-
+    
 ([I43598N0] of  Nutrient
     (Quantitat_nutrient 21.7)
     (Tipus_nutrient Aigua))
@@ -2527,7 +2527,7 @@
     (Nutrients [I44005N0] [I44005N1])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 884))
-
+    
 ([I44005N0] of  Nutrient
     (Quantitat_nutrient 0.01)
     (Tipus_nutrient Vitamines))
@@ -2542,7 +2542,7 @@
     (Nutrients [I44048N0] [I44048N1] [I44048N2] [I44048N3] [I44048N4] [I44048N5] [I44048N6])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 257))
-
+    
 ([I44048N0] of  Nutrient
     (Quantitat_nutrient 55.5)
     (Tipus_nutrient Aigua))
@@ -2572,7 +2572,7 @@
     (Nutrients [I44055N0] [I44055N1] [I44055N2] [I44055N3] [I44055N4] [I44055N5] [I44055N6] [I44055N7])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 319))
-
+    
 ([I44055N0] of  Nutrient
     (Quantitat_nutrient 9.0)
     (Tipus_nutrient Aigua))
@@ -2605,7 +2605,7 @@
     (Nutrients [I83110N0] [I83110N1] [I83110N2] [I83110N3] [I83110N4] [I83110N5])
     (Temporada Hivern Primavera Estiu Tardor)
     (Valor_energetic 305))
-
+    
 ([I83110N0] of  Nutrient
     (Quantitat_nutrient 43.0)
     (Tipus_nutrient Aigua))
@@ -3469,7 +3469,7 @@
     (Apat Esmorzar Dinar Sopar)
     (Ingredients [IP28_0] [IP28_1] [IP28_2])
     (Nom "Fried egg with bread")
-    (Tipus_plat 1r))
+    (Tipus_plat 1r 2n))
 
 ([IP28_0] of  IngredientConcret
     (Cocci%C3%B3 Fresc)
@@ -5460,7 +5460,7 @@
 			(case 1 then (assert(Restriccio Meat)) (assert(Restriccio Fish))(assert (RestriccionsAfegides))(assert(Restriccio S)))
 			(case 2 then (assert(Restriccio Meat)) (assert(Restriccio Fish)) (assert(Restriccio Dairy_Eggs))(assert (RestriccionsAfegides))(assert(Restriccio S)))
 		)
-
+		
 )
 
 
@@ -5571,7 +5571,7 @@
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
 			(case 1 then   (assert(PreferenciaN Meat)))
-			(case 2 then   (assert(PreferenciaN Fruit)))
+			(case 2 then   (assert(PreferenciaN Fruits)))
 			(case 3 then   (assert(PreferenciaN Soups)))
 			(case 4 then   (assert(PreferenciaN Pasta)))
 			(case 5 then   (assert(PreferenciaN Nut)))
@@ -5638,7 +5638,7 @@
 	(progn$ (?it ?pref)	;Per a cadascun dels elements seleccionats
 		(switch ?it
 			(case 1 then   (assert(PreferenciaP Meat)))
-			(case 2 then   (assert(PreferenciaP Fruit)))
+			(case 2 then   (assert(PreferenciaP Fruits)))
 			(case 3 then   (assert(PreferenciaP Soups)))
 			(case 4 then   (assert(PreferenciaP Pasta)))
 			(case 5 then   (assert(PreferenciaP Nut)))
@@ -5684,7 +5684,7 @@
 			(case 4 then   (assert(Hipertensio))(assert(MalaltiesAfegides)))
 		)
 	)
-
+  
 )
 
 (defrule finalPreguntes "regla para pasar al modulo siguiente"
@@ -5750,7 +5750,7 @@
     (if (and (>= ?e 70) (eq ?g F)) then
         (bind ?minerals 1.660)
     )
-
+    
     ;Fem el calcul setmanal multiplicant-ho tot per 7
     (bind ?energia (* ?energia 7))
     (bind ?vitamines (* ?vitamines 7))
@@ -5761,8 +5761,8 @@
     (bind ?minerals (* ?minerals 7))
     (bind ?sucre (* ?sucre 7))
     (bind ?colesterolMax (* ?colesterolMax 7))
-
-
+    
+    
 
     (assert (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax)))
     (assert(necessitat_calculades))
@@ -5780,26 +5780,26 @@
     (progn$ (?ing ?ingredients)
         (bind ?quantitat (+ ?quantitat (send ?ing get-Quantitat)))
     )
-
+    
     ;si entra, modifiquem les quantitats proporcionalment
     (if (and (> ?quantitat 150) (not (member$ Postres (send ?plat get-Tipus_plat)))) then
-
+    
         (bind ?proporcio (/ 150 ?quantitat))    ;trobem la proporcio amb la que ho hem de reduir
         (progn$ (?ing ?ingredients)
             (bind ?a (instance-address * ?ing))
             (bind ?quantitatNova (* (send ?a get-Quantitat) ?proporcio))
-
+           
             (send ?a put-Quantitat ?quantitatNova)
         )
     )
-
+    
       ;si entra, modifiquem les quantitats proporcionalment
     (if (and (> ?quantitat 100) (member$ Postres (send ?plat get-Tipus_plat))) then
         (bind ?proporcio (/ 100 ?quantitat))    ;trobem la proporcio amb la que ho hem de reduir
         (progn$ (?ing ?ingredients)
             (bind ?a (instance-address * ?ing))
             (bind ?quantitatNova (* (send ?a get-Quantitat) ?proporcio))
-
+           
             (send ?a put-Quantitat ?quantitatNova)
         )
     )
@@ -5866,7 +5866,7 @@
 	(assert (PreferenciaP Pasta))
 	(assert (PreferenciaP Potatoes))
 	(assert (PreferenciaP Legumes))
-
+	
 
 	(assert (PreferenciesN S))
 	(assert (PreferenciesAfegidesN))
@@ -5906,14 +5906,13 @@
 	(assert (PreferenciaN Honey))
 	(assert (PreferenciaN Sweets))
 	(assert (PreferenciaN Chocolate))
-	(assert (PreferenciaN Fruits))
 	(assert (PreferenciaN Fats_Oils))
-
+	
 	(assert (RestriccionsAfegidesFamiliaNutrient))
-	(assert (RestriccioFamiliaNutrient Sweets Sucre 10)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
-	(assert (RestriccioFamiliaNutrient Fruits Sucre 10))
+	(assert (RestriccioFamiliaNutrient Sweets Sucre 20)) ;syntaxis Familia/Aliment Nom_Nutrient Quantitat_en_grams
+	(assert (RestriccioFamiliaNutrient Fruits Sucre 20))
 	(assert (RestriccioFamiliaNutrient Breakfast_Cereals Sucre 10))
-	(assert (RestriccioFamiliaNutrient Baked Sucre 10))
+	(assert (RestriccioFamiliaNutrient Baked Sucre 20))
 )
 
 (defrule MALALTIES::passemAFiltrat "No fa res. Passem al seguent modul"
@@ -5942,7 +5941,7 @@
     (Restriccio ?P)
     ?plat <- (object (is-a Plat))
     =>
-
+    
     (bind ?i 1)
 	(bind ?FI FALSE)
      (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients))))
@@ -5950,13 +5949,13 @@
         (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
         ;Comprovem si pertany a una familia a potenciar
-
+       
        (if (eq (send ?ingredientGeneral get-Familia) ?P) then    ;comprovem si son de la mateixa familia
 					(printout t "We delete the dish " (send ?plat get-Nom) " because it contains" (send ?ingredientGeneral get-Nom_ingredient) crlf)
 					(send ?plat delete)
 					(bind ?FI TRUE)
         )
-
+        
         (bind ?a (send ?ingredientGeneral get-Nom_ingredient))
             (if (and(= (str-compare ?P ?a) 0) (eq ?FI FALSE)) then
                             (printout t "We delete the dish " (send ?plat get-Nom) " because it contains" (send ?ingredientGeneral get-Nom_ingredient) crlf)
@@ -5964,8 +5963,8 @@
                             (send ?plat delete)
                             (bind ?FI TRUE)
            )
-
-
+                        
+        
         (bind ?i (+ ?i 1))
     )
 )
@@ -5976,16 +5975,16 @@
     (RestriccionsAfegidesFamiliaNutrient)
     (RestriccioFamiliaNutrient ?f ?n ?q)   ;poden haveri varies coses a potenciar
     ?plat <- (object (is-a Plat))
-
+    
 	=>
-
+	
 	(bind ?i 1)
 	(bind ?FI FALSE)
     (while (and (eq ?FI FALSE) (<= ?i (length$ (send ?plat get-Ingredients)))) ;recorrem tots els seus ingredients
       do
         (bind ?ingredient (nth$ ?i (send ?plat get-Ingredients))) ;agafem el n-èssim ingredient
         (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general))
-
+        
         ;Comprovem si pertany a una familia a potenciar
         (if (eq (send ?ingredientGeneral get-Familia) ?f) then    ;comprovem si son de la mateixa familia
 
@@ -6177,7 +6176,6 @@
     (nou_usuari)
     (not (FI))
     =>
-
     (assert (menusDiaris creats))
     (assert (menuDiari (dia 1)))
     (assert (menuDiari (dia 2)))
@@ -6201,18 +6199,18 @@
     (bind ?s 0)
     (bind ?col 0)
     (bind ?vit 0)
-
+		
 	(progn$ (?plat ?plats)
 		(bind ?ingredients_plat (send ?plat get-Ingredients))
 		(progn$ (?ingredient ?ingredients_plat)   ;iterem sobre tots els seus ingredients
             (bind ?quantitatIngredient (send ?ingredient get-Quantitat)) ;quantitat de l'ingredient
             (bind ?ingredientGeneral (send ?ingredient get-Ingredient_general)) ;ingredient general
-
+            
             (bind ?kcal (+ ?kcal (* (send ?ingredientGeneral get-Valor_energetic) (/ ?quantitatIngredient 100))))    ;sumem les kcalories
             (bind ?nutrients (send ?ingredientGeneral get-Nutrients))
 
             (progn$ (?nutrient ?nutrients)
-
+                
                 (bind ?tipus (send ?nutrient get-Tipus_nutrient))
                 (bind ?quantitat (send ?nutrient get-Quantitat_nutrient))	;tenim la quantitat de nutrients per cada 100g
 
@@ -6270,10 +6268,8 @@
 
 ;aixo ho divideix en tipus i a més ens ho ordena
 (defrule MENUS::dividirEnTipusPlats "Ara dividim tots els plats que han quedat en esmorzar, dinar primer i segon plat, sopar primer i segon plat i postres"
-    (declare (salience 1))
 	(nou_usuari)
 	(not (FI))
-
 	=>
 	(bind ?esmorzars (find-all-instances ((?inst Plat)) (member$ Esmorzar ?inst:Apat)))
 	(bind ?dinarsPrimers (find-all-instances ((?inst Plat)) (and (member$ Dinar ?inst:Apat) (member$ 1r ?inst:Tipus_plat)) ))
@@ -6329,7 +6325,7 @@
 	(assert (numeroPostres (- ?pos 1)))
 
 	(assert (hemCalculatElsPlats))
-
+	
 )
 
 
@@ -6357,28 +6353,28 @@
     (ValorNutricionalPlats)
     (podemCalcular)
     (not(menuMigOmplert))
-
+    
     ?dd <- (dia ?d)
     ?p1 <- (pos1 ?pos1)
     ?p2 <- (pos2 ?pos2)
     ?p3 <- (pos3 ?pos3)
     ?p4 <- (pos4 ?pos4)
-
+    
     ;Aixo ho farem servir per si ens cal tornar a buscar una altre combinacio
     (numeroSoparPrimers ?nSP)
     (numeroDinarSegons ?nDS)
     (numeroEsmorzars ?nE)
     (numeroPostres ?nP)
-
+    
     ?menu <- (menuDiari (dia ?d))
-
+    
     ;carreguem els nutrients que tenim del menu fins ara
     ?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
-
+    
     ;carreguem les restriccions nutricionals setmanals
     ?r <- (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
-
-
+    
+    
     ;si cal podem jugar en marcar nosaltres la posicio per tal que sigui sempre dels primers
     ?recE <- (solucionOrdenadaE (posicio ?pos1) (plat ?platE1))
     ?recDS1 <- (solucionOrdenadaDS (posicio ?pos2) (plat ?platDS1))
@@ -6390,45 +6386,45 @@
     (retract ?p2)
     (retract ?p3)
     (retract ?p4)
-
+    
     ;Nomes agafarem plats que siguin recomanables. La eleccio sera aleatoria
-    (if (and (>= (send ?platE1 get-GrauRecomanacio) 0)
-             (>= (send ?platDS1 get-GrauRecomanacio) 0)
-             (>= (send ?platSP1 get-GrauRecomanacio) 0)
-             (>= (send ?platSPostres1 get-GrauRecomanacio) 0))   then   ;comprovem que siguin recomanables
-
+    (if (> (+ (send ?platE1 get-GrauRecomanacio)
+                (send ?platDS1 get-GrauRecomanacio)
+                (send ?platSP1 get-GrauRecomanacio)
+                (send ?platSPostres1 get-GrauRecomanacio) ) 0)   then   ;comprovem que siguin recomanables
+    
         ;actualitzem la informacio del menu setmanal
         (bind $?info (obtenirInfoPlats (create$ ?platE1 ?platDS1 ?platSP1 ?platSPostres1)))
-
+ 
         (modify ?menu (esmorzar ?platE1)(dinarSegon ?platDS1)(soparPrimer ?platSP1)(soparPostres ?platSPostres1))
 
         ;calculem els nous valors nutricionals setmanals
         (bind ?kcal (+ ?e0 (nth$ 1 ?info)))
-        (bind ?prot (+ ?p0 (nth$ 2 ?info)))
+        (bind ?prot (+ ?p0 (nth$ 2 ?info))) 
         (bind ?hid (+ ?h0 (nth$ 3 ?info)))
         (bind ?g (+ ?g0 (nth$ 4 ?info)))
         (bind ?m (+ ?m0 (nth$ 6 ?info)))
-        (bind ?f (+ ?f0 (nth$ 7 ?info)))
+        (bind ?f (+ ?f0 (nth$ 7 ?info))) 
         (bind ?s (+ ?s0 (nth$ 8 ?info)))
         (bind ?col (+ ?c0 (nth$ 9 ?info)))
         (bind ?vit (+ ?v0 (nth$ 10 ?info)))
-
+        
         ;actualitzem la info nutricional del menu
         (modify ?ms (Energia ?kcal)(Minerals ?m) (Proteines ?prot) (Vitamines ?vit) (Fibra ?f)(Hidrats_de_carboni ?hid) (Greixos ?g) (Sucre ?s) (Colesterol ?col))
-
+        
         (retract ?dd)
         (assert (dia (+ ?d 1))) ;fem el seguent dia
-
+        
         (if (< ?d 7) then
             (assert (pos1 (random 1 ?nE)))
             (assert (pos2 (random 1 ?nDS)))
             (assert (pos3 (random 1 ?nSP)))
             (assert (pos4 (random 1 ?nP)))
-
+        
         else
             (assert (menuMigOmplert))
         )
-
+        
     else
         (assert (pos1 (random 1 ?nE)))
         (assert (pos2 (random 1 ?nDS)))
@@ -6448,30 +6444,30 @@
     =>
     (assert (counter 1))
     (assert (menuCompletat1))
-    (assert (pos1 (random 1 ?nDP)))
-    (assert (pos2 (random 1 ?nDP)))
-    (assert (pos3 (random 1 ?nDP)))
-    (assert (pos4 (random 1 ?nDP)))
-    (assert (pos5 (random 1 ?nDP)))
-    (assert (pos6 (random 1 ?nDP)))
-    (assert (pos7 (random 1 ?nDP)))
-
-    (assert (pos8 (random 1 ?nSS)))
-    (assert (pos9 (random 1 ?nSS)))
-    (assert (pos10 (random 1 ?nSS)))
+    (assert (pos1 (random 1 ?nDP))) 
+    (assert (pos2 (random 1 ?nDP))) 
+    (assert (pos3 (random 1 ?nDP))) 
+    (assert (pos4 (random 1 ?nDP))) 
+    (assert (pos5 (random 1 ?nDP))) 
+    (assert (pos6 (random 1 ?nDP))) 
+    (assert (pos7 (random 1 ?nDP))) 
+    
+    (assert (pos8 (random 1 ?nSS))) 
+    (assert (pos9 (random 1 ?nSS))) 
+    (assert (pos10 (random 1 ?nSS))) 
     (assert (pos11 (random 1 ?nSS)))
-    (assert (pos12 (random 1 ?nSS)))
-    (assert (pos13 (random 1 ?nSS)))
-    (assert (pos14 (random 1 ?nSS)))
-
-    (assert (pos15 (random 1 ?nP)))
-    (assert (pos16 (random 1 ?nP)))
-    (assert (pos17 (random 1 ?nP)))
+    (assert (pos12 (random 1 ?nSS))) 
+    (assert (pos13 (random 1 ?nSS))) 
+    (assert (pos14 (random 1 ?nSS))) 
+    
+    (assert (pos15 (random 1 ?nP))) 
+    (assert (pos16 (random 1 ?nP))) 
+    (assert (pos17 (random 1 ?nP))) 
     (assert (pos18 (random 1 ?nP)))
-    (assert (pos19 (random 1 ?nP)))
-    (assert (pos20 (random 1 ?nP)))
-    (assert (pos21 (random 1 ?nP)))
-
+    (assert (pos19 (random 1 ?nP))) 
+    (assert (pos20 (random 1 ?nP))) 
+    (assert (pos21 (random 1 ?nP))) 
+    
 )
 
 
@@ -6480,7 +6476,7 @@
 		(menuCompletat1)
 		(not (FI))
 		(not (menuCompletat))
-
+		
 		?p1 <- (pos1 ?pos1)
 		?p2 <- (pos2 ?pos2)
 		?p3 <- (pos3 ?pos3)
@@ -6502,18 +6498,18 @@
 		?p19 <- (pos19 ?pos19)
 		?p20 <- (pos20 ?pos20)
 		?p21 <- (pos21 ?pos21)
-
+		
 		?cc <- (counter ?counter)
-
+        
         (numeroSoparSegons ?nSS)
         (numeroDinarPrimers ?nDP)
         (numeroPostres ?nP)
-
+        
 		;aqui sabem el que tenim
 		?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
-
+		
 		?r <- (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
-
+        
         ;Trobem dinars primers
 		?d1 <- (solucionOrdenadaDP (posicio ?pos1) (plat ?dinar1))
 		?d2 <- (solucionOrdenadaDP (posicio ?pos2) (plat ?dinar2))
@@ -6531,7 +6527,7 @@
 		?s5 <- (solucionOrdenadaSS (posicio ?pos12) (plat ?sopar5))
 		?s6 <- (solucionOrdenadaSS (posicio ?pos13) (plat ?sopar6))
 		?s7 <- (solucionOrdenadaSS (posicio ?pos14) (plat ?sopar7))
-
+		
 		;Trobem els dinars postres
 		?h1 <- (solucionOrdenadaP (posicio ?pos15) (plat ?postre1))
 		?h2 <- (solucionOrdenadaP (posicio ?pos16) (plat ?postre2))
@@ -6540,8 +6536,8 @@
 		?h5 <- (solucionOrdenadaP (posicio ?pos19) (plat ?postre5))
 		?h6 <- (solucionOrdenadaP (posicio ?pos20) (plat ?postre6))
 		?h7 <- (solucionOrdenadaP (posicio ?pos21) (plat ?postre7))
-
-
+		
+		
 		;carreguem els menus
 		?menu1 <- (menuDiari (dia 1))
 		?menu2 <- (menuDiari (dia 2))
@@ -6553,20 +6549,20 @@
 
 		=>
 		(bind $?list (obtenirInfoPlats (create$ ?dinar1 ?dinar2 ?dinar3 ?dinar4 ?dinar5 ?dinar6 ?dinar7 ?sopar1 ?sopar2 ?sopar3 ?sopar4 ?sopar5 ?sopar6 ?sopar7 ?postre1 ?postre2 ?postre3 ?postre4 ?postre5 ?postre6 ?postre7)))
-
+		
 		;Aquestes son les que tenim amb aquesta nova seleccio
         (bind ?kcalFinal (nth$ 1 ?list))
-		(bind ?protFinal (nth$ 2 ?list))
+		(bind ?protFinal (nth$ 2 ?list)) 
 		(bind ?hidFinal (nth$ 3 ?list))
 		(bind ?gFinal (nth$ 4 ?list))
 		(bind ?aFinal (nth$ 5 ?list))
 		(bind ?mFinal (nth$ 6 ?list))
-		(bind ?fFinal (nth$ 7 ?list))
+		(bind ?fFinal (nth$ 7 ?list)) 
 		(bind ?sFinal (nth$ 8 ?list))
-		(bind ?colFinal (nth$ 9 ?list))
+		(bind ?colFinal (nth$ 9 ?list)) 
 		(bind ?vitFinal (nth$ 10 ?list))
-
-
+		
+		
         ;Potencialment definitius
         (bind ?mDef (+ ?mFinal ?m0))
         (bind ?eDef (+ ?kcalFinal ?e0))
@@ -6577,8 +6573,8 @@
         (bind ?gDef (+ ?gFinal ?g0))
         (bind ?sDef (+ ?sFinal ?s0))
         (bind ?cDef (+ ?colFinal ?c0))
-
-
+       
+       
         (retract ?p1)
         (retract ?p2)
         (retract ?p3)
@@ -6600,8 +6596,8 @@
         (retract ?p19)
         (retract ?p20)
         (retract ?p21)
-
-
+       
+       
         ;Farem les comparacions per a veure si aconseguim que estigui en un rang de +- 20%
         (if (or (and (> ?mDef (* 0.8 ?minerals))
                      (> ?eDef (* 0.8 ?energia)) (< ?eDef (* 1.2 ?energia))
@@ -6613,8 +6609,8 @@
                      (< ?sDef (* 1.2 ?sucre))
                      (< ?cDef (* 1.2 ?colesterolMax))
                     )
-                (> ?counter 10000)) then
-
+                (> ?counter 5000)) then
+                
             (modify ?menu1 (dinarPrimer ?dinar1)(soparSegon ?sopar1)(dinarPostres ?postre1))
             (modify ?menu2 (dinarPrimer ?dinar2)(soparSegon ?sopar2)(dinarPostres ?postre2))
             (modify ?menu3 (dinarPrimer ?dinar3)(soparSegon ?sopar3)(dinarPostres ?postre3))
@@ -6622,35 +6618,35 @@
             (modify ?menu5 (dinarPrimer ?dinar5)(soparSegon ?sopar5)(dinarPostres ?postre5))
             (modify ?menu6 (dinarPrimer ?dinar6)(soparSegon ?sopar6)(dinarPostres ?postre6))
             (modify ?menu7 (dinarPrimer ?dinar7)(soparSegon ?sopar7)(dinarPostres ?postre7))
-
+     
             (modify ?ms (Minerals ?mDef) (Proteines ?pDef) (Vitamines ?vDef) (Fibra ?fDef)(Hidrats_de_carboni ?hDef) (Greixos ?gDef) (Sucre ?sDef) (Colesterol ?cDef)(Energia ?eDef))
             (assert (menuCompletat))
-
+    
 		else  ;fem aquesta "TRAMPA" per tal que segueixi buscant combinacions fins que en trobi una
-            (assert (pos1 (random 1 ?nDP)))
-            (assert (pos2 (random 1 ?nDP)))
-            (assert (pos3 (random 1 ?nDP)))
-            (assert (pos4 (random 1 ?nDP)))
-            (assert (pos5 (random 1 ?nDP)))
-            (assert (pos6 (random 1 ?nDP)))
-            (assert (pos7 (random 1 ?nDP)))
+            (assert (pos1 (random 1 ?nDP))) 
+            (assert (pos2 (random 1 ?nDP))) 
+            (assert (pos3 (random 1 ?nDP))) 
+            (assert (pos4 (random 1 ?nDP))) 
+            (assert (pos5 (random 1 ?nDP))) 
+            (assert (pos6 (random 1 ?nDP))) 
+            (assert (pos7 (random 1 ?nDP))) 
 
-            (assert (pos8 (random 1 ?nSS)))
-            (assert (pos9 (random 1 ?nSS)))
-            (assert (pos10 (random 1 ?nSS)))
+            (assert (pos8 (random 1 ?nSS))) 
+            (assert (pos9 (random 1 ?nSS))) 
+            (assert (pos10 (random 1 ?nSS))) 
             (assert (pos11 (random 1 ?nSS)))
-            (assert (pos12 (random 1 ?nSS)))
-            (assert (pos13 (random 1 ?nSS)))
-            (assert (pos14 (random 1 ?nSS)))
+            (assert (pos12 (random 1 ?nSS))) 
+            (assert (pos13 (random 1 ?nSS))) 
+            (assert (pos14 (random 1 ?nSS))) 
 
-            (assert (pos15 (random 1 ?nP)))
-            (assert (pos16 (random 1 ?nP)))
-            (assert (pos17 (random 1 ?nP)))
+            (assert (pos15 (random 1 ?nP))) 
+            (assert (pos16 (random 1 ?nP))) 
+            (assert (pos17 (random 1 ?nP))) 
             (assert (pos18 (random 1 ?nP)))
-            (assert (pos19 (random 1 ?nP)))
-            (assert (pos20 (random 1 ?nP)))
-            (assert (pos21 (random 1 ?nP)))
-
+            (assert (pos19 (random 1 ?nP))) 
+            (assert (pos20 (random 1 ?nP))) 
+            (assert (pos21 (random 1 ?nP))) 
+           
             (retract ?cc)
             (assert (counter (+ ?counter 1)))
         )
@@ -6674,8 +6670,8 @@
     (printout t "------------------     Final weekly menu     ------------------" crlf)
     (printout t "---------------------------------------------------------------" crlf)
     (printout t crlf)
-
-    (if (> ?counter 10000) then
+    
+    (if (> ?counter 5000) then
         (printout t "Unfortunately we have not been able to find a menu that follows all restriction." crlf)
         (printout t "Despite this, we show you the closest one we found. " crlf)
     )
@@ -6698,7 +6694,7 @@
 
     ?menu <- (menuDiari (dia ?d) (esmorzar ?e) (dinarPrimer ?dp) (dinarSegon ?ds) (dinarPostres ?dpostres) (soparPrimer ?sp) (soparSegon ?ss)(soparPostres ?spostres))
     =>
-
+   
     (switch ?d
 		(case 1 then (printout t "MONDAY" crlf))
 		(case 2 then (printout t "TUESDAY" crlf))
@@ -6799,7 +6795,7 @@
 
         (printout t crlf)
 
-
+        
         (if (eq ?d 7) then
             (retract ?dd)
             (assert(imprimit))
@@ -6815,11 +6811,11 @@
         (imprimit)
         (not (FI))
     	?ms <- (infoNutricionalMenu (Minerals ?m0) (Proteines ?p0) (Vitamines ?v0) (Fibra ?f0)(Hidrats_de_carboni ?h0) (Greixos ?g0) (Sucre ?s0) (Colesterol ?c0)(Energia ?e0))
-
+		
 		?r <- (restriccionsNutricionalsSetmanals (kilocalories ?energia) (vitamines ?vitamines) (hidratsCarboni ?hidrats)(greixosMaxims ?greixosMaxims) (proteines ?prot) (fibra ?fibra) (minerals ?minerals) (sucre ?sucre)(colesterol ?colesterolMax))
-
+        
         =>
-
+        
         (printout t crlf)
         (printout t "---------------------------------------------------------------" crlf)
         (printout t "-----------     Weekly nutritional information     ------------" crlf)
@@ -6827,48 +6823,51 @@
         (printout t crlf)
         (printout t "In our nutritional restrictions we give a margin of 20% to be a little flexible" crlf)
         (printout t crlf)
-
+        
         (printout t "Energy :" crlf)
         (printout t "Recomended from " (* 0.8 (precisioDoble ?energia)) " kcal to " (* 1.2 (precisioDoble ?energia)) " kcal:" crlf)
-
+        
         (printout t "Obtained: " (precisioDoble ?e0) " kcal" crlf)
         (printout t crlf)
-
+        
         (printout t "Minerals :" crlf)
         (printout t "Recomended at least: " (precisioDoble ?minerals) " g"crlf)
         (printout t "Obtained: " (precisioDoble ?m0) " g" crlf)
         (printout t crlf)
-
+        
         (printout t "Proteins :" crlf)
         (printout t "Recomended from " (* 0.8 (precisioDoble ?prot) ) " g to " (* 1.2 (precisioDoble ?prot)) "g:" crlf)
         (printout t "Obtained: " (precisioDoble ?p0) " g" crlf)
+        (if (< ?p0 (* 0.8 ?prot)) then 
+        (printout t "We recommend eating a protein bar to balance the menu" crlf))
+        
         (printout t crlf)
-
+        
         (printout t "Vitamins :" crlf)
         (printout t "Recomended at least: " (* 0.8 (precisioDoble ?vitamines)) " g" crlf)
         (printout t "Obtained: " (precisioDoble ?v0) " g" crlf)
         (printout t crlf)
-
+        
         (printout t "Fibra :" crlf)
         (printout t "Recomended at least: " (* 0.8 (precisioDoble ?fibra)) " g" crlf)
         (printout t "Obtained: " (precisioDoble ?f0) " g" crlf)
         (printout t crlf)
-
+        
         (printout t "Hidrats :" crlf)
         (printout t "Recomended from " (* 0.8 (precisioDoble ?hidrats) ) " g to " (* 1.2 (precisioDoble ?hidrats)) "g:" crlf)
         (printout t "Obtained: " (precisioDoble ?h0) " g" crlf)
         (printout t crlf)
-
+        
         (printout t "Greixos :" crlf)
         (printout t "Recomended at most: " (* 1.2 (precisioDoble ?greixosMaxims)) " g" crlf)
         (printout t "Obtained: " (precisioDoble ?g0) " g" crlf)
         (printout t crlf)
-
-        (printout t "Sugar :" crlf )
+        
+        (printout t "Sugar :" crlf)
         (printout t "Recomended at most: " (* 1.2 (precisioDoble ?sucre)) " g:" crlf)
         (printout t "Obtained: " (precisioDoble ?s0) " g"crlf)
         (printout t crlf)
-
+        
         (printout t "Colesterol :" crlf)
         (printout t "Recomended at most: " (* 1.2 (precisioDoble ?colesterolMax)) " g:" crlf)
         (printout t "Obtained: " (precisioDoble ?c0) " g" crlf)
