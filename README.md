@@ -1,4 +1,4 @@
-# PRACTICA2-IA
+# Expert-System-AI
 Expert system creating personalized menus.
 
 
