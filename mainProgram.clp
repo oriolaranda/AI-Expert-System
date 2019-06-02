@@ -1,3 +1,7 @@
+
+        
+              
+        
 ; Sun May 12 20:10:01 CEST 2019
 ;
 ;+ (version "3.3.1")
@@ -6429,8 +6433,8 @@
             (assert (menuMigOmplert))
         )
 
-    ;amb aquest else fem que anem iterant per intentar trobar alguna combinació en que totes siguin recomanables
-    else
+    ;amb aquest else fem que anem iterant per intentar trobar alguna combinació en que totes siguin recomanables    
+    else    
         (assert (pos1 (random 1 ?nE)))
         (assert (pos2 (random 1 ?nDS)))
         (assert (pos3 (random 1 ?nSP)))
@@ -6876,6 +6880,12 @@
         (printout t "Obtained: " (precisioDoble ?c0) " g" crlf)
         (printout t crlf)
         (assert (FI)))
+        
+              
+        
+;This is the final version.
+              
+        
 
 
 
