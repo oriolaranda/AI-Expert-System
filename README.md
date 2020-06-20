@@ -2,4 +2,4 @@
 Expert system creating personalized menus.
 
 
-David Pujol, Oriol Aranda and Pol Garcia.
+Developed by David Pujol, Oriol Aranda and Pol Garcia.
